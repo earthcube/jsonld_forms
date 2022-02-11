@@ -1,0 +1,144 @@
+{
+  "type": "Categorization",
+
+  "elements": [
+    {
+      "type": "Category",
+      "label": "Section 1. General Resource Information",
+      "elements": [
+        {
+          "type": "VerticalLayout",
+          "elements": [
+            {
+              "label": "Identifier",
+
+              "type": "Control",
+              "scope": "#/properties/@id"
+            },
+            {
+              "type": "ShowGroup",
+              "label": "Add Additional Identifiers",
+              "elements": [
+                {
+                  "type": "Label",
+                  "text": "1.1 Additional Identifiers"
+                },
+                {
+                  "type": "Control",
+                  "label": "Alternate Identifiers",
+                  "scope": "#/properties/identifier"
+                }
+              ]
+            },
+
+            {
+              "label": " Name",
+              "type": "Control",
+              "scope": "#/properties/name"
+            },
+            {
+              "type": "ShowGroup",
+              "label": "Add Additional Names",
+              "elements": [
+                {
+                  "type": "Label",
+                  "text": "1.2 Alternate Resource Name(s)"
+                },
+                {
+                  "type": "Control",
+                  "label": "Alternate Name",
+                  "scope": "#/properties/alternateName"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "VerticalLayout",
+          "elements": [
+            {
+              "type": "Label",
+              "text": "2. Description"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/description",
+              "options": {
+                "multi": true
+              }
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/keywords"
+            },
+            {
+              "type": "ShowGroup",
+              "label": "Add Reccomended Details",
+              "elements": [
+                {
+                  "type": "Label",
+                  "text": "2.2 Date"
+                },
+                {
+                  "type": "Control",
+                  "label": "Publication Date of <span style='text-color:blue;' >Most Recent Release<span>",
+                  "scope": "#/properties/datePublished"
+                },
+                {
+                  "type": "Label",
+                  "text": "2.1 URL to User Readable Page"
+                },
+                {
+                  "type": "Control",
+                  "label": "URL to User-Readable Page",
+                  "scope": "#/properties/subjectOf"
+                }
+
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Category",
+      "label": "Section 2. Resource Type",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/contentType"
+        }
+
+      ]
+    },
+    {
+      "type": "Category",
+      "label": "Section 3. Availability and Stewardship",
+      "elements": [
+        {
+          "type": "Label",
+          "text": "1. License"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/license",
+          "options": {
+            "detail": {
+              "type": "VertialLayout",
+              "elements": [
+                {
+                  "type": "Control",
+                  "scope": "#/properties/name",
+                  "options": {
+                    "format": "radio"
+                  }
+                }
+              ]
+            }
+          }
+        }
+
+      ]
+    }
+  ]
+}

@@ -1,4 +1,9 @@
 # ecrr_ui_vue2
+[Notes](./NOTES.txt)
+
+See:
+https://jsonforms-vuetify-renderers.netlify.app/#/
+
 
 ## Project setup
 ```
@@ -22,3 +27,4 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+

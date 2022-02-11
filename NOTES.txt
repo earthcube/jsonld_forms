@@ -1,0 +1,78 @@
+
+Notes:
+Thoughts:
+* could have two entry points:
+1. a simple mostly single entry form
+2. omplete add elements as array form.
+
+Codebase:
+https://jsonforms.io/
+More specifically: The vuetify components:
+
+https://jsonforms-vuetify-renderers.netlify.app/#/
+
+Schema changes:
+===
+Error:
+no schema with key or ref
+Solution:
+Remove the"$schema": "http://json-schema.org/draft-04/schema#"
+
+===
+Arrays;
+zappping oneOf
+"alternateName": {
+"title": "alternate name for resource",
+"description": "other names, abbreviations, languages, by which the resource might be known.  If names are provided in a non-English language, please suffix a language identifier using the '@' delimiter and an ISO-639-1 two letter language code, e.g. Forme universelle binaire de l'OMM@fr. Separate entries with a pipe ('|') character",
+"oneOf": [
+{"type": "string"},
+{
+"type": "array",
+"items": {"type": "string"}
+}
+]
+},
+
+becomes:
+"alternateName": {
+"title": "alternate name for resource",
+"description": "other names, abbreviations, languages, by which the resource might be known.  If names are provided in a non-English language, please suffix a language identifier using the '@' delimiter and an ISO-639-1 two letter language code, e.g. Forme universelle binaire de l'OMM@fr. Separate entries with a pipe ('|') character",
+"type": "array",
+"items": {"type": "string"}
+
+},
+
+====
+List of "OBJECTS":
+use oneOf:
+
+   "license": {
+      "title": "legal statement of conditions for use and access",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "oneOf": [
+          {
+            "title": "License 1",
+            "const": {
+
+              "@type": "CreativeWork"
+            ,
+              "name": "License 1",
+              "url":  "use if CreativeWork or URL; if use url, the value is a string"
+
+            }
+          },
+          {
+            "title": "License 2",
+            "const": {
+
+              "@type": "CreativeWork",
+              "name": "License 2",
+              "url": "use if CreativeWork or URL; if use url, the value is a string"
+            }
+          }
+        ]
+      }
+    },
+
