@@ -1,5 +1,14 @@
 <template>
   <div>
+    <v-sheet
+        color="white"
+        elevation="1"
+        height="600"
+        outlined
+        rounded
+        shaped
+        width="80%"
+    >
   <json-forms
       :data="data"
       :schema="schema"
@@ -7,14 +16,12 @@
       :renderers="renderers"
       @change="onChange"
   />
-<v-expansion-panels>
-  <v-expansion-panel>
-    <v-expansion-panel-header>JSON</v-expansion-panel-header>
-    <v-expansion-panel-content>
+    </v-sheet>
+<v-footer max-height="20em">
+  <v-col>
     <vue-json-pretty :path="'res'" :data="data" @click="handleClick"> </vue-json-pretty>
-    </v-expansion-panel-content>
-  </v-expansion-panel>
-</v-expansion-panels>
+  </v-col>
+</v-footer>
   </div>
 </template>
 
