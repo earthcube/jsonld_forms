@@ -11,6 +11,13 @@ More specifically: The vuetify components:
 
 https://jsonforms-vuetify-renderers.netlify.app/#/
 
+Errors when Creating forms:
+==
+Initial data and modified schema need to match, or you may see an error about an object
+* Is it an array? Some things are strings, but should be arrays
+* just remove it.
+
+
 Schema changes:
 ===
 Error:
