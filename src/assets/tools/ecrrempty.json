@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "@vocab": "http://schema.org/",
+    "datacite": "http://purl.org/spar/datacite/",
+
+    "geolink": "http://schema.geolink.org/1.0/base/main#",
+    "vivo": "http://vivoweb.org/ontology/core#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "ecrro": "http://purl.obolibrary.org/obo/ECRRO_"
+  }
+
+}

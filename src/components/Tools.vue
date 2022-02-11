@@ -34,7 +34,7 @@ import 'vue-json-pretty/lib/styles.css';
 
 const schema= require('../assets/tools/ecrr_jsonschema_1_0.json');
 const uischema = require('../assets/tools/ecrr_1_0_uischema.json');
-const data = require('../assets/tools/ecrr_initialdata.json');
+const data = require('../assets/tools/ecrrempty.json');
 
 import {entry as AltGroupRenderer} from './AdditionalDetailsRenderer'
 
