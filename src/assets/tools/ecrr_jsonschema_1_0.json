@@ -356,6 +356,15 @@
       "items": {"$ref": "#/definitions/additionalProperty_type"}
     }
   },
+  "required": [
+    "name",
+    "description",
+    "citation",
+    "license",
+    "url",
+    "datePublished",
+    "keywords"
+  ],
   "definitions": {
     "identifier_type":
     {

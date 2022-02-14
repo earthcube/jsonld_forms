@@ -15,13 +15,31 @@
       :uischema="uischema"
       :renderers="renderers"
       @change="onChange"
+      :validationMode="currentValidationMode"
   />
+      <v-spacer></v-spacer>
+      <v-divider></v-divider>
+      <v-col cols="10">
+        <v-expansion-panels max-height="20em" >
+          <v-expansion-panel>
+            <v-expansion-panel-header>
+              <template v-slot:actions>
+                <v-icon color="primary">
+                  $expand
+                </v-icon>
+              </template>
+              <span>JSON</span>
+
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <vue-json-pretty :path="'res'" :data="data" @click="handleClick"> </vue-json-pretty>
+            </v-expansion-panel-content>
+
+          </v-expansion-panel>
+        </v-expansion-panels>
+      </v-col>
+
     </v-sheet>
-<v-footer max-height="20em">
-  <v-col>
-    <vue-json-pretty :path="'res'" :data="data" @click="handleClick"> </vue-json-pretty>
-  </v-col>
-</v-footer>
   </div>
 </template>
 
@@ -58,6 +76,7 @@ const tool = defineComponent({
       data,
       schema,
       uischema,
+      currentValidationMode: "ValidateAndHide", // ValidateAndShow, ValidateAndHide, NoValidation
     };
   },
   methods: {
@@ -68,4 +87,14 @@ const tool = defineComponent({
 });
 export default tool
 </script>
+
+<style>
+.icon {
+  order: 0;
+}
+
+.header {
+  order: 1;
+}
+</style>
 

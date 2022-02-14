@@ -13,7 +13,10 @@
               "label": "Identifier",
 
               "type": "Control",
-              "scope": "#/properties/@id"
+              "scope": "#/properties/@id",
+              "options": {
+                "showUnfocusedDescription": true
+              }
             },
             {
               "type": "ShowGroup",
@@ -26,7 +29,10 @@
                 {
                   "type": "Control",
                   "label": "Alternate Identifiers",
-                  "scope": "#/properties/identifier"
+                  "scope": "#/properties/identifier",
+                  "options": {
+                    "showUnfocusedDescription": true
+                  }
                 }
               ]
             },
@@ -34,7 +40,10 @@
             {
               "label": " Name",
               "type": "Control",
-              "scope": "#/properties/name"
+              "scope": "#/properties/name",
+              "options": {
+                "showUnfocusedDescription": true
+              }
             },
             {
               "type": "ShowGroup",
@@ -42,12 +51,18 @@
               "elements": [
                 {
                   "type": "Label",
-                  "text": "1.2 Alternate Resource Name(s)"
+                  "text": "1.2 Alternate Resource Name(s)",
+                  "options": {
+                    "showUnfocusedDescription": true
+                  }
                 },
                 {
                   "type": "Control",
                   "label": "Alternate Name",
-                  "scope": "#/properties/alternateName"
+                  "scope": "#/properties/alternateName",
+                  "options": {
+                    "showUnfocusedDescription": true
+                  }
                 }
               ]
             }
@@ -64,12 +79,16 @@
               "type": "Control",
               "scope": "#/properties/description",
               "options": {
-                "multi": true
+                "multi": true,
+                "showUnfocusedDescription": true
               }
             },
             {
               "type": "Control",
-              "scope": "#/properties/keywords"
+              "scope": "#/properties/keywords",
+              "options": {
+                "showUnfocusedDescription": true
+              }
             },
             {
               "type": "ShowGroup",
@@ -82,7 +101,10 @@
                 {
                   "type": "Control",
                   "label": "Publication Date of <span style='text-color:blue;' >Most Recent Release<span>",
-                  "scope": "#/properties/datePublished"
+                  "scope": "#/properties/datePublished",
+                  "options": {
+                    "showUnfocusedDescription": true
+                  }
                 },
                 {
                   "type": "Label",
@@ -91,7 +113,10 @@
                 {
                   "type": "Control",
                   "label": "URL to User-Readable Page",
-                  "scope": "#/properties/subjectOf"
+                  "scope": "#/properties/subjectOf",
+                  "options": {
+                    "showUnfocusedDescription": true
+                  }
                 }
 
               ]

@@ -5,9 +5,14 @@
       :class="`pa-0 ${styles.group.root}`"
       elevation="2"
   >
-    <v-expansion-panel-header v-if="layout.uischema.label" :class="styles.group.label">{{
-        layout.uischema.label
-      }}</v-expansion-panel-header>
+    <v-expansion-panel-header v-if="layout.uischema.label" :class="styles.group.label">
+      <template v-slot:actions>
+        <v-icon class="icon">$expand</v-icon>
+      </template>
+      <span class="header"> {{
+          layout.uischema.label
+        }}</span>
+     </v-expansion-panel-header>
 
     <v-expansion-panel-content
         v-for="(element, index) in layout.uischema.elements"
@@ -69,3 +74,14 @@ export const entry: JsonFormsRendererRegistryEntry = {
   tester: rankWith(3, and(isLayout, uiTypeIs('ShowGroup'))),
 };
 </script>
+
+<style>
+.icon {
+  order: 0;
+}
+
+.header {
+  order: 1;
+}
+</style>
+
