@@ -55,12 +55,14 @@ const uischema = require('../assets/tools/ecrr_1_0_uischema.json');
 const data = require('../assets/tools/ecrrempty.json');
 
 import {entry as AltGroupRenderer} from './AdditionalDetailsRenderer'
+import {entry as HtmlLabelRender } from './htmlLabelRenderer'
 
 const renderers = [
   ...vuetifyRenderers,
 
   // here you can add custom renderers
-  AltGroupRenderer
+  AltGroupRenderer,
+  HtmlLabelRender
 ];
 
 const tool = defineComponent({

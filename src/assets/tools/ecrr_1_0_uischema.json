@@ -11,7 +11,7 @@
           "elements": [
             {
               "type": "Label",
-              "text": "1. Identifier"
+              "text": "1. <span style='color:peru;'> Identifier </span>"
             },
             {
               "label": "Identifier",
