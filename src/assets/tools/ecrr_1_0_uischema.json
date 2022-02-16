@@ -10,6 +10,10 @@
           "type": "VerticalLayout",
           "elements": [
             {
+              "type": "Label",
+              "text": "1. Identifier"
+            },
+            {
               "label": "Identifier",
 
               "type": "Control",
@@ -36,7 +40,10 @@
                 }
               ]
             },
-
+            {
+              "type": "Label",
+              "text": "1.2. Name"
+            },
             {
               "label": " Name",
               "type": "Control",
@@ -129,6 +136,10 @@
       "type": "Category",
       "label": "Section 2. Resource Type",
       "elements": [
+        {
+          "type": "Label",
+          "text": "2.1 Content Type"
+        },
         {
           "type": "Control",
           "scope": "#/properties/contentType"

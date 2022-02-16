@@ -9,9 +9,9 @@
   },
   "dependencies": {
     "@babel/preset-typescript": "^7.16.7",
-    "@jsonforms/core": "^2.5.2",
-    "@jsonforms/vue2": "^2.5.2",
-    "@jsonforms/vue2-vuetify": "^3.0.0-alpha.2",
+    "@jsonforms/core": "^3.0.0-beta.1",
+    "@jsonforms/vue2": "^3.0.0-beta.1",
+    "@jsonforms/vue2-vuetify": "^3.0.0-beta.1.1",
     "@typescript-eslint/parser": "^5.11.0",
     "@vue/cli-plugin-typescript": "^4.5.15",
     "@vue/composition-api": "^1.4.6",
