@@ -26,16 +26,40 @@
               "type": "ShowGroup",
               "label": "Add Additional Identifiers",
               "elements": [
+
                 {
-                  "type": "Label",
-                  "text": "1.1 Additional Identifiers"
-                },
-                {
-                  "type": "Control",
-                  "label": "Alternate Identifiers",
+                  "type": "ListWithDetail",
+                  "label":  "1.1 Additional Identifiers",
+
                   "scope": "#/properties/identifier",
                   "options": {
-                    "showUnfocusedDescription": true
+                    "showUnfocusedDescription": true,
+
+                      "elementLabelProp": "value",
+                      "detail" : {
+                        "type": "HorizontalLayout",
+                        "elements": [
+                          {
+                            "label": "Indentifier",
+                            "type": "Control",
+                            "scope": "#/properties/value"
+                          },
+                          {
+                            "label": "Type",
+                            "type": "Control",
+                            "scope": "#/properties/propertyID"
+
+                          },
+                          {
+                            "label": "PropertyName",
+                            "type": "Control",
+                            "scope": "#/properties/name"
+
+                          }
+                        ]
+
+
+                    }
                   }
                 }
               ]
@@ -56,16 +80,10 @@
               "type": "ShowGroup",
               "label": "Add Additional Names",
               "elements": [
-                {
-                  "type": "Label",
-                  "text": "1.2 Alternate Resource Name(s)",
-                  "options": {
-                    "showUnfocusedDescription": true
-                  }
-                },
+
                 {
                   "type": "Control",
-                  "label": "Alternate Name",
+                  "label": "1.2 Alternate Resource Name(s)",
                   "scope": "#/properties/alternateName",
                   "options": {
                     "showUnfocusedDescription": true
@@ -107,7 +125,7 @@
                 },
                 {
                   "type": "Control",
-                  "label": "Publication Date of <span style='text-color:blue;' >Most Recent Release<span>",
+                  "label": "Publication Date of Most Recent Release. This will be formated at YYYY-MM-DD in the output",
                   "scope": "#/properties/datePublished",
                   "options": {
                     "showUnfocusedDescription": true

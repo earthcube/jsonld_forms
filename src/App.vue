@@ -69,4 +69,20 @@ export default {
 };
 </script>
 
-
+<style>
+.input {
+  background-color: #FBFBFB ;
+}
+/* add position, so relative works for v-message above item */
+.v-input{
+  position: relative !important;
+}
+.v-messages{
+  top: 0;
+  position: absolute !important;
+}
+.array-list-label{
+  font-size: 16px;
+  font-weight: normal;
+}
+</style>

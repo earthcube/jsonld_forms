@@ -83,5 +83,18 @@ export const entry: JsonFormsRendererRegistryEntry = {
 .header {
   order: 1;
 }
+.group-item {
+  border-left-color: #D4E4EF;
+  border-left-width: 2em;
+  border-left-style: solid;
+
+}
+.array-list-add {
+  order: 0;
+  left: 0;
+}
+.array-list-toolbar .array-list-label, .array-list-toolbar .spacer{
+  order: 8;
+}
 </style>
 

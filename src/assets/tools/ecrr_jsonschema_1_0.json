@@ -50,7 +50,8 @@
       "type": "string",
       "description": "a text description of the resource. This text will be indexed by search aggregators, and the information contained should be sufficient to tell a person what the resource is, broadly how to use it."
     },
-    "datePublished": {"type": "string"},
+    "datePublished": {"type": "string",
+      "format": "date"},
     "creator": {
       "title": "one or more person or organization entities responsible for the intellectual content of the resource",
 
@@ -373,8 +374,10 @@
       "properties": {
         "@type": {"const": "sdo:PropertyValue"},
         "value": {"type": "string"},
-        "propertyID": {"type": "string"},
-        "name": {"type": "string"}
+        "propertyID": {"type": "string",
+          "enum": ["DATACITEURL", "PERLURL","DOIURL"]},
+        "name": {"type": "string",
+          "enum": ["DATACITE", "DOI","OTHER"]}
 
       }
     },

@@ -18,8 +18,8 @@ const opts = {
     theme: {
         themes: {
             light: {
-                primary: colors.indigo, // #E53935
-                secondary: colors.lightBlue, // #FFCDD2
+                primary: "#18598B", //colors.indigo, // #E53935
+                secondary: "#70A5C9", //colors.lightBlue, // #FFCDD2
                 accent: colors.indigo.base, // #3F51B5
                // 'primary--text': colors.lightBlue,
                 'primary--text-color':colors.red
