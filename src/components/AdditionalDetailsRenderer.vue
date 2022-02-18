@@ -82,6 +82,8 @@ export const entry: JsonFormsRendererRegistryEntry = {
 
 .header {
   order: 1;
+  font-size: 0.8em;
+  color: blue;
 }
 .group-item {
   border-left-color: #D4E4EF;

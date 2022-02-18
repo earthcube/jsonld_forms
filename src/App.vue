@@ -73,9 +73,15 @@ export default {
 .input {
   background-color: #FBFBFB ;
 }
+div.vertical-layout-item > label.v-label {
+  line-height: 2rem !important;
+  margin-bottom: 2rem;
+
+}
 /* add position, so relative works for v-message above item */
 .v-input{
   position: relative !important;
+  padding-top: 1.5rem !important;
 }
 .v-messages{
   top: 0;
@@ -86,15 +92,18 @@ export default {
   font-weight: normal  !important;
 }
 .group-item .v-card__title{
-  padding: 0;
+  padding: 0 !important;
 }
 .v-toolbar__content, header.array-list-toolbar {
  height: 1.5em  !important;
 }
 .v-card__text  .justify-space-around {
-  padding: 1.5rem;
+  padding: 1.5rem !important;
 }
 .v-expansion-panel-content__wrap {
   padding-bottom: 1rem !important;
+}
+.v-expansion-panel::before {
+  box-shadow: none !important;
 }
 </style>

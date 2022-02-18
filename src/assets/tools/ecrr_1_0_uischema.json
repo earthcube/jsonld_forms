@@ -11,7 +11,7 @@
           "elements": [
             {
               "type": "Label",
-              "text": "1. <span style='color:peru;'> Identifier </span>"
+              "text": "1.1 <span style='color:peru;'> Identifier </span>"
             },
             {
               "label": "Identifier",
@@ -29,7 +29,7 @@
 
                 {
                   "type": "ListWithDetail",
-                  "label":  "1.1 Additional Identifiers",
+                  "label":  "1.1.1 Additional Identifiers",
 
                   "scope": "#/properties/identifier",
                   "options": {
@@ -83,7 +83,7 @@
 
                 {
                   "type": "Control",
-                  "label": "1.2 Alternate Resource Name(s)",
+                  "label": "1.2.1 Alternate Resource Name(s)",
                   "scope": "#/properties/alternateName",
                   "options": {
                     "showUnfocusedDescription": true
@@ -98,15 +98,20 @@
           "elements": [
             {
               "type": "Label",
-              "text": "2. Description"
+              "text": "2.1 Description"
             },
             {
               "type": "Control",
               "scope": "#/properties/description",
+
               "options": {
                 "multi": true,
                 "showUnfocusedDescription": true
               }
+            },
+            {
+              "type": "Label",
+              "text": "2.2 Keywords"
             },
             {
               "type": "Control",

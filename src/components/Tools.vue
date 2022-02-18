@@ -1,14 +1,6 @@
 <template>
   <div>
-    <v-sheet
-        color="white"
-        elevation="1"
-        height="600"
-        outlined
-        rounded
-        shaped
-        width="80%"
-    >
+
   <json-forms
       :data="data"
       :schema="schema"
@@ -39,7 +31,7 @@
         </v-expansion-panels>
       </v-col>
 
-    </v-sheet>
+
   </div>
 </template>
 
