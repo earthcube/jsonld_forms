@@ -82,7 +82,19 @@ export default {
   position: absolute !important;
 }
 .array-list-label{
-  font-size: 16px;
-  font-weight: normal;
+  font-size: 16px  !important;
+  font-weight: normal  !important;
+}
+.group-item .v-card__title{
+  padding: 0;
+}
+.v-toolbar__content, header.array-list-toolbar {
+ height: 1.5em  !important;
+}
+.v-card__text  .justify-space-around {
+  padding: 1.5rem;
+}
+.v-expansion-panel-content__wrap {
+  padding-bottom: 1rem !important;
 }
 </style>
