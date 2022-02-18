@@ -32,7 +32,7 @@
     },
     "subjectOf": {
       "title": "URL to User-Readable Page",
-      "description": "name and url for one or more web pages or other web accessible document about the resource",
+      "description": "Name and url for one or more web pages or other web accessible document about the resource",
 
           "type": "array",
           "items": {"$ref": "#/definitions/creativeWork_type"}
@@ -165,7 +165,7 @@
 
     },
     "contentType": {
-      "title": "Content Type(s) of Catalogued Objects in a vatalog or repository",
+      "title": "Content Type(s) of Catalogued Objects in a Catalog or repository",
       "description": "Content Type(s) of Catalogued Objects; one object or array of objects, could be anything to type is 'schema:Thing'; each with name and optional identifier",
 
 

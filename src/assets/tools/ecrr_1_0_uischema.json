@@ -140,7 +140,35 @@
                   "label": "URL to User-Readable Page",
                   "scope": "#/properties/subjectOf",
                   "options": {
-                    "showUnfocusedDescription": true
+                    "showUnfocusedDescription": true,
+                    "detail" : {
+                      "type": "HorizontalLayout",
+                      "elements": [
+
+                        {
+                          "label": "URL",
+                          "type": "Control",
+                          "scope": "#/properties/url"
+
+                        },
+                        {
+                          "label": "Description",
+                          "description": "Some suggestions",
+                          "type": "Control",
+                          "scope": "#/properties/name",
+                          "options": {
+                            "suggestion": [
+                          "DOI Landing Page",
+                          "HTML Landing Page",
+                          "Project Landing Page",
+                          "Other"
+                        ]
+                          }
+                        }
+                      ]
+
+
+                    }
                   }
                 }
 
@@ -160,9 +188,34 @@
         },
         {
           "type": "Control",
-          "scope": "#/properties/contentType"
-        }
+          "scope": "#/properties/contentType",
+          "elementLabelProp": "value",
+          "options": {
+            "detail": {
+              "type": "HorizontalLayout",
+              "elements": [
+                {
+                  "label": "Name",
+                  "type": "Control",
+                  "scope": "#/properties/name",
+                  "options": {
+                    "suggestion": [
+                      "DO",
+                      "We",
+                      "Have",
+                      "Suggestions"
+                    ]
+                  }},
+                {
+                  "label": "Identifier",
+                  "type": "Control",
+                  "scope": "#/properties/identifier"
 
+                }
+              ]
+            }
+          }
+        }
       ]
     },
     {
