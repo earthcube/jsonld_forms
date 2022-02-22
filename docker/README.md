@@ -1,17 +1,41 @@
-# Using Mino as a backend
+# Using Minio as a backend
+
+Tested (notes at end of document). It works. It's simple, and we can initially manually manage via ui
+
+Users and groups put files in thier own work areas. I proposed the following subuckets
+* resource
+* org
+* people
+* datasets (aka future)
+* prov
+
+We then need to figure out a migration to published buckets with the same information.
+with some pattern to avoid naming conflicts
 
 ## tasks
+
 * Admin interface:
   * create a user
     * add policy that restricts them to thier homespace
     * add user to a group
   * create group 
     * add group, add policy them to a homespace
-  
+    * 
+* UI Minio interaction 
+  * List of records
+  * push to appropriate location based on resource and user or group
+    * naming conventions, needed
+    * as draft
+    * change to published
+  * pull from s3 store, and load into form as initial state
+
 * ui
-  * Auth a in a user
+  * Auth a user
+     *  use get username/user.json
   * signup as a user
+    * What info to do we need
   * ask to create a group
+    * What info to do we need
   * Save record
     * Name, status
       * draft
@@ -32,25 +56,30 @@ This needs to be done a initial docker creation stage.
   * subbuckets
   
 ##### Buckets:
-* user (place to store user information and records)
-  * user.json
-  * resource records
-  * org records
-  * people records
-  * dataset records
-  * prov
-* [groupname]
+* **jsonld**
+  * [username] (place to store user information and records)
+    * user.json
+    * resource 
+    * org 
+    * people 
+    * dataset 
+    * prov
+  * [groupname]
+    * group.json
+    * resource
+    * org
+    * people
+    * datasets (aka future)
+    * prov
+* **published**
   * ecrr
   * org
   * people
   * datasets (aka future)
-  * prov
-* published
-  * ecrr
-  * org
-  * people
-  * datasets (aka future)
-  
+
+naming pattern so that if there is a conflict; aka simple name like notebook, does not get overwriten by different users
+or do we just keep the subbuckets in the
+publshed/[username/groupname]/resource
 
 #### add Policies
 * write to user space
