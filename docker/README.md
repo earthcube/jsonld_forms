@@ -12,36 +12,55 @@ Users and groups put files in thier own work areas. I proposed the following sub
 We then need to figure out a migration to published buckets with the same information.
 with some pattern to avoid naming conflicts
 
+# workflow
+* user signs up
+  * user fills in form, user account and record created. 
+* straight create
+  * user signs in, taken to users page
+  * user selects create new record, drafts saved to users 'home' aka user/username 
+  * user saves record as published.
+  * migration to published bucket
+* Edit
+  * user signs in, take to users page
+  * user sees list of previous records, selects edit
+  * forms UI opens with users records as initial data.
+  * user creates new record, drafts saved to users 'home' aka user/username
+  * user saves record as published.
+  * migration to published bucket
+
 ## tasks
 
-* Admin interface:
+* Admin interface (manual on port 9001, for now):
   * create a user
     * add policy that restricts them to thier homespace
     * add user to a group
   * create group 
     * add group, add policy them to a homespace
-    * 
-* UI Minio interaction 
+    
+* UI Minio 'api'- loose use of api, becuase just need functions to push info to minio from browser.
   * List of records
   * push to appropriate location based on resource and user or group
     * naming conventions, needed
-    * as draft
-    * change to published
-  * pull from s3 store, and load into form as initial state
+    * metadata
+      * status: draft|| pubished
+      * formtype: [form main type (resource|| dataset|| org||...)]:[subtype]:[version]
+  * Pull from s3 store, and load into form as initial state
 
-* ui
-  * Auth a user
-     *  use get username/user.json
-  * signup as a user
-    * What info to do we need
-  * ask to create a group
-    * What info to do we need
+* UI Pages (not jsonforms based (or maybe json forms based ;) )
+  * login/Auth a user
+     *  just get username/user.json file from the store
   * Save record
     * Name, status
       * draft
       * publish
+  * signup  a user
+    * What info do we need
+    * write or update username/user.json
+  * ask to create a group
+    * What info do we need
+
   
-* UI Forms
+* UI Forms -- These will need a button to save a draft or a published record.
   * resource
   * person
      * populate from  person (orcid, other)
@@ -50,12 +69,26 @@ with some pattern to avoid naming conflicts
   * dataset
 
 ### Setup
-#### Create  buckets:
 This needs to be done a initial docker creation stage.
+
+#### Create  buckets:
 * bucket
   * subbuckets
   
 ##### Buckets:
+* forms
+  * resource
+    * schema
+    * initialdata 
+    * subtypes name (full, simple, custom for a community or tool type)
+      * schemaui
+      * schema (optional)
+      * initialdata  (optional)
+  * org
+  * people
+  * dataset
+  * (user)
+  * (group)
 * **jsonld**
   * [username] (place to store user information and records)
     * user.json
@@ -77,7 +110,7 @@ This needs to be done a initial docker creation stage.
   * people
   * datasets (aka future)
 
-naming pattern so that if there is a conflict; aka simple name like notebook, does not get overwriten by different users
+Naming pattern so that if there is a conflict; aka simple name like notebook, does not get overwriten by different users
 or do we just keep the subbuckets in the
 publshed/[username/groupname]/resource
 
@@ -87,7 +120,7 @@ publshed/[username/groupname]/resource
 
 
 #### Migration policy (future):
-when a record is published, move to ecrrpublished bucket
+when a record is published, move to published bucket
 
 #### production
 * rsync a backup
