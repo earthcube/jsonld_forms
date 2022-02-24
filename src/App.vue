@@ -8,59 +8,72 @@
 
       <div class="d-flex align-center">
         <v-img
-          alt="Vuetify Logo"
+          alt="EC Logo"
           class="shrink mr-2"
           contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          src="./assets/EarthCube-White-Long-Tagline.png"
           transition="scale-transition"
-          width="40"
+          width="100"
         />
 
         <v-img
-          alt="Vuetify Name"
+          alt="Geocodes"
           class="shrink mt-1 hidden-sm-and-down"
           contain
           min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+          src="./assets/GeoCODES.png"
           width="100"
         />
+
       </div>
 
       <v-spacer></v-spacer>
+
+    </v-app-bar>
+
+    <v-main>
+      <router-view></router-view>
+
+
+    </v-main>
+    <v-footer padless>
+      <v-col
+          class="text-center"
+          cols="12"
+      >
+        {{ new Date().getFullYear() }} — <strong>Geocodes Schema.org JSONLD Creator Application</strong>
+      </v-col>
       <v-btn
           href="https://jsonforms-vuetify-renderers.netlify.app/"
           target="_blank"
           text
       >
-        <span class="mr-2">Vuetify Forms</span>
+        <span class="mr-2">JSON-LD Vuetify Forms</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
       <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
+          href="https://github.com/vuetifyjs/vuetify/releases/latest"
+          target="_blank"
+          text
       >
-        <span class="mr-2">Latest Release</span>
+        <span class="mr-2">Using Vuetify</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
-    </v-app-bar>
-
-    <v-main>
-      <Tools></Tools>
-    </v-main>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
 
-import Tools from './components/Tools'
+//import Tools from './components/Tools'
+
 
 export default {
   name: 'App',
 
   components: {
 
-    Tools
+ //   Tools
   },
 
   data: () => ({

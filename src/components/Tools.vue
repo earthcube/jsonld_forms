@@ -11,25 +11,8 @@
   />
       <v-spacer></v-spacer>
       <v-divider></v-divider>
-      <v-col cols="10">
-        <v-expansion-panels max-height="20em" >
-          <v-expansion-panel>
-            <v-expansion-panel-header>
-              <template v-slot:actions>
-                <v-icon color="primary">
-                  $expand
-                </v-icon>
-              </template>
-              <span>JSON</span>
-
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
-              <vue-json-pretty :path="'res'" :data="data" @click="handleClick"> </vue-json-pretty>
-            </v-expansion-panel-content>
-
-          </v-expansion-panel>
-        </v-expansion-panels>
-      </v-col>
+      <JsonViewer :json="data">
+      </JsonViewer>
 
 
   </div>
@@ -39,7 +22,7 @@
 import { JsonForms } from '@jsonforms/vue2';
 import { vuetifyRenderers } from '@jsonforms/vue2-vuetify';
 import {defineComponent} from "@vue/composition-api";
-import VueJsonPretty from 'vue-json-pretty';
+//import VueJsonPretty from 'vue-json-pretty';
 import 'vue-json-pretty/lib/styles.css';
 
 const schema= require('../assets/tools/ecrr_jsonschema_1_0.json');
@@ -48,6 +31,7 @@ const data = require('../assets/tools/ecrrempty.json');
 
 import {entry as AltGroupRenderer} from './AdditionalDetailsRenderer'
 import {entry as HtmlLabelRender } from './htmlLabelRenderer'
+import {default as JsonViewer} from './viewJson'
 
 const renderers = [
   ...vuetifyRenderers,
@@ -61,7 +45,7 @@ const tool = defineComponent({
   name: 'tools',
   components: {
     JsonForms,
-    VueJsonPretty
+    JsonViewer
   },
   data() {
     return {
