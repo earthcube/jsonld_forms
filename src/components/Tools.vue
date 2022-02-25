@@ -25,8 +25,8 @@ import {defineComponent} from "@vue/composition-api";
 //import VueJsonPretty from 'vue-json-pretty';
 import 'vue-json-pretty/lib/styles.css';
 
-const schema= require('../assets/tools/ecrr_jsonschema_1_0.json');
-const uischema = require('../assets/tools/ecrr_1_0_uischema.json');
+import schema from '../schema/tools/ecrr_jsonschema_1_0' ;
+import uischema from '../schema/tools/ecrr_1_0_uischema';
 const data = require('../assets/tools/ecrrempty.json');
 
 import {entry as AltGroupRenderer} from './AdditionalDetailsRenderer'

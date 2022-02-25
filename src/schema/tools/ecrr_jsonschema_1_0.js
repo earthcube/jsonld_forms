@@ -1,4 +1,5 @@
-{
+
+const jsonschema = {
 
   "type": "object",
   "title": "EarthCube Resource Registry (ECRR) Resource Description",
@@ -79,6 +80,31 @@
     "publisher": {
       "$ref": "#/definitions/agent_type"
     },
+    "developer": {
+      "type": "array",
+            "items": {
+              "$ref": "#/definitions/agent_type"
+            }
+    },
+    "metadataCreator": {
+      "$ref": "#/definitions/metadataCreatorType"
+    },
+    "stewardship": {
+      "$ref": "#/definitions/agent_type"
+    },
+   "ecrro:ECRRO_0000600": {
+               "type": "object",
+               "description": "primary publication-- a text citation to one or more publications about the resource; separated by pipe ('|') characters",
+               "properties": {
+                 "@type": {"const": "PropertyValue"},
+                 "propertyID": {"const": "ecrro:ECRRO_0000600"},
+                 "name": {
+                   "type": "string",
+                   "default": "primary publication"
+                 },
+                 "value": {"type": "string"}
+               }
+             },
     "keywords": {
       "type": "array",
       "items": {
@@ -417,7 +443,9 @@
       }
     },
     "dc:BibliographicCitation": {
+      "title": "Bibliographic Citation",
       "$ref": "#/definitions/citationType"
+
       }
   },
   "required": [
@@ -579,6 +607,34 @@
         "value": {"type": "string"}
       }
     },
+    "metadataCreatorType": {
+                                    "type": "object",
+                                    "description": "metadata contributor information",
+                                    "properties": {
+                                      "@type": {"const": "PropertyValue"},
+                                      "propertyID": {"const": "ecrro:ECRRO_0001301"},
+                                      "name": {
+                                        "type": "string",
+                                        "default": "registration metadata"
+                                      },
+                                      "value": {
+                                        "type": "object",
+                                        "properties": {
+                                          "@type": {"const": "StructuredValue"},
+                                          "additionalType": {"const": "ecrro:ECRRO_0000156"},
+                                          "contributor": {
+                                            "type": "object",
+                                            "properties": {
+                                              "@type": {"const": "Person"},
+                                              "name": {"type": "string"},
+                                              "identifier": {"type": "string"}
+                                            }
+                                          },
+                                          "datePublished": {"type": "string"}
+                                        }
+                                      }
+                                    }
+                                  },
     "additionalProperty_type": {
       "anyOf": [
         {
@@ -731,3 +787,5 @@
     }
   }
 }
+
+export default jsonschema

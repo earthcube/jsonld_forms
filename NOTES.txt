@@ -1,5 +1,13 @@
 
 Notes:
+ECRR documents:
+
+
+Controled Vocabualries
+https://docs.google.com/spreadsheets/d/1ykxgdeDjBzcTc1y64CuyaS2PhDuUtLuO5AFUehwhxDs/edit#gid=0
+submitted forms:
+https://docs.google.com/spreadsheets/d/1rCtWCCy51PLlpFkcG9oOVQZnIB75RwMK9nZxbZIYXIU/edit#gid=694164158
+
 Thoughts:
 * could have two entry points:
 1. a simple mostly single entry form

@@ -15,10 +15,12 @@ export default new Router({
         {
             path: '/',
             component: () => import('./components/startPage.vue'),
+            name:"Start"
         },
         {
             path: '/tools',
             component: () => import('./components/Tools.vue'),
+            name: "Tools Form"
         }
     ],
 });

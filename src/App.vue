@@ -28,7 +28,9 @@
       </div>
 
       <v-spacer></v-spacer>
-
+      <v-toolbar-items><h2 style="color:grey;">{{$route.name}}</h2></v-toolbar-items>
+      <v-spacer></v-spacer>
+      <v-spacer></v-spacer>
     </v-app-bar>
 
     <v-main>

@@ -1,0 +1,10 @@
+# will contain list of fields to move from a generic arrary (in one case additionalProperty) to the top level.
+# see https://github.com/earthcube/jsonld_forms/issues/8
+# flatten name, array property to move to
+dc:BibliographicCitation,additionalProperty
+Stewardship
+developer
+metadataCreator,additionalProperty
+# registration metadata - complex object in additional property
+# primary publication
+ecrro:ECRRO_0000600,additionalProperty

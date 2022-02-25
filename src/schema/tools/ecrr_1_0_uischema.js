@@ -1,4 +1,6 @@
-{
+// doing it this way lets me inline comments.
+
+const schema = {
   "type": "Categorization",
 
   "elements": [
@@ -196,10 +198,19 @@
               "type": "Label",
               "text": "1.3.1 Citation"
             },
+              /* citation is an additional propery
+              {
+ "@type": "PropertyValue",
+  "propertyID": "dc:BibliographicCitation",
+"name": "Bibligraphic citation",
+"value":"IRIS, no date, SAC Data File Format, http://ds.iris.edu/files/sac-manual/manual/file_format.html"
+  },
+
+               */
             {
               "type": "Control",
               "scope": "#/properties/dc:BibliographicCitation",
-
+              //  "scope": "#/properties/additionalProperty",
               "options": {
 
                 "showUnfocusedDescription": true,
@@ -208,103 +219,107 @@
                   "type": "HorizontalLayout",
                   "elements": [
                     {
-                      "label": "Indentifier",
+                    // future DOI Lookup
+                      "label": "Citation",
                       "type": "Control",
-                      "scope": "#/properties/value"
-                    },
-                    {
-                      "label": "Type",
-                      "type": "Control",
-                      "scope": "#/properties/propertyID",
-
-
-                    },
-                    {
-                      "label": "PropertyName",
-                      "type": "Control",
-                      "scope": "#/properties/name"
-
+                      "scope": "#/properties/value",
+                      "options":{
+                      "multi": true,
+                                                 "showUnfocusedDescription": true
+                      }
                     }
                   ]
 
 
                 }
               }
-            }
-            ]
-        }
-          ]
-    },
-    {
-      "type": "Category",
-      "label": "Section 2. Resource Type",
-      "elements": [
-        {
-          "type": "Label",
-          "text": "2.1 Content Type"
-        },
-        {
-          "type": "Control",
-          "scope": "#/properties/contentType",
-          "elementLabelProp": "value",
-          "options": {
-            "detail": {
-              "type": "HorizontalLayout",
-              "elements": [
-                {
-                  "label": "Name",
-                  "type": "Control",
-                  "scope": "#/properties/name",
-                  "options": {
-                    "suggestion": [
-                      "DO",
-                      "We",
-                      "Have",
-                      "Suggestions"
-                    ]
-                  }},
-                {
-                  "label": "Identifier",
-                  "type": "Control",
-                  "scope": "#/properties/identifier"
+            },
+                        {
+                          "type": "ShowGroup",
+                          "label": "Add Responsible Parties",
+                          "elements": [
 
-                }
-              ]
-            }
-          }
-        }
-      ]
-    },
-    {
-      "type": "Category",
-      "label": "Section 3. Availability and Stewardship",
-      "elements": [
-        {
-          "type": "Label",
-          "text": "1. License"
+                            {
+                              "type": "Control",
+                              "label": "1.3.1.1 Creator",
+                              "scope": "#/properties/creator",
+                              "options": {
+                                "showUnfocusedDescription": true
+                              }
+                            },
+                            {
+                                                          "type": "Control",
+                                                          "label": "1.3.1.1 publisher",
+                                                          "scope": "#/properties/publisher",
+                                                          "options": {
+                                                            "showUnfocusedDescription": true
+                                                          }
+                                                        },
+                            {
+                              "type": "Control",
+                              "label": "1.3.1.1 contributor",
+                              "scope": "#/properties/contributor",
+                              "options": {
+                                "showUnfocusedDescription": true
+                              }
+                            },
+                            {
+                              "type": "Control",
+                              "label": "1.3.1.1 editor",
+                              "scope": "#/properties/editor",
+                              "options": {
+                                "showUnfocusedDescription": true
+                              }
+                            },
+
+                            {
+                              "type": "Control",
+                              "label": "1.3.1.1 developer",
+                              "scope": "#/properties/developer",
+                              "options": {
+                                "showUnfocusedDescription": true
+                              }
+                            },
+                            {
+                              "type": "Control",
+                              "label": "1.3.1.1 Stewardship",
+                              "scope": "#/properties/stewardship",
+                              "options": {
+                                "showUnfocusedDescription": true
+                              }
+                            }, ]
+                        },
+            ]
         },
-        {
-          "type": "Control",
-          "scope": "#/properties/license",
-          "options": {
-            "detail": {
-              "type": "VertialLayout",
+        //ecrro:ECRRO_0000600 Primary publication
+            {
+              "type": "ShowGroup",
+              "label": "Add Primary Publication",
               "elements": [
+
                 {
                   "type": "Control",
-                  "scope": "#/properties/name",
+                  "label": "1.1.1.1 Primary Publication",
+                  "scope": "#/properties/ecrro:ECRRO_0000600",
                   "options": {
-                    "format": "radio"
+                    "showUnfocusedDescription": true
                   }
                 }
               ]
-            }
-          }
-        }
+            },
+       ]
+    },
 
-      ]
-    }
+
   ]
 }
 
+import cat2 from "./category2"
+schema.elements.push(cat2)
+import cat3 from "./category3"
+schema.elements.push(cat3)
+import cat4 from "./category4"
+schema.elements.push(cat4)
 
+
+export default schema
