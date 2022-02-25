@@ -1,3 +1,5 @@
+//import {default as licenseOneOf} from './licenseOneOf'
+import {licenseList} from "../controlledFromGooglesheet"
 
 const jsonschema = {
 
@@ -117,24 +119,9 @@ const jsonschema = {
       "type": "array",
       "uniqueItems": true,
       "items": {
-        "oneOf": [
-          {
-            "title": "License 1",
-            "const": {
-              "@type": "CreativeWork",
-              "name": "License 1",
-              "url": "use if CreativeWork or URL; if use url, the value is a string"
-            }
-          },
-          {
-            "title": "License 2",
-            "const": {
-              "@type": "CreativeWork",
-              "name": "License 2",
-              "url": "use if CreativeWork or URL; if use url, the value is a string"
-            }
-          }
-        ]
+//         "oneOf": [
+//
+//         ]
       }
     },
     "version": {
@@ -512,31 +499,6 @@ const jsonschema = {
         "url": {"type": "string"}
       }
     },
-    "LICENSE_type": {
-      "type": "object",
-      "properties": {
-        "@type": {"const": "CreativeWork"},
-        "name": {"type": "string",
-          "name": "name"
-        },
-        "url": {"type": "string",
-          "url": "url"
-        }
-      },
-      "enum": [
-        {
-          "type": "CreativeWork",
-          "name": "License1",
-          "url": "http://example.com "
-        },
-
-        {
-          "type": "CreativeWork",
-          "name": "License2",
-          "url": "http://example.com "
-        }
-        ]
-    },
     "definedTerm_type": {
       "type": "object",
       "properties": {
@@ -788,4 +750,14 @@ const jsonschema = {
   }
 }
 
-export default jsonschema
+const withEnum =     function() {
+
+    let licenses = licenseList()
+   // const licenseOneOf = [...licenseList ]
+
+    jsonschema.properties.license.items= licenses
+    return  jsonschema
+}
+
+export { jsonschema as default,  withEnum as schemaWithEnum}
+

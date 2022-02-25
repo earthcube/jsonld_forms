@@ -25,6 +25,28 @@ module.exports = {
                     },
                 ],
             },
+            { test: /\.csv$/, loader: 'dsv-loader' }
+//             {
+//                       test: /\.csv$/,
+//                       loader: 'csv-loader',
+//                       options: {
+//                       //  dynamicTyping: true,
+//                         header: true,
+//                         skipEmptyLines: true
+//                       }
+//                     },
+//             {
+//                     test: /\.csv$/,
+//                     use: : [
+//                         { loader: 'csv-loader',
+//                             options: {
+//                               //dynamicTyping: true,
+//                               header: true,
+//                               skipEmptyLines: true
+//                             }
+//                         }
+//                     ]
+//                   }
         ],
     }
 }

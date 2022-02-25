@@ -25,7 +25,8 @@ import {defineComponent} from "@vue/composition-api";
 //import VueJsonPretty from 'vue-json-pretty';
 import 'vue-json-pretty/lib/styles.css';
 
-import schema from '../schema/tools/ecrr_jsonschema_1_0' ;
+import { default as schema, schemaWithEnum } from '../schema/tools/ecrr_jsonschema_1_0' ;
+
 import uischema from '../schema/tools/ecrr_1_0_uischema';
 const data = require('../assets/tools/ecrrempty.json');
 
@@ -46,6 +47,15 @@ const tool = defineComponent({
   components: {
     JsonForms,
     JsonViewer
+  },
+  beforeCreate() {
+    // schemaWithEnum().then(s =>
+    //      {
+    //     //   console.log(s)
+    //        this.schema = s
+    //      }
+    //  )
+    this.schema = schemaWithEnum()
   },
   data() {
     return {
