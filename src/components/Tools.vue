@@ -84,5 +84,8 @@ export default tool
 .header {
   order: 1;
 }
+.v-label {
+  color:black;
+}
 </style>
 

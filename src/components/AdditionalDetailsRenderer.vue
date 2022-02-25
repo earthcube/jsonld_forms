@@ -1,5 +1,5 @@
 <template>
-  <v-expansion-panels>
+  <v-expansion-panels class="additionalgroup">
   <v-expansion-panel
       v-if="layout.visible"
       :class="`pa-0 ${styles.group.root}`"
@@ -7,7 +7,7 @@
   >
     <v-expansion-panel-header v-if="layout.uischema.label" :class="styles.group.label">
       <template v-slot:actions>
-        <v-icon class="icon">$expand</v-icon>
+        <v-icon class="icon" small>$expand</v-icon>
       </template>
       <span class="header"> {{
           layout.uischema.label
@@ -75,7 +75,7 @@ export const entry: JsonFormsRendererRegistryEntry = {
 };
 </script>
 
-<style>
+<style >
 .icon {
   order: 0;
 }
@@ -85,18 +85,37 @@ export const entry: JsonFormsRendererRegistryEntry = {
   font-size: 0.8em;
   color: blue;
 }
-.group-item {
+.additionalgroup .group-item {
   border-left-color: #D4E4EF;
   border-left-width: 2em;
   border-left-style: solid;
 
 }
-.array-list-add {
+.array-list-add .v-button__content {
   order: 0;
   left: 0;
+  padding: 0px;
 }
 .array-list-toolbar .array-list-label, .array-list-toolbar .spacer{
   order: 8;
+  padding-left: -16px;
+
+}
+.array-list-toolbar .v-card__title {
+  font-size: 0.8rem;
+  font-weight: lighter;
+}
+.array-list-toolbar .v-toolbar__content {
+  margin-left: 0px;
+  padding-left: 0px;
+}
+.array-list-toolbar .v-expansion-panel-content__wrap{
+  padding-left: 0px;
+  padding-bottom: 3em;
+}
+.array-list-toolbar .v-btn--fab.v-size--small {
+  width: 16px;
+  size: 16px;
 }
 </style>
 
