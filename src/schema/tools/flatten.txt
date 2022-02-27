@@ -8,3 +8,13 @@ metadataCreator,additionalProperty
 # registration metadata - complex object in additional property
 # primary publication
 ecrro:ECRRO_0000600,additionalProperty
+# maturity
+ecrro:ECRRO_0000138
+# lifecycle
+ecrro:ECRRO_0000219
+# stewardship details
+ecrro:ECRRO_0000218
+#"const": "http://purl.obolibrary.org/obo/RO_0002502"
+dependencies
+# current usage level
+ecrro:ECRRO_0000017

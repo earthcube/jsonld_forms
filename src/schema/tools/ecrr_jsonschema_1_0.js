@@ -98,8 +98,8 @@ const jsonschema = {
                "type": "object",
                "description": "primary publication-- a text citation to one or more publications about the resource; separated by pipe ('|') characters",
                "properties": {
-                 "@type": {"const": "PropertyValue"},
-                 "propertyID": {"const": "ecrro:ECRRO_0000600"},
+                 "@type": {"type": "string", "const": "PropertyValue"},
+                 "propertyID": {"type": "string", "const": "ecrro:ECRRO_0000600"},
                  "name": {
                    "type": "string",
                    "default": "primary publication"
@@ -134,37 +134,38 @@ const jsonschema = {
       "items": {
         "anyOf": [
           {
-            "$ref": "#/definitions/agent_type"
+            "$ref": "#/definitions/funding_agent_type"
           },
-          {
-            "type": "object",
-            "description": "a Grant instrument",
-            "properties": {
-              "@type": {
-                "type": "string",
-                "const": "Grant"
-              },
-              "name": {
-                "type": "string"
-              },
-              "identifier": {
-                "type": "string"
-              },
-              "sponsor": {
-                "type": "object",
-                "description": "agency that provided and adminsters the grant funding",
-                "properties": {
-                  "@type": {
-                    "type": "string",
-                    "const": "FundingAgency"
-                  },
-                  "name": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
+          { "$ref": "#/definitions/grant_type" },
+//           {
+//             "type": "object",
+//             "description": "a Grant instrument",
+//             "properties": {
+//               "@type": {
+//                 "type": "string",
+//                 "const": "Grant"
+//               },
+//               "name": {
+//                 "type": "string"
+//               },
+//               "identifier": {
+//                 "type": "string"
+//               },
+//               "sponsor": {
+//                 "type": "object",
+//                 "description": "agency that provided and adminsters the grant funding",
+//                 "properties": {
+//                   "@type": {
+//                     "type": "string",
+//                     "const": "FundingAgency"
+//                   },
+//                   "name": {
+//                     "type": "string"
+//                   }
+//                 }
+//               }
+//             }
+//           }
         ]
       }
     },
@@ -429,11 +430,114 @@ const jsonschema = {
         }
       }
     },
+    /* EXPOSED ADDITIONAL PROPERTIES
+    These will need to be stored in the additionalProperty.
+    But for defining the form, they are stored at the top level
+    */
     "dc:BibliographicCitation": {
       "title": "Bibliographic Citation",
       "$ref": "#/definitions/citationType"
 
-      }
+      },
+      "ecrro:ECRRO_0000138" : {
+      "title": "Maturity",
+                         "type": "object",
+                         "description": "ECRR resource maturity status, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/MTU",
+                         "properties": {
+                           "@type": {"type": "string","const": "PropertyValue"},
+                           "propertyID": {"type": "string","const": "ecrro:ECRRO_0000138"},
+                           "name": {
+                             "type": "string",
+                             "default": "has maturity state",
+                             "readonly": true
+                           },
+                        //   "value": {"$ref": "#/definitions/definedTerm_type"}
+                        "value": {
+                                       "type": "object",
+                                       "properties": {
+                                         "@type": {"type": "string", "const": "DefinedTerm"},
+                                         "name": {"type": "string"},
+                                         "identifier": {"type": "string"}
+                                       },
+                                       "required": [
+                                         "identifier",
+                                         "@type",
+                                         "name"
+                                       ]
+                                     }
+                         }
+      },
+      "ecrro:ECRRO_0000219":        {
+                "type": "object",
+                "description": "Expected lifetime-- how long is it anticipated that the resource will be maintained and accessible online, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/ELT",
+                "properties": {
+                  "@type": {"type": "string", "const": "PropertyValue"},
+                  "propertyID": {"type": "string", "const": "ecrro:ECRRO_0000219"},
+                  "name": {
+                    "type": "string",
+                    "default": "expected lifetime"
+                  },
+                 //   "value": {"$ref": "#/definitions/definedTerm_type"}
+             "value": {
+                            "type": "object",
+                            "properties": {
+                              "@type": {"type": "string", "const": "DefinedTerm"},
+                              "name": {"type": "string"},
+                              "identifier": {"type": "string"}
+                            },
+                            "required": [
+                              "identifier",
+                              "@type",
+                              "name"
+                            ]
+                          }
+
+                }
+              },
+              "ecrro:ECRRO_0000218":{
+                            "type": "object",
+                            "description": "stewardship: name of person or organization responsible for maintenance of the resource",
+                            "properties": {
+                              "@type": {"type":"string", "const": "PropertyValue"},
+                              "propertyID": {"type":"string", "const": "ecrro:ECRRO_0000218"},
+                              "name": {
+                                "type": "string",
+                                "const": "Stewardship"
+                              },
+                              "value":
+                                  {
+                                    "type": "array",
+                                    "items": {"$ref": "#/definitions/agent_type"}
+                                  }
+                            }
+             },
+             "dependencies": {
+                       "type": "object",
+                       "description": "dependencies and their url",
+                       "properties": {
+                         "@type": {"type": "string", "const": "PropertyValue"},
+                         "propertyID": {"type": "string", "const": "http://purl.obolibrary.org/obo/RO_0002502"},
+                         "name": {"type": "string"},
+                         "value": {
+                               "type": "array",
+                               "items": {"$ref": "#/definitions/creativeWork_type"}
+                         }
+                       }
+           },
+       "ecrro:ECRRO_0000017": {
+          "type": "object",
+          "title": "Current Usage Level",
+          "description": "usage volume from controlled vocabulary at http://cor.esipfed.org/ont/earthcube/UBA",
+          "properties": {
+            "@type": {"type": "string", "const": "PropertyValue"},
+            "propertyID": {"type": "string", "const": "ecrro:ECRRO_0000017"},
+            "name": {
+              "type": "string",
+              "const": "Usage"
+            },
+            "value": {"$ref": "#/definitions/definedTerm_type"}
+          }
+        },
   },
   "required": [
     "name",
@@ -476,6 +580,56 @@ const jsonschema = {
         "name"
       ]
     },
+     "funding_agent_type": {
+          "title": "Funder",
+          "description": "{name (optional)identifier} pairs, typed either Person or Organization.  Other person or organization properties could be added",
+          "type": "object",
+          "properties": {
+            "@type": {
+              "enum": [
+                "Person",
+                "Organization"
+              ]
+            },
+            "name": {"type": "string"},
+            "identifier": {"type": "string"}
+          },
+          "required": [
+            "@type",
+            "name"
+          ]
+        },
+        "grant_type":
+        {
+                    "type": "object",
+                    "title": "Grant",
+                    "description": "a Grant instrument",
+                    "properties": {
+                      "@type": {
+                        "type": "string",
+                        "const": "Grant"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "identifier": {
+                        "type": "string"
+                      },
+                      "sponsor": {
+                        "type": "object",
+                        "description": "agency that provided and adminsters the grant funding",
+                        "properties": {
+                          "@type": {
+                            "type": "string",
+                            "const": "FundingAgency"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
     "audience_type": {
       "type": "object",
       "properties": {
@@ -502,7 +656,7 @@ const jsonschema = {
     "definedTerm_type": {
       "type": "object",
       "properties": {
-        "@type": {"const": "DefinedTerm"},
+        "@type": {"type": "string", "const": "DefinedTerm"},
         "name": {"type": "string"},
         "identifier": {"type": "string"}
       },
@@ -597,6 +751,7 @@ const jsonschema = {
                                       }
                                     }
                                   },
+
     "additionalProperty_type": {
       "anyOf": [
         {
