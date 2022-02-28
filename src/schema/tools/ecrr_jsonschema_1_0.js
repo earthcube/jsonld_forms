@@ -1,5 +1,5 @@
 //import {default as licenseOneOf} from './licenseOneOf'
-import {licenseList} from "../controlledFromGooglesheet"
+import {licenseList, resourceTypeList} from "../controlledFromGooglesheet"
 
 const jsonschema = {
 
@@ -225,10 +225,11 @@ const jsonschema = {
     "mainEntity": {
       "title": "Type of Resource",
       "description": "url is URI for ECRR resource type; name is ECRR resource type name. This should include the ECRR URI; it is used to validate resource specific properties",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/creativeWork_type"
-      }
+      //"type": "Object",
+      // "uniqueItems": true,
+//       "items": {
+//     //    "$ref": "#/definitions/resourceTypes_type"
+//       }
     },
     "encodingFormat": {
       "title": "Representation Format or base format for a profile specification",
@@ -257,17 +258,10 @@ const jsonschema = {
     "eccro:ECRRO_0000501": {
       "title": "profile of",
       "description": "Links to base specifications that a specifcation resource profiles. Only applicable if resource type is specification",
-      "oneOf": [
-        {
-          "$ref": "#/definitions/creativeWork_type"
-        },
-        {
           "type": "array",
           "items": {
             "$ref": "#/definitions/creativeWork_type"
           }
-        }
-      ]
     },
     "ecrro:ECRRO_0000502": {
       "title": "Communication Protocol(s)",
@@ -343,17 +337,12 @@ const jsonschema = {
     "supportingData": {
       "title": "Supporting input and output data formats",
       "description": "critical bit for linking data and software; the input encodingFormat is used to match to the distribution encodingFormat for a dataset",
-      "oneOf": [
-        {
-          "$ref": "#/definitions/supportingData_type"
-        },
-        {
+
           "type": "array",
           "items": {
             "$ref": "#/definitions/supportingData_type"
           }
-        }
-      ]
+
     },
     "codeRepository": {
       "title": "Code Repository",
@@ -391,17 +380,12 @@ const jsonschema = {
     "potentialAction": {
       "title": "Direct invocation of App on the web",
       "description": "use schema.org Action to document url or url template and parameters to invoke the application through a web accessible location. At this point, schema is set up for online one action-- an HTTP Get that invokes the web application. The url template can have only one paramter 'contentURL' that will be the contentURL from a distribution for a dataset that has an encoding format matchign the supportingData input for this application.",
-      "oneOf": [
-        {
-          "$ref": "#/definitions/action_type"
-        },
-        {
+
           "type": "array",
           "items": {
             "$ref": "#/definitions/action_type"
           }
-        }
-      ]
+
     },
     "url": {
       "title": "Service endpoint base URL",
@@ -538,6 +522,24 @@ const jsonschema = {
             "value": {"$ref": "#/definitions/definedTerm_type"}
           }
         },
+        "ecrro:ECRRO_0000503":{
+                  "type": "object",
+                  "description": "Interface specification",
+                  "properties": {
+                    "@type": {"const": "PropertyValue"},
+                    "propertyID": {"const": "ecrro:ECRRO_0000503"},
+                    "name": {"type": "string"},
+                    "value": {
+                      "oneOf": [
+                        {"$ref": "#/definitions/creativeWork_type"},
+                        {
+                          "type": "array",
+                          "items": {"$ref": "#/definitions/creativeWork_type"}
+                        }
+                      ]
+                    }
+                  }
+                },
   },
   "required": [
     "name",
@@ -652,6 +654,15 @@ const jsonschema = {
         "name": {"type": "string"},
         "url": {"type": "string"}
       }
+    },
+    "resourceTypes_type":{
+          "type": "object",
+          "properties": {
+                "@type": {"const": "CreativeWork"},
+                "name": {"type": "string"},
+                "url": {"type": "string"}
+              }
+
     },
     "definedTerm_type": {
       "type": "object",
@@ -909,8 +920,13 @@ const withEnum =     function() {
 
     let licenses = licenseList()
    // const licenseOneOf = [...licenseList ]
-
     jsonschema.properties.license.items= licenses
+
+    let rtypes = resourceTypeList()
+    jsonschema.properties.mainEntity.oneOf = rtypes.oneOf
+    //jsonschema.properties.mainEntity.items= rtypes
+    //jsonschema.definitions.resourceTypes_type.items= rtypes
+
     return  jsonschema
 }
 

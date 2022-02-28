@@ -18,3 +18,5 @@ ecrro:ECRRO_0000218
 dependencies
 # current usage level
 ecrro:ECRRO_0000017
+# interface specifcation
+"ecrro:ECRRO_0000503"
