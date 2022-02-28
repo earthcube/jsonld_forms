@@ -4,6 +4,7 @@ import {default as catalog}  from './resourceType_catalog'
 import {default as semantic} from './resourceType_semantic'
 import {default as interfaceapi} from './resourceType_interface'
 import {default as servicedesc} from './resourceType_service'
+import {default as software} from './resourceType_software'
 const cat2 =
 {
       "type": "Category",
@@ -42,4 +43,5 @@ cat2.elements.push(catalog)
 cat2.elements.push(semantic)
 cat2.elements.push(interfaceapi)
 cat2.elements.push(servicedesc)
+cat2.elements.push(software)
 export default cat2
