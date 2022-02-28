@@ -7,22 +7,23 @@ https://jsonforms-vuetify-renderers.netlify.app/#/
 
 ## Project setup
 ```
-npm install
+yarn global add @vue/cli
+yarn install
 ```
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+yarn run serve
 ```
 
 ### Compiles and minifies for production
 ```
-npm run build
+yarn run build
 ```
 
 ### Lints and fixes files
 ```
-npm run lint
+yaryarn n run lint
 ```
 
 ### Customize configuration
