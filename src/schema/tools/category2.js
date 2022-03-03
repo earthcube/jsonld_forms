@@ -12,7 +12,7 @@ import {default as bundledobject} from './resourceTypes/resourceType_bundledObje
 const cat2 =
 {
       "type": "Category",
-      "label": "Section 2. Resource Type",
+      "label": "Resource Type",
       "elements": [
         {
           "type": "Label",

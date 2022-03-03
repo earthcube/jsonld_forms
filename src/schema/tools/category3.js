@@ -1,7 +1,7 @@
 const cat3 =
 {
       "type": "Category",
-      "label": "Section 3. Availability and Stewardship",
+      "label": "Availability and Stewardship",
       "elements": [
         {
           "type": "Label",

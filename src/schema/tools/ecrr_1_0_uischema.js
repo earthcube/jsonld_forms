@@ -7,7 +7,11 @@ const schema = {
 
 
 
-  ]
+  ],
+     "options": {
+       "variant": "stepper",
+       "showNavButtons": true
+     }
 }
 import cat1 from "./category1"
 schema.elements.push(cat1)

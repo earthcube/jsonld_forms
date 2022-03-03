@@ -1,6 +1,6 @@
  let cat1 = {
       "type": "Category",
-      "label": "Section 1. General Resource  Information",
+      "label": "General Resource  Information",
       "elements": [
 
 

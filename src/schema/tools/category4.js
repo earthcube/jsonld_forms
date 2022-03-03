@@ -1,7 +1,7 @@
 const cat4 =
 {
       "type": "Category",
-      "label": "Section 4. Tell Us About Yourself",
+      "label": "Tell Us About Yourself",
       "elements": [
         {
           "type": "Label",
