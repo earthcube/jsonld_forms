@@ -1,12 +1,12 @@
 const resourceType = {
   "type": "Group",
-  "label": "Repository options",
+  "label": "Use Case options",
   "rule": {
               "effect": "SHOW",
               "condition": {
                 "scope": "#/properties/mainEntity/properties/name",
                     "schema": {
-                      "const": "Repository"
+                      "const": "Use Case"
                      // "const": "Dataset"
                     }
                 }
@@ -14,7 +14,7 @@ const resourceType = {
   "elements": [
         {
           "type": "Label",
-          "text": "Type of the Cataloged Object"
+          "text": "File Format of Use Case description"
         },
         {
           "label": "encodingFormat",

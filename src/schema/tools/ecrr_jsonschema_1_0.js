@@ -1,5 +1,5 @@
 //import {default as licenseOneOf} from './licenseOneOf'
-import {licenseList, resourceTypeList} from "../controlledFromGooglesheet"
+import {licenseList, resourceTypeList} from "./controlledFromGooglesheet"
 
 const jsonschema = {
 
