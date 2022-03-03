@@ -287,32 +287,21 @@ const jsonschema = {
     "ecrro:ECRRO_0000502": {
       "title": "Communication Protocol(s)",
       "description": "communication protocol(s) used. Use ECRR controlled vocabulary",
-      "oneOf": [
-        {
-          "$ref": "#/definitions/definedTerm_type"
-        },
-        {
+
           "type": "array",
           "items": {
             "$ref": "#/definitions/definedTerm_type"
-          }
-        }
-      ]
+  }
     },
     "applicationCategory": {
       "title": "Application function and subfunction",
       "description": "strings use special syntac like {function: ... uri: ... }. The function value is the label associated with the ECRR uri in the function vocabulary (http://cor.esipfed.org/ont/earthcube/SFO_0000001)",
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
+
           "type": "array",
           "items": {
             "type": "string"
           }
-        }
-      ]
+
     },
     "runtimePlatform": {
       "title": "runtime platform",
@@ -368,35 +357,21 @@ const jsonschema = {
     "codeRepository": {
       "title": "Code Repository",
       "description": "name and URL location for repository in which code for an application or semantic resource is managed",
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "$ref": "#/definitions/creativeWork_type"
-        },
-        {
+
           "type": "array",
           "items": {
             "$ref": "#/definitions/creativeWork_type"
-          }
-        }
-      ]
+ }
     },
     "installURL": {
       "title": "Software Install URL",
       "description": "URL that locates an installer package or instructions for installing software for use in a local environment",
-      "oneOf": [
-        {
-          "$ref": "#/definitions/creativeWork_type"
-        },
-        {
+
           "type": "array",
           "items": {
             "$ref": "#/definitions/creativeWork_type"
           }
-        }
-      ]
+
     },
     "potentialAction": {
       "title": "Direct invocation of App on the web",
@@ -551,13 +526,10 @@ const jsonschema = {
                     "propertyID": {"const": "ecrro:ECRRO_0000503"},
                     "name": {"type": "string"},
                     "value": {
-                      "oneOf": [
-                        {"$ref": "#/definitions/creativeWork_type"},
-                        {
+
                           "type": "array",
                           "items": {"$ref": "#/definitions/creativeWork_type"}
-                        }
-                      ]
+
                     }
                   }
                 },
@@ -716,13 +688,10 @@ const jsonschema = {
         "encodingFormat": {
           "title": "file format and profile for input or output data to/from the application (consistent with value of 'positition' element)",
           "description": "mime type with 'type' or 'application' extension that indicates specific application or profile compatibility of file content; values should come from https://github.com/earthcube/GeoCODES-Metadata/blob/main/resources/encodingFormat.csv",
-          "oneOf": [
-            {"type": "string"},
-            {
+
               "type": "array",
               "items": {"type": "string"}
-            }
-          ]
+
         }
       }
     },
@@ -736,13 +705,15 @@ const jsonschema = {
           "default": "Open software on the web"
         },
         "httpMethod": {
+        "title": "HTTP Method",
           "type": "array",
-          "items": [
+          "items":
             {
               "type": "string",
-              "default": "GET"
+              "default": "GET",
+              "enum": ["GET","PUT","POST","PATCH","DELETE","COPY","HEAD","OPTIONS", "PROPFIND" ]
             }
-          ]
+
         }
       }
     },
@@ -803,13 +774,10 @@ const jsonschema = {
             "propertyID": {"const": "ecrro:ECRRO_0000503"},
             "name": {"type": "string"},
             "value": {
-              "oneOf": [
-                {"$ref": "#/definitions/creativeWork_type"},
-                {
+
                   "type": "array",
                   "items": {"$ref": "#/definitions/creativeWork_type"}
-                }
-              ]
+
             }
           }
         },
@@ -821,13 +789,10 @@ const jsonschema = {
             "propertyID": {"const": "http://purl.obolibrary.org/obo/RO_0002502"},
             "name": {"type": "string"},
             "value": {
-              "oneOf": [
-                {"$ref": "#/definitions/creativeWork_type"},
-                {
+
                   "type": "array",
                   "items": {"$ref": "#/definitions/creativeWork_type"}
-                }
-              ]
+
             }
           }
         },
@@ -881,13 +846,10 @@ const jsonschema = {
               "default": "Stewardship"
             },
             "value": {
-              "oneOf": [
-                {"$ref": "#/definitions/agent_type"},
-                {
+
                   "type": "array",
                   "items": {"$ref": "#/definitions/agent_type"}
-                }
-              ]
+
             }
           }
         },
