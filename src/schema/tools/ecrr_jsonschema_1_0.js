@@ -50,6 +50,27 @@ const jsonschema = {
         "$ref": "#/definitions/identifier_type"
       }
     },
+        "identifiersTest": {
+          "title": "External Identifier",
+          "description": "Globally unique identifier for the described resource; could be single value or array of strings for multiple identifiers",
+          "type": "array",
+          "items":  {
+          "oneOf": [
+                             {
+                               "title": "License 1",
+                               "const": {
+
+                                 "@type": "CreativeWork"
+                               ,
+                                 "name": "License 1",
+                                 "url":  "use if CreativeWork or URL; if use url, the value is a string"
+
+                               }
+                             },
+                ]
+
+           }
+        },
     "description": {
       "type": "string",
       "description": "a text description of the resource. This text will be indexed by search aggregators, and the information contained should be sufficient to tell a person what the resource is, broadly how to use it."

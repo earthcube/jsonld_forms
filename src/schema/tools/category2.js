@@ -1,10 +1,12 @@
-import {default as interchange}  from './resourceType_interchangeformat'
-import {default as specification}  from './resourceType_specification'
-import {default as catalog}  from './resourceType_catalog'
-import {default as semantic} from './resourceType_semantic'
-import {default as interfaceapi} from './resourceType_interface'
-import {default as servicedesc} from './resourceType_service'
-import {default as software} from './resourceType_software'
+import {default as interchange}  from './resoureTypes/resourceType_interchangeformat'
+import {default as specification}  from './resoureTypes/resourceType_specification'
+import {default as catalog}  from './resoureTypes/resourceType_catalog'
+import {default as semantic} from './resoureTypes/resourceType_semantic'
+import {default as interfaceapi} from './resoureTypes/resourceType_interface'
+import {default as servicedesc} from './resoureTypes/resourceType_service'
+import {default as software} from './resoureTypes/resourceType_software'
+import {default as repository} from './resoureTypes/resourceType_repository'
+import {default as platform} from './resoureTypes/resourceType_platform'
 const cat2 =
 {
       "type": "Category",
@@ -44,4 +46,6 @@ cat2.elements.push(semantic)
 cat2.elements.push(interfaceapi)
 cat2.elements.push(servicedesc)
 cat2.elements.push(software)
+cat2.elements.properties(repository)
+
 export default cat2

@@ -32,6 +32,9 @@ const data = require('../assets/tools/ecrrempty.json');
 
 import {entry as AltGroupRenderer} from './AdditionalDetailsRenderer'
 import {entry as HtmlLabelRender } from './htmlLabelRenderer'
+//import {entry as ArrayDescRender} from './ArrayWDescription'
+//import {arrayOverride} from '../arrayOverride'
+
 import {default as JsonViewer} from './viewJson'
 
 const renderers = [
@@ -39,7 +42,9 @@ const renderers = [
 
   // here you can add custom renderers
   AltGroupRenderer,
-  HtmlLabelRender
+  HtmlLabelRender,
+ // ArrayDescRender,
+ // arrayOverride
 ];
 
 const tool = defineComponent({

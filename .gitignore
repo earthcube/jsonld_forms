@@ -21,4 +21,4 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
-/src/schema/controlledFromGooglesheet/~$ECRR Controlled Vocabularies.xlsx
+/src/schema/tools/controlledFromGooglesheet/~$ECRR Controlled Vocabularies.xlsx

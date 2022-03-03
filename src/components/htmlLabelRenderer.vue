@@ -5,42 +5,45 @@
       v-bind="vuetifyProps('v-label')"
 
   >
-   <span v-html="this.layout.uischema.text"></span>
+      <span v-html="translatedLabel"></span>
+      <div v-html="this.layout.uischema.description"></div>
   </v-label>
 </template>
 
 <script lang="ts">
 import {
   JsonFormsRendererRegistryEntry,
-  Layout,
+ // Layout,
   rankWith,
   uiTypeIs,
  // LabelElement,
 } from '@jsonforms/core';
 import { defineComponent } from '@vue/composition-api';
-import {
-  DispatchRenderer,
-  rendererProps,
-  useJsonFormsLayout,
-  RendererProps,
-} from '@jsonforms/vue2';
-import { useVuetifyLayout, useTranslator } from '@jsonforms/vue2-vuetify';
-import { VLabel } from 'vuetify/lib';
+// import {
+//   DispatchRenderer,
+//   rendererProps,
+//   useJsonFormsLayout,
+//   RendererProps,
+// } from '@jsonforms/vue2';
+// import { useVuetifyLayout, useTranslator } from '@jsonforms/vue2-vuetify';
+// import { VLabel } from 'vuetify/lib';
+import {LabelRenderer} from '@jsonforms/vue2-vuetify'
 
 const htmlLabelRenderer = defineComponent({
+  extends: LabelRenderer,
   name: 'html-label-renderer',
-  components: {
-    DispatchRenderer,
-    VLabel,
-  },
-  props: {
-    ...rendererProps<Layout>(),
-  },
-  setup(props: RendererProps<Layout>) {
-    const t = useTranslator();
-    const layout = useVuetifyLayout(useJsonFormsLayout(props));
-    return { ...layout, t };
-  },
+  // components: {
+  //   DispatchRenderer,
+  //   VLabel,
+  // },
+  // props: {
+  //   ...rendererProps<Layout>(),
+  // },
+  // setup(props: RendererProps<Layout>) {
+  //   const t = useTranslator();
+  //   const layout = useVuetifyLayout(useJsonFormsLayout(props));
+  //   return { ...layout, t };
+  // },
   computed: {
     // translatedLabel(): string | undefined {
     //   if (this.layout.uischema.options?.i18n) {
@@ -55,7 +58,8 @@ const htmlLabelRenderer = defineComponent({
     //   );
     // },
   },
-});
+}
+);
 
 export default htmlLabelRenderer;
 
