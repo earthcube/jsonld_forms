@@ -1,4 +1,6 @@
+
 # Using Minio as a backend
+This docker needs to be changed to a treafik router, rather than ngnx
 
 Tested (notes at end of document). It works. It's simple, and we can initially manually manage via ui
 
