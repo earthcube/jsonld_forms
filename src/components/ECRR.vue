@@ -2,7 +2,7 @@
   <div>
 
   <json-forms
-      :data="data"
+      :data="jsonldObj"
       :schema="schema"
       :uischema="uischema"
       :renderers="renderers"
@@ -11,7 +11,7 @@
   />
       <v-spacer></v-spacer>
       <v-divider></v-divider>
-      <JsonViewer :json="data">
+      <JsonViewer :json="jsonldObj">
       </JsonViewer>
 
 
@@ -28,7 +28,7 @@ import 'vue-json-pretty/lib/styles.css';
 import { default as schema, schemaWithEnum } from '../schema/tools/ecrr_jsonschema_1_0' ;
 
 import uischema from '../schema/tools/ecrr_1_0_uischema';
-const data = require('../assets/tools/ecrrempty.json');
+const baseJsonLdObj = require('../assets/tools/ecrrempty.json');
 
 import {entry as AltGroupRenderer} from './AdditionalDetailsRenderer'
 import {entry as HtmlLabelRender } from './htmlLabelRenderer'
@@ -53,28 +53,39 @@ const tool = defineComponent({
     JsonForms,
     JsonViewer
   },
-  beforeCreate() {
-    // schemaWithEnum().then(s =>
-    //      {
-    //     //   console.log(s)
-    //        this.schema = s
-    //      }
-    //  )
-    this.schema = schemaWithEnum()
+
+  props:{
+    jsonldfile: {type: String }
   },
   data() {
     return {
       //renderers: Object.freeze(renderers),
       renderers,
-      data,
+      jsonldObj:baseJsonLdObj,
       schema,
       uischema,
       currentValidationMode: "ValidateAndHide", // ValidateAndShow, ValidateAndHide, NoValidation
     };
   },
+  beforeCreate() {
+    // schemaWithEnum().then(s =>{
+    //       console.log(s)
+    //       this.schema = s
+    //      })
+    this.schema = schemaWithEnum()
+    this.jsonldObj = baseJsonLdObj
+
+  },
+  created() {
+    if (this.jsonldfile){
+
+      let exampleDate = require('../assets/examples/' + this.jsonldfile);
+      this.jsonldObj = Object.assign({}, this.jsonldObj, exampleDate)
+    }
+  },
   methods: {
     onChange(event) {
-      this.data = event.data;
+      this.jsonldObj = event.data;
     },
   },
 });

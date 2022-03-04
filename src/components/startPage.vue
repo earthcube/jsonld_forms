@@ -1,6 +1,7 @@
 <template>
   <v-main>
-    <router-link to="/tools" >Create Resource Description</router-link>
+    <router-link to="/ecrr" >Create Resource Description</router-link>
+    <examples></examples>
     <v-form>
       <v-input type="text"></v-input>
     </v-form>
@@ -8,8 +9,12 @@
 </template>
 
 <script>
+import examples from './examples'
 export default {
-  name: "startPage"
+  name: "startPage",
+  components: {
+    examples
+  }
 }
 </script>
 
