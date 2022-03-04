@@ -28,7 +28,7 @@ import 'vue-json-pretty/lib/styles.css';
 import { default as schema, schemaWithEnum } from '../schema/tools/ecrr_jsonschema_1_0' ;
 
 import uischema from '../schema/tools/ecrr_1_0_uischema';
-const baseJsonLdObj = require('../assets/tools/ecrrempty.json');
+const baseJsonLdObj = require('../assets/basefiles/tools/ecrrempty.json');
 
 import {entry as AltGroupRenderer} from './AdditionalDetailsRenderer'
 import {entry as HtmlLabelRender } from './htmlLabelRenderer'

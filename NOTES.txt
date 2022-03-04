@@ -2,6 +2,13 @@
 Notes:
 ECRR documents:
 
+The examples are in:
+ assets/examples/(tools/dataset/org)
+Base starter files will be in
+* assets/basefiles/(tools...)
+
+The jsonld schemas, and url are javacript code, so that are not in assets, but are in schema/
+
 
 Controled Vocabualries
 https://docs.google.com/spreadsheets/d/1ykxgdeDjBzcTc1y64CuyaS2PhDuUtLuO5AFUehwhxDs/edit#gid=0
