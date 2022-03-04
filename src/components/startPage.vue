@@ -1,10 +1,13 @@
 <template>
   <v-main>
-    <router-link to="/ecrr" >Create Resource Description</router-link>
+    <h2>Forms</h2>
+    <v-list>
+      <v-list-item><router-link to="/ecrr" >Create Resource Description</router-link></v-list-item>
+    </v-list>
+
+    <v-divider></v-divider>
     <examples></examples>
-    <v-form>
-      <v-input type="text"></v-input>
-    </v-form>
+
   </v-main>
 </template>
 

@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2>Earthcube Resource Registry Examples</h2>
+    <v-spacer></v-spacer>
+    <h2><a href="https://github.com/earthcube/ecrro"> Earthcube Resource Registry Examples</a></h2>
+    <v-banner outlined>Note: Not all examples load.</v-banner>
     <v-list>
       <v-list-item v-for="f in examples" :key="f.name">
         <router-link :to="{ name: 'ECRR',
