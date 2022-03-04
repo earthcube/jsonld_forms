@@ -46,12 +46,29 @@
         {{ new Date().getFullYear() }} — <strong>Geocodes Schema.org JSONLD Creator Application</strong>
       </v-col>
       <v-btn
+          href="https://github.com/earthcube/jsonld_forms"
+          target="_blank"
+          text
+      >
+         <span class="mr-2">Github</span>
+        <v-icon>mdi-github-circle</v-icon>
+      </v-btn>
+
+      <v-btn
           href="https://jsonforms-vuetify-renderers.netlify.app/"
           target="_blank"
           text
       >
-        <span class="mr-2">JSON-LD Vuetify Forms</span>
+        <span class="mr-2">JSON-LD Vuetify Forms Examples</span>
         <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+      <v-btn
+          href="https://github.com/eclipsesource/jsonforms-vuetify-renderers/"
+          target="_blank"
+          text
+      >
+        <span class="mr-2">JSON-LD Vuetify Forms Github</span>
+        <v-icon>mdi-github-circle</v-icon>
       </v-btn>
       <v-btn
           href="https://github.com/vuetifyjs/vuetify/releases/latest"
