@@ -48,57 +48,94 @@
                 },
                 {
                   "label": "Identifier",
-
                   "type": "Control",
                   "scope": "#/properties/@id",
                   "options": {
                     "showUnfocusedDescription": true,
-                    "readonly": true
-                  }
-                },
-                { "type": "Control",
-                "label":"PropertyTest Additional Identifiers" ,
-                "scope": "#/properties/identifier",
-                },
-                                { "type": "JsonLdProperty",
-                                "label":"PropertyTest Additional Identifiers" ,
-                                "scope": "#/properties/identifiersTest",
-                                }
-//                 {
-//                   "type": "ListWithDetail",
-//                   "label":  "1.1.1.1 Additional Identifiers",
-//
-//                   "scope": "#/properties/identifier",
-//                   "options": {
-//                     "showUnfocusedDescription": true,
-//
-//                       "elementLabelProp": "value",
-//                       "detail" : {
-//                         "type": "HorizontalLayout",
-//                         "elements": [
-//                           {
-//                             "label": "Indentifier",
-//                             "type": "Control",
-//                             "scope": "#/properties/value"
-//                           },
-//                           {
+                    "readonly": true,
+                      "elementLabelProp": "value",
+                      "detail" : {
+                                              "type": "HorizontalLayout",
+                        "elements": [
+                          {
+                            "label": "Indentifier",
+                            "type": "Control",
+                            "scope": "#/properties/value"
+                          },
+                          {
+                            "label": "Type",
+                            "type": "Control",
+                            "scope": "#/properties/propertyID"
+                          },
+                          {
+                            "label": "PropertyName",
+                            "type": "Control",
+                            "scope": "#/properties/name"
+                          }
+                         ]
+                       }
+
+                    }
+
+              },
+//                 { "type": "Control",
+//                 "label":"PropertyTest Additional Identifiers" ,
+//                 "scope": "#/properties/identifier",
+//                 },
+//                                 { "type": "JsonLdProperty",
+//                                 "label":"PropertyTest Additional Identifiers" ,
+//                                 "scope": "#/properties/identifiersTest",
+//                                 }
+
+                {
+                  "type": "ListWithDetail",
+                  "label":  "1.1.1.1 Additional Identifiers",
+
+                  "scope": "#/properties/identifier",
+                  "options": {
+                    "showUnfocusedDescription": true,
+
+                      "elementLabelProp": "value",
+                      "detail" : {
+                        "type": "HorizontalLayout",
+                        "elements": [
+//                          {
 //                             "label": "Type",
 //                             "type": "Control",
-//                             "scope": "#/properties/propertyID"
+//                             "scope": "#/properties/@type",
+//                             "rule": {
+//                                 "effect": "HIDE",
+//                                 "condition": {
+//                                   "schema": {
+//                                     "const": true
+//                                   }
+//                                 }
+//                               }
 //
 //                           },
-//                           {
-//                             "label": "PropertyName",
-//                             "type": "Control",
-//                             "scope": "#/properties/name"
-//
-//                           }
-//                         ]
-//
-//
-//                     }
-//                   }
-//                 }
+                          {
+                            "label": "Indentifier",
+                            "type": "Control",
+                            "scope": "#/properties/value"
+                          },
+                          {
+                            "label": "Type",
+                            "type": "Control",
+                            "scope": "#/properties/propertyID"
+
+                          },
+                          {
+                            "label": "PropertyName",
+                            "type": "Control",
+                            "scope": "#/properties/name"
+
+                          }
+                        ]
+
+
+                    }
+                  }
+                }
               ]
             }
 
@@ -307,7 +344,19 @@
                   "label": "1.1.1.1 Primary Publication",
                   "scope": "#/properties/ecrro:ECRRO_0000600",
                   "options": {
-                    "showUnfocusedDescription": true
+                    "showUnfocusedDescription": true,
+
+                      "detail" : {
+                         "type": "HorizontalLayout",
+                        "elements": [
+                          {
+                            "label": "Value",
+                            "type": "Control",
+                            "scope": "#/properties/value"
+                          },
+                         ]
+                         }
+
                   }
                 }
               ]

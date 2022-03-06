@@ -8,6 +8,7 @@
       :renderers="renderers"
       @change="onChange"
       :validationMode="currentValidationMode"
+      :ajv="ajv"
   />
       <v-spacer></v-spacer>
       <v-divider></v-divider>
@@ -36,6 +37,10 @@ import {entry as HtmlLabelRender } from './htmlLabelRenderer'
 //import {arrayOverride} from '../arrayOverride'
 
 import {default as JsonViewer} from './viewJson'
+import {createAjv} from "@jsonforms/core";
+
+
+
 
 const renderers = [
   ...vuetifyRenderers,
@@ -65,6 +70,8 @@ const tool = defineComponent({
       schema,
       uischema,
       currentValidationMode: "ValidateAndHide", // ValidateAndShow, ValidateAndHide, NoValidation
+
+      ajv: createAjv({useDefaults: true}) // use default values per:https://github.com/eclipsesource/jsonforms/issues/1193
     };
   },
   beforeCreate() {

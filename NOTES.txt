@@ -63,7 +63,167 @@ becomes:
 "items": {"type": "string"}
 
 },
+====
+DEFAULT VALUES
+"identifier_type":
+    {
+      "type": "object",
+      "properties": {
+        "@type": {"type": "string", "const": "sdo:PropertyValue", "default":  "sdo:PropertyValue"},
+        "value": {"type": "string"},
+        "propertyID": {"type": "string",
+          "enum": ["DATACITEURL", "PERLURL","DOIURL"],
+          "default":"DOIURL"},
+        "name": {"type": "string",
+          "enum": ["DATACITE", "DOI","OTHER"],
+          "default":"DOI"}
 
+      }
+    }
+
+You can hide fields using options:details
+ {
+      "label": "Identifier",
+      "type": "Control",
+      "scope": "#/properties/@id",
+      "options": {
+        "showUnfocusedDescription": true,
+        "readonly": true,
+          "elementLabelProp": "value",
+          "detail" : {
+                                  "type": "HorizontalLayout",
+            "elements": [
+              {
+                "label": "Indentifier",
+                "type": "Control",
+                "scope": "#/properties/value"
+              },
+              {
+                "label": "Type",
+                "type": "Control",
+                "scope": "#/properties/propertyID"
+              },
+              {
+                "label": "PropertyName",
+                "type": "Control",
+                "scope": "#/properties/name"
+              }
+             ]
+           }
+
+        }
+
+},
+====
+FEILD NOT RENDERING:
+
+"type":"string" is needed
+FAILS
+ "@type": {
+          "enum": [
+            "Person",
+            "Organization"
+          ],
+          "default":"Person"
+        },
+
+ WORKS
+  "@type": { "type": "string",
+           "enum": [
+             "Person",
+             "Organization"
+           ],
+           "default":"Person"
+         },
+
+FAILS:
+ "items": {
+        "enum": [
+          "CreativeWork",
+          "SoftwareApplication",
+          "Product"
+        ]
+      }
+WORKS:
+ "items": { "type": "string",
+        "enum": [
+          "CreativeWork",
+          "SoftwareApplication",
+          "Product"
+        ]
+      }
+JUST EXAMPLES:
+"@type": {"type": "string", "const": "PropertyValue",},
+
+==== Properties fill in when a value is added
+If on the value is needed, and other fields are constants, then use a details to hide the other field
+
+SCHEMA
+
+   "ecrro:ECRRO_0000600": {
+               "type": "object",
+               "description": "primary publication-- a text citation to one or more publications about the resource; separated by pipe ('|') characters",
+               "properties": {
+                 "@type": {"type": "string", "const": "PropertyValue", "default":"PropertyValue"},
+                 "propertyID": {"type": "string", "const": "ecrro:ECRRO_0000600", "default": "ecrro:ECRRO_0000600"},
+                 "name": {
+                   "type": "string",
+                   "default": "primary publication"
+                 },
+                 "value": {"type": "string"}
+               }
+             },
+
+ BASIC UISCHEMA
+    {
+                     "type": "Control",
+                     "label": "1.1.1.1 Primary Publication",
+                     "scope": "#/properties/ecrro:ECRRO_0000600",
+                     "options": {
+                       "showUnfocusedDescription": true
+                     }
+                   }
+FINAL UISCHEMA:
+{
+     "type": "ShowGroup",
+     "label": "Add Primary Publication",
+     "elements": [
+
+       {
+         "type": "Control",
+         "label": "1.1.1.1 Primary Publication",
+         "scope": "#/properties/ecrro:ECRRO_0000600",
+         "options": {
+           "showUnfocusedDescription": true,
+
+             "detail" : {
+                "type": "HorizontalLayout",
+               "elements": [
+                 {
+                   "label": "Value",
+                   "type": "Control",
+                   "scope": "#/properties/value"
+                 },
+                ]
+                }
+
+         }
+       }
+     ]
+},
+
+This will appear in the JSONLD
+"ecrro:ECRRO_0000600":
+{
+"value":
+"ddd",
+"@type":
+"PropertyValue",
+"propertyID":
+"ecrro:ECRRO_0000600",
+"name":
+"primary publication"
+}
 ====
 List of "OBJECTS":
 use oneOf:
