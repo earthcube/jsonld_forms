@@ -44,7 +44,7 @@
             "identifier": "https://orcid.org/0000-0002-0560-9777"
         }
     ],
-    "keywords": "ARGO,Oceanography,water temperature,water salinity,biogeochemical data",
+    "keywords": ["ARGO,Oceanography","water temperature","water salinity","biogeochemical data"],
     "license": [
         {
             "@type": "CreativeWork",
@@ -104,19 +104,28 @@
         "subfunction: Data Discovery & Access: Data Query, Data Discovery & Access: Data Harvesting, Visualization: Display uri: http://cor.esipfed.org/ont/earthcube/SFO_0000030",
         "subfunction: Data Discovery & Access: Data Query, Data Discovery & Access: Data Harvesting, Visualization: Display uri: http://cor.esipfed.org/ont/earthcube/SFO_0000062"
     ],
-    "runtimePlatform": "Notebook Container, uri:http://cor.esipfed.org/ont/earthcube/RTE_000011",
-    "programmingLanguage": "Python 3.6",
-    "codeRepository": "https://github.com/earthcube/earthcube_utilities/tree/dataformatTemplates/dataformat_templates/ARGO",
-    "potentialAction": {
-        "@type": "Action",
-        "name": "Execute web application",
-        "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": "https://mybinder.org/v2/gh/earthcube/NotebookTemplates.git/main?filepath=GeoCODEStemplates/ARGO/SA_01_Argo_Data_Exploration.ipynb%22",
-            "description": "Open software on the web",
-            "httpMethod": ["GET"]
+    "runtimePlatform": [
+        "Notebook Container, uri:http://cor.esipfed.org/ont/earthcube/RTE_000011"
+    ],
+    "programmingLanguage": [
+        "Python 3.6"
+    ],
+    "codeRepository": [
+        "https://github.com/earthcube/earthcube_utilities/tree/dataformatTemplates/dataformat_templates/ARGO"
+    ],
+
+    "potentialAction": [
+        {
+            "@type": "Action",
+            "name": "Execute web application",
+            "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://mybinder.org/v2/gh/earthcube/NotebookTemplates.git/main?filepath=GeoCODEStemplates/ARGO/SA_01_Argo_Data_Exploration.ipynb%22",
+                "description": "Open software on the web",
+                "httpMethod": ["GET"]
+            }
         }
-    },
+    ],
     "additionalProperty": [
         {
             "@type": "PropertyValue",
