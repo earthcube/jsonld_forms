@@ -108,10 +108,20 @@
         "Notebook Container, uri:http://cor.esipfed.org/ont/earthcube/RTE_000011"
     ],
     "programmingLanguage": [
-        "Python 3.6"
+        {
+            "@type": "ComputerLanguage",
+            "name": "Python 3.6",
+            "identifier": "Python:3.6"
+        }
+
     ],
     "codeRepository": [
-        "https://github.com/earthcube/earthcube_utilities/tree/dataformatTemplates/dataformat_templates/ARGO"
+        {
+            "@type": "CreativeWork",
+            "name": "Github",
+            "url": "https://github.com/earthcube/earthcube_utilities/tree/dataformatTemplates/dataformat_templates/ARGO"
+        }
+
     ],
 
     "potentialAction": [
