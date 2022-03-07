@@ -96,4 +96,30 @@ const resourceTypeOneOf =   function()  {
 
  }
 export { resourceTypeOneOf as resourceTypeList}
+
+// oneOf.. this is part of an array. so each item is unique
+import  scienceDomain from  'dsv-loader!../controlledFromGooglesheet/sciencedomains.csv'
+const scienceDomainTypeOneOf =   function()  {
+    const nameCol = "SCIENCE DOMAIN"
+    const urlCol ="URI"
+     const sheet = scienceDomain
+//    var  licenseSheet = require( 'csv-loader!../controlledFromGooglesheet/ECRR Controlled Vocabularies - Software Licenses.csv' )
+     let propList =  sheet.filter(o => o[nameCol]).map( o => {
+
+              return  {  "title": o[nameCol],
+                           "const": {
+                                  "name": o[nameCol],
+                                  "@type": "DefinedTerm",
+                                  "identifier": o[urlCol]
+                                  }
+                        }
+               })
+     return {"oneOf":   propList }
+
+ }
+export { scienceDomainTypeOneOf as scienceDomainList}
  //export default toOneOf
+
+ //export default toOneOf
+import {functionenum as functionenum, functionsuggestion as functionsuggestion} from './function_subfunction'
+export {functionenum as functionenum, functionsuggestion as functionsuggestion}

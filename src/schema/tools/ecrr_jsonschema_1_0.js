@@ -1,5 +1,10 @@
 //import {default as licenseOneOf} from './licenseOneOf'
-import {licenseList, resourceTypeList} from "./controlledFromGooglesheet"
+import {
+licenseList,
+ resourceTypeList,
+ functionenum,
+ scienceDomainList
+ } from "./controlledFromGooglesheet"
 
 const jsonschema = {
  // "$id": "https://example.com/schemas/",
@@ -156,8 +161,10 @@ const jsonschema = {
     "about": {
       "title": "Science Domain",
       "type": "array",
+      "uniqueItems": true,
       "items": {
-        "$ref": "#/definitions/definedTerm_type"
+
+   //     "$ref": "#/definitions/definedTerm_type"
       }
     },
     "contentType": {
@@ -614,8 +621,8 @@ const jsonschema = {
     "creativeWork_type": {
       "type": "object",
       "properties": {
-        "@type": {"type": "string", "default":"CreativeWork", "const": "CreativeWork"},
-        "name": {"type": "string"},
+         "name": {"type": "string"},
+         "@type": {"type": "string", "default":"CreativeWork", "const": "CreativeWork"},
         "url": {"type": "string"}
       }
     },
@@ -887,7 +894,11 @@ const withEnum =     function() {
     jsonschema.properties.mainEntity.oneOf = rtypes.oneOf
     //jsonschema.properties.mainEntity.items= rtypes
     //jsonschema.definitions.resourceTypes_type.items= rtypes
-
+    // not good at suggestions, so let's try suggestions
+    let functions = functionenum()
+    jsonschema.properties.applicationCategory.items = functions
+    let scienceDomains = scienceDomainList()
+    jsonschema.properties.about.items = scienceDomains
     return  jsonschema
 }
 

@@ -1,3 +1,5 @@
+//import {functionsuggestion as functionsuggestion} from '../controlledFromGooglesheet'
+
 const resourceType = {
   "type": "Group",
   "label": "Interface/API options",
@@ -42,30 +44,32 @@ const resourceType = {
                   "text": "General Functions"
                 },
                 {
-                  "label": "Protocol",
+                  "label": "General Functions",
                   "type": "Control",
                   "scope": "#/properties/applicationCategory",
                   "options": {
-                    "showUnfocusedDescription": true
+                      "autocomplete": true,
+                    "showUnfocusedDescription": true,
+ //                   "suggestion": functionsuggestion()
                   }
      },
-    {
-          "type": "ShowGroup",
-          "label": "add additional function details",
-          "elements": [
-                  {
-                    "type": "Label",
-                    "text": "Function subcategory"
-                  },
-                  {
-                    "label": "Protocol",
-                    "type": "Control",
-                    "scope": "#/properties/applicationCategory",
-                    "options": {
-                      "showUnfocusedDescription": true
-                    }
-                  },
-                  ]},
+//     {
+//           "type": "ShowGroup",
+//           "label": "add additional function details",
+//           "elements": [
+//                   {
+//                     "type": "Label",
+//                     "text": "Function subcategory"
+//                   },
+//                   {
+//                     "label": "Function subcategory",
+//                     "type": "Control",
+//                     "scope": "#/properties/applicationCategory",
+//                     "options": {
+//                       "showUnfocusedDescription": true
+//                     }
+//                   },
+//                   ]},
        {
              "type": "ShowGroup",
              "label": "Describe the interface",
@@ -79,6 +83,7 @@ const resourceType = {
                       "type": "Control",
                       "scope": "#/properties/dct:conformsTo",
                       "options": {
+
                         "showUnfocusedDescription": true,
                         "detail": {
                                                 "type": "HorizontalLayout",
