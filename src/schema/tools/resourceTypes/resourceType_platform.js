@@ -19,22 +19,31 @@ const resourceType = {
         {
           "label": "Protocol",
           "type": "Control",
-          "scope": "#/properties/ecrro:ECRRO_0000503",
-          "options": {
-            "showUnfocusedDescription": true
-          }
+          "scope": "#/properties/ecrro:ECRRO_0000502",
+            "options": {
+                    "showUnfocusedDescription": true,
+                    "detail": {
+                         "type": "HorizontalLayout",
+                         "elements": [
+                         { "label": "name",
+                         "type": "Control",
+                         "scope": "#/properties/name"},
+                      { "label": "identifier",
+                      "type": "Control",
+                      "scope": "#/properties/identifier"}
+                         ]
+                    }
+                  }
         },
         {
                   "type": "Label",
                   "text": "General Functions"
                 },
                 {
-                  "label": "Protocol",
+                  "label": "Application Category",
                   "type": "Control",
                   "scope": "#/properties/applicationCategory",
-                  "options": {
-                    "showUnfocusedDescription": true
-                  }
+
      },
     {
           "type": "ShowGroup",

@@ -1,6 +1,6 @@
 const resourceType = {
   "type": "Group",
-   "label": "Semantic Resource",
+   "label": "Specification",
   "rule": {
               "effect": "SHOW",
               "condition": {

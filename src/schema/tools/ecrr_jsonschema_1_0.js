@@ -374,6 +374,20 @@ const jsonschema = {
                          "type": "object",
                          "description": "ECRR resource maturity status, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/MTU",
                          "properties": {
+                                "value": {
+                                                "type": "object",
+                                                "properties": {
+                                                   "name": {"type": "string"},
+                                                  "@type": {"type": "string", "default": "DefinedTerm", "const": "DefinedTerm"},
+
+                                                  "identifier": {"type": "string"}
+                                                },
+                                                "required": [
+                                                  "identifier",
+                                                  "@type",
+                                                  "name"
+                                                ]
+                                              },
                            "@type": {"type": "string","default": "PropertyValue", "const": "PropertyValue"},
                            "propertyID": {"type": "string","default": "ecrro:ECRRO_0000138", "const": "ecrro:ECRRO_0000138"},
                            "name": {
@@ -382,37 +396,27 @@ const jsonschema = {
                              "readonly": true
                            },
                         //   "value": {"$ref": "#/definitions/definedTerm_type"}
-                        "value": {
-                                       "type": "object",
-                                       "properties": {
-                                         "@type": {"type": "string", "default": "DefinedTerm", "const": "DefinedTerm"},
-                                         "name": {"type": "string"},
-                                         "identifier": {"type": "string"}
-                                       },
-                                       "required": [
-                                         "identifier",
-                                         "@type",
-                                         "name"
-                                       ]
-                                     }
+
                          }
       },
       "ecrro:ECRRO_0000219":        {
                 "type": "object",
                 "description": "Expected lifetime-- how long is it anticipated that the resource will be maintained and accessible online, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/ELT",
                 "properties": {
-                  "@type": {"type": "string", "default": "PropertyValue", "const": "PropertyValue"},
-                  "propertyID": {"type": "string","default": "ecrro:ECRRO_0000219", "const": "ecrro:ECRRO_0000219"},
                   "name": {
                     "type": "string",
                     "default": "expected lifetime"
                   },
+                                    "@type": {"type": "string", "default": "PropertyValue", "const": "PropertyValue"},
+                  "propertyID": {"type": "string","default": "ecrro:ECRRO_0000219", "const": "ecrro:ECRRO_0000219"},
+
                  //   "value": {"$ref": "#/definitions/definedTerm_type"}
              "value": {
                             "type": "object",
                             "properties": {
-                              "@type": {"type": "string","default": "DefinedTerm", "const": "DefinedTerm"},
                               "name": {"type": "string"},
+                              "@type": {"type": "string","default": "DefinedTerm", "const": "DefinedTerm"},
+
                               "identifier": {"type": "string"}
                             },
                             "required": [
@@ -446,9 +450,10 @@ const jsonschema = {
                        "type": "object",
                        "description": "dependencies and their url",
                        "properties": {
+                         "name": {"type": "string"},
                          "@type": {"type": "string", "const": "PropertyValue"},
                          "propertyID": {"type": "string", "const": "http://purl.obolibrary.org/obo/RO_0002502"},
-                         "name": {"type": "string"},
+
                          "value": {
                                "type": "array",
                                "items": {"$ref": "#/definitions/creativeWork_type"}
@@ -460,13 +465,14 @@ const jsonschema = {
           "title": "Current Usage Level",
           "description": "usage volume from controlled vocabulary at http://cor.esipfed.org/ont/earthcube/UBA",
           "properties": {
-            "@type": {"type": "string", "const": "PropertyValue"},
-            "propertyID": {"type": "string", "const": "ecrro:ECRRO_0000017"},
-            "name": {
-              "type": "string",
-              "const": "Usage"
-            },
-            "value": {"$ref": "#/definitions/definedTerm_type"}
+                       "name": {
+                         "type": "string",
+                         "default": "Usage",
+                         "const": "Usage"
+                       },
+                        "@type": {"type": "string","default": "PropertyValue", "const": "PropertyValue"},
+                      "propertyID": {"type": "string","default": "ecrro:ECRRO_0000017", "const": "ecrro:ECRRO_0000017"},
+                     "value": {"$ref": "#/definitions/definedTerm_type"}
           }
         },
         "ecrro:ECRRO_0000503":{
@@ -499,8 +505,9 @@ const jsonschema = {
     {
       "type": "object",
       "properties": {
-        "@type": {"type": "string", "const": "sdo:PropertyValue", "default":  "sdo:PropertyValue"},
+
         "value": {"type": "string"},
+        "@type": {"type": "string", "const": "sdo:PropertyValue", "default":  "sdo:PropertyValue"},
         "propertyID": {"type": "string",
           "enum": ["DATACITEURL", "PERLURL","DOIURL"],
           "default":"DOIURL"},
@@ -514,14 +521,15 @@ const jsonschema = {
       "description": "{name (optional)identifier} pairs, typed either Person or Organization.  Other person or organization properties could be added",
       "type": "object",
       "properties": {
-        "@type": { "type": "string",
+                "name": {"type": "string"},
+                "@type": { "type": "string",
           "enum": [
             "Person",
             "Organization"
           ],
           "default":"Person"
         },
-        "name": {"type": "string"},
+
         "identifier": {"type": "string"}
       },
       "required": [
@@ -534,14 +542,15 @@ const jsonschema = {
           "description": "{name (optional)identifier} pairs, typed either Person or Organization.  Other person or organization properties could be added",
           "type": "object",
           "properties": {
-            "@type": {
+                        "name": {"type": "string"},
+                        "@type": {
               "enum": [
                 "Person",
                 "Organization"
               ],
 
             },
-            "name": {"type": "string"},
+
             "identifier": {"type": "string"}
           },
           "required": [
@@ -555,7 +564,10 @@ const jsonschema = {
                     "title": "Grant",
                     "description": "a Grant instrument",
                     "properties": {
-                      "@type": {
+                                            "identifier": {
+                                              "type": "string"
+                                            },
+                                            "@type": {
                         "type": "string",
                         "default": "Grant",
                         "const": "Grant"
@@ -563,9 +575,7 @@ const jsonschema = {
                       "name": {
                         "type": "string"
                       },
-                      "identifier": {
-                        "type": "string"
-                      },
+
                       "sponsor": {
                         "type": "object",
                         "description": "agency that provided and adminsters the grant funding",
@@ -585,12 +595,13 @@ const jsonschema = {
     "audience_type": {
       "type": "object",
       "properties": {
-        "@type": {
+                "audienceType": {"type": "string"},
+                "@type": {
           "type": "string",
           "default":"Audience",
           "const": "Audience"
         },
-        "audienceType": {"type": "string"},
+
         "identifier": {"type": "string"}
       },
       "required": [
@@ -609,8 +620,9 @@ const jsonschema = {
     "resourceTypes_type":{
           "type": "object",
           "properties": {
-                "@type": {"type": "string", "default":"CreativeWork", "const": "CreativeWork"},
                 "name": {"type": "string"},
+                                "@type": {"type": "string", "default":"CreativeWork", "const": "CreativeWork"},
+
                 "url": {"type": "string"}
               }
 
@@ -618,8 +630,8 @@ const jsonschema = {
     "definedTerm_type": {
       "type": "object",
       "properties": {
-        "@type": {"type": "string","default": "DefinedTerm", "const": "DefinedTerm"},
         "name": {"type": "string"},
+        "@type": {"type": "string","default": "DefinedTerm", "const": "DefinedTerm"},
         "identifier": {"type": "string"}
       },
       "required": [
@@ -631,12 +643,13 @@ const jsonschema = {
     "supportingData_type": {
       "type": "object",
       "properties": {
-        "@type": {
+        "name": {"type": "string"},
+                "@type": {
           "type": "string",
           "default": "DataFeed",
           "const": "DataFeed"
         },
-        "name": {"type": "string"},
+
         "position": {
           "type": "string",
           "enum": [
@@ -658,12 +671,13 @@ const jsonschema = {
     "action_type": {
       "type": "object",
       "properties": {
-        "@type": {"type": "string", "default": "Action", "const": "Action"},
-        "urlTemplate": {"type": "string"},
         "description": {
           "type": "string",
           "default": "Open software on the web"
         },
+                "@type": {"type": "string", "default": "Action", "const": "Action"},
+        "urlTemplate": {"type": "string"},
+
         "httpMethod": {
         "title": "HTTP Method",
           "type": "array",
@@ -680,9 +694,10 @@ const jsonschema = {
     "citationType":  {
       "type": "object",
       "properties": {
-        "@type": {"type": "string","default": "PropertyValue", "const": "PropertyValue"},
-        "propertyID": {"type": "string","default": "dc:BibliographicCitation", "const": "dc:BibliographicCitation"},
         "name": {"type": "string"},
+                "@type": {"type": "string","default": "PropertyValue", "const": "PropertyValue"},
+        "propertyID": {"type": "string","default": "dc:BibliographicCitation", "const": "dc:BibliographicCitation"},
+
         "value": {"type": "string"}
       }
     },

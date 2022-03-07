@@ -88,7 +88,7 @@
 //                                 }
 
                 {
-                  "type": "ListWithDetail",
+                  "type": "Control",
                   "label":  "1.1.1.1 Additional Identifiers",
 
                   "scope": "#/properties/identifier",
@@ -185,6 +185,7 @@
                   "label": "URL to User-Readable Page",
                   "scope": "#/properties/subjectOf",
                   "options": {
+                    "elementLabelProp": "url",
                     "showUnfocusedDescription": true,
                     "detail" : {
                       "type": "HorizontalLayout",
@@ -285,15 +286,16 @@
                               "type": "Control",
                               "label": "1.3.1.1 Creator",
                               "scope": "#/properties/creator",
-                              "options": {
+                              "options": { "elementLabelProp": "name",
                                 "showUnfocusedDescription": true
+
                               }
                             },
                             {
                                                           "type": "Control",
                                                           "label": "1.3.1.1 publisher",
                                                           "scope": "#/properties/publisher",
-                                                          "options": {
+                                                          "options": {"elementLabelProp": "name",
                                                             "showUnfocusedDescription": true
                                                           }
                                                         },
@@ -301,7 +303,7 @@
                               "type": "Control",
                               "label": "1.3.1.1 contributor",
                               "scope": "#/properties/contributor",
-                              "options": {
+                              "options": {"elementLabelProp": "name",
                                 "showUnfocusedDescription": true
                               }
                             },
@@ -309,7 +311,7 @@
                               "type": "Control",
                               "label": "1.3.1.1 editor",
                               "scope": "#/properties/editor",
-                              "options": {
+                              "options": {"elementLabelProp": "name",
                                 "showUnfocusedDescription": true
                               }
                             },
@@ -318,7 +320,7 @@
                               "type": "Control",
                               "label": "1.3.1.1 developer",
                               "scope": "#/properties/developer",
-                              "options": {
+                              "options": {"elementLabelProp": "name",
                                 "showUnfocusedDescription": true
                               }
                             },
@@ -326,7 +328,7 @@
                               "type": "Control",
                               "label": "1.3.1.1 Stewardship",
                               "scope": "#/properties/stewardship",
-                              "options": {
+                              "options": {"elementLabelProp": "name",
                                 "showUnfocusedDescription": true
                               }
                             }, ]

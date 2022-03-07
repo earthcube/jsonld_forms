@@ -19,22 +19,31 @@ const resourceType = {
         {
           "label": "Protocol",
           "type": "Control",
-          "scope": "#/properties/ecrro:ECRRO_0000503",
-          "options": {
-            "showUnfocusedDescription": true
-          }
+          "scope": "#/properties/ecrro:ECRRO_0000502",
+                "options": {
+                    "showUnfocusedDescription": true,
+                    "detail": {
+                         "type": "HorizontalLayout",
+                         "elements": [
+                         { "label": "name",
+                         "type": "Control",
+                         "scope": "#/properties/name"},
+                      { "label": "identifier",
+                      "type": "Control",
+                      "scope": "#/properties/identifier"}
+                         ]
+                    }
+                  }
         },
         {
                   "type": "Label",
                   "text": "General Functions"
                 },
                 {
-                  "label": "Protocol",
+                  "label": "Function",
                   "type": "Control",
                   "scope": "#/properties/applicationCategory",
-                  "options": {
-                    "showUnfocusedDescription": true
-                  }
+
      },
     {
           "type": "ShowGroup",
@@ -45,7 +54,7 @@ const resourceType = {
                     "text": "Function subcategory"
                   },
                   {
-                    "label": "Protocol",
+                  //  "label": "Protocol",
                     "type": "Control",
                     "scope": "#/properties/applicationCategory",
                     "options": {
@@ -78,9 +87,20 @@ const resourceType = {
                       "label": " Conforms to",
                       "type": "Control",
                       "scope": "#/properties/programmingLanguage",
-                      "options": {
-                        "showUnfocusedDescription": true
-                      }
+"options": {
+                    "showUnfocusedDescription": true,
+                    "detail": {
+                         "type": "HorizontalLayout",
+                         "elements": [
+                         { "label": "name",
+                         "type": "Control",
+                         "scope": "#/properties/name"},
+                      { "label": "identifier",
+                      "type": "Control",
+                      "scope": "#/properties/identifier"}
+                         ]
+                    }
+                  }
                     },
                     {
                           "type": "Label",
@@ -108,9 +128,20 @@ const resourceType = {
                               "label": "codeRepository",
                               "type": "Control",
                               "scope": "#/properties/codeRepository",
-                              "options": {
-                                "showUnfocusedDescription": true
-                              }
+"options": {
+                    "showUnfocusedDescription": true,
+                    "detail": {
+                         "type": "HorizontalLayout",
+                         "elements": [
+                         { "label": "name",
+                         "type": "Control",
+                         "scope": "#/properties/name"},
+                      { "label": "identifier",
+                      "type": "Control",
+                      "scope": "#/properties/identifier"}
+                         ]
+                    }
+                  }
                             },
                          {
                             "type": "Label",
@@ -134,9 +165,20 @@ const resourceType = {
                                 "type": "Control",
                                 "scope": "#/properties/installURL",
                                 "options": {
-                                  "showUnfocusedDescription": true
-                                }
-                              },
+                                        "showUnfocusedDescription": true,
+                                        "detail": {
+                                             "type": "HorizontalLayout",
+                                             "elements": [
+                                             { "label": "name",
+                                             "type": "Control",
+                                             "scope": "#/properties/name"},
+                                          { "label": "identifier",
+                                          "type": "Control",
+                                          "scope": "#/properties/url"}
+                                             ]
+                                        }
+                                      }
+                  },
 
                         {
                               "type": "Label",
