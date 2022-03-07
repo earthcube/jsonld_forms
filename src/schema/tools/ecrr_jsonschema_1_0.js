@@ -677,7 +677,7 @@ const jsonschema = {
           "type": "string",
           "default": "Open software on the web"
         },
-                "@type": {"type": "string", "default": "Action", "const": "Action"},
+        "@type": {"type": "string", "default": "Action", "const": "Action"},
         "urlTemplate": {"type": "string"},
 
         "httpMethod": {

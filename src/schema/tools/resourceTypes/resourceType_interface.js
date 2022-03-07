@@ -21,7 +21,20 @@ const resourceType = {
           "type": "Control",
           "scope": "#/properties/ecrro:ECRRO_0000503",
           "options": {
-            "showUnfocusedDescription": true
+            "showUnfocusedDescription": true,
+                       "detail": {
+                                "type": "HorizontalLayout",
+                                "elements": [
+
+                                     { "label": "name",
+                                     "type": "Control",
+                                     "scope": "#/properties/name"},
+                                      { "label": "Value",
+                                        "type": "Control",
+                                      "scope": "#/properties/value/"},
+
+                                  ]
+                             }
           }
         },
         {
@@ -66,21 +79,48 @@ const resourceType = {
                       "type": "Control",
                       "scope": "#/properties/dct:conformsTo",
                       "options": {
-                        "showUnfocusedDescription": true
+                        "showUnfocusedDescription": true,
+                        "detail": {
+                                                "type": "HorizontalLayout",
+                                                "elements": [
+
+                                                     { "label": "name",
+                                                     "type": "Control",
+                                                     "scope": "#/properties/name"},
+                                                      { "label": "url",
+                                                        "type": "Control",
+                                                      "scope": "#/properties/url"},
+
+                                                  ]
+                                             }
                       }
                     },
                     {
-                                          "type": "Label",
-                                          "text": "Potential Actions"
-                                        },
-                                        {
-                                          "label": " Potential Actions",
+                          "type": "Label",
+                          "text": "Potential Actions"
+                        },
+                        {
+                          "label": " Potential Actions",
+                          "type": "Control",
+                          "scope": "#/properties/potentialAction",
+                          "options": {
+                            "showUnfocusedDescription": true,
+                                "detail": {
+                                             "type": "HorizontalLayout",
+                                             "elements": [
+                                             { "label": "description",
+                                             "type": "Control",
+                                             "scope": "#/properties/description"},
+                                          { "label": "urlTemplate",
                                           "type": "Control",
-                                          "scope": "#/properties/potentialAction",
-                                          "options": {
-                                            "showUnfocusedDescription": true
-                                          }
-                                        },
+                                          "scope": "#/properties/urlTemplate"},
+                                           { "label": "httpMethod",
+                                            "type": "Control",
+                                            "scope": "#/properties/httpMethod"}
+                                             ]
+                                        }
+                          }
+                        },
              ]
         }
     ]

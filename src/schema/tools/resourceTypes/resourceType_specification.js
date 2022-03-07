@@ -37,7 +37,20 @@ const resourceType = {
                       "type": "Control",
                       "scope": "#/properties/eccro:ECRRO_0000501",
                       "options": {
-                        "showUnfocusedDescription": true
+                        "showUnfocusedDescription": true,
+                        "detail": {
+                            "type": "HorizontalLayout",
+                            "elements": [
+
+                                 { "label": "name",
+                                 "type": "Control",
+                                 "scope": "#/properties/name"},
+                                  { "label": "url",
+                                    "type": "Control",
+                                  "scope": "#/properties/url"},
+
+                              ]
+                         }
                       }
                    },
                 ]}

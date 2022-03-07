@@ -111,7 +111,23 @@ const resourceType = {
                           "type": "Control",
                           "scope": "#/properties/supportingData",
                           "options": {
-                            "showUnfocusedDescription": true
+                            "showUnfocusedDescription": true,
+                                        "detail": {
+                                            "type": "HorizontalLayout",
+                                            "elements": [
+
+                                                 { "label": "name",
+                                                 "type": "Control",
+                                                 "scope": "#/properties/name"},
+                                                  { "label": "position",
+                                                    "type": "Control",
+                                                  "scope": "#/properties/position"},
+                                          { "label": "encodingFormat",
+                                                    "type": "Control",
+                                                  "scope": "#/properties/encodingFormat"},
+                                              ]
+                                         }
+
                           }
                         },
 ]
@@ -136,9 +152,9 @@ const resourceType = {
                          { "label": "name",
                          "type": "Control",
                          "scope": "#/properties/name"},
-                      { "label": "identifier",
+                      { "label": "url",
                       "type": "Control",
-                      "scope": "#/properties/identifier"}
+                      "scope": "#/properties/url"}
                          ]
                     }
                   }
@@ -189,7 +205,21 @@ const resourceType = {
                               "type": "Control",
                               "scope": "#/properties/potentialAction",
                               "options": {
-                                "showUnfocusedDescription": true
+                                "showUnfocusedDescription": true,
+                                "detail": {
+                                             "type": "HorizontalLayout",
+                                             "elements": [
+                                             { "label": "description",
+                                             "type": "Control",
+                                             "scope": "#/properties/description"},
+                                          { "label": "urlTemplate",
+                                          "type": "Control",
+                                          "scope": "#/properties/urlTemplate"},
+                                           { "label": "httpMethod",
+                                            "type": "Control",
+                                            "scope": "#/properties/httpMethod"}
+                                             ]
+                                        }
                               }
                             },
                       ]

@@ -34,7 +34,22 @@ const interchange = {
                       "type": "Control",
                       "scope": "#/properties/supportingData",
                       "options": {
-                        "showUnfocusedDescription": true
+                        "showUnfocusedDescription": true,
+                        "detail": {
+                            "type": "HorizontalLayout",
+                            "elements": [
+
+                                 { "label": "name",
+                                 "type": "Control",
+                                 "scope": "#/properties/name"},
+                                  { "label": "position",
+                                    "type": "Control",
+                                  "scope": "#/properties/position"},
+                          { "label": "encodingFormat",
+                                    "type": "Control",
+                                  "scope": "#/properties/encodingFormat"},
+                              ]
+                         }
                       }
        },
        {
@@ -62,7 +77,20 @@ const interchange = {
                   "type": "Control",
                   "scope": "#/properties/dct:conformsTo",
                   "options": {
-                    "showUnfocusedDescription": true
+                    "showUnfocusedDescription": true,
+                    "detail": {
+                                            "type": "HorizontalLayout",
+                                            "elements": [
+
+                                                 { "label": "name",
+                                                 "type": "Control",
+                                                 "scope": "#/properties/name"},
+                                                  { "label": "url",
+                                                    "type": "Control",
+                                                  "scope": "#/properties/url"},
+
+                                              ]
+                                         }
                   }
                 },
     ]

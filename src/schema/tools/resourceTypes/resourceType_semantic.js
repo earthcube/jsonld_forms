@@ -22,6 +22,20 @@ const resourceType = {
               "scope": "#/properties/dct:conformsTo",
               "options": {
                 "showUnfocusedDescription": true
+                ,
+                                        "detail": {
+                                            "type": "HorizontalLayout",
+                                            "elements": [
+
+                                                 { "label": "name",
+                                                 "type": "Control",
+                                                 "scope": "#/properties/name"},
+                                                  { "label": "url",
+                                                    "type": "Control",
+                                                  "scope": "#/properties/url"},
+
+                                              ]
+                                         }
               }
            },
            {

@@ -17,11 +17,24 @@ const resourceType = {
           "text": "Interface"
         },
         {
-          "label": "Protocol",
+          "label": "Interface",
           "type": "Control",
           "scope": "#/properties/ecrro:ECRRO_0000503",
           "options": {
-            "showUnfocusedDescription": true
+            "showUnfocusedDescription": true ,
+           "detail": {
+                    "type": "HorizontalLayout",
+                    "elements": [
+
+                         { "label": "name",
+                         "type": "Control",
+                         "scope": "#/properties/name"},
+                          { "label": "Value",
+                            "type": "Control",
+                          "scope": "#/properties/value/"},
+
+                      ]
+                 }
           }
         },
         {
@@ -29,7 +42,7 @@ const resourceType = {
                   "text": "General Functions"
                 },
                 {
-                  "label": "Protocol",
+                  "label": "General Functions",
                   "type": "Control",
                   "scope": "#/properties/applicationCategory",
                   "options": {
@@ -45,7 +58,7 @@ const resourceType = {
                     "text": "Function subcategory"
                   },
                   {
-                    "label": "Protocol",
+                    "label": "Function subcategory",
                     "type": "Control",
                     "scope": "#/properties/applicationCategory",
                     "options": {
@@ -66,21 +79,49 @@ const resourceType = {
                       "type": "Control",
                       "scope": "#/properties/dct:conformsTo",
                       "options": {
-                        "showUnfocusedDescription": true
+                        "showUnfocusedDescription": true,
+                                                                            "detail": {
+                                                                                                    "type": "HorizontalLayout",
+                                                                                                    "elements": [
+
+                                                                                                         { "label": "name",
+                                                                                                         "type": "Control",
+                                                                                                         "scope": "#/properties/name"},
+                                                                                                          { "label": "url",
+                                                                                                            "type": "Control",
+                                                                                                          "scope": "#/properties/url"},
+
+                                                                                                      ]
+                                                                                                 }
                       }
                     },
                     {
-                                          "type": "Label",
-                                          "text": "Potential Actions"
-                                        },
-                                        {
-                                          "label": " Potential Actions",
-                                          "type": "Control",
-                                          "scope": "#/properties/potentialAction",
-                                          "options": {
-                                            "showUnfocusedDescription": true
-                                          }
-                                        },
+                      "type": "Label",
+                      "text": "Potential Actions"
+                    },
+                    {
+                      "label": " Potential Actions",
+                      "type": "Control",
+                      "scope": "#/properties/potentialAction",
+                      "options": {
+                        "showUnfocusedDescription": true,
+                            "detail": {
+                                         "type": "HorizontalLayout",
+                                         "elements": [
+                                         { "label": "description",
+                                         "type": "Control",
+                                         "scope": "#/properties/description"},
+                                      { "label": "urlTemplate",
+                                      "type": "Control",
+                                      "scope": "#/properties/urlTemplate"},
+                                       { "label": "httpMethod",
+                                        "type": "Control",
+                                        "scope": "#/properties/httpMethod"}
+                                         ]
+                                    }
+                          }
+
+                    },
              ]
         },
          {
@@ -92,7 +133,7 @@ const resourceType = {
                               "text": "Service Endpoint URL"
                             },
                             {
-                              "label": " Conforms to",
+                              "label": " Endpoint",
                               "type": "Control",
                               "scope": "#/properties/url",
                               "options": {
@@ -104,7 +145,7 @@ const resourceType = {
                             "text": "MACHINE READBALE ENDPOINT (NOT SURE WHAT PROPERTY)"
                           },
                           {
-                            "label": " Conforms to",
+                            "label": " MACHINE READBALE ",
                             "type": "Control",
                             "scope": "#/properties/url",
                             "options": {
