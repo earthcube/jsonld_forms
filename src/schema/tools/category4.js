@@ -11,12 +11,38 @@ const cat4 =
         {
           "type": "Control",
           "label": "1.3.1.1 Registry Contributor Details",
-          "scope": "#/properties/metadataCreator",
+        "scope": "#/properties/metadataCreator", // flattended
+          //  "scope": "#/properties/additionalProperty/items/anyOf/8/",
           "options": {
-            "showUnfocusedDescription": true
+            "showUnfocusedDescription": true,
+             "detail" : {
+                "type": "VerticalLayout",
+                     "elements": [
+                        {
+                            "type": "HorizontalLayout",
+                            "elements": [
+                              {
+                                "label": "Name",
+                                "type": "Control",
+                                "scope": "#/properties/value/properties/contributor/properties/name"
+                              },
+                              {
+                              "label": "Identifier",
+                              "type": "Control",
+                              "scope": "#/properties/value/properties/contributor/properties/identifier"
+                            },
+                         ]
+                     },
+                 {
+                   "label": "Date Published",
+                   "type": "Control",
+                   "scope": "#/properties/value/properties/datePublished"
+                 },
+            ]}
+             }
           }
-        }
+
       ]
-    }
+}
 
 export default cat4

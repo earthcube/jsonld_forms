@@ -40,6 +40,7 @@ no schema with key or ref
 Solution:
 Remove the"$schema": "http://json-schema.org/draft-04/schema#"
 
+
 ===
 Arrays;
 zappping oneOf
@@ -258,3 +259,25 @@ use oneOf:
       }
     },
 
+## FLATTENING #######
+We will use code to save an retrieve to 'flatten/unflatten' the additional properties field.
+will keep a log in flatten.txt
+use this to flatten/unflatten fields
+
+
+using additionalProperties with an achor reference or a one of reference does not work.
+
+1) additional properties is not rendering defaults.
+They clobber each other since they are in a anyOf
+
+notes for:
+ecrro:ECRRO_0000600
+
+                  //#/definitions/additionalProperty_type/anyOf/3/type
+                  //#/definitions/additionalProperty_type/anyOf/3/properties/propertyID/const
+                  //#/definitions/additionalProperty_type/anyOf/5/$anchor
+                //  "scope": "#/properties/additionalProperty/items/#ECRRO_0000600",
+                //#/properties/additionalProperty/items/$ref
+                //  "scope": "#/properties/additionalProperty/items/anyOf/5/", // works
+                //  "scope": "https://example.com/schemas/properties/additionalProperty/items/anyOf/#ECRRO0000600", //fails
+                    "scope": "#/properties/ecrro:ECRRO_0000600",

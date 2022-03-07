@@ -2,7 +2,7 @@
 import {licenseList, resourceTypeList} from "./controlledFromGooglesheet"
 
 const jsonschema = {
-
+ // "$id": "https://example.com/schemas/",
   "type": "object",
   "title": "EarthCube Resource Registry (ECRR) Resource Description",
   "description": "JSON schema for EarthCube Resource Registry (ECRR) resource descriptions. The base object is common to allresource types, and definition section adds resource-specific properties. Resource types are Specification, UseCase, InterchangeFormat, Software, Interface, ",
@@ -98,6 +98,7 @@ const jsonschema = {
       "$ref": "#/definitions/agent_type"
     },
    "ecrro:ECRRO_0000600": {
+
                "type": "object",
                "description": "primary publication-- a text citation to one or more publications about the resource; separated by pipe ('|') characters",
                "properties": {
@@ -350,16 +351,17 @@ const jsonschema = {
             "type": "string"
           }
         }
-      },
-      "additionalProperty": {
-        "type": "array",
-        "title": "Other Properties",
-        "description": "EC resource registry properties that extend Schema.org are implemented as an array of PropertyValue inside a schema:additionalProperty",
-        "items": {
-          "$ref": "#/definitions/additionalProperty_type"
-        }
       }
+
     },
+    "additionalProperty": {
+              "type": "array",
+              "title": "Other Properties",
+              "description": "EC resource registry properties that extend Schema.org are implemented as an array of PropertyValue inside a schema:additionalProperty",
+              "items": {
+                "$ref": "#/definitions/additionalProperty_type"
+              }
+            },
     /* EXPOSED ADDITIONAL PROPERTIES
     These will need to be stored in the additionalProperty.
     But for defining the form, they are stored at the top level
@@ -732,7 +734,7 @@ const jsonschema = {
 
     "additionalProperty_type": {
       "anyOf": [
-        {
+        { "$anchor":"additionalProperty0", // these are where they are in the additionalProperty oneOf array
           "type": "object",
           "properties": {
             "@type": { "type": "string","default": "PropertyValue","const": "PropertyValue"},
@@ -741,7 +743,7 @@ const jsonschema = {
             "value": {"type": "string"}
           }
         },
-        {
+        { "$anchor":"additionalProperty1", // these are where they are in the additionalProperty oneOf array
           "type": "object",
           "description": "Interface specification",
           "properties": {
@@ -756,12 +758,12 @@ const jsonschema = {
             }
           }
         },
-        {
+        { "$anchor":"additionalProperty2", // these are where they are in the additionalProperty oneOf array
           "type": "object",
           "description": "dependencies and their url",
           "properties": {
-            "@type": {"const": "PropertyValue"},
-            "propertyID": {"const": "http://purl.obolibrary.org/obo/RO_0002502"},
+            "@type": {"type": "string","default":"PropertyValue","const": "PropertyValue"},
+            "propertyID": {"type": "string","default":"http://purl.obolibrary.org/obo/RO_0002502","const": "http://purl.obolibrary.org/obo/RO_0002502"},
             "name": {"type": "string"},
             "value": {
 
@@ -771,12 +773,12 @@ const jsonschema = {
             }
           }
         },
-        {
+        { "$anchor":"additionalProperty3", // these are where they are in the additionalProperty oneOf array
           "type": "object",
           "description": "ECRR resource maturity status, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/MTU",
           "properties": {
-            "@type": {"const": "PropertyValue"},
-            "propertyID": {"const": "ecrro:ECRRO_0000138"},
+            "@type": {"type": "string","default":"PropertyValue","const": "PropertyValue"},
+            "propertyID": {"type": "string","default": "ecrro:ECRRO_0000138","const": "ecrro:ECRRO_0000138"},
             "name": {
               "type": "string",
               "default": "has maturity state"
@@ -784,12 +786,12 @@ const jsonschema = {
             "value": {"$ref": "#/definitions/definedTerm_type"}
           }
         },
-        {
+        {"$anchor":"additionalProperty4", // these are where they are in the additionalProperty oneOf array
           "type": "object",
           "description": "Expected lifetime-- how long is it anticipated that the resource will be maintained and accessible online, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/ELT",
           "properties": {
-            "@type": {"const": "PropertyValue"},
-            "propertyID": {"const": "ecrro:ECRRO_0000219"},
+            "@type": {"type": "string","default":"PropertyValue","const": "PropertyValue"},
+            "propertyID": {"type": "string","default":"ecrro:ECRRO_0000219","const": "ecrro:ECRRO_0000219"},
             "name": {
               "type": "string",
               "default": "expected lifetime"
@@ -799,10 +801,11 @@ const jsonschema = {
         },
         {
           "type": "object",
+          "$anchor":"additionalProperty5", // these are where they are in the additionalProperty oneOf array
           "description": "primary publication-- a text citation to one or more publications about the resource; separated by pipe ('|') characters",
           "properties": {
-            "@type": {"const": "PropertyValue"},
-            "propertyID": {"const": "ecrro:ECRRO_0000600"},
+            "@type": {"type": "string","default":"PropertyValue","const": "PropertyValue"},
+            "propertyID": {"type": "string","default": "ecrro:ECRRO_0000600","const": "ecrro:ECRRO_0000600"},
             "name": {
               "type": "string",
               "default": "primary publication"
@@ -810,12 +813,12 @@ const jsonschema = {
             "value": {"type": "string"}
           }
         },
-        {
+        { "$anchor":"additionalProperty6", // these are where they are in the additionalProperty oneOf array
           "type": "object",
           "description": "stewardship: name of person or organization responsible for maintenance of the resource",
           "properties": {
-            "@type": {"const": "PropertyValue"},
-            "propertyID": {"const": "ecrro:ECRRO_0000218"},
+            "@type": {"type": "string","default":"PropertyValue","const": "PropertyValue"},
+            "propertyID": {"type": "string","default": "ecrro:ECRRO_0000218","const": "ecrro:ECRRO_0000218"},
             "name": {
               "type": "string",
               "default": "Stewardship"
@@ -828,12 +831,12 @@ const jsonschema = {
             }
           }
         },
-        {
+        {"$anchor":"additionalProperty7", // these are where they are in the additionalProperty oneOf array
           "type": "object",
           "description": "usage volume from controlled vocabulary at http://cor.esipfed.org/ont/earthcube/UBA",
           "properties": {
-            "@type": {"const": "PropertyValue"},
-            "propertyID": {"const": "ecrro:ECRRO_0000017"},
+            "@type": {"type": "string","default":"PropertyValue","const": "PropertyValue"},
+            "propertyID": {"type": "string","default": "ecrro:ECRRO_0000017","const": "ecrro:ECRRO_0000017"},
             "name": {
               "type": "string",
               "default": "Usage"
@@ -841,12 +844,12 @@ const jsonschema = {
             "value": {"$ref": "#/definitions/definedTerm_type"}
           }
         },
-        {
+        { "$anchor":"additionalProperty8", // these are where they are in the additionalProperty oneOf array
           "type": "object",
           "description": "metadata contributor information",
           "properties": {
-            "@type": {"const": "PropertyValue"},
-            "propertyID": {"const": "ecrro:ECRRO_0001301"},
+            "@type": {"type": "string","default":"PropertyValue","const": "PropertyValue"},
+            "propertyID": {"type": "string","default":"ecrro:ECRRO_0001301","const": "ecrro:ECRRO_0001301"},
             "name": {
               "type": "string",
               "default": "registration metadata"
@@ -854,12 +857,12 @@ const jsonschema = {
             "value": {
               "type": "object",
               "properties": {
-                "@type": {"const": "StructuredValue"},
-                "additionalType": {"const": "ecrro:ECRRO_0000156"},
+                "@type": {"type": "string","default":"StructuredValue", "const": "StructuredValue"},
+                "additionalType": {"type": "string","default":"ecrro:ECRRO_0000156","const": "ecrro:ECRRO_0000156"},
                 "contributor": {
                   "type": "object",
                   "properties": {
-                    "@type": {"const": "Person"},
+                    "@type": {"type": "string","default":"Person","const": "Person"},
                     "name": {"type": "string"},
                     "identifier": {"type": "string"}
                   }

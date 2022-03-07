@@ -253,7 +253,8 @@
             {
               "type": "Control",
               "scope": "#/properties/dc:BibliographicCitation",
-              //  "scope": "#/properties/additionalProperty",
+
+              //    "scope": "#/properties/additionalProperty/items/anyOf/0/",
               "options": {
 
                 "showUnfocusedDescription": true,
@@ -292,13 +293,13 @@
                               }
                             },
                             {
-                                                          "type": "Control",
-                                                          "label": "1.3.1.1 publisher",
-                                                          "scope": "#/properties/publisher",
-                                                          "options": {"elementLabelProp": "name",
-                                                            "showUnfocusedDescription": true
-                                                          }
-                                                        },
+                              "type": "Control",
+                              "label": "1.3.1.1 publisher",
+                              "scope": "#/properties/publisher",
+                              "options": {"elementLabelProp": "name",
+                                "showUnfocusedDescription": true
+                              }
+                            },
                             {
                               "type": "Control",
                               "label": "1.3.1.1 contributor",
@@ -327,7 +328,8 @@
                             {
                               "type": "Control",
                               "label": "1.3.1.1 Stewardship",
-                              "scope": "#/properties/stewardship",
+                            //  "scope": "#/properties/stewardship",
+                             "scope": "#/properties/additionalProperty/items/anyOf/6/",
                               "options": {"elementLabelProp": "name",
                                 "showUnfocusedDescription": true
                               }
@@ -344,18 +346,30 @@
                 {
                   "type": "Control",
                   "label": "1.1.1.1 Primary Publication",
-                  "scope": "#/properties/ecrro:ECRRO_0000600",
+                  //#/definitions/additionalProperty_type/anyOf/3/type
+                  //#/definitions/additionalProperty_type/anyOf/3/properties/propertyID/const
+                  //#/definitions/additionalProperty_type/anyOf/5/$anchor
+                //  "scope": "#/properties/additionalProperty/items/#ECRRO_0000600",
+                //#/properties/additionalProperty/items/$ref
+                //  "scope": "#/properties/additionalProperty/items/anyOf/5/", // works
+                //  "scope": "https://example.com/schemas/properties/additionalProperty/items/anyOf/#ECRRO0000600", //fails
+                    "scope": "#/properties/ecrro:ECRRO_0000600",
                   "options": {
                     "showUnfocusedDescription": true,
 
                       "detail" : {
                          "type": "HorizontalLayout",
                         "elements": [
-                          {
-                            "label": "Value",
-                            "type": "Control",
-                            "scope": "#/properties/value"
-                          },
+                              {
+                                "label": "Citation",
+                                "type": "Control",
+                                "scope": "#/properties/value"
+                              },
+                              {
+                              "label": "Name",
+                              "type": "Control",
+                              "scope": "#/properties/name"
+                            },
                          ]
                          }
 
