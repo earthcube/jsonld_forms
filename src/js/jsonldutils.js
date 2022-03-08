@@ -1,7 +1,7 @@
 import _ from 'lodash'
 
 const flatten = (jsonld,  flattenList)=>{
-    var jsonflat = jsonld
+    var jsonflat =  JSON.parse(JSON.stringify(jsonld))
     flattenList.forEach ( (f)=> {
         var p = getProperty(jsonld, f.flattenTo, f.propertyID?  f.propertyID : f.flattened )
         if (p){
@@ -9,19 +9,19 @@ const flatten = (jsonld,  flattenList)=>{
         }
     } )
 
-    jsonflat.additionalProperty = undefined // just delete it
+    delete jsonflat.additionalProperty // just delete it
     return jsonflat
 
 }
 
 const unflatten =(jsonflat,  flattenList)=>{
-    var jsonld = jsonflat
+    var jsonld = JSON.parse(JSON.stringify(jsonflat))
     jsonld.additionalProperty = []
 
     flattenList.forEach ( (f)=> {
             if (jsonld[f.propertyID?  f.propertyID : f.flattened ] ) {
                  jsonld.additionalProperty.push(jsonld[f.propertyID?  f.propertyID : f.flattened ] )
-                 jsonld[f.propertyID?  f.propertyID : f.flattened ] = undefined
+                 delete jsonld[f.propertyID?  f.propertyID : f.flattened ]
             }
         } )
     return jsonld

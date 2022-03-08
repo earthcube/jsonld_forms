@@ -1,3 +1,5 @@
+import {functionsuggestion} from '../controlledFromGooglesheet'
+
 const resourceType = {
   "type": "Group",
   "label": "Software options",
@@ -43,26 +45,28 @@ const resourceType = {
                   "label": "Function",
                   "type": "Control",
                   "scope": "#/properties/applicationCategory",
+                 "suggestion": functionsuggestion,
+                 "autocomplete": true
 
      },
-    {
-          "type": "ShowGroup",
-          "label": "add additional function details",
-          "elements": [
-                  {
-                    "type": "Label",
-                    "text": "Function subcategory"
-                  },
-                  {
-                  //  "label": "Protocol",
-                    "type": "Control",
-                    "scope": "#/properties/applicationCategory",
-                    "options": {
-                      "showUnfocusedDescription": true
-                    }
-                  },
-                  ]
-     },
+//     {
+//           "type": "ShowGroup",
+//           "label": "add additional function details",
+//           "elements": [
+//                   {
+//                     "type": "Label",
+//                     "text": "Function subcategory"
+//                   },
+//                   {
+//                   //  "label": "Protocol",
+//                     "type": "Control",
+//                     "scope": "#/properties/applicationCategory",
+//                     "options": {
+//                       "showUnfocusedDescription": true
+//                     }
+//                   },
+//                   ]
+//      },
         {
                  "type": "Label",
                  "text": "Runtime Environment"

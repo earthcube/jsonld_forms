@@ -2,7 +2,7 @@
 import {
 licenseList,
  resourceTypeList,
- functionenum,
+ //functionenum,
  scienceDomainList
  } from "./controlledFromGooglesheet"
 
@@ -895,9 +895,12 @@ const withEnum =     function() {
     jsonschema.properties.mainEntity.oneOf = rtypes.oneOf
     //jsonschema.properties.mainEntity.items= rtypes
     //jsonschema.definitions.resourceTypes_type.items= rtypes
+
     // not good at suggestions, so let's try suggestions
-    let functions = functionenum()
-    jsonschema.properties.applicationCategory.items = functions
+    // but using oneOf means the list must match
+   // let functions = functionenum()
+   // jsonschema.properties.applicationCategory.items = functions
+
     let scienceDomains = scienceDomainList()
     jsonschema.properties.about.items = scienceDomains
     return  jsonschema

@@ -1,6 +1,6 @@
 <template>
   <v-col cols="10">
-    <v-bottom-sheet scrollable >
+    <v-dialog scrollable inset >
       <template v-slot:activator="{ on, attrs }">
         <v-fab-transition>
         <v-btn
@@ -8,18 +8,16 @@
             dark
             v-bind="attrs"
             v-on="on"
-            absolute
-            bottom
-            right
-            fab
+
+            class="float-right"
         >
-          JSON
+          {{name}}
         </v-btn>
           </v-fab-transition>
       </template>
       <v-card
           class="text-center"
-          height="200px"
+          height="80%"
       >
         <v-card-title>JSON-LD</v-card-title>
 <!--        <v-btn-->
@@ -34,7 +32,7 @@
           <vue-json-pretty :path="'res'" :data="json" > </vue-json-pretty>
         </v-card-text>
       </v-card>
-    </v-bottom-sheet>
+    </v-dialog>
   </v-col>
 </template>
 
@@ -48,6 +46,7 @@ export default {
   },
   props: {
     json: {type: Object },
+    name: {type: String}
   }
 }
 </script>

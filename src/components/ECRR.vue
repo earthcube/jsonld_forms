@@ -12,9 +12,17 @@
   />
       <v-spacer></v-spacer>
       <v-divider></v-divider>
-      <JsonViewer :json="jsonldObj">
+    <v-footer class="d-flex">
+      <span> <JsonViewer :json="jsonldObj" name="form JSON">
       </JsonViewer>
+      </span>
+      <span>
+         <JsonViewer :json="unflattenLocal(jsonldObj)" name="JSON-LD">
+      </JsonViewer>
+      </span>
 
+
+    </v-footer>
 
   </div>
 </template>
@@ -25,6 +33,8 @@ import { vuetifyRenderers } from '@jsonforms/vue2-vuetify';
 import {defineComponent} from "@vue/composition-api";
 //import VueJsonPretty from 'vue-json-pretty';
 import 'vue-json-pretty/lib/styles.css';
+
+
 
 import { default as schema, schemaWithEnum , flattenList} from '../schema/tools/ecrr_jsonschema_1_0' ;
 
@@ -38,7 +48,7 @@ import {entry as HtmlLabelRender } from './htmlLabelRenderer'
 
 import {default as JsonViewer} from './viewJson'
 import {createAjv} from "@jsonforms/core";
-import {flatten} from "../js/jsonldutils"
+import {flatten, unflatten} from "../js/jsonldutils"
 
 
 
@@ -96,6 +106,9 @@ const tool = defineComponent({
     onChange(event) {
       this.jsonldObj = event.data;
     },
+    unflattenLocal(json) {
+      return unflatten(json,flattenList)
+    }
   },
 });
 export default tool

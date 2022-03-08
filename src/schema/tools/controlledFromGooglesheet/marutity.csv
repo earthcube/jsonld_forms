@@ -1,0 +1,12 @@
+﻿MATURITY,URI,#NAME?
+Used in multiple places,http://cor.esipfed.org/ont/earthcube/MTU_0000001,
+In production,http://cor.esipfed.org/ont/earthcube/MTU_0000002,
+Production ready,http://cor.esipfed.org/ont/earthcube/MTU_0000003,
+Beta or complete draft,http://cor.esipfed.org/ont/earthcube/MTU_0000004,
+Alpha or rough draft,http://cor.esipfed.org/ont/earthcube/MTU_0000005,
+In development: <1 yr out,http://cor.esipfed.org/ont/earthcube/MTU_0000006,
+In development: >1 yr out,http://cor.esipfed.org/ont/earthcube/MTU_0000007,
+Planning,http://cor.esipfed.org/ont/earthcube/MTU_0000008,
+Superseded,http://cor.esipfed.org/ont/earthcube/MTU_0000009,
+Not accessible,http://cor.esipfed.org/ont/earthcube/MTU_0000010,
+Unknown,http://cor.esipfed.org/ont/earthcube/MTU_0000011,

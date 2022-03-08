@@ -1,0 +1,10 @@
+﻿Communication Protocol,URI,#NAME?
+HTTP,http://cor.esipfed.org/ont/earthcube/CMPR_0000001,
+HTTPS,http://cor.esipfed.org/ont/earthcube/CMPR_0000002,
+TCP/IP,http://cor.esipfed.org/ont/earthcube/CMPR_0000003,
+FTP,http://cor.esipfed.org/ont/earthcube/CMPR_0000004,
+SSH,http://cor.esipfed.org/ont/earthcube/CMPR_0000005,
+SCP,http://cor.esipfed.org/ont/earthcube/CMPR_0000006,
+SFTP,http://cor.esipfed.org/ont/earthcube/CMPR_0000007,
+SMTP,http://cor.esipfed.org/ont/earthcube/CMPR_0000008,
+POP,http://cor.esipfed.org/ont/earthcube/CMPR_0000009,
