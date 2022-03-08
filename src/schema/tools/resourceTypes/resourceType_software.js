@@ -101,7 +101,27 @@ const resourceType = {
                          ]
                     }
                   }
-                    },
+                    }, {
+                                            "type": "Label",
+                                            "text": "Interface specification"
+                                          },
+                                          {
+                                            "label": " Interface specification",
+                                            "type": "Control",
+                                            "scope": "#/properties/ecrro:ECRRO_0000503",
+                      "options": {
+                                          "showUnfocusedDescription": true,
+                                          "detail": {
+                                               "type": "HorizontalLayout",
+                                               "elements": [
+                                               { "label": "Interfaces",
+                                               "type": "Control",
+                                               "scope": "#/properties/value/"}
+
+                                               ]
+                                          }
+                                        }
+                                          },
                     {
                           "type": "Label",
                           "text": "Input and Output Formats"

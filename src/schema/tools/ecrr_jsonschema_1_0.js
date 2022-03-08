@@ -96,9 +96,7 @@ const jsonschema = {
               "$ref": "#/definitions/agent_type"
             }
     },
-    "metadataCreator": {
-      "$ref": "#/definitions/metadataCreatorType"
-    },
+
     "stewardship": {
       "$ref": "#/definitions/agent_type"
     },
@@ -373,6 +371,9 @@ const jsonschema = {
     These will need to be stored in the additionalProperty.
     But for defining the form, they are stored at the top level
     */
+      "ecrro:ECRRO_0001301": {
+          "$ref": "#/definitions/metadataCreatorType"
+        },
     "dc:BibliographicCitation": {
       "title": "Bibliographic Citation",
       "$ref": "#/definitions/citationType"
@@ -902,5 +903,29 @@ const withEnum =     function() {
     return  jsonschema
 }
 
-export { jsonschema as default,  withEnum as schemaWithEnum}
+// one case where the propertyID causes issues with the json ref path, so it cannot be used as
+// the name for a jsonld form. otherwise the propertyID and the flattened are the same.
+const flattenList = [
+{ flattened:"dc:BibliographicCitation",
+flattenTo: "additionalProperty"},
+{ flattened:"dependencies",
+propertyID: "http://purl.obolibrary.org/obo/RO_0002502",
+flattenTo: "additionalProperty"},
+{ flattened:"ecrro:ECRRO_0000600,",
+flattenTo: "additionalProperty"},
+{ flattened:"ecrro:ECRRO_0000138",
+flattenTo: "additionalProperty"},
+{ flattened:"ecrro:ECRRO_0000219",
+flattenTo: "additionalProperty"},
+{ flattened:"ecrro:ECRRO_0000218",
+flattenTo: "additionalProperty"},
+{ flattened:"ecrro:ECRRO_0000017",
+flattenTo: "additionalProperty"},
+{ flattened:"ecrro:ECRRO_0000503",
+flattenTo: "additionalProperty"},
+{ flattened:"ecrro:ECRRO_0001301",
+flattenTo: "additionalProperty"},
+
+]
+export { jsonschema as default,  withEnum as schemaWithEnum, flattenList as flattenList }
 

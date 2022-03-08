@@ -26,7 +26,7 @@ import {defineComponent} from "@vue/composition-api";
 //import VueJsonPretty from 'vue-json-pretty';
 import 'vue-json-pretty/lib/styles.css';
 
-import { default as schema, schemaWithEnum } from '../schema/tools/ecrr_jsonschema_1_0' ;
+import { default as schema, schemaWithEnum , flattenList} from '../schema/tools/ecrr_jsonschema_1_0' ;
 
 import uischema from '../schema/tools/ecrr_1_0_uischema';
 const baseJsonLdObj = require('../assets/basefiles/tools/ecrrempty.json');
@@ -38,6 +38,7 @@ import {entry as HtmlLabelRender } from './htmlLabelRenderer'
 
 import {default as JsonViewer} from './viewJson'
 import {createAjv} from "@jsonforms/core";
+import {flatten} from "../js/jsonldutils"
 
 
 
@@ -86,8 +87,9 @@ const tool = defineComponent({
   created() {
     if (this.jsonldfile){
 
-      let exampleDate = require('../assets/examples/' + this.jsonldfile);
-      this.jsonldObj = Object.assign({}, this.jsonldObj, exampleDate)
+      let exampleData = require('../assets/examples/' + this.jsonldfile);
+      exampleData = flatten(exampleData, flattenList)
+      this.jsonldObj = Object.assign({}, this.jsonldObj, exampleData)
     }
   },
   methods: {
