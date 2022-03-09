@@ -45,8 +45,14 @@ const resourceType = {
                   "label": "Function",
                   "type": "Control",
                   "scope": "#/properties/applicationCategory",
-                 "suggestion": functionsuggestion,
-                 "autocomplete": true
+                  "options": {
+                         "suggestion": functionsuggestion,
+
+                                   "autocomplete": true,
+
+
+                  }
+
 
      },
 //     {

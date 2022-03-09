@@ -20,7 +20,7 @@
          <JsonViewer :json="unflattenLocal(jsonldObj)" name="JSON-LD">
       </JsonViewer>
       </span>
-
+<v-btn @click="saveItem">save</v-btn>
 
     </v-footer>
 
@@ -49,6 +49,7 @@ import {entry as HtmlLabelRender } from './htmlLabelRenderer'
 import {default as JsonViewer} from './viewJson'
 import {createAjv} from "@jsonforms/core";
 import {flatten, unflatten} from "../js/jsonldutils"
+import {saveToUser} from '../js/s3store'
 
 
 
@@ -108,6 +109,17 @@ const tool = defineComponent({
     },
     unflattenLocal(json) {
       return unflatten(json,flattenList)
+    },
+    saveItem (json){
+      saveToUser(json,'demo.jsonld',
+          // process.env.VUE_APP_BUCKET,
+          // process.env.VUE_APP_accessKey,
+          // process.env.VUE_APP_secretKey,
+          // process.env.VUE_APP_endPoint,
+          // process.env.VUE_APP_port,
+          // process.env.VUE_APP_useSSL
+          'formstest', 'user1', 'thisisuser1!', 'oss.geocodes.earthcube.org', 443, true
+      )
     }
   },
 });
