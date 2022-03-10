@@ -20,7 +20,7 @@
          <JsonViewer :json="unflattenLocal(jsonldObj)" name="JSON-LD">
       </JsonViewer>
       </span>
-<v-btn @click="saveItem">save</v-btn>
+<v-btn @click="saveItem(jsonldObj)">save</v-btn>
 
     </v-footer>
 
@@ -83,7 +83,14 @@ const tool = defineComponent({
       uischema,
       currentValidationMode: "ValidateAndHide", // ValidateAndShow, ValidateAndHide, NoValidation
 
-      ajv: createAjv({useDefaults: true}) // use default values per:https://github.com/eclipsesource/jsonforms/issues/1193
+      ajv: createAjv({useDefaults: true}), // use default values per:https://github.com/eclipsesource/jsonforms/issues/1193
+      BUCKET: process.env.VUE_APP_BUCKET,
+      USERNAME: process.env.VUE_APP_accessKey,
+      PASSWORD: process.env.VUE_APP_secretKey,
+      ENDPOINT: process.env.VUE_APP_endPoint,
+      PORT: process.env.VUE_APP_port,
+      USESSL: process.env.VUE_APP_useSSL,
+      filename:"myfile.jsonld"
     };
   },
   beforeCreate() {
@@ -102,6 +109,7 @@ const tool = defineComponent({
       exampleData = flatten(exampleData, flattenList)
       this.jsonldObj = Object.assign({}, this.jsonldObj, exampleData)
     }
+    console.log(process.env.VUE_APP_BUCKET)
   },
   methods: {
     onChange(event) {
@@ -111,14 +119,16 @@ const tool = defineComponent({
       return unflatten(json,flattenList)
     },
     saveItem (json){
-      saveToUser(json,'demo.jsonld',
+      let jsonstring = JSON.stringify(json)
+      saveToUser(jsonstring,'demo.jsonld',
           // process.env.VUE_APP_BUCKET,
           // process.env.VUE_APP_accessKey,
           // process.env.VUE_APP_secretKey,
           // process.env.VUE_APP_endPoint,
           // process.env.VUE_APP_port,
           // process.env.VUE_APP_useSSL
-          'formstest', 'user1', 'thisisuser1!', 'oss.geocodes.earthcube.org', 443, true
+          this.BUCKET,this.USERNAME,this.PASSWORD,this.ENDPOINT,this.PORT,this.USESSL
+          //'forms', 'user1', 'thisisuser1', 'oss.geocodes.earthcube.org', 443, true
       )
     }
   },
