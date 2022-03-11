@@ -133,24 +133,47 @@ when a record is published, move to published bucket
 
 #### By User
 For a user with no group, this will set a policy that publishes to thier directory
+needed to add  "s3:GetBucketLocation"
 
 ```json
 {
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Action": ["s3:ListBucket"],
       "Effect": "Allow",
-      "Resource": ["arn:aws:s3:::users"],
-      "Condition": {"StringLike": {"s3:prefix": ["${aws:username}/*"]}}
+      "Action": [
+        "s3:GetBucketLocation"
+
+      ],
+      "Resource": [
+        "arn:aws:s3:::*"
+      ]
     },
     {
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::forms"
+      ],
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": [
+            "${aws:username}/*"
+          ]
+        }
+      }
+    },
+    {
+      "Effect": "Allow",
       "Action": [
         "s3:GetObject",
         "s3:PutObject"
       ],
-      "Effect": "Allow",
-      "Resource": ["arn:aws:s3:::users/${aws:username}/*"]
+      "Resource": [
+        "arn:aws:s3:::forms/${aws:username}/*"
+      ]
     }
   ]
 }
@@ -168,7 +191,7 @@ when creating a new policy, we need to change the name genericGroup.
     {
       "Action": ["s3:ListBucket"],
       "Effect": "Allow",
-      "Resource": ["arn:aws:s3:::users"],
+      "Resource": ["arn:aws:s3:::forms"],
       "Condition": {"StringLike": {"s3:prefix": ["genericGroup/*"]}}
     },
     {
@@ -177,7 +200,7 @@ when creating a new policy, we need to change the name genericGroup.
         "s3:PutObject"
       ],
       "Effect": "Allow",
-      "Resource": ["arn:aws:s3:::users/genericGroup/*"]
+      "Resource": ["arn:aws:s3:::forms/genericGroup/*"]
     }
   ]
 }
@@ -212,5 +235,58 @@ Postman config
 * Use aws authentication, with a serivce of s3
 * set raw body type with a content type of json
 
+===
+``s3system:
+#    image: minio/minio:latest
+    image: quay.io/minio/minio
+    restart: unless-stopped
+    ports:
+      - 9000:9000
+      - 9001:9001
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.s3system.entrypoints=http"
+      - "traefik.http.routers.s3system.rule=Host(`oss.${HOST:?HOST environment varaible is required}`)"
+      - "traefik.http.middlewares.s3system-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.s3system.middlewares=s3system-https-redirect"
+      - "traefik.http.routers.s3system-secure.entrypoints=https"
+      - "traefik.http.routers.s3system-secure.rule=Host(`oss.${HOST:?HOST environment varaible is required}`)"
+      - "traefik.http.routers.s3system-secure.tls=true"
+      - "traefik.http.routers.s3system-secure.tls.certresolver=http"
+      - "traefik.http.routers.s3system-secure.service=s3system"
+      - "traefik.http.services.s3system.loadbalancer.server.port=9000"
+      - "traefik.http.routers.s3admin.entrypoints=http"
+      - "traefik.http.routers.s3admin.rule=Host(`minioadmin.${HOST:?HOST environment varaible is required}`)"
+      - "traefik.http.middlewares.s3admin-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.s3admin.middlewares=s3admin-https-redirect"
+      - "traefik.http.routers.s3admin-secure.entrypoints=https"
+      - "traefik.http.routers.s3admin-secure.rule=Host(`minioadmin.${HOST:?HOST environment varaible is required}`)"
+      - "traefik.http.routers.s3admin-secure.tls=true"
+      - "traefik.http.routers.s3admin-secure.tls.certresolver=http"
+      - "traefik.http.routers.s3admin-secure.service=s3admin"
+      - "traefik.http.services.s3admin.loadbalancer.server.port=9001"
+      - "traefik.http.middlewares.s3system-secure.headers.accesscontrolallowmethods=GET,OPTIONS,PUT,POST"
+      - "traefik.http.middlewares.s3system-secure.headers.accesscontrolalloworigin=*"
+      - "traefik.http.middlewares.s3system-secure.headers.accesscontrolmaxage=200"
+      - "traefik.http.middlewares.s3system-secure.headers.addvaryheader=true"
+      - "traefik.http.middlewares.s3system-secure.headers.accesscontrolallowcredentials=true"
+#      - "traefik.http.middlewares.s3system-secure.headers.accesscontrolallowheaders=Authorization,Origin,Content-Type,Accept"
+      - "traefik.http.middlewares.s3system-secure.headers.accesscontrolallowheaders=*"
+      - "traefik.http.middlewares.s3system-secure.headers.customresponseheaders.Access-Control-Allow-Headers=*"
+#      - "traefik.http.middlewares.s3system-secure.headers.customresponseheaders.Access-Control-Allow-Headers=Authorization,Origin,Content-Type,Accept"
+      - "traefik.http.routers.s3system-secure.middlewares=s3system-secure@docker"
+      - "traefik.docker.network=traefik_default"
+    volumes:
+      - /data/s3/Data:/data
+    environment:
+#      - MINIO_ACCESS_KEY=${S3KEY}
+#      - MINIO_SECRET_KEY=${S3SECRET}
+      MINIO_ROOT_USER: ${S3KEY}
+      MINIO_ROOT_PASSWORD: ${S3SECRET}
+    networks:
+      - traefik_default
+#    command: ["server","/data/", "--console-address \":9001\""]
+    command: server /data --console-address ":9001"
+``
 
 
