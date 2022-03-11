@@ -83,13 +83,15 @@ const tool = defineComponent({
       uischema,
       currentValidationMode: "ValidateAndHide", // ValidateAndShow, ValidateAndHide, NoValidation
 
-      ajv: createAjv({useDefaults: true}), // use default values per:https://github.com/eclipsesource/jsonforms/issues/1193
+      ajv: createAjv({useDefaults: true}), // use default values per:https://github.com/eclipsesource/jsonforms/issues/1193'
+      s3Credentials: {
+        username: process.env.VUE_APP_accessKey,
+        password: process.env.VUE_APP_secretKey,
+        endpoint: process.env.VUE_APP_endPoint,
+        port: parseInt(process.env.VUE_APP_port),
+        useSsl: Boolean(process.env.VUE_APP_useSSL)
+      },
       BUCKET: process.env.VUE_APP_BUCKET,
-      USERNAME: process.env.VUE_APP_accessKey,
-      PASSWORD: process.env.VUE_APP_secretKey,
-      ENDPOINT: process.env.VUE_APP_endPoint,
-      PORT: process.env.VUE_APP_port,
-      USESSL: process.env.VUE_APP_useSSL,
       filename:"myfile.jsonld"
     };
   },
@@ -105,7 +107,7 @@ const tool = defineComponent({
   created() {
     if (this.jsonldfile){
 
-      let exampleData = require('../assets/examples/' + this.jsonldfile);
+      let exampleData = require('../assets/examples/' +  this.jsonldfile);
       exampleData = flatten(exampleData, flattenList)
       this.jsonldObj = Object.assign({}, this.jsonldObj, exampleData)
     }
@@ -120,14 +122,18 @@ const tool = defineComponent({
     },
     saveItem (json){
       let jsonstring = JSON.stringify(json)
-      saveToUser(jsonstring,'demo.jsonld',
+      let itemMetadata = {
+        status: 'draft',
+         playground: true
+      }
+      saveToUser(jsonstring,this.filename,itemMetadata,
           // process.env.VUE_APP_BUCKET,
           // process.env.VUE_APP_accessKey,
           // process.env.VUE_APP_secretKey,
           // process.env.VUE_APP_endPoint,
           // process.env.VUE_APP_port,
           // process.env.VUE_APP_useSSL
-          this.BUCKET,this.USERNAME,this.PASSWORD,this.ENDPOINT,this.PORT,this.USESSL
+          this.BUCKET,this.s3Credentials
           //'forms', 'user1', 'thisisuser1', 'oss.geocodes.earthcube.org', 443, true
       )
     }
