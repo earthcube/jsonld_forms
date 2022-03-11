@@ -19,8 +19,10 @@
       <span>
          <JsonViewer :json="unflattenLocal(jsonldObj)" name="JSON-LD">
       </JsonViewer>
+
       </span>
-<v-btn @click="saveItem(jsonldObj)">save</v-btn>
+      <v-btn @click="saveJsonLD(jsonldObj)">Download JSONLD</v-btn>
+      <v-btn @click="saveItem(jsonldObj)">Save JSONLD to S3</v-btn>
 
     </v-footer>
 
@@ -50,6 +52,7 @@ import {default as JsonViewer} from './viewJson'
 import {createAjv} from "@jsonforms/core";
 import {flatten, unflatten} from "../js/jsonldutils"
 import {saveToUser} from '../js/s3store'
+import { saveAs } from 'file-saver';
 
 
 
@@ -136,6 +139,13 @@ const tool = defineComponent({
           this.BUCKET,this.s3Credentials
           //'forms', 'user1', 'thisisuser1', 'oss.geocodes.earthcube.org', 443, true
       )
+    },
+    saveJsonLD(json){
+      //var blob = new Blob([...JSON.stringify(json)], {type: "text/plain;charset=utf-8"});
+      let  jsonstring = JSON.stringify(json)
+      var file = new File([jsonstring], "tool.jsonld", {type: "text/plain;charset=utf-8"});
+
+      saveAs(file);
     }
   },
 });
