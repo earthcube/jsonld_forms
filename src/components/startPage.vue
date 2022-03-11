@@ -7,16 +7,18 @@
 
     <v-divider></v-divider>
     <examples></examples>
-
+   <list-user-files></list-user-files>
   </v-main>
 </template>
 
 <script>
 import examples from './examples'
+import listUserFiles from "./listUserFiles";
 export default {
   name: "startPage",
   components: {
-    examples
+    examples,
+    listUserFiles
   }
 }
 </script>

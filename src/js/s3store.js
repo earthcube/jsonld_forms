@@ -19,28 +19,28 @@ function s3Client (  s3Credentials){
 }
 
 
-function saveToUser(jsonstring, filename,itemMetadata,  bucket, s3Credentials ){
+function saveToUser(jsonstring, filename,itemMetadata, toolname,  bucket, s3Credentials ){
 
     // Using fPutObject API upload your file to the bucket europetrip.
-    let path = `${s3Credentials.username}/${filename}`
+    let path = `${s3Credentials.username}/${toolname}/${filename}`
     var metaData = {
         'Content-Type': 'application/ld+json',
         'X-Amz-Meta-Testing': 1234,
-        'X-Amz-Meta-Status' : itemMetadata.status,
-        'X-Amz-Meta-Playground': itemMetadata.playground,
+        'X-Amz-Meta-Status' : itemMetadata.status?itemMetadata.status: 'draft',
+        'X-Amz-Meta-Playground': itemMetadata.playground? itemMetadata.playground: true,
     }
      saveTos3(jsonstring, path,metaData, bucket,  s3Credentials )
 }
 
-function saveToGroup(jsonstring, filename,itemMetadata, bucket, s3Credentials, group ){
+function saveToGroup(jsonstring, filename,itemMetadata, toolname, bucket, s3Credentials, group ){
 
     // Using fPutObject API upload your file to the bucket europetrip.
-    let path = `${group}/${filename}`
+    let path = `${group}/${toolname}/${filename}`
     var metaData = {
         'Content-Type': 'application/ld+json',
         'X-Amz-Meta-Testing': 1234,
-        'X-Amz-Meta-Status' : itemMetadata.status,
-        'X-Amz-Meta-Playground': itemMetadata.playground,
+        'X-Amz-Meta-Status' : itemMetadata.status?itemMetadata.status: 'draft',
+        'X-Amz-Meta-Playground': itemMetadata.playground? itemMetadata.playground: true,
     }
 
     saveTos3(jsonstring, path,metaData, bucket,  s3Credentials )
@@ -78,22 +78,110 @@ function saveTos3(jsonstring, filepath, metaData, bucket, s3Credentials ){
 
 }
 
-function listUserFiles(  bucketName,  s3Credentials ){
-    const minioClient = s3Client(s3Credentials)
+const  listUserFiles = async function(  bucketName, toolname,  s3Credentials ){
+    return new Promise (function(resolve, reject) {
+        const minioClient = s3Client(s3Credentials)
 
-    let prefix = `${s3Credentials.username}`
-    let recursive = false
+        let prefix = `${s3Credentials.username}/${toolname}/`
+        let recursive = true
 
-    var data = []
-    var stream =minioClient.listObjectsV2WithMetadata(bucketName, prefix, recursive)
-    stream.on('data', function(obj) { data.push(obj) } )
-    stream.on('error', function(err) { console.log(err) } )
-    stream.on('end', function() {
-      console.log('End')
-      return data
+        var data = []
+        var stream =  minioClient.extensions.listObjectsV2WithMetadata(bucketName, prefix, recursive)
+        stream.on('data', function(obj) {
+         console.log(obj)
+         data.push(obj)
+         } )
+        stream.on('error', function(err) {
+        console.log(err)
+        reject(err)
+         } )
+         stream.on('end', function() {
+          console.log('End')
+          resolve (data )
+        })
+
     })
-
 
 }
 
-export {saveToUser, saveToGroup,listUserFiles}
+function getFroms3( filepath, bucket, s3Credentials ){
+    const minioClient = s3Client(s3Credentials)
+
+
+
+    minioClient.getObject(bucket, filepath,
+      function(err, dataStream) {
+        var data = []
+        if (err) {
+          return console.log(err)
+        }
+        dataStream.on('data', function(chunk) {
+          //size += chunk.length
+          data.append(chunk)
+        })
+        dataStream.on('end', function() {
+          console.log('End. Total size = ' + data.length)
+          return data
+        })
+        dataStream.on('error', function(err) {
+          console.log(err)
+        })
+
+    });
+    // minioClient.makeBucket(bucket, 'us-east-1', function(err) {
+    //     if (err) return console.log(err)
+    //
+    //     console.log('Bucket created successfully in "us-east-1".')
+    //
+    //     var metaData = {
+    //         'Content-Type': 'application/ld+json',
+    //         'X-Amz-Meta-Testing': 1234,
+    //     }
+    //     // Using fPutObject API upload your file to the bucket europetrip.
+    //     let path = `${username}\${filename}`
+    //     const jsonldstring = JSON.stringify(jsonld)
+    //
+    //     minioClient.putObject(bucket, path, jsonldstring, metaData, function(err, etag) {
+    //       if (err) return console.log(err)
+    //       console.log('File uploaded successfully.' + etag)
+    //     });
+    // });
+
+}
+
+// not needed. we get a metadata with the listing of files.
+// function getMetadataFroms3( filepath, bucket, s3Credentials ){
+//     const minioClient = s3Client(s3Credentials)
+//
+//
+//
+//     minioClient.statObject(bucket, filepath, jsonstring, metaData, function(err, stat) {
+//
+//         if (err) {
+//           return console.log(err)
+//         }
+//         return stat
+//       })
+//     });
+//     // minioClient.makeBucket(bucket, 'us-east-1', function(err) {
+//     //     if (err) return console.log(err)
+//     //
+//     //     console.log('Bucket created successfully in "us-east-1".')
+//     //
+//     //     var metaData = {
+//     //         'Content-Type': 'application/ld+json',
+//     //         'X-Amz-Meta-Testing': 1234,
+//     //     }
+//     //     // Using fPutObject API upload your file to the bucket europetrip.
+//     //     let path = `${username}\${filename}`
+//     //     const jsonldstring = JSON.stringify(jsonld)
+//     //
+//     //     minioClient.putObject(bucket, path, jsonldstring, metaData, function(err, etag) {
+//     //       if (err) return console.log(err)
+//     //       console.log('File uploaded successfully.' + etag)
+//     //     });
+//     // });
+//
+// }
+
+export {saveToUser, saveToGroup,listUserFiles, getFroms3}

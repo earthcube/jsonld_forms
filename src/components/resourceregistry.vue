@@ -21,8 +21,12 @@
       </JsonViewer>
 
       </span>
-      <v-btn @click="saveJsonLD(jsonldObj)">Download JSONLD</v-btn>
-      <v-btn @click="saveItem(jsonldObj)">Save JSONLD to S3</v-btn>
+      <v-btn color="blue"
+             dark
+             @click="saveJsonLD(jsonldObj)">Download JSONLD</v-btn>
+      <v-btn color="blue"
+             dark
+             @click="saveItem(jsonldObj)">Save JSONLD to S3</v-btn>
 
     </v-footer>
 
@@ -95,7 +99,7 @@ const tool = defineComponent({
         useSsl: Boolean(process.env.VUE_APP_useSSL)
       },
       BUCKET: process.env.VUE_APP_BUCKET,
-      filename:"myfile.jsonld"
+      filename:"tool.jsonld"
     };
   },
   beforeCreate() {
@@ -129,7 +133,7 @@ const tool = defineComponent({
         status: 'draft',
          playground: true
       }
-      saveToUser(jsonstring,this.filename,itemMetadata,
+      saveToUser(jsonstring,this.filename,itemMetadata, 'resourceregistry',
           // process.env.VUE_APP_BUCKET,
           // process.env.VUE_APP_accessKey,
           // process.env.VUE_APP_secretKey,
@@ -143,7 +147,7 @@ const tool = defineComponent({
     saveJsonLD(json){
       //var blob = new Blob([...JSON.stringify(json)], {type: "text/plain;charset=utf-8"});
       let  jsonstring = JSON.stringify(json)
-      var file = new File([jsonstring], "tool.jsonld", {type: "text/plain;charset=utf-8"});
+      var file = new File([jsonstring], this.filename, {type: "text/plain;charset=utf-8"});
 
       saveAs(file);
     }
