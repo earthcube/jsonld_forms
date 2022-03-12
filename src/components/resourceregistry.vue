@@ -26,7 +26,7 @@
              @click="saveJsonLD(jsonldObj)">Download JSONLD</v-btn>
       <v-btn color="blue"
              dark
-             @click="saveItem(jsonldObj)">Save JSONLD to S3</v-btn>
+             @click="saveItem(unflattenLocal(jsonldObj))">Save JSONLD to S3</v-btn>
 
     </v-footer>
 
@@ -55,7 +55,9 @@ import {entry as HtmlLabelRender } from './htmlLabelRenderer'
 import {default as JsonViewer} from './viewJson'
 import {createAjv} from "@jsonforms/core";
 import {flatten, unflatten} from "../js/jsonldutils"
-import {saveToUser} from '../js/s3store'
+import {
+  getFroms3,
+  saveToUser} from '../js/s3store'
 import { saveAs } from 'file-saver';
 
 
@@ -79,7 +81,8 @@ const tool = defineComponent({
   },
 
   props:{
-    jsonldfile: {type: String }
+    jsonldfile: {type: String },
+    s3file: {type:String}
   },
   data() {
     return {
@@ -111,16 +114,30 @@ const tool = defineComponent({
     this.jsonldObj = baseJsonLdObj
 
   },
-  created() {
+     created() {
     if (this.jsonldfile){
 
       let exampleData = require('../assets/examples/' +  this.jsonldfile);
       exampleData = flatten(exampleData, flattenList)
       this.jsonldObj = Object.assign({}, this.jsonldObj, exampleData)
     }
-    console.log(process.env.VUE_APP_BUCKET)
+     if (this.s3file){
+       this.getUsers3()
+     }
+     console.log(process.env.VUE_APP_BUCKET)
+    // this.$on('loadfile', async  function (filepath) {
+    //   this.jsonldObj =  await getFroms3( filepath, this.BUCKET, this.s3Credentials)
+    // })
+  },
+  computed:{
+    async getUsers3(){
+      let exampleData = await getFroms3(this.s3file, this.BUCKET, this.s3Credentials)
+      exampleData = flatten(exampleData, flattenList)
+      this.jsonldObj = Object.assign({}, this.jsonldObj, exampleData)
+    }
   },
   methods: {
+
     onChange(event) {
       this.jsonldObj = event.data;
     },
@@ -150,7 +167,8 @@ const tool = defineComponent({
       var file = new File([jsonstring], this.filename, {type: "text/plain;charset=utf-8"});
 
       saveAs(file);
-    }
+    },
+
   },
 });
 export default tool

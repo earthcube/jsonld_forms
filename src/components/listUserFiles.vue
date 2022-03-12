@@ -1,14 +1,10 @@
 <template>
   <v-container fluid>
-    <v-switch
-        v-model="singleExpand"
-        label="Expand Single Item"
-    ></v-switch>
+
     <v-data-iterator
         :items="userItems"
         item-key="etag"
         :items-per-page="4"
-        :single-expand="singleExpand"
         hide-default-footer
     >
       <template v-slot:header>
@@ -34,18 +30,26 @@
           >
             <v-card>
               <v-card-title>
-                <h4>{{ item.name }}</h4>
+                  <h4>{{ item.name }}</h4>
+                <v-btn
+                    text
+                    color="primary"
+                    :to="{ name: 'ECRR',
+                   query: { s3file: item.name  }
+                 }"
+                >
+                  Load File
+                </v-btn>
               </v-card-title>
 
               <v-divider></v-divider>
               <v-list
-
                   dense
               >
-                <v-list-item>
-                  <v-list-item-content>Size:</v-list-item-content>
+                <v-list-item v-if="item.path">
+                  <v-list-item-content>Path:</v-list-item-content>
                   <v-list-item-content class="align-end">
-                    {{ item.size }}
+                    {{ item.path }}
                   </v-list-item-content>
                 </v-list-item>
                 <v-list-item>
@@ -55,12 +59,17 @@
                   </v-list-item-content>
                 </v-list-item>
                 <v-list-item>
-                  <v-list-item-content>Metatas:</v-list-item-content>
+                  <v-list-item-content>Metadata:</v-list-item-content>
                   <v-list-item-content class="align-end">
                     {{ item.metadata }}
                   </v-list-item-content>
                 </v-list-item>
-
+                <v-list-item>
+                  <v-list-item-content>Size:</v-list-item-content>
+                  <v-list-item-content class="align-end">
+                    {{ item.size }}
+                  </v-list-item-content>
+                </v-list-item>
               </v-list>
             </v-card>
           </v-col>
@@ -71,7 +80,7 @@
 </template>
 
 <script>
-import {listUserFiles} from '../js/s3store'
+import {listUserFiles, getFroms3} from '../js/s3store'
 
 export default {
   name: "listUserFiles",
@@ -95,6 +104,15 @@ export default {
         (data) => this.userItems = data
     )
 
+
+   },
+  methods:{
+    async loadFile (name){
+      var filepath = name
+      let file = await getFroms3( filepath, this.BUCKET, this.s3Credentials)
+      console.log(file)
+      this.$emit('loadfile', name)
+    }
 
   }
 }

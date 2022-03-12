@@ -104,49 +104,31 @@ const  listUserFiles = async function(  bucketName, toolname,  s3Credentials ){
 
 }
 
-function getFroms3( filepath, bucket, s3Credentials ){
-    const minioClient = s3Client(s3Credentials)
+const getFroms3 = function( filepath, bucket, s3Credentials ){
+    return new Promise (function(resolve, reject) {
+        const minioClient = s3Client(s3Credentials)
 
+        minioClient.getObject(bucket, filepath,
+          function(err, dataStream) {
+           const chunks= []
+            if (err) {
+              reject(err)
+            }
+            dataStream.on('data', function(chunk) {
 
+             chunks.push(chunk)
+            })
+            dataStream.on('end', function() {
 
-    minioClient.getObject(bucket, filepath,
-      function(err, dataStream) {
-        var data = []
-        if (err) {
-          return console.log(err)
-        }
-        dataStream.on('data', function(chunk) {
-          //size += chunk.length
-          data.append(chunk)
-        })
-        dataStream.on('end', function() {
-          console.log('End. Total size = ' + data.length)
-          return data
-        })
-        dataStream.on('error', function(err) {
-          console.log(err)
-        })
+              resolve( JSON.parse(chunks.join('') ) )
+            })
+            dataStream.on('error', function(err) {
+              console.log(err)
+            })
 
-    });
-    // minioClient.makeBucket(bucket, 'us-east-1', function(err) {
-    //     if (err) return console.log(err)
-    //
-    //     console.log('Bucket created successfully in "us-east-1".')
-    //
-    //     var metaData = {
-    //         'Content-Type': 'application/ld+json',
-    //         'X-Amz-Meta-Testing': 1234,
-    //     }
-    //     // Using fPutObject API upload your file to the bucket europetrip.
-    //     let path = `${username}\${filename}`
-    //     const jsonldstring = JSON.stringify(jsonld)
-    //
-    //     minioClient.putObject(bucket, path, jsonldstring, metaData, function(err, etag) {
-    //       if (err) return console.log(err)
-    //       console.log('File uploaded successfully.' + etag)
-    //     });
-    // });
+        });
 
+    })
 }
 
 // not needed. we get a metadata with the listing of files.
