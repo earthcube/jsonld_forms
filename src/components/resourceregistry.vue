@@ -21,8 +21,12 @@
       </JsonViewer>
 
       </span>
-      <v-btn @click="saveJsonLD(jsonldObj)">Download JSONLD</v-btn>
-      <v-btn @click="saveItem(jsonldObj)">Save JSONLD to S3</v-btn>
+      <v-btn color="blue"
+             dark
+             @click="saveJsonLD(jsonldObj)">Download JSONLD</v-btn>
+      <v-btn color="blue"
+             dark
+             @click="saveItem(unflattenLocal(jsonldObj))">Save JSONLD to S3</v-btn>
 
     </v-footer>
 
@@ -51,7 +55,9 @@ import {entry as HtmlLabelRender } from './htmlLabelRenderer'
 import {default as JsonViewer} from './viewJson'
 import {createAjv} from "@jsonforms/core";
 import {flatten, unflatten} from "../js/jsonldutils"
-import {saveToUser} from '../js/s3store'
+import {
+  getFroms3,
+  saveToUser} from '../js/s3store'
 import { saveAs } from 'file-saver';
 
 
@@ -75,7 +81,8 @@ const tool = defineComponent({
   },
 
   props:{
-    jsonldfile: {type: String }
+    jsonldfile: {type: String },
+    s3file: {type:String}
   },
   data() {
     return {
@@ -95,7 +102,7 @@ const tool = defineComponent({
         useSsl: Boolean(process.env.VUE_APP_useSSL)
       },
       BUCKET: process.env.VUE_APP_BUCKET,
-      filename:"myfile.jsonld"
+      filename:"tool.jsonld"
     };
   },
   beforeCreate() {
@@ -107,16 +114,30 @@ const tool = defineComponent({
     this.jsonldObj = baseJsonLdObj
 
   },
-  created() {
+     created() {
     if (this.jsonldfile){
 
       let exampleData = require('../assets/examples/' +  this.jsonldfile);
       exampleData = flatten(exampleData, flattenList)
       this.jsonldObj = Object.assign({}, this.jsonldObj, exampleData)
     }
-    console.log(process.env.VUE_APP_BUCKET)
+     if (this.s3file){
+       this.getUsers3()
+     }
+     console.log(process.env.VUE_APP_BUCKET)
+    // this.$on('loadfile', async  function (filepath) {
+    //   this.jsonldObj =  await getFroms3( filepath, this.BUCKET, this.s3Credentials)
+    // })
+  },
+  computed:{
+    async getUsers3(){
+      let exampleData = await getFroms3(this.s3file, this.BUCKET, this.s3Credentials)
+      exampleData = flatten(exampleData, flattenList)
+      this.jsonldObj = Object.assign({}, this.jsonldObj, exampleData)
+    }
   },
   methods: {
+
     onChange(event) {
       this.jsonldObj = event.data;
     },
@@ -129,7 +150,7 @@ const tool = defineComponent({
         status: 'draft',
          playground: true
       }
-      saveToUser(jsonstring,this.filename,itemMetadata,
+      saveToUser(jsonstring,this.filename,itemMetadata, 'resourceregistry',
           // process.env.VUE_APP_BUCKET,
           // process.env.VUE_APP_accessKey,
           // process.env.VUE_APP_secretKey,
@@ -143,10 +164,11 @@ const tool = defineComponent({
     saveJsonLD(json){
       //var blob = new Blob([...JSON.stringify(json)], {type: "text/plain;charset=utf-8"});
       let  jsonstring = JSON.stringify(json)
-      var file = new File([jsonstring], "tool.jsonld", {type: "text/plain;charset=utf-8"});
+      var file = new File([jsonstring], this.filename, {type: "text/plain;charset=utf-8"});
 
       saveAs(file);
-    }
+    },
+
   },
 });
 export default tool

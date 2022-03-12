@@ -20,10 +20,13 @@ export default new Router({
         },
         {
             path: '/ecrr',
-            component: () => import('./components/ECRR.vue'),
+            component: () => import('./components/resourceregistry.vue'),
             name: "ECRR",
          //   props: route => ({ jsonldfile: route.query.jsonldfile })
-            props: route => ({ jsonldfile: route.query.jsonldfile })
+            props: route => ({
+                jsonldfile: route.query.jsonldfile,
+                s3file: route.query.s3file
+            })
         }
     ],
 });
