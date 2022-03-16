@@ -1,9 +1,12 @@
 # ecrr_ui_vue2
+
+[Development website](https://ecjsonforms.netlify.app/#/)
+
 [Notes](./NOTES.txt)
 
-See:
-https://jsonforms-vuetify-renderers.netlify.app/#/
-
+Using :
+* https://jsonforms-vuetify-renderers.netlify.app/#/
+* https://jsonforms.io/
 
 ## Project setup
 ```
