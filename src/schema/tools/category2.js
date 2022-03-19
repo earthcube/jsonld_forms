@@ -41,13 +41,13 @@ const cat2 =
       ]
     }
 
+cat2.elements.push(servicedesc())
+cat2.elements.push(software())
 cat2.elements.push(interchange)
 cat2.elements.push(specification)
 cat2.elements.push(catalog)
 cat2.elements.push(semantic)
 cat2.elements.push(interfaceapi)
-cat2.elements.push(servicedesc)
-cat2.elements.push(software)
 cat2.elements.push(repository)
 cat2.elements.push(platform)
 cat2.elements.push(usecase)

@@ -47,9 +47,10 @@ import { default as schema, schemaWithEnum , flattenList} from '../schema/tools/
 import uischema from '../schema/tools/ecrr_1_0_uischema';
 const baseJsonLdObj = require('../assets/basefiles/tools/ecrrempty.json');
 
-import {entry as AltGroupRenderer} from './AdditionalDetailsRenderer'
-import {entry as HtmlLabelRender } from './htmlLabelRenderer'
-//import {entry as ArrayDescRender} from './ArrayWDescription'
+import {entry as AltGroupRenderer} from './controls/AdditionalDetailsRenderer'
+import {entry as HtmlLabelRender } from './controls/htmlLabelRenderer'
+import {entry as ArrayOfStringRenderer} from './controls/ArrayOfStringRenderer'
+import {entry as ArrayControlStringRenderer} from './controls/ArrayControlStringRenderer'
 //import {arrayOverride} from '../arrayOverride'
 
 import {default as JsonViewer} from './viewJson'
@@ -69,7 +70,8 @@ const renderers = [
   // here you can add custom renderers
   AltGroupRenderer,
   HtmlLabelRender,
- // ArrayDescRender,
+  ArrayOfStringRenderer,
+  ArrayControlStringRenderer,
  // arrayOverride
 ];
 

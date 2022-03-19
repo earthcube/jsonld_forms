@@ -1,4 +1,7 @@
-const resourceType = {
+import {functionsuggestion} from '../controlledFromGooglesheet'
+import _ from 'lodash'
+
+const resourceTypeBase = {
   "type": "Group",
   "label": "Service Instance options",
   "rule": {
@@ -46,7 +49,10 @@ const resourceType = {
                   "type": "Control",
                   "scope": "#/properties/applicationCategory",
                   "options": {
-                    "showUnfocusedDescription": true
+                    "showUnfocusedDescription": true,
+                    "suggestion": [],
+
+                                                       "autocomplete": true,
                   }
      },
     {
@@ -156,5 +162,12 @@ const resourceType = {
          }
     ]
 }
+const resourceType = function() {
+let functionsuggestionList = functionsuggestion()
+let applicationCategory = _.find(resourceTypeBase.elements, (o)=> {return o.scope === "#/properties/applicationCategory"} )
+console.log(applicationCategory,functionsuggestionList )
+applicationCategory.options.suggestion = functionsuggestionList
+return resourceTypeBase
 
+}
 export default resourceType
