@@ -104,28 +104,47 @@ const resourceType = {
                           "type": "Label",
                           "text": "Potential Actions"
                         },
-                        {
-                          "label": " Potential Actions",
+                       {
+                 "label": "Potential Actions",
+                 "type": "Control",
+                 "scope": "#/properties/potentialAction",
+                 "options": {
+                   "showUnfocusedDescription": true,
+                   "detail": {
+                        "type": "VerticalLayout",
+                        "elements": [
+                          { "label": "@type",
                           "type": "Control",
-                          "scope": "#/properties/potentialAction",
-                          "options": {
-                            "showUnfocusedDescription": true,
-                                "detail": {
-                                             "type": "HorizontalLayout",
-                                             "elements": [
-                                             { "label": "description",
+                          "scope": "#/properties/target/properties/@type"},
+                                    { "label": "name",
+                                     "type": "Control",
+                                     "scope": "#/properties/name"},
+                                      { "label": "description",
+                                    "type": "Control",
+                                    "scope": "#/properties/target/properties/description"},
+                                 { "label": "urlTemplate",
+                                 "type": "Control",
+                                 "scope": "#/properties/target/properties/urlTemplate"},
+
+                                  { "label": "httpMethod",
+                                   "type": "Control",
+                                   "scope": "#/properties/target/properties/httpMethod",
+                                   "options": {
+                                      "detail": {
+                                        "type": "HorizontalLayout",
+                                        "elements": [
+                                           { "label": "Method",
                                              "type": "Control",
-                                             "scope": "#/properties/description"},
-                                          { "label": "urlTemplate",
-                                          "type": "Control",
-                                          "scope": "#/properties/urlTemplate"},
-                                           { "label": "httpMethod",
-                                            "type": "Control",
-                                            "scope": "#/properties/httpMethod"}
-                                             ]
-                                        }
-                          }
-                        },
+                                             "scope": "#"
+                                             },
+                                          ]
+                                         }
+                                         }
+                                         }
+                                  ]
+                           }
+                 }
+               },
              ]
         }
     ]
