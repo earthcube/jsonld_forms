@@ -13,7 +13,7 @@
       </div>
     </v-row>
     <v-row>
-      <v-col v-for="(o, index) in control.options" :key="o.value">
+      <v-col v-for="(o, index) in control.options" :key="o.value.name">
         <v-checkbox
           :label="o.label"
           :input-value="dataHasEnum(o.value)"
@@ -37,13 +37,17 @@ import {
   hasType,
   JsonFormsRendererRegistryEntry,
   JsonSchema,
-  mapDispatchToMultiEnumProps,
+ // mapDispatchToMultiEnumProps,
   mapStateToMultiEnumControlProps,
   rankWith,
   schemaMatches,
   schemaSubPathMatches,
   uiTypeIs,
   composePaths,
+  Dispatch,
+  CoreActions,
+  DispatchPropsOfMultiEnumControl,
+    update
 } from '@jsonforms/core';
 import { VCheckbox, VContainer, VRow, VCol, VCombobox } from 'vuetify/lib';
 import {
@@ -55,13 +59,15 @@ import {
 } from '@jsonforms/vue2';
 import { defineComponent } from '@vue/composition-api';
 import { useVuetifyBasicControl } from '@jsonforms/vue2-vuetify';
+import _ from 'lodash'
 
 //TODO: move into JsonForm Vue project under src/components/jsonFormsCompositions.ts
 const useJsonFormsMultiEnumControl = (props: ControlProps) => {
   return useControl(
     props,
     mapStateToMultiEnumControlProps,
-    mapDispatchToMultiEnumProps
+  //  mapDispatchToMultiEnumProps
+      mapDispatchToObjEnumProps
   );
 };
 
@@ -102,25 +108,63 @@ const controlRenderer = defineComponent({
   },
   methods: {
     dataHasEnum(value: any) {
-      return !!this.control.data?.includes(value);
+      //return !!this.control.data?.includes(value);
+      //return _.includes(this.control.data, value)
+      const exists = _.find(this.control.data, (o:any)=> o.name ==value.name)
+      if (exists) return true
+      return false
+
     },
     composePaths,
     toggle(value: any, add: boolean) {
       if (add) {
-        this.addItem(this.control.path, value);
-      } else {
+       this.addItem(this.control.path, value);
+        // mapDispatchToMultiEnumProps.addItem does an exact match === so we need to send the the actual object
+       // const objValue = _.find( this.control.options, (o:any)=> o.value.name == value.name )
+       // this.addItem(this.control.path, objValue); // fai
+       } else {
         // mistyped in core
         this.removeItem?.(this.control.path, value);
+        // mapDispatchToMultiEnumProps.removeItem does an exact match === so we need to send the the actual object
+       // const objValue = _.remove( this.control.data, (o:any)=> o.name == value.name )
+       // this.removeItem?.(this.control.path,objValue);
+      // _.remove( this.control.data, (o:any)=> o.name == value.name )
       }
     },
     chipRemove(e: any){
       console.log(e)
-      this.toggle(e.data, false)
+      this.toggle(e.target, false)
     }
   },
 });
 
 export default controlRenderer;
+const mapDispatchToObjEnumProps = (
+    dispatch: Dispatch<CoreActions>
+): DispatchPropsOfMultiEnumControl => ({
+  addItem: (path: string, value: any) => {
+    dispatch(
+        update(path, data => {
+           if (data === undefined || data === null) {
+            return [value];
+          }
+          const exists =  _.find(data, (o:any)=> o?.name == value?.name)
+          if (!exists) data.push(value);
+          return data;
+        })
+    );
+  },
+  removeItem: (path: string, toDelete: any) => {
+    dispatch(
+        update(path, data => {
+         // const indexInData = data.indexOf(toDelete);
+        //  data.splice(indexInData, 1);
+          _.remove(data, (o:any)=> o?.name == toDelete?.name) // returns removed object, so return original array
+          return data;
+        })
+    );
+  }
+});
 
 const hasOneOfItems = (schema: JsonSchema): boolean =>
   schema.oneOf !== undefined &&
@@ -137,7 +181,7 @@ export const entry: JsonFormsRendererRegistryEntry = {
   tester: rankWith(
     6,
     and(
-      uiTypeIs('Control'),
+     uiTypeIs('Control'),
       and(
         schemaMatches(
           (schema) =>
