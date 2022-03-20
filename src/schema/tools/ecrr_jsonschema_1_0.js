@@ -681,24 +681,34 @@ const jsonschema = {
     "action_type": {
       "type": "object",
       "properties": {
-        "description": {
-          "type": "string",
-          "default": "Open software on the web"
-        },
+
         "@type": {"type": "string", "default": "Action", "const": "Action"},
-        "urlTemplate": {"type": "string"},
+        "name": {"type": "string", "default": "Execute web application"},
+        "target": {
 
-        "httpMethod": {
-        "title": "HTTP Method",
-          "type": "array",
-          "items":
-            {
-              "type": "string",
-              "default": "GET",
-              "enum": ["GET","PUT","POST","PATCH","DELETE","COPY","HEAD","OPTIONS", "PROPFIND" ]
-            }
+        "type": "object",
+        "properties": {
+        "@type": {"type": "string", "default": "EntryPoint", "const": "EntryPoint"},
+        "description": {
+                          "type": "string",
+                          "default": "Open software on the web"
+                        },
+                "urlTemplate": {"type": "string"},
 
+                "httpMethod": {
+                "title": "HTTP Method",
+                  "type": "array",
+                  "items":
+                    {
+                      "type": "string",
+                      "default": "GET",
+                      "enum": ["GET","PUT","POST","PATCH","DELETE","COPY","HEAD","OPTIONS", "PROPFIND" ]
+                    }
+
+                }
         }
+        }
+
       }
     },
     "citationType":  {
