@@ -292,12 +292,39 @@
 
                               }
                             },
+                             {
+                              "type": "Label",
+                              "text": "1.3.1.1 publisher"
+                            },
                             {
                               "type": "Control",
                               "label": "1.3.1.1 publisher",
                               "scope": "#/properties/publisher",
                               "options": {"elementLabelProp": "name",
-                                "showUnfocusedDescription": true
+                                "showUnfocusedDescription": true,
+                                "detail": {
+                                        "type": "HorizontalLayout",
+                                        "elements": [
+
+                                          {
+                                            "label": "Type",
+                                            "type": "Control",
+                                            "scope": "#/properties/@type"
+
+                                          },
+                                           {
+                                              "label": "Name",
+                                              "type": "Control",
+                                              "scope": "#/properties/name"
+
+                                            },
+                                             {
+                                            "label": "Identifier",
+                                            "type": "Control",
+                                            "scope": "#/properties/identifier"
+
+                                          },
+                                          ]}
                               }
                             },
                             {
@@ -325,15 +352,7 @@
                                 "showUnfocusedDescription": true
                               }
                             },
-                            {
-                              "type": "Control",
-                              "label": "1.3.1.1 Stewardship",
-                            //  "scope": "#/properties/stewardship",
-                             "scope": "#/properties/additionalProperty/items/anyOf/6/",
-                              "options": {"elementLabelProp": "name",
-                                "showUnfocusedDescription": true
-                              }
-                            }, ]
+                             ]
                         },
             ]
         },
