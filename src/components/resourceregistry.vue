@@ -45,6 +45,7 @@ import 'vue-json-pretty/lib/styles.css';
 import { default as schema, schemaWithEnum , flattenList} from '../schema/tools/ecrr_jsonschema_1_0' ;
 
 import uischema from '../schema/tools/ecrr_1_0_uischema';
+// @ts-ignore
 const baseJsonLdObj = require('../assets/basefiles/tools/ecrrempty.json');
 
 import {entry as AltGroupRenderer} from './controls/AdditionalDetailsRenderer'
@@ -52,6 +53,7 @@ import {entry as HtmlLabelRender } from './controls/htmlLabelRenderer'
 import {entry as ArrayOfStringRenderer} from './controls/ArrayOfStringRenderer'
 import {entry as ArrayControlStringRenderer} from './controls/ArrayControlStringRenderer'
 //import {arrayOverride} from '../arrayOverride'
+import {entry as EnumArrayRenderer } from './controls/EnumArrayObjectRenderer'
 
 import {default as JsonViewer} from './viewJson'
 import {createAjv} from "@jsonforms/core";
@@ -72,7 +74,8 @@ const renderers = [
   HtmlLabelRender,
   ArrayOfStringRenderer,
   ArrayControlStringRenderer,
- // arrayOverride
+ // arrayOverride,
+  EnumArrayRenderer,
 ];
 
 const tool = defineComponent({
@@ -118,7 +121,7 @@ const tool = defineComponent({
   },
      created() {
     if (this.jsonldfile){
-
+// @ts-ignore
       let exampleData = require('../assets/examples/' +  this.jsonldfile);
       exampleData = flatten(exampleData, flattenList)
       this.jsonldObj = Object.assign({}, this.jsonldObj, exampleData)
@@ -126,6 +129,7 @@ const tool = defineComponent({
      if (this.s3file){
        this.getUsers3()
      }
+// @ts-ignore
      console.log(process.env.VUE_APP_BUCKET)
     // this.$on('loadfile', async  function (filepath) {
     //   this.jsonldObj =  await getFroms3( filepath, this.BUCKET, this.s3Credentials)

@@ -121,5 +121,5 @@ export { scienceDomainTypeOneOf as scienceDomainList}
  //export default toOneOf
 
  //export default toOneOf
-import {functionenum as functionenum, functionsuggestion as functionsuggestion} from './function_subfunction'
-export {functionenum as functionenum, functionsuggestion as functionsuggestion}
+//import {functionenum as functionenum, functionsuggestion as functionsuggestion} from './function_subfunction'
+export {functionenum as functionenum, functionsuggestion as functionsuggestion} from './function_subfunction'

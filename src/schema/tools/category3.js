@@ -18,7 +18,7 @@ const cat3 =
                   "type": "Control",
                   "scope": "#/properties/name",
                   "options": {
-                    "format": "radio"
+                    //"format": "radio"
                   }
                 }
               ]
