@@ -1,16 +1,51 @@
 {
 	"@context": {
 		"@vocab": "http://schema.org/",
-		"ecrro": "http://purl.obolibrary.org/obo/ECRRO_",
-		"ecrr": "http://n2t.net/ark:/NNNNN/xxx"
+		"ecrro": "http://cor.esipfed.org/ont/earthcube/",
+		"ecrr": "https://n2t.net/ark:/23942/g2"
 	},
 	"@id": "ecrr:805014",
-	"@type": "WebAPI",
-	"additionalType": "ecrro:0000207",
+	"@type": [
+		"WebAPI", "ECRRO_0000207"
+	],
+	"mainEntity":
+	{
+		"name":
+		"Interface/API",
+		"@type":
+		"CreativeWork",
+		"url":
+		"http://cor.esipfed.org/ont/earthcube/ECRRO_000020"
+	},
+	"additionalType":[
+
+
+		{
+			"@type": "sdo:PropertyValue",
+			"propertyID":
+			"OTHER",
+			"name":
+			"Interface/API",
+			"value":
+			"http://cor.esipfed.org/ont/earthcube/ECRRO_0000207"
+		}
+
+	],
 	"name": "Download data from NCAR EarthCube CHORDS",
 	"documentation": "http://portal.chordsrt.com/about/data_urls",
 	"description": "URL based API to access data from real time instruments and sensors; A specification for the API could not be found, but examples at the documentation link above can be reverse engineers without too much trouble. This document describes a particular service instance",
-	"identifier": "http://portal.chordsrt.com/api/v1/data",
+	"identifier": [
+
+		{
+			"@type": "sdo:PropertyValue",
+			"propertyID":
+			"OTHER",
+			"name":
+			"Interface/API",
+			"value":
+			"http://portal.chordsrt.com/api/v1/data"
+		}
+	],
 	"potentialAction": [
 		{
 			"@type": "SearchAction",
@@ -27,7 +62,7 @@
 			"target": {
 				"@type": "EntryPoint",
 				"urlTemplate": "http://portal.chordsrt.com/api/v1/data.{encoding}",
-				"httpMethod": "GET",
+				"httpMethod":[ "GET"],
 				"contentType": [
 					"application/json",
 					"application/geo+json"
@@ -70,10 +105,15 @@
 			"target": {
 				"@type": "EntryPoint",
 				"urlTemplate": "http://portal.chordsrt.com/api/v1/data.{encoding}?instruments={instruments}&start={start}&end={end}",
-				"httpMethod": "GET",
+				"httpMethod": ["GET"],
 				"urlTemplate-input": [
 					{
-						"@id": "http://portal.chordsrt.com/about/data_urls#encoding"
+						"@id": "http://portal.chordsrt.com/about/data_urls#encoding",
+						"@type": "PropertyValueSpecification",
+						"valueName": "encoding",
+						"description": "The encoding format of the data",
+						"valueRequired": true,
+						"valuePattern": "(''|geojson|json)"
 					},
 					{
 						"@id": "http://portal.chordsrt.com/about/data_urls#instruments",
@@ -106,17 +146,32 @@
 				"@type": "DataFeed",
 				"description": "need to clarify the purpose of having these '-input' elements here is; see object is last entry above, where suggest that should describe the variableMeasured that are reported by the DataFeed. Also the identifier-input values are instrument identifiers, not identifiers for the DataFeed, seems like this would be confusing; and the temporalCoverage input is not consistent with 'a textual string indicating a time period in ISO 8601 time interval format.'",
 				"encodingFormat-input": {
-					"@id": "http://portal.chordsrt.com/about/data_urls#encoding"
+					"@id": "http://portal.chordsrt.com/about/data_urls#encoding",
+					"@type": "PropertyValueSpecification",
+					"valueName": "encoding",
+					"description": "The encoding format of the data",
+					"valueRequired": true,
+					"valuePattern": "(''|geojson|json)"
 				},
 				"identifier-input": {
 					"@id": "http://portal.chordsrt.com/about/data_urls#instruments"
 				},
 				"temporalCoverage-input": [
 					{
-						"@id": "http://portal.chordsrt.com/about/data_urls#start"
+						"@id": "http://portal.chordsrt.com/about/data_urls#start",
+						"@type": "PropertyValueSpecification",
+						"valueName": "start",
+						"description": "A start time for the returned measurements. use xsd:dateTime format",
+						"valueRequired": false,
+						"valuePattern": "(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?"
 					},
 					{
-						"@id": "http://portal.chordsrt.com/about/data_urls#end"
+						"@id": "http://portal.chordsrt.com/about/data_urls#end",
+						"@type": "PropertyValueSpecification",
+						"valueName": "end",
+						"description": "An end time for the returned measurements. use xsd:dateTime format",
+						"valueRequired": false,
+						"valuePattern": "(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?"
 					}
 				]
 			}
@@ -136,7 +191,7 @@
 			"target": {
 				"@type": "EntryPoint",
 				"urlTemplate": "http://portal.chordsrt.com/api/v1/data/{instrumentID}.{encoding}?start={start}&end={end}&last",
-				"httpMethod": "GET",
+				"httpMethod": ["GET"],
 				"urlTemplate-input": [
 					{
 						"@type": "PropertyValueSpecification",
@@ -146,10 +201,20 @@
 						"valuePattern": "(''|csv|geojson)"
 					},
 					{
-						"@id": "http://portal.chordsrt.com/about/data_urls#start"
+						"@id": "http://portal.chordsrt.com/about/data_urls#start",
+						"@type": "PropertyValueSpecification",
+						"valueName": "start",
+						"description": "A start time for the returned measurements. use xsd:dateTime format",
+						"valueRequired": false,
+						"valuePattern": "(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?"
 					},
 					{
-						"@id": "http://portal.chordsrt.com/about/data_urls#end"
+						"@id": "http://portal.chordsrt.com/about/data_urls#end",
+						"@type": "PropertyValueSpecification",
+						"valueName": "end",
+						"description": "An end time for the returned measurements. use xsd:dateTime format",
+						"valueRequired": false,
+						"valuePattern": "(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?"
 					},
 					{
 						"@type": "PropertyValueSpecification",
@@ -162,15 +227,30 @@
 			"object": {
 				"@type": "DataFeed",
 				"encodingFormat-input": {
-					"@id": "http://portal.chordsrt.com/about/data_urls#encoding"
+					"@id": "http://portal.chordsrt.com/about/data_urls#encoding",
+					"@type": "PropertyValueSpecification",
+					"valueName": "encoding",
+					"description": "The encoding format of the data",
+					"valueRequired": true,
+					"valuePattern": "(''|geojson|json)"
 				},
 				"description": "need to clarify what the purpose of having these '-input' elements here is; see object is last entry above, where suggest that should describe the variableMeasured that are reported by the DataFeed",
 				"temporalCoverage-input": [
 					{
-						"@id": "http://portal.chordsrt.com/about/data_urls#start"
+						"@id": "http://portal.chordsrt.com/about/data_urls#start",
+						"@type": "PropertyValueSpecification",
+						"valueName": "start",
+						"description": "A start time for the returned measurements. use xsd:dateTime format",
+						"valueRequired": false,
+						"valuePattern": "(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?"
 					},
 					{
-						"@id": "http://portal.chordsrt.com/about/data_urls#end"
+						"@id": "http://portal.chordsrt.com/about/data_urls#end",
+						"@type": "PropertyValueSpecification",
+						"valueName": "end",
+						"description": "An end time for the returned measurements. use xsd:dateTime format",
+						"valueRequired": false,
+						"valuePattern": "(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?"
 					}
 				]
 			}

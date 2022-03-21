@@ -212,7 +212,8 @@
                 "additionalType": "ecrro:ECRRO_0000156",
                 "contributor": {
                     "@type": "Person",
-                    "name": "Stephen M. Richard"
+                    "name": "Stephen M. Richard",
+                    "identifier": "https://orcid.org/0000-0001-6041-5302"
                 },
                 "datePublished": "Tue Oct 19 2021 17:03:38 GMT-0700 (Mountain Standard Time)"
              }
