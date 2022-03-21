@@ -1,4 +1,4 @@
-import {functionsuggestion} from '../controlledFromGooglesheet'
+import {functionsuggestion, runtimeSuggestionList} from '../controlledFromGooglesheet'
 import _ from 'lodash'
 
 const resourceTypeBase = {
@@ -83,6 +83,7 @@ const resourceTypeBase = {
                  "type": "Control",
                  "scope": "#/properties/runtimePlatform",
                  "options": {
+                 "suggestion": [],
                    "showUnfocusedDescription": true
                  }
                },
@@ -280,6 +281,11 @@ const resourceType = function() {
 let functionsuggestionList = functionsuggestion()
 let applicationCategory = _.find(resourceTypeBase.elements, (o)=> {return o.scope === "#/properties/applicationCategory"} )
 applicationCategory.options.suggestion = functionsuggestionList
+
+let runtime = runtimeSuggestionList()
+let runtimeElement = _.find(resourceTypeBase.elements, (o)=> {return o.scope === "#/properties/runtimePlatform"} )
+runtimeElement.options.suggestion = runtime
+
 return resourceTypeBase
 
 }

@@ -103,8 +103,8 @@
 			},
 			"object": {
 				"@type": "DataFeed",
-				"description": "This element would describe the resource that is the target of the Action. ",
-				
+				"description": "This element would describe the resource that is the target of the Action. "
+
 			}
 		},
 		{

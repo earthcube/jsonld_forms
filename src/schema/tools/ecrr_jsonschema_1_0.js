@@ -3,7 +3,11 @@ import {
 licenseList,
  resourceTypeList,
  //functionenum,
- scienceDomainList
+ scienceDomainList,
+ maturityOneOf,
+ lifetimeOneOf,
+audienceOneOf,
+
  } from "./controlledFromGooglesheet"
 
 const jsonschema = {
@@ -151,9 +155,10 @@ const jsonschema = {
     "audience": {
       "title": "Intended Audience/Target User",
       "description": "terms from controlled vocabulary to identify the kinds of users who are the target of the described resource",
+     //  "uniqueItems": true,
       "type": "array",
       "items": {
-        "$ref": "#/definitions/audience_type"
+    //    "$ref": "#/definitions/audience_type"
       }
     },
     "about": {
@@ -385,18 +390,7 @@ const jsonschema = {
                          "description": "ECRR resource maturity status, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/MTU",
                          "properties": {
                                 "value": {
-                                                "type": "object",
-                                                "properties": {
-                                                   "name": {"type": "string"},
-                                                  "@type": {"type": "string", "default": "DefinedTerm", "const": "DefinedTerm"},
-
-                                                  "identifier": {"type": "string"}
-                                                },
-                                                "required": [
-                                                  "identifier",
-                                                  "@type",
-                                                  "name"
-                                                ]
+                                               "oneOf": []
                                               },
                            "@type": {"type": "string","default": "PropertyValue", "const": "PropertyValue"},
                            "propertyID": {"type": "string","default": "ecrro:ECRRO_0000138", "const": "ecrro:ECRRO_0000138"},
@@ -913,6 +907,16 @@ const withEnum =     function() {
 
     let scienceDomains = scienceDomainList()
     jsonschema.properties.about.items = scienceDomains
+
+    let maturity = maturityOneOf()
+    jsonschema.properties["ecrro:ECRRO_0000138"].properties.value =  maturity
+
+    let lifetime = lifetimeOneOf()
+    jsonschema.properties["ecrro:ECRRO_0000219"].properties.value =  lifetime
+
+    let audience = audienceOneOf()
+    jsonschema.properties.audience.items =  audience
+
     return  jsonschema
 }
 

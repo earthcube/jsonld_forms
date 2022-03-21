@@ -18,7 +18,7 @@ const cat3 =
                   "type": "Control",
                   "scope": "#/properties/name",
                   "options": {
-                    //"format": "radio"
+
                   }
                 }
               ]
@@ -40,30 +40,30 @@ const cat3 =
                           "options": {
                             "showUnfocusedDescription": true,
                     "detail" : {
-                                                        "type": "HorizontalLayout",
-                                                           "elements": [
-                                                               {
-                                                                     "label": "Steward",
-                                                                     "type": "Control",
-                                                                     "scope": "#/properties/value",
-                                                                     "options":{
-                                                                     "detail" : {
-                                                                     "type": "HorizontalLayout",
-                                                                    "elements": [
-                                                                     {
-                                                                     "label": "Name",
-                                                                     "type": "Control",
-                                                                     "scope": "#/properties/name"},
-                                                                        {
-                                                                     "label": "identifier",
-                                                                     "type": "Control",
-                                                                     "scope": "#/properties/identifier"}
-                    ]
-                                                                     }
-                                                                     }
-                                                                }
-                                                            ]
-                                                            }
+                                "type": "HorizontalLayout",
+                                   "elements": [
+                                       {
+                                             "label": "Status",
+                                             "type": "Control",
+                                             "scope": "#/properties/value",
+                                             "options":{
+                                             "detail" : {
+                                             "type": "HorizontalLayout",
+                                            "elements": [
+                                             {
+                                             "label": "Name",
+                                             "type": "Control",
+                                             "scope": "#/properties/name"},
+                                                {
+                                             "label": "identifier",
+                                             "type": "Control",
+                                             "scope": "#/properties/identifier"}
+]
+                                             }
+                                             }
+                                        }
+                                    ]
+                                    }
 
                           }
                         },
@@ -156,19 +156,29 @@ const cat3 =
                          "label": "Audience",
                          "scope": "#/properties/audience",
                           "options": {
+                          "elementLabelProp":"audienceType",
                              "detail" : {
                                 "type": "HorizontalLayout",
                                "elements": [
                                    {
-                                         "label": "Identifier",
+                                         "label": "Audience Type",
                                          "type": "Control",
-                                         "scope": "#/properties/identifier"
-                                    }
+                                         "scope": "#/properties/name"
+                                    },
+                                      {
+                                       "type": "Control",
+                                       "label": "Identifier",
+                                       "scope": "#/properties/identifier"
+                                     },
                                 ]
                                 }
 
                         },
                        },
+                                                       {
+                                                         "type": "Label",
+                                                         "text": "5.2 Science Domain"
+                                                       },
                       {
                         "type": "Control",
                         "label": "5.2 Science Domain",

@@ -123,3 +123,7 @@ export { scienceDomainTypeOneOf as scienceDomainList}
  //export default toOneOf
 //import {functionenum as functionenum, functionsuggestion as functionsuggestion} from './function_subfunction'
 export {functionenum as functionenum, functionsuggestion as functionsuggestion} from './function_subfunction'
+export {maturityOneOf as maturityOneOf} from './maturity'
+export {lifetimeOneOf as lifetimeOneOf} from './lifetime'
+export {audienceOneOf as audienceOneOf} from './audience'
+export { enumList as runtimeEnumList, suggestionList as runtimeSuggestionList} from './runtime'
