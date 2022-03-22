@@ -1,212 +1,354 @@
 <template>
-  <v-container fluid v-if="control.visible">
-    <v-row>
+  <v-card v-if="control.visible" :class="styles.arrayList.root" elevation="0">
+    <v-card-title>
+      <v-toolbar flat :class="styles.arrayList.toolbar">
+        <v-toolbar-title :class="styles.arrayList.label">{{
+            computedLabel
+          }}</v-toolbar-title>
+        <!--        <validation-icon-->
+        <!--          v-if="control.childErrors.length > 0"-->
+        <!--          :errors="control.childErrors"-->
+        <!--        />-->
+        <v-spacer></v-spacer>
 
-      <div class="text-center">
-        <v-chip v-for="l in this.control.data " :key="l.name"
-                class="ma-2"
-                close
-                @click:close="toggle(l)"
-        >
-          {{ l.name }}
-        </v-chip>
-      </div>
-    </v-row>
-    <v-row>
-      <v-col v-for="(o, index) in control.options" :key="o.value.name">
-        <v-checkbox
-          :label="o.label"
-          :input-value="dataHasEnum(o.value)"
-          :id="control.id + `-input-${index}`"
-          :path="composePaths(control.path, `${index}`)"
-          :error-messages="control.errors"
-          :disabled="!control.enabled"
-          :indeterminate="control.data === undefined"
-          v-bind="vuetifyProps(`v-checkbox[${o.value}]`)"
-          @change="(value) => toggle(o.value, value)"
-        ></v-checkbox>
-      </v-col>
-    </v-row>
-  </v-container>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on: onTooltip }">
+            <v-btn
+                fab
+                text
+                elevation="0"
+                small
+                :aria-label="`Add to ${control.label}`"
+                v-on="onTooltip"
+                :class="styles.arrayList.addButton"
+                :disabled="
+                !control.enabled ||
+                (appliedOptions.restrict &&
+                  arraySchema !== undefined &&
+                  arraySchema.maxItems !== undefined &&
+                  control.data.length >= arraySchema.maxItems)
+              "
+                @click="addButtonClick"
+            >
+              <v-icon>mdi-plus</v-icon>
+            </v-btn>
+          </template>
+          {{ `Add to ${control.label}` }}
+        </v-tooltip>
+      </v-toolbar>
+    </v-card-title>
+    <v-card-text>
+      <v-container justify-space-around align-content-center>
+        <v-row justify="center">
+          <v-simple-table class="array-container flex">
+            <thead v-if="control.schema.type === 'object'">
+            <tr>
+              <th
+                  v-for="(prop, index) in getValidColumnProps(control.schema)"
+                  :key="`${control.path}-header-${index}`"
+                  scope="col"
+              >
+                {{ title(prop) }}
+              </th>
+              <th
+                  v-if="control.enabled"
+                  :class="
+                    appliedOptions.showSortButtons
+                      ? 'fixed-cell'
+                      : 'fixed-cell-small'
+                  "
+                  scope="col"
+              ></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr
+                v-for="(element, index) in control.data"
+                :key="`${control.path}-${index}`"
+                :class="styles.arrayList.item"
+            >
+              <td
+                  v-for="propName in getValidColumnProps(control.schema)"
+                  :key="
+                    composePaths(
+                      composePaths(control.path, `${index}`),
+                      propName
+                    )
+                  "
+              >
+                <dispatch-renderer
+                    :schema="control.schema"
+                    :uischema="resolveUiSchema(propName)"
+                    :path="composePaths(control.path, `${index}`)"
+                    :enabled="control.enabled"
+                    :renderers="control.renderers"
+                    :cells="control.cells"
+                />
+              </td>
+              <td
+                  v-if="control.enabled"
+                  :class="
+                    appliedOptions.showSortButtons
+                      ? 'fixed-cell'
+                      : 'fixed-cell-small'
+                  "
+              >
+                <v-tooltip bottom>
+                  <template v-slot:activator="{ on: onTooltip }">
+                    <v-btn
+                        v-on="onTooltip"
+                        v-if="appliedOptions.showSortButtons"
+                        fab
+                        text
+                        elevation="0"
+                        small
+                        aria-label="Move up"
+                        :disabled="index <= 0 || !control.enabled"
+                        :class="styles.arrayList.itemMoveUp"
+                        @click.native="moveUpClick($event, index)"
+                    >
+                      <v-icon class="notranslate">mdi-arrow-up</v-icon>
+                    </v-btn>
+                  </template>
+                  Move Up
+                </v-tooltip>
+                <v-tooltip bottom>
+                  <template v-slot:activator="{ on: onTooltip }">
+                    <v-btn
+                        v-on="onTooltip"
+                        v-if="appliedOptions.showSortButtons"
+                        fab
+                        text
+                        elevation="0"
+                        small
+                        aria-label="Move down"
+                        :disabled="
+                          index >= control.data.length - 1 || !control.enabled
+                        "
+                        :class="styles.arrayList.itemMoveDown"
+                        @click.native="moveDownClick($event, index)"
+                    >
+                      <v-icon class="notranslate">mdi-arrow-down</v-icon>
+                    </v-btn>
+                  </template>
+                  Move Down
+                </v-tooltip>
+                <v-tooltip bottom>
+                  <template v-slot:activator="{ on: onTooltip }">
+                    <v-btn
+                        v-on="onTooltip"
+                        fab
+                        text
+                        elevation="0"
+                        small
+                        aria-label="Delete"
+                        :class="styles.arrayList.itemDelete"
+                        :disabled="
+                          !control.enabled ||
+                          (appliedOptions.restrict &&
+                            arraySchema !== undefined &&
+                            arraySchema.minItems !== undefined &&
+                            control.data.length <= arraySchema.minItems)
+                        "
+                        @click.native="removeItemsClick($event, [index])"
+                    >
+                      <v-icon class="notranslate">mdi-delete</v-icon>
+                    </v-btn>
+                  </template>
+                  Delete
+                </v-tooltip>
+              </td>
+            </tr>
+            </tbody>
+          </v-simple-table>
+        </v-row>
+        <v-row>
+          <v-combobox
+              v-model="control.data"
+              :items="control.uischema.options.suggestion"
+              label="Select a favorite activity or create a new one"
+              multiple
+          >
+          </v-combobox>
+        </v-row>
+      </v-container>
+      <v-container v-if="noData" :class="styles.arrayList.noData">
+        No data
+      </v-container>
+    </v-card-text>
+  </v-card>
 </template>
 
-/*
-ideally there will be two menus, fucntions, and subfucntions.
-They will store items in the applicationCategory string array.
-
-
-"applicationCategory":
-[
-"function: Data Exploration uri: http://cor.esipfed.org/ont/earthcube/SFO_0000006",
-"subfunction: Data Discovery & Access: Data Query, Data Discovery & Access: Data Harvesting, Visualization: Display uri: http://cor.esipfed.org/ont/earthcube/SFO_0000027",
-"subfunction: Data Discovery & Access: Data Query, Data Discovery & Access: Data Harvesting, Visualization: Display uri: http://cor.esipfed.org/ont/earthcube/SFO_0000030",
-"subfunction: Data Discovery & Access: Data Query, Data Discovery & Access: Data Harvesting, Visualization: Display uri: http://cor.esipfed.org/ont/earthcube/SFO_0000062"
-]
-*/
 <script lang="ts">
 import {
-  and,
-  ControlElement,
-  hasType,
+  isObjectArrayControl,
+  isPrimitiveArrayControl,
   JsonFormsRendererRegistryEntry,
-  JsonSchema,
- // mapDispatchToMultiEnumProps,
-  mapStateToMultiEnumControlProps,
+  or,
   rankWith,
-  schemaMatches,
-  schemaSubPathMatches,
-  uiTypeIs,
   composePaths,
-  Dispatch,
-  CoreActions,
-  DispatchPropsOfMultiEnumControl,
-    update
+  createDefaultValue,
+  ControlElement,
+  JsonSchema,
+  Resolve, uiTypeIs,
+  //uiTypeIs,
 } from '@jsonforms/core';
-import { VCheckbox, VContainer, VRow, VCol, VCombobox } from 'vuetify/lib';
+import startCase from 'lodash/startCase';
+import { defineComponent } from '@vue/composition-api';
 import {
+  DispatchCell,
   DispatchRenderer,
   rendererProps,
+  useJsonFormsArrayControl,
   RendererProps,
-  useControl,
-  ControlProps,
 } from '@jsonforms/vue2';
-import { defineComponent } from '@vue/composition-api';
-import { useVuetifyBasicControl } from '@jsonforms/vue2-vuetify';
-import _ from 'lodash'
-
-//TODO: move into JsonForm Vue project under src/components/jsonFormsCompositions.ts
-const useJsonFormsMultiEnumControl = (props: ControlProps) => {
-  return useControl(
-    props,
-    mapStateToMultiEnumControlProps,
-  //  mapDispatchToMultiEnumProps
-      mapDispatchToObjEnumProps
-  );
-};
+import { useVuetifyArrayControl } from '@jsonforms/vue2-vuetify';
+import {
+  VCard,
+  VCardTitle,
+  VCardText,
+  VRow,
+  VCol,
+  VContainer,
+  VToolbar,
+  VToolbarTitle,
+  VTooltip,
+  VIcon,
+  VBtn,
+  VAvatar,
+  VSpacer,
+  VSimpleTable,
+    VCombobox
+} from 'vuetify/lib';
+//import { ValidationIcon, ValidationBadge } from '../controls/components/index';
 
 const controlRenderer = defineComponent({
-  name: 'enum-array-renderer',
+  name: 'ecfunction-control-renderer',
   components: {
+    DispatchCell,
     DispatchRenderer,
-    VCheckbox,
-    VContainer,
+    VCard,
+    VCardTitle,
+    VCardText,
+    VAvatar,
     VRow,
     VCol,
-    VCombobox,
+    VToolbar,
+    VToolbarTitle,
+    VTooltip,
+    VIcon,
+    VBtn,
+    VSpacer,
+    VContainer,
+    //ValidationIcon,
+    //  ValidationBadge,
+    VSimpleTable,
+    VCombobox
   },
   props: {
     ...rendererProps<ControlElement>(),
   },
-  data: ()=> {
-    return {
-      model: [],
-      search: null,
-    }
-
-  },
   setup(props: RendererProps<ControlElement>) {
-    return useVuetifyBasicControl(useJsonFormsMultiEnumControl(props));
+    return useVuetifyArrayControl(useJsonFormsArrayControl(props));
   },
   computed: {
-    getLabel(): string| undefined{
-      if (this.control.label){
-        return this.control.label
-      }
+    arraySchema(): JsonSchema | undefined {
+      return Resolve.schema(
+          this.control.rootSchema,
+          this.control.uischema.scope,
+          this.control.rootSchema
+      );
     },
-    getDescription(): string| undefined{
-      if (this.control.description){
-        return this.control.description
-      }
-    }
+    noData(): boolean {
+      return !this.control.data || this.control.data.length === 0;
+    },
   },
   methods: {
-    dataHasEnum(value: any) {
-      //return !!this.control.data?.includes(value);
-      //return _.includes(this.control.data, value)
-      const exists = _.find(this.control.data, (o:any)=> o.name ==value.name)
-      if (exists) return true
-      return false
-
-    },
     composePaths,
-    toggle(value: any, add: boolean) {
-      if (add) {
-       this.addItem(this.control.path, value);
-        // mapDispatchToMultiEnumProps.addItem does an exact match === so we need to send the the actual object
-       // const objValue = _.find( this.control.options, (o:any)=> o.value.name == value.name )
-       // this.addItem(this.control.path, objValue); // fai
-       } else {
-        // mistyped in core
-        this.removeItem?.(this.control.path, value);
-        // mapDispatchToMultiEnumProps.removeItem does an exact match === so we need to send the the actual object
-       // const objValue = _.remove( this.control.data, (o:any)=> o.name == value.name )
-       // this.removeItem?.(this.control.path,objValue);
-      // _.remove( this.control.data, (o:any)=> o.name == value.name )
-      }
+    createDefaultValue,
+    addButtonClick() {
+      this.addItem(
+          this.control.path,
+          createDefaultValue(this.control.schema)
+      )();
     },
-    chipRemove(e: any){
-      console.log(e)
-      this.toggle(e.target, false)
-    }
+    moveUpClick(event: Event, toMove: number): void {
+      event.stopPropagation();
+      this.moveUp?.(this.control.path, toMove)();
+    },
+    moveDownClick(event: Event, toMove: number): void {
+      event.stopPropagation();
+      this.moveDown?.(this.control.path, toMove)();
+    },
+    removeItemsClick(event: Event, toDelete: number[]): void {
+      event.stopPropagation();
+      this.removeItems?.(this.control.path, toDelete)();
+    },
+    getValidColumnProps(scopedSchema: JsonSchema) {
+      if (
+          scopedSchema.type === 'object' &&
+          typeof scopedSchema.properties === 'object'
+      ) {
+        return Object.keys(scopedSchema.properties).filter(
+            (prop) => scopedSchema.properties?.[prop]?.type !== 'array'
+        );
+      }
+      // primitives
+      return [''];
+    },
+    title(prop: string) {
+      return this.control.schema.properties?.[prop]?.title ?? startCase(prop);
+    },
+    resolveUiSchema(propName: string) {
+      return this.control.schema.properties
+          ? this.controlWithoutLabel(`#/properties/${propName}`)
+          : this.controlWithoutLabel('#');
+    },
+    // controlWithoutLabel(scope: string): ControlElement {
+    //   return { type: 'Control', scope: scope, label: false };
+    // },
+    controlWithoutLabel(scope: string): ControlElement {
+
+      if (this.control.uischema?.options?.suggestion !== undefined){
+        return { type: 'Control', scope: scope, label: false, options: {suggestion:this.control.uischema.options.suggestion } };
+      }
+      return { type: 'Control', scope: scope, label: false };
+    },
   },
 });
 
 export default controlRenderer;
-const mapDispatchToObjEnumProps = (
-    dispatch: Dispatch<CoreActions>
-): DispatchPropsOfMultiEnumControl => ({
-  addItem: (path: string, value: any) => {
-    dispatch(
-        update(path, data => {
-           if (data === undefined || data === null) {
-            return [value];
-          }
-          const exists =  _.find(data, (o:any)=> o?.name == value?.name)
-          if (!exists) data.push(value);
-          return data;
-        })
-    );
-  },
-  removeItem: (path: string, toDelete: any) => {
-    dispatch(
-        update(path, data => {
-         // const indexInData = data.indexOf(toDelete);
-        //  data.splice(indexInData, 1);
-          _.remove(data, (o:any)=> o?.name == toDelete?.name) // returns removed object, so return original array
-          return data;
-        })
-    );
-  }
-});
-
-const hasOneOfItems = (schema: JsonSchema): boolean =>
-  schema.oneOf !== undefined &&
-  schema.oneOf.length > 0 &&
-  (schema.oneOf as JsonSchema[]).every((entry: JsonSchema) => {
-    return entry.const !== undefined;
-  });
-
-const hasEnumItems = (schema: JsonSchema): boolean =>
-  schema.type === 'string' && schema.enum !== undefined;
 
 export const entry: JsonFormsRendererRegistryEntry = {
   renderer: controlRenderer,
-  tester: rankWith(
-    6,
-    and(
-     uiTypeIs('EcFunction'),
-      and(
-        schemaMatches(
-          (schema) =>
-            hasType(schema, 'array') &&
-            !Array.isArray(schema.items) &&
-            schema.uniqueItems === true
-        ),
-        schemaSubPathMatches('items', (schema) => {
-          return hasOneOfItems(schema) || hasEnumItems(schema);
-        })
-      )
-    )
-  ),
+  tester: rankWith(6, or(uiTypeIs('EcFunction'), isObjectArrayControl, isPrimitiveArrayControl)),
+  //tester: rankWith(5,  uiTypeIs('ArrayString')),
 };
 </script>
+
+<style scoped>
+.fixed-cell {
+  width: 150px;
+  height: 50px;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  text-align: center;
+}
+
+.fixed-cell-small {
+  width: 50px;
+  height: 50px;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  text-align: center;
+}
+
+.array-container tbody tr td {
+  border-bottom: none !important;
+}
+
+.array-container tbody tr td .container {
+  padding: 0;
+  margin: 0;
+}
+</style>

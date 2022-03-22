@@ -44,7 +44,7 @@ const resourceTypeBase = {
                 },
                 {
                   "label": "Function",
-                  "type": "Control",
+                  "type": "EcFunction",
                   "scope": "#/properties/applicationCategory",
                   "options": {
                          "suggestion": [],

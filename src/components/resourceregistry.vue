@@ -49,6 +49,7 @@ import {entry as ArrayOfStringRenderer} from './controls/ArrayOfStringRenderer'
 import {entry as ArrayControlStringRenderer} from './controls/ArrayControlStringRenderer'
 //import {arrayOverride} from '../arrayOverride'
 import {entry as EnumArrayRenderer } from './controls/EnumArrayObjectRenderer'
+import {entry as EcFunctionsRenderer} from './controls/EcFunctionSubfunctionRenderer'
 
 import {default as JsonViewer} from './viewJson'
 import {createAjv} from "@jsonforms/core";
@@ -71,6 +72,7 @@ const renderers = [
   ArrayControlStringRenderer,
  // arrayOverride,
   EnumArrayRenderer,
+  EcFunctionsRenderer
 ];
 
 const tool = defineComponent({
