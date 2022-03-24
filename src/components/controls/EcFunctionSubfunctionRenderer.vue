@@ -168,6 +168,8 @@
               :items="control.uischema.options.suggestion"
               label="Select a favorite activity or create a new one"
               multiple
+              chips
+
           >
           </v-combobox>
         </v-row>
