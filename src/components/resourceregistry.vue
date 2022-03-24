@@ -21,13 +21,8 @@
       </JsonViewer>
 
       </span>
-      <v-btn color="blue"
-             dark
-             @click="saveJsonLD(jsonldObj)">Download JSONLD</v-btn>
-      <v-btn color="blue"
-             dark
-             @click="saveItem(unflattenLocal(jsonldObj))">Save JSONLD to S3</v-btn>
 
+      <save-files :json="jsonldObj" :originalName="filename"></save-files>
     </v-footer>
 
   </div>
@@ -41,7 +36,7 @@ import {defineComponent} from "@vue/composition-api";
 import 'vue-json-pretty/lib/styles.css';
 
 
-
+import {default as saveFiles} from './controls/saveJson'
 import { default as schema, schemaWithEnum , flattenList} from '../schema/tools/ecrr_jsonschema_1_0' ;
 
 import uischema from '../schema/tools/ecrr_1_0_uischema';
@@ -82,7 +77,8 @@ const tool = defineComponent({
   name: 'tools',
   components: {
     JsonForms,
-    JsonViewer
+    JsonViewer,
+    saveFiles
   },
 
   props:{
@@ -123,10 +119,12 @@ const tool = defineComponent({
     if (this.jsonldfile){
 // @ts-ignore
       let exampleData = require('../assets/examples/' +  this.jsonldfile);
+      this.filename = this.jsonldfile.substring(this.jsonldfile.lastIndexOf('/')+1)
       exampleData = flatten(exampleData, flattenList)
       this.jsonldObj = Object.assign({}, this.jsonldObj, exampleData)
     }
      if (this.s3file){
+       this.filename = this.s3file.substring(this.s3file.lastIndexOf('/')+1)
        this.getUsers3()
      }
 // @ts-ignore
@@ -167,14 +165,31 @@ const tool = defineComponent({
           //'forms', 'user1', 'thisisuser1', 'oss.geocodes.earthcube.org', 443, true
       )
     },
-    saveJsonLD(json){
+    async saveJsonLD(json){
       //var blob = new Blob([...JSON.stringify(json)], {type: "text/plain;charset=utf-8"});
       let  jsonstring = JSON.stringify(json)
-      var file = new File([jsonstring], this.filename, {type: "text/plain;charset=utf-8"});
+        let res = await this.$dialog.prompt({
+          text: "FileName",
+          title: "Title",
+          persistent: this.persistent
+        });
+        if (res) {
+          this.filename = res
+           var file = new File([jsonstring], this.filename, {type: "text/plain;charset=utf-8"});
+          saveAs(file);
+      }
 
-      saveAs(file);
     },
-
+    // async filename() {
+    //   let res = await this.$dialog.prompt({
+    //     text: "FileName",
+    //     title: "Title",
+    //     persistent: this.persistent
+    //   });
+    //   if (res) {
+    //     this.filename = res
+    //   }
+    // },
   },
 });
 export default tool
