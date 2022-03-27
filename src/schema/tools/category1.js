@@ -285,7 +285,7 @@
 
                             {
                               "type": "Control",
-                              "label": "1.3.1.1 Creator",
+                              "label": "1.3.1.1 Creator/Developer",
                               "scope": "#/properties/creator",
                               "options": { "elementLabelProp": "name",
                                 "showUnfocusedDescription": true
@@ -294,7 +294,7 @@
                             },
                              {
                               "type": "Label",
-                              "text": "1.3.1.1 publisher"
+                              "text": "1.3.1.1 Publisher"
                             },
                             {
                               "type": "Control",
@@ -344,14 +344,6 @@
                               }
                             },
 
-                            {
-                              "type": "Control",
-                              "label": "1.3.1.1 developer",
-                              "scope": "#/properties/developer",
-                              "options": {"elementLabelProp": "name",
-                                "showUnfocusedDescription": true
-                              }
-                            },
                              ]
                         },
             ]
