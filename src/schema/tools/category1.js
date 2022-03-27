@@ -121,13 +121,19 @@
                           {
                             "label": "Type",
                             "type": "Control",
-                            "scope": "#/properties/propertyID"
+                            "scope": "#/properties/propertyID",
+                            "options": {
+                                "suggestion":["DOI", "PURL"]
+                            }
 
                           },
                           {
                             "label": "PropertyName",
                             "type": "Control",
-                            "scope": "#/properties/name"
+                            "scope": "#/properties/name",
+                            "options": {
+                                                            "suggestion":["DOI", "PURL"]
+                                                        }
 
                           }
                         ]

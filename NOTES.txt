@@ -70,7 +70,7 @@ DEFAULT VALUES
     {
       "type": "object",
       "properties": {
-        "@type": {"type": "string", "const": "sdo:PropertyValue", "default":  "sdo:PropertyValue"},
+        "@type": {"type": "string", "const": "PropertyValue", "default":  "PropertyValue"},
         "value": {"type": "string"},
         "propertyID": {"type": "string",
           "enum": ["DATACITEURL", "PERLURL","DOIURL"],

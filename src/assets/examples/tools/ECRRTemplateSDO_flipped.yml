@@ -18,7 +18,7 @@ description: "Put description of the resource here, and remove this note. This r
   \ type is not restricted only to source code, but the sdo type is included to use\
   \ properties on the sdo:softwareSourceCode type"
 creator:
-  '@Type': "[Organization or Person]"
+  '@type': "[Organization or Person]"
   name: "Text"
 datePublished: "[A date value in ISO 8601 date format]"
 keywords:
@@ -48,7 +48,7 @@ dct:conformsTo:
 about:
 - "science domain/community term"
 identifier:
-  '@type': "sdo:PropertyValue,  or sdo:Text, or sdo:URL"
+  '@type': "PropertyValue,  or sdo:Text, or sdo:URL"
   eg @type: "PropertyValue"
   propertyID: "http://purl.org/spar/datacite/orcid"
   value: "0000-0003-2591-5293"

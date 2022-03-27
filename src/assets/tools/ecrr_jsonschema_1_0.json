@@ -434,7 +434,7 @@
     {
       "type": "object",
       "properties": {
-        "@type": {"const": "sdo:PropertyValue"},
+        "@type": {"const": "PropertyValue"},
         "value": {"type": "string"},
         "propertyID": {"type": "string",
           "enum": ["DATACITEURL", "PERLURL","DOIURL"]},

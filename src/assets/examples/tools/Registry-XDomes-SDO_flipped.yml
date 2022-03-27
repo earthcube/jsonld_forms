@@ -16,12 +16,12 @@ additionalType:
 name: "X-DOMES Ontology Registry and Repository (X-DOMES ORR)"
 description: "A registry and repository service for sensor terms"
 creator:
-- '@Type': "Person"
+- '@type': "Person"
   name: "Janet Fredericks"
   identifier: "https://orcid.org/0000-0001-6143-5700}"
-- '@Type': "Person"
+- '@type': "Person"
   name: "Felimon Gayanilo"
-- '@Type': "Person"
+- '@type': "Person"
   name: "Carlos Rueda"
 datePublished: "[A date value in ISO 8601 date format]"
 keywords:

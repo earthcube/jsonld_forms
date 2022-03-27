@@ -116,7 +116,23 @@ const cat3 =
                          "label": "1.1.1.1 Funder",
                          "scope": "#/properties/funder",
                          "options": {
-                           "showUnfocusedDescription": true
+                           "showUnfocusedDescription": true,
+                           "elementLabelProp":"name",
+//                                                         "detail" : {
+//                                                            "type": "HorizontalLayout",
+//                                                           "elements": [
+//                                                               {
+//                                                                     "label": "Audience Type",
+//                                                                     "type": "Control",
+//                                                                     "scope": "#/properties/audienceType"
+//                                                                },
+//                                                                  {
+//                                                                   "type": "Control",
+//                                                                   "label": "Identifier",
+//                                                                   "scope": "#/properties/identifier"
+//                                                                 },
+//                                                            ]
+//                                                            }
                          }
                        }
                      ]
@@ -156,22 +172,22 @@ const cat3 =
                          "label": "Audience",
                          "scope": "#/properties/audience",
                           "options": {
-                          "elementLabelProp":"audienceType",
-                             "detail" : {
-                                "type": "HorizontalLayout",
-                               "elements": [
-                                   {
-                                         "label": "Audience Type",
-                                         "type": "Control",
-                                         "scope": "#/properties/name"
-                                    },
-                                      {
-                                       "type": "Control",
-                                       "label": "Identifier",
-                                       "scope": "#/properties/identifier"
-                                     },
-                                ]
-                                }
+                          "elementLabelProp":"#/properties/audienceType",
+//                              "detail" : {
+//                                 "type": "HorizontalLayout",
+//                                "elements": [
+//                                    {
+//                                          "label": "Audience Type",
+//                                          "type": "Control",
+//                                          "scope": "#/items/audienceType"
+//                                     },
+//                                       {
+//                                        "type": "Control",
+//                                        "label": "Identifier",
+//                                        "scope": "#/items/identifier"
+//                                      },
+//                                 ]
+//                                 }
 
                         },
                        },

@@ -511,12 +511,12 @@ const jsonschema = {
       "properties": {
 
         "value": {"type": "string"},
-        "@type": {"type": "string", "const": "sdo:PropertyValue", "default":  "sdo:PropertyValue"},
+        "@type": {"type": "string", "const": "PropertyValue", "default":  "PropertyValue"},
         "propertyID": {"type": "string",
-          "enum": ["DATACITEURL", "PERLURL","DOIURL"],
+         // "enum": ["DATACITEURL", "PERLURL","DOIURL"],
           "default":"DOIURL"},
         "name": {"type": "string",
-          "enum": ["DATACITE", "DOI","OTHER"],
+        //  "enum": ["DATACITE", "DOI","OTHER"],
           "default":"DOI"}
 
       }
@@ -530,8 +530,8 @@ const jsonschema = {
           "enum": [
             "Person",
             "Organization"
-          ],
-          "default":"Person"
+          ]
+         ,"default":"Person"
         },
 
         "identifier": {"type": "string"}
@@ -547,13 +547,14 @@ const jsonschema = {
           "type": "object",
           "properties": {
                         "name": {"type": "string"},
-                        "@type": {
-              "enum": [
-                "Person",
-                "Organization"
-              ],
+                        "@type": { "type": "string",
+                        "default": "Person",
+                          "enum": [
+                            "Person",
+                            "Organization"
+                          ],
 
-            },
+                          },
 
             "identifier": {"type": "string"}
           },
@@ -601,12 +602,11 @@ const jsonschema = {
       "properties": {
                 "audienceType": {"type": "string"},
                 "@type": {
-          "type": "string",
-          "default":"Audience",
-          "const": "Audience"
-        },
-
-        "identifier": {"type": "string"}
+                      "type": "string",
+                      "default":"Audience",
+                      "const": "Audience"
+                 },
+                "identifier": {"type": "string"}
       },
       "required": [
         "@type",

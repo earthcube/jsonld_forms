@@ -20,11 +20,11 @@
 	"name": "EarthChem Library",
 	"description": "The EarthChem Library is a data repository that archives, publishes and makes accessible data and other digital content from geoscience research (analytical data, data syntheses, models, technical reports, etc).",
 	"creator": [{
-		"@Type": "Organization",
+		"@type": "Organization",
 		"name": "Geoinformatics for Geochemistry, Lamont-Doherty Earth Observatory, Columbia University, New York, USA"
 	},
 	{
-	"@Type": "Person",
+	"@type": "Person",
 		"name":"Kerstin A. Lehnert",
 		"identifier":"orcid: "
 	}],
@@ -100,7 +100,7 @@
 			"propertyID": "ecrro:ECRRO_0000218",
 			"name": "Stewardship",
 			"value":[ {
-				"@Type": "Organization",
+				"@type": "Organization",
 				"name": "Geoinformatics for Geochemistry, Lamont-Doherty Earth Observatory, Columbia University, New York, USA"
 			} ]
 		},

@@ -18,10 +18,10 @@ description: "The EarthChem Library is a data repository that archives, publishe
   \ and makes accessible data and other digital content from geoscience research (analytical\
   \ data, data syntheses, models, technical reports, etc)."
 creator:
-- '@Type': "Organization"
+- '@type': "Organization"
   name: "Geoinformatics for Geochemistry, Lamont-Doherty Earth Observatory, Columbia\
     \ University, New York, USA"
-- '@Type': "Person"
+- '@type': "Person"
   name: "Kerstin A. Lehnert"
   identifier: "orcid: "
 datePublished: "ongoing"
@@ -44,14 +44,14 @@ ecrro:registryContributor:
   name: "Stephen M. Richard"
   identifier: "https://orcid.org/0000-0001-6041-5302"
 provider:
-  '@Type': "Organization"
+  '@type': "Organization"
   name: "Geoinformatics for Geochemistry, Lamont-Doherty Earth Observatory, Columbia\
     \ University, New York, USA"
 ecrro:expectedlifetime: "long term"
 url: "https://www.earthchem.org/library"
 ecrro:usage: "wide usage"
 eccro:stewardedby:
-  '@Type': "Organization"
+  '@type': "Organization"
   name: "Geoinformatics for Geochemistry, Lamont-Doherty Earth Observatory, Columbia\
     \ University, New York, USA"
 audience:

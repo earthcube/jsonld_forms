@@ -18,15 +18,15 @@
 	"description": "version 1.0.2 release, A set of conventions adopted in order to promote the interchange and sharing of files created with the netCDF Application Programmer Interface (API). This standard is based upon version 2.3 of netCDF. Documentation of the netCDF API may be found in the NetCDF documentation.",
 	"creator": [
 		{
-		"@Type": "Organization",
+		"@type": "Organization",
 		"name": "CIRES (University of Colorado Joint Institute, Boulder CO)"},
-		{"@Type": "Organization",
+		{"@type": "Organization",
 		"name": "JISAO (University of Washington Joint Institute, Seattle WA)"},
-		{"@Type": "Organization",
+		{"@type": "Organization",
 		"name": "Climate Data Center, Boulder CO"},
-		{"@Type": "Organization",
+		{"@type": "Organization",
 		"name":"NCDC, Asheville NC"},
-		{"@Type": "Organization",
+		{"@type": "Organization",
 		"name":"PMEL, Seattle WA"}
 	],
 	"datePublished": "1995-05-01",

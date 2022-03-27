@@ -8,14 +8,14 @@
 		"dcat": "http://www.w3.org/ns/dcat#",
 		"ecrro": "http://purl.obolibrary.org/obo/ECRRO_",
 		"eccr":"http://ezid.org/ark/",
-		
+
 		"dependsOn":"http://purl.obolibrary.org/obo/RO_0002502",
 		"ECresourcematurity": "http://purl.obolibrary.org/obo/ECRRO_0000129",
 		"ECDataService":"http://purl.obolibrary.org/obo/ECRRO_0000202",
 		"citation":"http://purl.obolibrary.org/obo/ECRRO_0000009",
 		"primaryPublication":"http://purl.obolibrary.org/obo/ECRRO_0000065",
 		"usage":"http://purl.obolibrary.org/obo/ECRRO_0000017"
-		
+
 	},
 	"@id": "eccr:900006",
 	"@type": [
@@ -131,7 +131,7 @@
 						"defaultValue": "90.0",
 						"description": "Limit to events with a latitude smaller than or equal to the specified minimum. Value must be greater than minlat",
 						"valueRequired": true,
-						"minValue": -90.0, 
+						"minValue": -90.0,
 						"maxValue": 90.0,
 						"xsd:type": "float",
 						"unitOfMeasure": "degrees"
@@ -267,7 +267,7 @@
 						"valueRequired": false,
 						"xsd:type": "string",
 						"valueOptions": [
-						
+
 						]
 					},
 					{
@@ -279,7 +279,7 @@
 						"valueRequired": false,
 						"xsd:type": "string",
 						"valueOptions": [
-						
+
 						]
 					},
 					{

@@ -65,7 +65,7 @@
 		"science domain/community term"
 	],
 	"identifier": {
-		"@type": "sdo:PropertyValue,  or sdo:Text, or sdo:URL, example is for propertyValue",
+		"@type": "PropertyValue,  or sdo:Text, or sdo:URL, example is for propertyValue",
 		"propertyID": "http://purl.org/spar/datacite/orcid",
 		"value": "0000-0003-2591-5293"
 	},
@@ -122,7 +122,7 @@
 					"@id": "Optional: give the propertyValueSpecification an identifier if it is reused inother potentialActions",
 					"@type": "PropertyValueSpecification",
 					"valueName": "name of property from URLtemplate",
-					"description": "what does the property mean; note there are various other sdo:PropertyValueSpecification properties that might be valid here",
+					"description": "what does the property mean; note there are various other PropertyValueSpecification properties that might be valid here",
 					"valueRequired": true,
 					"valuePattern": "regex to validate"
 				}
