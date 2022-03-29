@@ -117,7 +117,7 @@ const cat3 =
                          "scope": "#/properties/funder",
                          "options": {
                            "showUnfocusedDescription": true,
-                           "elementLabelProp":"name",
+                           "childLabelProp":"name",
 //                                                         "detail" : {
 //                                                            "type": "HorizontalLayout",
 //                                                           "elements": [
@@ -172,7 +172,7 @@ const cat3 =
                          "label": "Audience",
                          "scope": "#/properties/audience",
                           "options": {
-                          "elementLabelProp":"#/properties/audienceType",
+                          "childLabelProp":"audienceType",
 //                              "detail" : {
 //                                 "type": "HorizontalLayout",
 //                                "elements": [

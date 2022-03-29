@@ -53,7 +53,7 @@
                   "options": {
                     "showUnfocusedDescription": true,
                     "readonly": true,
-                      "elementLabelProp": "value",
+                      "childLabelProp": "value",
                       "detail" : {
                                               "type": "HorizontalLayout",
                         "elements": [
