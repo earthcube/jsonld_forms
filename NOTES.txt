@@ -15,6 +15,13 @@ https://docs.google.com/spreadsheets/d/1ykxgdeDjBzcTc1y64CuyaS2PhDuUtLuO5AFUehwh
 submitted forms:
 https://docs.google.com/spreadsheets/d/1rCtWCCy51PLlpFkcG9oOVQZnIB75RwMK9nZxbZIYXIU/edit#gid=694164158
 
+Line 29 has the specications for each resource type
+https://docs.google.com/spreadsheets/d/1jUmP9aC9M5nRvw8iiiLo94D_NfIvtlFFMgYItLmlSyI/edit#gid=172544203
+
+resource description from regisry project:
+This will help check that we have all the fields for a resource:
+https://docs.google.com/spreadsheets/d/1W3GXxVuATqsqJVc8UGTWbLd3iXsgQNxCnnLxB77LnPc/edit#gid=631743946
+
 Thoughts:
 * could have two entry points:
 1. a simple mostly single entry form
