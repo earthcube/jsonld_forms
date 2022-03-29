@@ -58,7 +58,15 @@ const jsonschema = {
       "description": "Globally unique identifier for the described resource; could be single value or array of strings for multiple identifiers",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/identifier_type",
+         "type": "string",
+         // oneOf complex anno ther
+//       "oneOf": [
+//         {"type": "string", "title":"String"},
+//         {"$ref": "#/definitions/identifier_type",
+//         "title":"Detailed Idenfier"},
+//
+//
+//       ]
 
       }
     },
@@ -508,6 +516,7 @@ const jsonschema = {
     "identifier_type":
     {
       "type": "object",
+      "title":"identifier",
       "properties": {
 
         "value": {"type": "string"},

@@ -59,11 +59,8 @@
 	}
 	],
 	"identifier":  [
-		{
-			"@type": "PropertyValue",
-			"propertyID": "DOIURL",
-			"value": "http://doi.org/10.17616/R3V644"
-		}
+		 "http://doi.org/10.17616/R3V644"
+
 	],
 
 	"url": "https://www.earthchem.org/library",

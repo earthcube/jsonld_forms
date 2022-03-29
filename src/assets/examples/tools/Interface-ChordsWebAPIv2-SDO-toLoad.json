@@ -36,15 +36,9 @@
 	"description": "URL based API to access data from real time instruments and sensors; A specification for the API could not be found, but examples at the documentation link above can be reverse engineers without too much trouble. This document describes a particular service instance",
 	"identifier": [
 
-		{
-			"@type": "PropertyValue",
-			"propertyID":
-			"OTHER",
-			"name":
-			"Interface/API",
-			"value":
+
 			"http://portal.chordsrt.com/api/v1/data"
-		}
+
 	],
 	"potentialAction": [
 		{

@@ -95,51 +95,58 @@
                   "options": {
                     "showUnfocusedDescription": true,
 
-                      "elementLabelProp": "value",
-                      "detail" : {
-                        "type": "HorizontalLayout",
-                        "elements": [
-//                          {
+//                      // "elementLabelProp": "value",
+//                       //"elementLabelProp": [ "value", "#", "Not Set"],
+//                      // "detail": "Generated"
+//                       "detail" : {
+//                         "type": "HorizontalLayout",
+//                         "elements": [
+// //                          {
+// //                             "label": "Type",
+// //                             "type": "Control",
+// //                             "scope": "#/properties/@type",
+// //                             "rule": {
+// //                                 "effect": "HIDE",
+// //                                 "condition": {
+// //                                   "schema": {
+// //                                     "const": true
+// //                                   }
+// //                                 }
+// //                               }
+// //
+// //                           },
+// //                             {
+// //                                                       "label": "Indentifier",
+// //                                                       "type": "Control",
+// //                                                       "scope": "#"
+// //                                                     },
+//                                                     {
+//                             "label": "Indentifier",
+//                             "type": "Control",
+//                             "scope": "#/properties/value"
+//                           },
+//                           {
 //                             "label": "Type",
 //                             "type": "Control",
-//                             "scope": "#/properties/@type",
-//                             "rule": {
-//                                 "effect": "HIDE",
-//                                 "condition": {
-//                                   "schema": {
-//                                     "const": true
-//                                   }
-//                                 }
-//                               }
+//                             "scope": "#/properties/propertyID",
+//                             "options": {
+//                                 "suggestion":["DOI", "PURL"]
+//                             }
 //
 //                           },
-                          {
-                            "label": "Indentifier",
-                            "type": "Control",
-                            "scope": "#/properties/value"
-                          },
-                          {
-                            "label": "Type",
-                            "type": "Control",
-                            "scope": "#/properties/propertyID",
-                            "options": {
-                                "suggestion":["DOI", "PURL"]
-                            }
-
-                          },
-                          {
-                            "label": "PropertyName",
-                            "type": "Control",
-                            "scope": "#/properties/name",
-                            "options": {
-                                                            "suggestion":["DOI", "PURL"]
-                                                        }
-
-                          }
-                        ]
-
-
-                    }
+//                           {
+//                             "label": "PropertyName",
+//                             "type": "Control",
+//                             "scope": "#/properties/name",
+//                             "options": {
+//                                                             "suggestion":["DOI", "PURL"]
+//                                                         }
+//
+//                           }
+//                         ]
+//
+//
+//                     }
                   }
                 }
               ]
