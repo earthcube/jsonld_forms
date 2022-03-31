@@ -4,10 +4,19 @@ const interchange = {
   rule: {
     effect: 'SHOW',
     condition: {
-      scope: '#/properties/mainEntity/properties/name',
+      scope: '#/properties/mainEntity/',
       schema: {
-        const: 'Bundled Object'
-        // "const": "Dataset"
+       // const: 'Bundled Object'
+         "const": [
+                  {
+                  "name":
+                  "Bundled Object",
+                  "@type":
+                  "CreativeWork",
+                  "url":
+                  "http://cor.esipfed.org/ont/earthcube/SFO_0000075"
+                  }
+                  ]
       }
     }
   },

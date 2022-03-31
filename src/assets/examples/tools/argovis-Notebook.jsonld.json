@@ -93,11 +93,11 @@
             "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000046"
         }
     ],
-    "mainEntity": {
+    "mainEntity": [ {
         "@type": "CreativeWork",
         "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000206",
         "name": "Software"
-    },
+    }],
     "applicationCategory": [
         "function: Data Exploration uri: http://cor.esipfed.org/ont/earthcube/SFO_0000006",
         "subfunction: Data Discovery & Access: Data Query, Data Discovery & Access: Data Harvesting, Visualization: Display uri: http://cor.esipfed.org/ont/earthcube/SFO_0000027",

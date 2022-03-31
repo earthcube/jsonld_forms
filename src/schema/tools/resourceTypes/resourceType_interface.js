@@ -6,10 +6,19 @@ const resourceType = {
   rule: {
     effect: 'SHOW',
     condition: {
-      scope: '#/properties/mainEntity/properties/name',
+      scope: '#/properties/mainEntity/',
       schema: {
-        const: 'Interface/API'
-        // "const": "Dataset"
+       // const: 'Interface/API'
+         "const": [
+                  {
+                  "name":
+                  "Interface/API",
+                  "@type":
+                  "CreativeWork",
+                  "url":
+                  "http://cor.esipfed.org/ont/earthcube/ECRRO_0000207"
+                  }
+                  ]
       }
     }
   },

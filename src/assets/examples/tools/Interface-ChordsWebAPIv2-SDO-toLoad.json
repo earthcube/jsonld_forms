@@ -9,14 +9,14 @@
 		"WebAPI", "ECRRO_0000207"
 	],
 	"mainEntity":
-	{
+	[{
 		"name":
 		"Interface/API",
 		"@type":
 		"CreativeWork",
 		"url":
-		"http://cor.esipfed.org/ont/earthcube/ECRRO_000020"
-	},
+		"http://cor.esipfed.org/ont/earthcube/ECRRO_0000207"
+	}],
 	"additionalType":[
 
 

@@ -10,10 +10,20 @@ const resourceTypeBase = {
   rule: {
     effect: 'SHOW',
     condition: {
-      scope: '#/properties/mainEntity/properties/name',
+      scope: '#/properties/mainEntity/',
       schema: {
-        const: 'Software'
-        // "const": "Dataset"
+       // const: 'Software'
+         "const":
+[
+{
+"name":
+"Software",
+"@type":
+"CreativeWork",
+"url":
+"http://cor.esipfed.org/ont/earthcube/ECRRO_0000206"
+}
+]
       }
     }
   },

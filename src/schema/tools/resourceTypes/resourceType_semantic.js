@@ -4,10 +4,64 @@ const resourceType = {
   rule: {
     effect: 'SHOW',
     condition: {
-      scope: '#/properties/mainEntity/properties/name',
+      scope: '#/properties/mainEntity/',
       schema: {
-        const: 'Semantic Resource'
-        // "const": "Dataset"
+       // const: 'Semantic Resource'
+     //  https://github.com/eclipsesource/jsonforms/issues/1141
+         "enum":[
+                [
+                  {
+                  "name":
+                  "Semantic Resource",
+                  "@type":
+                  "CreativeWork",
+                  "url":
+                  "http://cor.esipfed.org/ont/earthcube/ECRRO_0000210"
+                  }
+                  ],
+                  [{
+                  "@type": "CreativeWork",
+                  "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000210",
+                  "name": "Semantic Resource"
+                  },{
+                  "@type": "CreativeWork",
+                  "url": "http://cor.esipfed.org/ont/earthcube/srt_0000003",
+                  "name": "Ontology"
+                  }
+                  ]
+             ]
+//               "oneOf":[
+//                              {
+//                                  "scope": "#",
+//                                   "schema": {
+//                                     "const": [
+//                                                {
+//                                                "name":
+//                                                "Semantic Resource",
+//                                                "@type":
+//                                                "CreativeWork",
+//                                                "url":
+//                                                "http://cor.esipfed.org/ont/earthcube/ECRRO_0000210"
+//                                                }
+//                                            ]
+//                                     }
+//
+//                                 },
+//                                {
+//                                "scope": "#",
+//                                 "schema": {
+//                                   "const": [{
+//                                        "@type": "CreativeWork",
+//                                        "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000210",
+//                                        "name": "Semantic Resource"
+//                                        },{
+//                                        "@type": "CreativeWork",
+//                                        "url": "http://cor.esipfed.org/ont/earthcube/srt_0000003",
+//                                        "name": "Ontology"
+//                                        }
+//                                      ]
+//                                      }}
+//                           ]
       }
     }
   },

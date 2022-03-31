@@ -44,14 +44,14 @@
 
 
 	"mainEntity":
-	{
+	[{
 		"name":
 		"Catalog/Registry",
 		"@type":
 		"CreativeWork",
 		"url":
 		"http://cor.esipfed.org/ont/earthcube/ECRRO_0000212"
-	},
+	}],
 	"about": [        {
 		"@type": "DefinedTerm",
 		"name": "Geochemistry",

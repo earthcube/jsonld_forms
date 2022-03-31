@@ -239,6 +239,7 @@ const jsonschema = {
       //       "items": {
       //     //    "$ref": "#/definitions/resourceTypes_type"
       //       }
+
     },
     encodingFormat: {
       title: 'Representation Format or base format for a profile specification',

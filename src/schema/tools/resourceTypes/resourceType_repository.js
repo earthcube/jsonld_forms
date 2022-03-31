@@ -4,10 +4,19 @@ const resourceType = {
   rule: {
     effect: 'SHOW',
     condition: {
-      scope: '#/properties/mainEntity/properties/name',
+      scope: '#/properties/mainEntity/',
       schema: {
-        const: 'Repository'
-        // "const": "Dataset"
+       // const: 'Repository'
+         "const": [
+                  {
+                  "name":
+                  "Repository",
+                  "@type":
+                  "CreativeWork",
+                  "url":
+                  "http://cor.esipfed.org/ont/earthcube/ECRRO_0000209"
+                  }
+                  ]
       }
     }
   },
