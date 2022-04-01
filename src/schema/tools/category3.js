@@ -79,7 +79,7 @@ const cat3 = {
               type: 'HorizontalLayout',
               elements: [
                 {
-                  label: 'Steward',
+                  label: 'Lifecycle',
                   type: 'Control',
                   scope: '#/properties/value',
                   options: {
