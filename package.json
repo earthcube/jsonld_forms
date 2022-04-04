@@ -26,7 +26,7 @@
     "vue": "^2.6.14",
     "vue-json-pretty": "^1.8.2",
     "vue-router": "3",
-    "vuetify": "^2.6.3"
+    "vuetify": "^2.6.4"
   },
   "devDependencies": {
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.16.7",
@@ -56,7 +56,7 @@
     "vue-cli-plugin-vuetify": "~2.4.5",
     "vue-prettier": "^0.2.0",
     "vue-template-compiler": "^2.6.14",
-    "vuetify": "^2.6.3",
+    "vuetify": "^2.6.4",
     "vuetify-loader": "^1.7.0"
   },
   "eslintConfig": {
