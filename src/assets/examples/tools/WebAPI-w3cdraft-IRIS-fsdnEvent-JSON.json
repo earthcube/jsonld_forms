@@ -98,7 +98,7 @@
 						"defaultValue": "90.0",
 						"description": "Limit to events with a latitude smaller than or equal to the specified minimum. Value must be greater than minlat",
 						"valueRequired": true,
-						"minValue": -90.0, 
+						"minValue": -90.0,
 						"maxValue": 90.0,
 						"xsd:type": "float",
 						"unitOfMeasure": "degrees"
@@ -234,7 +234,7 @@
 						"valueRequired": false,
 						"xsd:type": "string",
 						"valueOptions": [
-						
+
 						]
 					},
 					{
@@ -246,7 +246,7 @@
 						"valueRequired": false,
 						"xsd:type": "string",
 						"valueOptions": [
-						
+
 						]
 					},
 					{

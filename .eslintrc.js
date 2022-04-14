@@ -4,11 +4,12 @@ module.exports = {
     node: true,
   },
   extends: [
-    'plugin:vue/essential',
     'eslint:recommended',
+    'plugin:vue/essential',
     '@vue/typescript/recommended',
   //  '@vue/prettier',
  //   '@vue/eslint-config-typescript',
+  //'prettier'
   ],
   parserOptions: {
     ecmaVersion: 2020,

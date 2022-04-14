@@ -10,12 +10,13 @@
             {
               "type": "Label",
               "text": "1.1.1 Short Name for the <span style='color:peru;'>Resource</span>",
-              "description": "A test Description"
+
             },
             {
               "label": " Name",
               "type": "Control",
               "scope": "#/properties/name",
+            "description": "Alternate names by which the resource might be known or discovered.",
               "options": {
                 "showUnfocusedDescription": true
               }
@@ -29,7 +30,7 @@
                     // "type": "Control",
                    "type": "Control",
                   "label": "1.1.1.1 Alternate Resource Name(s)",
-                  "description": "Some Description",
+                  "description": "URL to access information about the resource on the Web.",
                   "scope": "#/properties/alternateName",
                   "options": {
                     "showUnfocusedDescription": true
@@ -50,6 +51,7 @@
                   "label": "Identifier",
                   "type": "Control",
                   "scope": "#/properties/@id",
+
                   "options": {
                     "showUnfocusedDescription": true,
                     "readonly": true,
@@ -87,60 +89,72 @@
 //                                 "scope": "#/properties/identifiersTest",
 //                                 }
 
-                {
-                  "type": "Control",
-                  "label":  "1.1.1.1 Additional Identifiers",
+            {
+              type: 'Control',
+              label: '1.1.1.1 Additional Identifiers',
 
-                  "scope": "#/properties/identifier",
-                  "options": {
-                    "showUnfocusedDescription": true,
+              scope: '#/properties/identifier',
+              options: {
+                showUnfocusedDescription: true
 
-                      "elementLabelProp": "value",
-                      "detail" : {
-                        "type": "HorizontalLayout",
-                        "elements": [
-//                          {
-//                             "label": "Type",
-//                             "type": "Control",
-//                             "scope": "#/properties/@type",
-//                             "rule": {
-//                                 "effect": "HIDE",
-//                                 "condition": {
-//                                   "schema": {
-//                                     "const": true
-//                                   }
-//                                 }
-//                               }
-//
-//                           },
-                          {
-                            "label": "Indentifier",
-                            "type": "Control",
-                            "scope": "#/properties/value"
-                          },
-                          {
-                            "label": "Type",
-                            "type": "Control",
-                            "scope": "#/properties/propertyID"
-
-                          },
-                          {
-                            "label": "PropertyName",
-                            "type": "Control",
-                            "scope": "#/properties/name"
-
-                          }
-                        ]
-
-
-                    }
-                  }
-                }
-              ]
+                //                      // "elementLabelProp": "value",
+                //                       //"elementLabelProp": [ "value", "#", "Not Set"],
+                //                      // "detail": "Generated"
+                //                       "detail" : {
+                //                         "type": "HorizontalLayout",
+                //                         "elements": [
+                // //                          {
+                // //                             "label": "Type",
+                // //                             "type": "Control",
+                // //                             "scope": "#/properties/@type",
+                // //                             "rule": {
+                // //                                 "effect": "HIDE",
+                // //                                 "condition": {
+                // //                                   "schema": {
+                // //                                     "const": true
+                // //                                   }
+                // //                                 }
+                // //                               }
+                // //
+                // //                           },
+                // //                             {
+                // //                                                       "label": "Indentifier",
+                // //                                                       "type": "Control",
+                // //                                                       "scope": "#"
+                // //                                                     },
+                //                                                     {
+                //                             "label": "Indentifier",
+                //                             "type": "Control",
+                //                             "scope": "#/properties/value"
+                //                           },
+                //                           {
+                //                             "label": "Type",
+                //                             "type": "Control",
+                //                             "scope": "#/properties/propertyID",
+                //                             "options": {
+                //                                 "suggestion":["DOI", "PURL"]
+                //                             }
+                //
+                //                           },
+                //                           {
+                //                             "label": "PropertyName",
+                //                             "type": "Control",
+                //                             "scope": "#/properties/name",
+                //                             "options": {
+                //                                                             "suggestion":["DOI", "PURL"]
+                //                                                         }
+                //
+                //                           }
+                //                         ]
+                //
+                //
+                //                     }
+              }
             }
-
           ]
-        },
+        }
+      ]
+    },
 
 
         {
@@ -148,17 +162,18 @@
           "elements": [
             {
               "type": "Label",
-              "text": "1.2.1 Description"
+              "text": "1.2.1 Description",
+              "decription": "Please provide as much detail as possible, so that we can automatically extract additional information, and search engine text indexing will provide useful results. Feel free to copy and paste from respective web sites, papers, reports, etc.",
             },
             {
               "type": "Control",
               "scope": "#/properties/description",
 
-              "options": {
-                "multi": true,
-                "showUnfocusedDescription": true
-              }
-            },
+          options: {
+            multi: true,
+            showUnfocusedDescription: true
+          }
+        },
 
             {
               "type": "ShowGroup",
@@ -178,7 +193,8 @@
                 },
                 {
                   "type": "Label",
-                  "text": "1.2.0.1 URL to User Readable Page"
+                  "text": "1.2.0.1 URL to User Readable Page",
+                  "description": "URL to access information about the resource on the Web.",
                 },
                 {
                   "type": "Control",
@@ -220,7 +236,8 @@
 
                 {
                   "type": "Label",
-                  "text": "1.2.3 Keywords"
+                  "text": "1.2.3 Keywords",
+                  "description": "use words or phrases you would expect searchers to enter into search engines.",
                 },
                 {
                   "type": "Control",
@@ -239,7 +256,8 @@
           "elements": [
             {
               "type": "Label",
-              "text": "1.3.1 Citation"
+              "text": "1.3.1 Citation",
+              "decription":"Please provide a recommended citation to reference this resource in publications, using a standard bibliographic format"
             },
               /* citation is an additional propery
               {
@@ -250,9 +268,9 @@
   },
 
                */
-            {
-              "type": "Control",
-              "scope": "#/properties/dc:BibliographicCitation",
+        {
+          type: 'Control',
+          scope: '#/properties/dc:BibliographicCitation',
 
               //    "scope": "#/properties/additionalProperty/items/anyOf/0/",
               "options": {
@@ -281,6 +299,7 @@
                         {
                           "type": "ShowGroup",
                           "label": "Add Responsible Parties",
+                          "decription":"Persons or organizations with roles in the creation of the resource content, e.g. Creator, Editor, Contributor... ",
                           "elements": [
 
                             {
@@ -321,7 +340,8 @@
                                              {
                                             "label": "Identifier",
                                             "type": "Control",
-                                            "scope": "#/properties/identifier"
+                                            "scope": "#/properties/identifier",
+                                               "decription":"An Identifier (e.g. DOI) or standard academic citation for publication that specifies or describes the resource. ",
 
                                           },
                                           ]}
@@ -361,7 +381,11 @@
               "type": "ShowGroup",
               "label": "Add Primary Publication",
               "elements": [
+                {
+                  "type": "Label",
+                  "text": "EXAMPLE: Barnes, Stanley L., 1980, Report on a Meeting to Establish a Common Doppler Radar Data Exchange Format: Bulletin of the American Meteorological Society, vol. 61, no. 11, pp. 1401–1404. (accessed at http://www.jstor.org/stable/26221476)",
 
+                },
                 {
                   "type": "Control",
                   "label": "1.1.1.1 Primary Publication",
@@ -376,27 +400,26 @@
                   "options": {
                     "showUnfocusedDescription": true,
 
-                      "detail" : {
-                         "type": "HorizontalLayout",
-                        "elements": [
-                              {
-                                "label": "Citation",
-                                "type": "Control",
-                                "scope": "#/properties/value"
-                              },
-                              {
-                              "label": "Name",
-                              "type": "Control",
-                              "scope": "#/properties/name"
-                            },
-                         ]
-                         }
-
-                  }
+            detail: {
+              type: 'HorizontalLayout',
+              elements: [
+                {
+                  label: 'Citation',
+                  type: 'Control',
+                  scope: '#/properties/value'
+                },
+                {
+                  label: 'Name',
+                  type: 'Control',
+                  scope: '#/properties/name'
                 }
               ]
-            },
-       ]
+            }
+          }
+        }
+      ]
     }
+  ]
+};
 
-export default cat1
+export default cat1;

@@ -9,19 +9,19 @@
 		"WebAPI", "ECRRO_0000207"
 	],
 	"mainEntity":
-	{
+	[{
 		"name":
 		"Interface/API",
 		"@type":
 		"CreativeWork",
 		"url":
-		"http://cor.esipfed.org/ont/earthcube/ECRRO_000020"
-	},
+		"http://cor.esipfed.org/ont/earthcube/ECRRO_0000207"
+	}],
 	"additionalType":[
 
 
 		{
-			"@type": "sdo:PropertyValue",
+			"@type": "PropertyValue",
 			"propertyID":
 			"OTHER",
 			"name":
@@ -36,15 +36,9 @@
 	"description": "URL based API to access data from real time instruments and sensors; A specification for the API could not be found, but examples at the documentation link above can be reverse engineers without too much trouble. This document describes a particular service instance",
 	"identifier": [
 
-		{
-			"@type": "sdo:PropertyValue",
-			"propertyID":
-			"OTHER",
-			"name":
-			"Interface/API",
-			"value":
+
 			"http://portal.chordsrt.com/api/v1/data"
-		}
+
 	],
 	"potentialAction": [
 		{
