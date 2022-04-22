@@ -31,11 +31,18 @@
 	"datePublished": "ongoing",
 	"keywords": ["geochemistry", "Earth Material", "whole rock", "trace element", "Rare Earth", "geochemical dataset"],
 
-	"funder":[ {
-		"@type": "Organization",
-		"name": "US National Science Foundation (US NSF)",
-		"identifier": "https://ror.org/021nxhr62"
-	}],
+	"funding": [
+		{
+			"@type": "Grant",
+			"name": "NSF Grant",
+			"funder":  {
+				"@type": "Organization",
+				"name": "US National Science Foundation (US NSF)",
+				"identifier": "https://ror.org/021nxhr62"
+			}
+		}
+
+	],
 	"license":  [{
 		"@type": "CreativeWork",
 		"name": "Open Access",
