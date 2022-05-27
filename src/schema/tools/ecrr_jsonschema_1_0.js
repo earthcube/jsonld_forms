@@ -17,6 +17,7 @@ const jsonschema = {
   properties: {
     '@id': {
       type: 'string',
+      format: 'uri-reference',
       description:
         'globally identifier string for this metadata record, commonly a UUID with or without an HTTP prefix for web resolution'
     },

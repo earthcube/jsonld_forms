@@ -32,3 +32,7 @@ yaryarn n run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+typscript declaration generation:
+npx -p typescript tsc src/**/*.js --declaration --allowJs --emitDeclarationOnly --outDir types
+
+

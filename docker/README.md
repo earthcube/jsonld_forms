@@ -2,7 +2,10 @@
 # Using Minio as a backend
 This docker needs to be changed to a treafik router, rather than ngnx
 
+keycloak:  https://github.com/minio/minio/blob/master/docs/sts/keycloak.md
 
+https://davidtruxall.com/secure-a-vue-js-app-with-keycloak/
+https://github.com/keycloak/keycloak/blob/main/adapters/oidc/js/dist/keycloak.d.ts
 
 Tested (notes at end of document). It works. It's simple, and we can initially manually manage via ui
 
