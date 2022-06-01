@@ -8,17 +8,20 @@
     <v-divider></v-divider>
     <examples></examples>
    <list-user-files></list-user-files>
+    <list-registry-files></list-registry-files>
   </v-main>
 </template>
 
 <script>
 import examples from './examples'
 import listUserFiles from "./listUserFiles";
+import listRegistryFiles from "./listRegistryFiles";
 export default {
   name: "startPage",
   components: {
     examples,
-    listUserFiles
+    listUserFiles,
+    listRegistryFiles
   }
 }
 </script>

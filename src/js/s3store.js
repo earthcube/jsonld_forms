@@ -5,17 +5,26 @@ import * as Minio from "minio"
 bad accessKey/secretKey combination (aka username/password)
 
 */
-function s3Client (  s3Credentials){
-    console.log( "minio user:" + s3Credentials.username )
+function s3Client (  s3Credentials, publicBucket){
+  if (!publicBucket) {
+      console.log( "minio user:" + s3Credentials.username )
 
 
-    return new Minio.Client({
-               endPoint: s3Credentials.endpoint,
-               port: s3Credentials.port,
-               useSSL: s3Credentials.useSsl,
-               accessKey: s3Credentials.username,
-               secretKey: s3Credentials.password
-           });
+      return new Minio.Client({
+          endPoint: s3Credentials.endpoint,
+          port: s3Credentials.port,
+          useSSL: s3Credentials.useSsl,
+          accessKey: s3Credentials.username,
+          secretKey: s3Credentials.password
+      });
+  } else {
+      return new Minio.Client({
+          endPoint: s3Credentials.endpoint,
+          port: s3Credentials.port,
+          useSSL: s3Credentials.useSsl,
+
+      });
+  }
 }
 
 
@@ -80,7 +89,7 @@ function saveTos3(jsonstring, filepath, metaData, bucket, s3Credentials ){
 
 const  listUserFiles = async function(  bucketName, toolname,  s3Credentials ){
     return new Promise (function(resolve, reject) {
-        const minioClient = s3Client(s3Credentials)
+        const minioClient = s3Client(s3Credentials, false)
 
         let prefix = `${s3Credentials.username}/${toolname}/`
         let recursive = true
@@ -98,6 +107,36 @@ const  listUserFiles = async function(  bucketName, toolname,  s3Credentials ){
          stream.on('end', function() {
           console.log('End')
           resolve (data )
+        })
+
+    })
+
+}
+const  listRegistryFiles = async function(  bucketName, pathtopublished,  s3Credentials ){
+    return new Promise (function(resolve, reject) {
+        const minioClient = s3Client(s3Credentials, true)
+         // const minioClient = new Minio.Client({
+         //     endPoint: s3Credentials.endpoint,
+         //     port: s3Credentials.port,
+         //     useSSL: s3Credentials.useSsl
+         //
+         // });
+        let prefix = `${pathtopublished}/`
+        let recursive = true
+
+        var data = []
+        var stream =  minioClient.extensions.listObjectsV2WithMetadata(bucketName, prefix, recursive)
+        stream.on('data', function(obj) {
+            console.log(obj)
+            data.push(obj)
+        } )
+        stream.on('error', function(err) {
+            console.log(err)
+            reject(err)
+        } )
+        stream.on('end', function() {
+            console.log('End')
+            resolve (data )
         })
 
     })
@@ -166,4 +205,4 @@ const getFroms3 = function( filepath, bucket, s3Credentials ){
 //
 // }
 
-export {saveToUser, saveToGroup,listUserFiles, getFroms3}
+export {saveToUser, saveToGroup,listUserFiles, getFroms3, listRegistryFiles}
