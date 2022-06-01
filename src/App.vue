@@ -86,6 +86,8 @@
         <span class="mr-2"> Vuetify github</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
+      <a href="https://www.netlify.com"> <img src="https://www.netlify.com/v3/img/components/netlify-color-bg.svg" alt="Deploys by Netlify" /> </a>
+
     </v-footer>
   </v-app>
 </template>
