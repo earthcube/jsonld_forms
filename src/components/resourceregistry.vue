@@ -37,9 +37,9 @@ import 'vue-json-pretty/lib/styles.css';
 
 
 import {default as saveFiles} from './controls/saveJson'
-import { default as schema, schemaWithEnum , flattenList} from '../schema/tools/ecrr_jsonschema_1_0' ;
+import { default as schema, schemaWithEnum , flattenList} from '../schema/tools/ecrr_jsonschema_1_1' ;
 
-import uischema from '../schema/tools/ecrr_1_0_uischema';
+import uischema from '../schema/tools/ecrr_1_1_uischema';
 // @ts-ignore
 const baseJsonLdObj = require('../assets/basefiles/tools/ecrrempty.json');
 
@@ -49,6 +49,7 @@ import {entry as ArrayOfStringRenderer} from './controls/ArrayOfStringRenderer'
 import {entry as ArrayControlStringRenderer} from './controls/ArrayControlStringRenderer'
 //import {arrayOverride} from '../arrayOverride'
 import {entry as EnumArrayRenderer } from './controls/EnumArrayObjectRenderer'
+import {entry as EcFunctionsRenderer} from './controls/EcFunctionSubfunctionRenderer'
 
 import {default as JsonViewer} from './viewJson'
 import {createAjv} from "@jsonforms/core";
@@ -71,6 +72,7 @@ const renderers = [
   ArrayControlStringRenderer,
  // arrayOverride,
   EnumArrayRenderer,
+  EcFunctionsRenderer
 ];
 
 const tool = defineComponent({

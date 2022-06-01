@@ -113,25 +113,35 @@ const cat3 = {
         {
           type: 'Control',
           label: '1.1.1.1 Funder',
-          scope: '#/properties/funder',
+          scope: '#/properties/funding',
           options: {
             showUnfocusedDescription: true,
-            childLabelProp: 'name'
-            //                                                         "detail" : {
-            //                                                            "type": "HorizontalLayout",
-            //                                                           "elements": [
-            //                                                               {
-            //                                                                     "label": "Audience Type",
-            //                                                                     "type": "Control",
-            //                                                                     "scope": "#/properties/audienceType"
-            //                                                                },
-            //                                                                  {
-            //                                                                   "type": "Control",
-            //                                                                   "label": "Identifier",
-            //                                                                   "scope": "#/properties/identifier"
-            //                                                                 },
-            //                                                            ]
-            //                                                            }
+            childLabelProp: 'name',
+            "detail" : {
+               "type": "HorizontalLayout",
+              "elements": [
+                  {
+                        "label": "Name",
+                        "type": "Control",
+                        "scope": "#/properties/name"
+                   },
+                     {
+                      "type": "Control",
+                      "label": "Identifier",
+                      "scope": "#/properties/identifier"
+                    },
+                {
+                  "type": "Control",
+                  "label": "Sponsor",
+                  "scope": "#/properties/sponsor"
+                },
+                {
+                  "type": "Control",
+                  "label": "Funder",
+                  "scope": "#/properties/funder"
+                }
+               ]
+               }
           }
         }
       ]
