@@ -99,16 +99,17 @@ export const useAuth0 = ({
              https://localhost:9000/?Action=AssumeRoleWithWebIdentity
              **/
             async getMinioAuth  (token) {
-                let querystring = `?Action=AssumeRoleWithWebIdentity&WebIdentityToken={$token}&Version=2011-06-15&DurationSeconds=86000&Policy={}`
-                let server = "https://localhost:9000/"
-                let url = `{$server}{$querystring}`
+              //  let querystring = `?Action=AssumeRoleWithWebIdentity&WebIdentityToken=${token}&Version=2011-06-15&DurationSeconds=86000&Policy={}`
+                let querystring = `?Action=AssumeRoleWithWebIdentity&WebIdentityToken=${token}&Version=2011-06-15&DurationSeconds=86000`
+                let server = "http://localhost:9000/"
+                let url = `${server}${querystring}`
                 const request = new Request(
                     url,
                     {
                         method: "POST",
                         mode: "cors",
                         cache: "default",
-                        body: JSON.stringify(this.post)
+                       // body: JSON.stringify(this.post)
                     }
                 );
                 const res = await fetch(request);
@@ -131,14 +132,15 @@ export const useAuth0 = ({
             </AssumeRoleWithWebIdentityResponse>
             */
 
-                const  response = convert.xml2json(data, {compact: true, spaces: 4})
-                const credentials = response.AssumeRoleWithWebIdentityResponse.ResponseMetadataAssumeRoleWithWebIdentityResult.Credentials
+                const  response = await convert.xml2js(data, {compact: true, spaces: 4})
+                console.log(JSON.stringify(response))
+                const credentials = await response.AssumeRoleWithWebIdentityResponse.AssumeRoleWithWebIdentityResult.Credentials
                 // const userKey = credentials.AccessKeyId
                 //
                 // const userSecret = credentials.SecretAccessKey
                 //
                 // return {"key": userKey,"secret": userSecret}
-                return credentials
+                return await credentials
 
 
 

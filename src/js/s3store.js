@@ -97,7 +97,7 @@ const  listUserFiles = async function(  bucketName, toolname,  s3Credentials ){
         var data = []
         var stream =  minioClient.extensions.listObjectsV2WithMetadata(bucketName, prefix, recursive)
         stream.on('data', function(obj) {
-         console.log(obj)
+       //  console.log(obj)
          data.push(obj)
          } )
         stream.on('error', function(err) {
@@ -127,7 +127,7 @@ const  listRegistryFiles = async function(  bucketName, pathtopublished,  s3Cred
         var data = []
         var stream =  minioClient.extensions.listObjectsV2WithMetadata(bucketName, prefix, recursive)
         stream.on('data', function(obj) {
-            console.log(obj)
+      //      console.log(obj)
             data.push(obj)
         } )
         stream.on('error', function(err) {

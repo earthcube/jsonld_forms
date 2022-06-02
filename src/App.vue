@@ -58,7 +58,8 @@
               </v-card-title>
 
               <v-card-text>
-                {{jwt  }}
+                <div>{{credentials}}</div>
+              <div> {{jwt  }}</div>
               </v-card-text>
 
               <v-divider></v-divider>
@@ -151,6 +152,9 @@ export default {
 
  //   Tools
   },
+  watch: {
+   '$auth.loading' : 'updateAuth'
+  },
 
   data () {
     return {
@@ -159,14 +163,37 @@ export default {
       credentials:""
     }
   },
-  async created() {
-    this.jwt =  await this.$auth.getIdTokenClaims()
-  },
+  // async mounted() {
+  //   try {
+  //     this.jwt =  await this.$auth.getIdTokenClaims()
+  //   } catch (e) {
+  //     console.log(e)
+  //     if (this.$auth.isAuthenticated ){
+  //       console.error('error retrieving authentication claims')
+  //     }
+  //
+  //   }
+  //     try {
+  //     let token = await  this.$auth.getTokenSilently()
+  //       this.$auth.getMinioAuth(token ).then( (data)=> this.credentials = data )
+  //     } catch (e)  {
+  //       console.log(e)
+  //       if (this.$auth.isAuthenticated ) {
+  //         console.error('error getting minio keys for user')
+  //       }
+  //     }
+  //
+  //
+  //
+  // },
   methods:{
+    async updateAuth(){
+      this.jwt =  await this.$auth.getIdTokenClaims()
+      //let token = await  this.$auth.getTokenSilently()
+      this.$auth.getMinioAuth(this.jwt.__raw ).then( (data)=> this.credentials = data )
+    },
     login () {
       this.$auth.loginWithRedirect({})
-      this.credentials = this.$auth.getMinioAuth(this.$auth.getTokenSilently())
-
     },
 
     // Log the user out

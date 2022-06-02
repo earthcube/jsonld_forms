@@ -5,7 +5,6 @@ declare namespace jsonschema {
     const properties: {
         '@id': {
             type: string;
-            format: string;
             description: string;
         };
         '@type': {
@@ -1034,7 +1033,6 @@ declare function withEnum(): {
     properties: {
         '@id': {
             type: string;
-            format: string;
             description: string;
         };
         '@type': {

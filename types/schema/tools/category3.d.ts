@@ -72,6 +72,14 @@ declare namespace cat3 {
             options: {
                 showUnfocusedDescription: boolean;
                 childLabelProp: string;
+                detail: {
+                    type: string;
+                    elements: {
+                        label: string;
+                        type: string;
+                        scope: string;
+                    }[];
+                };
             };
         }[];
         text?: undefined;

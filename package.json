@@ -6,7 +6,8 @@
     "serve": "HTTPS=true  vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "rebuildtypedef": "npx -p typescript tsc src/**/*.js --declaration --allowJs --emitDeclarationOnly --outDir types"
   },
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.22.0",
