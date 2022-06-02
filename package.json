@@ -53,6 +53,7 @@
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^6.2.2",
+    "netlify-plugin-dotenv": "^2.0.0",
     "sass": "~1.32",
     "sass-loader": "^10.1.1",
     "tslib": "^2.3.1",
