@@ -12,33 +12,12 @@
         <v-messages :value="[control.description]"></v-messages>
         <v-spacer></v-spacer>
 
-        <v-tooltip bottom>
-          <template v-slot:activator="{ on: onTooltip }">
-            <v-btn
-              fab
-              text
-              elevation="0"
-              small
-              :aria-label="`Add to ${control.label}`"
-              v-on="onTooltip"
-              :class="styles.arrayList.addButton"
-              :disabled="
-                !control.enabled ||
-                (appliedOptions.restrict &&
-                  arraySchema !== undefined &&
-                  arraySchema.maxItems !== undefined &&
-                  control.data.length >= arraySchema.maxItems)
-              "
-              @click="addButtonClick"
-            >
-              <v-icon>mdi-plus</v-icon>
-            </v-btn>
-          </template>
-          {{ `Add to ${control.label}` }}
-        </v-tooltip>
       </v-toolbar>
     </v-card-title>
     <v-card-text>
+      <v-container v-if="noData" :class="styles.arrayList.noData">
+        No data
+      </v-container>
       <v-container justify-space-around align-content-center>
         <v-row justify="center">
           <v-expansion-panels accordion focusable v-model="currentlyExpanded">
@@ -156,6 +135,34 @@
                       </v-tooltip>
                     </v-col>
                   </v-row>
+
+        <div class="add_button">
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on: onTooltip }">
+                <v-btn
+                  fab
+                  text
+                  elevation="0"
+                  small
+                  :aria-label="`Add to ${control.label}`"
+                  v-on="onTooltip"
+                  :class="styles.arrayList.addButton"
+                  :disabled="
+                    !control.enabled ||
+                    (appliedOptions.restrict &&
+                      arraySchema !== undefined &&
+                      arraySchema.maxItems !== undefined &&
+                      control.data.length >= arraySchema.maxItems)
+                  "
+                  @click="addButtonClick"
+                >
+                  <v-icon>mdi-plus</v-icon>
+                </v-btn>
+              </template>
+              {{ `Add to ${control.label}` }}
+            </v-tooltip>
+        </div>
+
                 </v-container>
               </v-expansion-panel-header>
               <v-expansion-panel-content :class="styles.arrayList.itemContent">
@@ -182,10 +189,7 @@
           </v-expansion-panels>
         </v-row>
       </v-container>
-      <v-container v-if="noData" :class="styles.arrayList.noData">
-        No data
-      </v-container></v-card-text
-    >
+    </v-card-text>
     <v-dialog
       :value="suggestToDelete !== null"
       max-width="600"

@@ -12,15 +12,14 @@
   />
       <v-spacer></v-spacer>
       <v-divider></v-divider>
-    <v-footer class="d-flex">
-      <span> <JsonViewer :json="jsonldObj" name="form JSON">
-      </JsonViewer>
-      </span>
-      <span>
-         <JsonViewer :json="unflattenLocal(jsonldObj)" name="JSON-LD">
-      </JsonViewer>
 
-      </span>
+    <v-footer class="json_footer">
+      <div>
+        <JsonViewer :json="jsonldObj" name="form JSON"></JsonViewer>
+      </div>
+      <div>
+         <JsonViewer :json="unflattenLocal(jsonldObj)" name="JSON-LD"></JsonViewer>
+      </div>
 
       <save-files :json="jsonldObj" :originalName="filename"></save-files>
     </v-footer>
@@ -198,6 +197,17 @@ export default tool
 </script>
 
 <style>
+
+.json_footer {
+    display: flex;
+    align-items: center;
+
+    margin-top: 3rem;
+    padding: 1rem;
+
+    background: none !important;
+}
+
 .icon {
   order: 0;
 }

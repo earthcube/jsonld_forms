@@ -9,7 +9,7 @@
           "elements": [
             {
               "type": "Label",
-              "text": "1.1.1 Short Name for the <span style='color:peru;'>Resource</span>",
+              "text": "1.1.1 Short Name for the <span class='highlight'>Resource</span>",
 
             },
             {
@@ -45,7 +45,7 @@
               "elements": [
                 {
                   "type": "Label",
-                  "text": "1.1.2 <span style='color:peru;'> Identifier </span> Readonly"
+                  "text": "1.1.2 <span class='highlight'> Identifier </span> <span class='readonly'>(Readonly)</span>"
                 },
                 {
                   "label": "Identifier",

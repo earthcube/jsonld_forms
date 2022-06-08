@@ -11,33 +11,38 @@
 <!--        />-->
         <v-spacer></v-spacer>
 
-        <v-tooltip bottom>
-          <template v-slot:activator="{ on: onTooltip }">
-            <v-btn
-              fab
-              text
-              elevation="0"
-              small
-              :aria-label="`Add to ${control.label}`"
-              v-on="onTooltip"
-              :class="styles.arrayList.addButton"
-              :disabled="
-                !control.enabled ||
-                (appliedOptions.restrict &&
-                  arraySchema !== undefined &&
-                  arraySchema.maxItems !== undefined &&
-                  control.data.length >= arraySchema.maxItems)
-              "
-              @click="addButtonClick"
-            >
-              <v-icon>mdi-plus</v-icon>
-            </v-btn>
-          </template>
-          {{ `Add to ${control.label}` }}
-        </v-tooltip>
+        <div class="add_button">
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on: onTooltip }">
+                <v-btn
+                  fab
+                  text
+                  elevation="0"
+                  small
+                  :aria-label="`Add to ${control.label}`"
+                  v-on="onTooltip"
+                  :class="styles.arrayList.addButton"
+                  :disabled="
+                    !control.enabled ||
+                    (appliedOptions.restrict &&
+                      arraySchema !== undefined &&
+                      arraySchema.maxItems !== undefined &&
+                      control.data.length >= arraySchema.maxItems)
+                  "
+                  @click="addButtonClick"
+                >
+                  <v-icon>mdi-plus</v-icon>
+                </v-btn>
+              </template>
+              {{ `Add to ${control.label}` }}
+            </v-tooltip>
+        </div>
       </v-toolbar>
     </v-card-title>
     <v-card-text>
+      <v-container v-if="noData" :class="styles.arrayList.noData">
+        No data
+      </v-container>
       <v-container justify-space-around align-content-center>
         <v-row justify="center">
           <v-simple-table class="array-container flex">
@@ -133,38 +138,38 @@
                     </template>
                     Move Down
                   </v-tooltip>
-                  <v-tooltip bottom>
-                    <template v-slot:activator="{ on: onTooltip }">
-                      <v-btn
-                        v-on="onTooltip"
-                        fab
-                        text
-                        elevation="0"
-                        small
-                        aria-label="Delete"
-                        :class="styles.arrayList.itemDelete"
-                        :disabled="
-                          !control.enabled ||
-                          (appliedOptions.restrict &&
-                            arraySchema !== undefined &&
-                            arraySchema.minItems !== undefined &&
-                            control.data.length <= arraySchema.minItems)
-                        "
-                        @click.native="removeItemsClick($event, [index])"
-                      >
-                        <v-icon class="notranslate">mdi-delete</v-icon>
-                      </v-btn>
-                    </template>
-                    Delete
-                  </v-tooltip>
+
+                    <div class="remove_button">
+                      <v-tooltip bottom>
+                        <template v-slot:activator="{ on: onTooltip }">
+                          <v-btn
+                            v-on="onTooltip"
+                            fab
+                            text
+                            elevation="0"
+                            small
+                            aria-label="Delete"
+                            :class="styles.arrayList.itemDelete"
+                            :disabled="
+                              !control.enabled ||
+                              (appliedOptions.restrict &&
+                                arraySchema !== undefined &&
+                                arraySchema.minItems !== undefined &&
+                                control.data.length <= arraySchema.minItems)
+                            "
+                            @click.native="removeItemsClick($event, [index])"
+                          >
+                            <v-icon class="notranslate">mdi-delete</v-icon>
+                          </v-btn>
+                        </template>
+                        Delete 222
+                      </v-tooltip>
+                  </div>
                 </td>
               </tr>
             </tbody>
           </v-simple-table>
         </v-row>
-      </v-container>
-      <v-container v-if="noData" :class="styles.arrayList.noData">
-        No data
       </v-container>
     </v-card-text>
   </v-card>
@@ -344,5 +349,9 @@ export const entry: JsonFormsRendererRegistryEntry = {
 .array-container tbody tr td .container {
   padding: 0;
   margin: 0;
+}
+
+.remove_button {
+    border: 2px solid #f00 !important;
 }
 </style>
