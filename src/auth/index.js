@@ -27,7 +27,8 @@ export const useAuth0 = ({
                 user: {},
                 auth0Client: null,
                 popupOpen: false,
-                error: null
+                error: null,
+                miniocredentials:null
             };
         },
         methods: {
@@ -84,6 +85,7 @@ export const useAuth0 = ({
             },
             /** Logs the user out and removes their session on the authorization server */
             logout(o) {
+                this.miniocredentials = null
                 return this.auth0Client.logout(o);
             },
 
@@ -98,7 +100,13 @@ export const useAuth0 = ({
 
              https://localhost:9000/?Action=AssumeRoleWithWebIdentity
              **/
-            async getMinioAuth  (token) {
+            async getMinioAuth  (o) {
+                if ( await !this.auth0Client.isAuthenticated()) return null
+
+                if (this.miniocredentials !== null ) return this.miniocredentials
+
+                 let jwt = await this.auth0Client.getIdTokenClaims(o)
+                let token =  jwt.__raw
               //  let querystring = `?Action=AssumeRoleWithWebIdentity&WebIdentityToken=${token}&Version=2011-06-15&DurationSeconds=86000&Policy={}`
                 let querystring = `?Action=AssumeRoleWithWebIdentity&WebIdentityToken=${token}&Version=2011-06-15&DurationSeconds=86000`
                 let server = "http://localhost:9000/"
@@ -135,11 +143,16 @@ export const useAuth0 = ({
                 const  response = await convert.xml2js(data, {compact: true, spaces: 4})
                 console.log(JSON.stringify(response))
                 const credentials = await response.AssumeRoleWithWebIdentityResponse.AssumeRoleWithWebIdentityResult.Credentials
+                // add cruft from original implementation
+                credentials.endpoint=  process.env.VUE_APP_endPoint
+                    credentials.port= parseInt(process.env.VUE_APP_port)
+                    credentials.useSsl= Boolean(process.env.VUE_APP_useSSL)
                 // const userKey = credentials.AccessKeyId
                 //
                 // const userSecret = credentials.SecretAccessKey
                 //
                 // return {"key": userKey,"secret": userSecret}
+                this.miniocredentials = await credentials
                 return await credentials
 
 

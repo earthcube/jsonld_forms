@@ -142,6 +142,7 @@
 
 <script>
 import {listUserFiles, getFroms3} from '../js/s3store'
+import Vue from "vue";
 
 export default {
   name: "listUserFiles",
@@ -164,9 +165,13 @@ export default {
     }
   },
    async mounted(){
-    listUserFiles(this.BUCKET,'resourceregistry', this.s3Credentials).then(
-        (data) => this.userItems = data
-    )
+    if (this.$auth.isAuthenticated){
+      this.s3Credentials = this.$auth.getMinioAuth()
+      listUserFiles(this.BUCKET,'resourceregistry', this.s3Credentials).then(
+          (data) => this.userItems = data
+      )
+    }
+
 
 
    },
