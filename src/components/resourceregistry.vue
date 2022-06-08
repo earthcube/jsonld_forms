@@ -46,7 +46,7 @@ import {entry as AltGroupRenderer} from './controls/AdditionalDetailsRenderer'
 import {entry as HtmlLabelRender } from './controls/htmlLabelRenderer'
 import {entry as ArrayOfStringRenderer} from './controls/ArrayOfStringRenderer'
 import {entry as ArrayControlStringRenderer} from './controls/ArrayControlStringRenderer'
-//import {arrayOverride} from '../arrayOverride'
+import {entry as ArrayLayoutRenderer} from './controls/ArrayLayoutRenderer'
 import {entry as EnumArrayRenderer } from './controls/EnumArrayObjectRenderer'
 import {entry as EcFunctionsRenderer} from './controls/EcFunctionSubfunctionRenderer'
 
@@ -69,9 +69,10 @@ const renderers = [
   HtmlLabelRender,
   ArrayOfStringRenderer,
   ArrayControlStringRenderer,
- // arrayOverride,
+  ArrayLayoutRenderer,
   EnumArrayRenderer,
   EcFunctionsRenderer
+
 ];
 
 const tool = defineComponent({
