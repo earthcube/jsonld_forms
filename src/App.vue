@@ -204,10 +204,12 @@ export default {
     display: block;
     max-width: 620px;
 
-    color: #E09500;
+    color: #aaabae;
+    background-color: #fbfbfb;
 
-    margin-top: .5rem;
-    margin-bottom: 1rem;
+    margin-top: .25rem;
+    margin-bottom: .5rem;
+    padding: .5rem 1rem;
 
     line-height: 130% !important;
 }
