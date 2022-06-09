@@ -47,7 +47,7 @@ import {entry as HtmlLabelRender } from './controls/htmlLabelRenderer'
 import {entry as ArrayOfStringRenderer} from './controls/ArrayOfStringRenderer'
 import {entry as ArrayControlStringRenderer} from './controls/ArrayControlStringRenderer'
 import {entry as ArrayLayoutRenderer} from './controls/ArrayLayoutRenderer'
-import {entry as EnumArrayRenderer } from './controls/EnumArrayObjectRenderer'
+import {entry as EnumArrayObjectRenderer } from './controls/EnumArrayObjectRenderer'
 import {entry as EcFunctionsRenderer} from './controls/EcFunctionSubfunctionRenderer'
 
 import {default as JsonViewer} from './viewJson'
@@ -70,7 +70,7 @@ const renderers = [
   ArrayOfStringRenderer,
   ArrayControlStringRenderer,
   ArrayLayoutRenderer,
-  EnumArrayRenderer,
+  EnumArrayObjectRenderer,
   EcFunctionsRenderer
 
 ];

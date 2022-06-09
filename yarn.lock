@@ -1217,29 +1217,29 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@jsonforms/core@^3.0.0-beta.1":
-  version "3.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@jsonforms/core/-/core-3.0.0-beta.1.tgz#12df8e8b2ec3c50bdbd66c4fa167bf1d056e98e9"
-  integrity sha512-5whsfLdmZj79gVlavNDiX9cEhx10V481+H9TqsO/Qnp5wfzgFCZVZ06r+nGI1qiqzIZkQkuwBpimbOF2qmUofQ==
+"@jsonforms/core@^3.0.0-beta.2":
+  version "3.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@jsonforms/core/-/core-3.0.0-beta.3.tgz#d9cd19a9782299689e4e15300416794713b57c45"
+  integrity sha512-gXCwLgHiTcY8M1bdtEWVYa+lF485NVmk2QycqcNyNdcXM530GF9nzzqXrMIhCBVcyoT6MulDsTlP26wgeuMbFg==
   dependencies:
     "@types/json-schema" "^7.0.3"
     ajv "^8.6.1"
     ajv-formats "^2.1.0"
     lodash "^4.17.15"
 
-"@jsonforms/vue2-vuetify@^3.0.0-beta.1.1":
-  version "3.0.0-beta.1.1"
-  resolved "https://registry.yarnpkg.com/@jsonforms/vue2-vuetify/-/vue2-vuetify-3.0.0-beta.1.1.tgz#1ca911094543f243163a98677eb4573751681ec4"
-  integrity sha512-cu4nrpTQt1k9rx18+BwpCpjx2bd/TGIg8QuE/IrsslMyBZakHnh0SldEE6H3EnW0oru9ivYcHTZSL1k1mmhETQ==
+"@jsonforms/vue2-vuetify@^3.0.0-beta.2":
+  version "3.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@jsonforms/vue2-vuetify/-/vue2-vuetify-3.0.0-beta.2.tgz#c16a4cafeb406ec753cc303cf5e3667bb2598544"
+  integrity sha512-hfirZGT7qPjtF/j45VztNMJN2jkp6zACddNI3UMJY7S6lK2DFrPeTzIQIPzP8SNph23M2+h9HlrGo9DWPOo7Yg==
   dependencies:
     ajv "^8.6.1"
     dayjs "^1.10.6"
     lodash "^4.17.15"
 
-"@jsonforms/vue2@^3.0.0-beta.1":
-  version "3.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@jsonforms/vue2/-/vue2-3.0.0-beta.1.tgz#ba78971d06b17b98dcc34de55ca894a8e49ee331"
-  integrity sha512-VwnXqOBv3wj+E46VX3LUaQ75CCGeP8nzLWwAW5UpXiz4NNn9E4P4UoImJGDxTwS3lcynSeaVjh5JQ7zrqpkP8g==
+"@jsonforms/vue2@^3.0.0-beta.2":
+  version "3.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@jsonforms/vue2/-/vue2-3.0.0-beta.3.tgz#7d70ffc32a69a3847bf6f5a97d3aed65bceca2b9"
+  integrity sha512-K3Z1P2D1fdPscDJ2eg9D0v39UM/h63Jg/EgANXIJvkvJmOQDaljqAVZN2dSpQAbs3b7Zo26BZmzLye3Ti9sgZg==
   dependencies:
     lodash "^4.17.15"
 

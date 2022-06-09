@@ -211,15 +211,11 @@ const cat3 = {
               type: 'HorizontalLayout',
               elements: [
                 {
-                  label: 'Name',
                   type: 'Control',
-                  scope: '#/properties/name'
+                  scope: '#/properties/name',
+                  options: {}
                 },
-                {
-                  type: 'Control',
-                  label: 'Identifier',
-                  scope: '#/properties/identifier'
-                }
+
               ]
             }
           }
@@ -258,13 +254,10 @@ const cat3 = {
           scope: '#/properties/dependencies',
           options: {
             detail: {
+              showUnfocusedDescription: true,
               type: 'HorizontalLayout',
               elements: [
-                {
-                  label: 'Name',
-                  type: 'Control',
-                  scope: '#/properties/name'
-                },
+
                 {
                   label: 'Value',
                   type: 'Control',
