@@ -108,6 +108,10 @@ export default {
 
 <style>
 
+.theme--light.v-label {
+    color: #000;
+}
+
 /* limit the overall content width to control the layout */
 .v-application--wrap > .v-main {
     width: 100%;
