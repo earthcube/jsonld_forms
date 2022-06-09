@@ -195,13 +195,23 @@ export default {
   position: relative !important;
   padding-top: .5rem !important;
 }
-.v-messages{
-/*
-    position: absolute !important;
-    top: 0;
-*/
-/*  display: none; */
+
+.v-messages {
+    order: 100;
+/*    display: none; */
 }
+.v-messages .v-messages__message:not(:empty) {
+    display: block;
+    max-width: 620px;
+
+    color: #E09500;
+
+    margin-top: .5rem;
+    margin-bottom: 1rem;
+
+    line-height: 130% !important;
+}
+
 .array-list-label{
   font-size: 16px  !important;
   font-weight: normal  !important;

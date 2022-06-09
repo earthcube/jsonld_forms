@@ -396,12 +396,10 @@ export const entry: JsonFormsRendererRegistryEntry = {
     margin-top: 1rem;
     margin-left: -0.5rem;
 }
-.add_button button:hover {
-    color: #f00;
-}
 
-.remove_button button:hover {
-    color: #f00;
+.remove_button button .v-icon {
+    /* made a bit darker to compensate for row background grey */
+    color: #d2d2d2 !important;
 }
 
 .v-select__selections {

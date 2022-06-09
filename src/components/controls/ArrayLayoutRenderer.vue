@@ -11,34 +11,13 @@
 <!--        />-->
         <v-messages :value="[control.description]"></v-messages>
         <v-spacer></v-spacer>
-
-        <v-tooltip bottom>
-          <template v-slot:activator="{ on: onTooltip }">
-            <v-btn
-              fab
-              text
-              elevation="0"
-              small
-              :aria-label="`Add to ${control.label}`"
-              v-on="onTooltip"
-              :class="styles.arrayList.addButton"
-              :disabled="
-                !control.enabled ||
-                (appliedOptions.restrict &&
-                  arraySchema !== undefined &&
-                  arraySchema.maxItems !== undefined &&
-                  control.data.length >= arraySchema.maxItems)
-              "
-              @click="addButtonClick"
-            >
-              <v-icon>mdi-plus</v-icon>
-            </v-btn>
-          </template>
-          {{ `Add to ${control.label}` }}
-        </v-tooltip>
       </v-toolbar>
     </v-card-title>
     <v-card-text>
+     <v-container v-if="noData" :class="styles.arrayList.noData">
+        No data
+      </v-container>
+
       <v-container justify-space-around align-content-center>
         <v-row justify="center">
           <v-expansion-panels accordion focusable v-model="currentlyExpanded">
@@ -47,8 +26,8 @@
               :key="`${control.path}-${index}`"
               :class="styles.arrayList.item"
             >
-              <v-expansion-panel-header :class="styles.arrayList.itemHeader">
-                <v-container py-0>
+              <v-expansion-panel-header :class="styles.arrayList.itemHeader" class="pl-5 pt-0 pb-2">
+                <v-container py-0 pa-0>
                   <v-row
                     :style="`display: grid; grid-template-columns: ${
                       !hideAvatar ? 'min-content' : ''
@@ -58,19 +37,51 @@
                         : ''
                     }`"
                   >
-                    <v-col v-if="!hideAvatar" align-self="center" px-0>
-<!--                      <validation-badge-->
-<!--                        overlap-->
-<!--                        bordered-->
-<!--                        :errors="childErrors(index)"-->
-<!--                      >-->
-<!--                        <v-avatar size="40" aria-label="Index" color="primary"-->
-<!--                          ><span class="primary&#45;&#45;text text&#45;&#45;lighten-5">{{-->
-<!--                            index + 1-->
-<!--                          }}</span></v-avatar-->
-<!--                        >-->
-<!--                      </validation-badge>-->
+                    <v-col align-self="center" class="pl-0">
+                        <div class="remove_button">
+                          <v-tooltip bottom>
+                            <template v-slot:activator="{ on: onTooltip }">
+                              <v-btn
+                                v-on="onTooltip"
+                                fab
+                                text
+                                elevation="0"
+                                small
+                                color="#E2E2E2"
+                                class="v-expansion-panel-header__icon"
+                                aria-label="Delete"
+                                :class="styles.arrayList.itemDelete"
+                                :disabled="
+                                  !control.enabled ||
+                                  (appliedOptions.restrict &&
+                                    arraySchema !== undefined &&
+                                    arraySchema.minItems !== undefined &&
+                                    control.data.length <= arraySchema.minItems)
+                                "
+                                @click.stop.native="suggestToDelete = index"
+                              >
+                                <v-icon class="notranslate">mdi-minus-circle</v-icon>
+                              </v-btn>
+                            </template>
+                            Delete
+                          </v-tooltip>
+                      </div>
                     </v-col>
+<!--
+                    <v-col v-if="!hideAvatar" align-self="center" px-0>
+                      <validation-badge
+                        overlap
+                        bordered
+                        :errors="childErrors(index)"
+                      >
+                        <v-avatar size="40" aria-label="Index" color="primary"
+                          ><span class="primary&#45;&#45;text text&#45;&#45;lighten-5">{{
+                            index + 1
+                          }}</span></v-avatar
+                        >
+                      </validation-badge>
+                    </v-col>
+-->
 
                     <v-col
                       align-self="center"
@@ -128,33 +139,6 @@
                         Move Down
                       </v-tooltip>
                     </v-col>
-                    <v-col align-self="center">
-                      <v-tooltip bottom>
-                        <template v-slot:activator="{ on: onTooltip }">
-                          <v-btn
-                            v-on="onTooltip"
-                            fab
-                            text
-                            elevation="0"
-                            small
-                            class="v-expansion-panel-header__icon"
-                            aria-label="Delete"
-                            :class="styles.arrayList.itemDelete"
-                            :disabled="
-                              !control.enabled ||
-                              (appliedOptions.restrict &&
-                                arraySchema !== undefined &&
-                                arraySchema.minItems !== undefined &&
-                                control.data.length <= arraySchema.minItems)
-                            "
-                            @click.stop.native="suggestToDelete = index"
-                          >
-                            <v-icon class="notranslate">mdi-delete</v-icon>
-                          </v-btn>
-                        </template>
-                        Delete
-                      </v-tooltip>
-                    </v-col>
                   </v-row>
                 </v-container>
               </v-expansion-panel-header>
@@ -171,10 +155,37 @@
             </v-expansion-panel>
           </v-expansion-panels>
         </v-row>
+<v-row>
+        <div class="add_button">
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on: onTooltip }">
+                <v-btn
+                  fab
+                  text
+                  elevation="0"
+                  small
+                  color="#70A5C9"
+                  :aria-label="`Add to ${control.label}`"
+                  v-on="onTooltip"
+                  :class="styles.arrayList.addButton"
+                  :disabled="
+                    !control.enabled ||
+                    (appliedOptions.restrict &&
+                      arraySchema !== undefined &&
+                      arraySchema.maxItems !== undefined &&
+                      control.data.length >= arraySchema.maxItems)
+                  "
+                  @click="addButtonClick"
+                >
+                  <v-icon>mdi-plus-circle</v-icon>
+                </v-btn>
+              </template>
+              {{ `Add to ${control.label}` }}
+            </v-tooltip>
+        </div>
+</v-row>
       </v-container>
-      <v-container v-if="noData" :class="styles.arrayList.noData">
-        No data
-      </v-container></v-card-text
+     </v-card-text
     >
     <v-dialog
       :value="suggestToDelete !== null"
@@ -368,4 +379,15 @@ export const entry: JsonFormsRendererRegistryEntry = {
 .notranslate {
   transform: none !important;
 }
+
+.add_button {
+    margin-top: 1rem;
+    margin-left: .5rem;
+}
+
+.remove_button button .v-icon {
+    /* made a bit darker to compensate for row background grey */
+    color: #d2d2d2 !important;
+}
+
 </style>

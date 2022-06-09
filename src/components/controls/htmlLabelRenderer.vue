@@ -73,7 +73,7 @@ entry = {
 
 <style>
 .highlight {
-  color:#E09500;
+  color: #E09500;
 }
 .readonly {
     font-size: .75rem;
