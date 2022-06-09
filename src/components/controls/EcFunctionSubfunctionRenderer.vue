@@ -358,7 +358,7 @@ export default controlRenderer;
 
 export const entry: JsonFormsRendererRegistryEntry = {
   renderer: controlRenderer,
-  tester: rankWith(6, or(uiTypeIs('EcFunction'), isObjectArrayControl, isPrimitiveArrayControl)),
+  tester: rankWith(5, or(uiTypeIs('EcFunction'), isObjectArrayControl, isPrimitiveArrayControl)),
   //tester: rankWith(5,  uiTypeIs('ArrayString')),
 };
 </script>

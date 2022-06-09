@@ -1217,7 +1217,7 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@jsonforms/core@^3.0.0-beta.2":
+"@jsonforms/core@^3.0.0-beta.3":
   version "3.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/@jsonforms/core/-/core-3.0.0-beta.3.tgz#d9cd19a9782299689e4e15300416794713b57c45"
   integrity sha512-gXCwLgHiTcY8M1bdtEWVYa+lF485NVmk2QycqcNyNdcXM530GF9nzzqXrMIhCBVcyoT6MulDsTlP26wgeuMbFg==
@@ -1236,7 +1236,7 @@
     dayjs "^1.10.6"
     lodash "^4.17.15"
 
-"@jsonforms/vue2@^3.0.0-beta.2":
+"@jsonforms/vue2@^3.0.0-beta.3":
   version "3.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/@jsonforms/vue2/-/vue2-3.0.0-beta.3.tgz#7d70ffc32a69a3847bf6f5a97d3aed65bceca2b9"
   integrity sha512-K3Z1P2D1fdPscDJ2eg9D0v39UM/h63Jg/EgANXIJvkvJmOQDaljqAVZN2dSpQAbs3b7Zo26BZmzLye3Ti9sgZg==

@@ -11,7 +11,7 @@ const cat3 = {
       scope: '#/properties/license',
       options: {
         detail: {
-          type: 'VertialLayout',
+          type: 'VerticalLayout',
           elements: [
             {
               type: 'Control',
@@ -162,7 +162,35 @@ const cat3 = {
                 {
                   label: 'Steward',
                   type: 'Control',
-                  scope: '#/properties/value'
+                  scope: '#/properties/value',
+                  "options": { "elementLabelProp": "name",
+                    "showUnfocusedDescription": true,
+                    "detail": {
+                      "type": "VerticalLayout",
+                      "elements": [
+
+                        {
+                          "label": "Type",
+                          "type": "Control",
+                          "scope": "#/properties/@type"
+
+                        },
+                        {
+                          "label": "Name",
+                          "type": "Control",
+                          "scope": "#/properties/name"
+
+                        },
+                        {
+                          "label": "Identifier",
+                          "type": "Control",
+                          "scope": "#/properties/identifier",
+                          "description":"An Identifier (e.g. ORCID) or identifying property. ",
+
+                        },
+                      ]}
+                  }
+
                 }
               ]
             }
@@ -259,10 +287,38 @@ const cat3 = {
               elements: [
 
                 {
-                  label: 'Value',
+                  label: 'Dependencies',
                   type: 'Control',
-                  scope: '#/properties/value'
-                }
+                  scope: '#/properties/value',
+                  options: {"elementLabelProp": "name",
+                    "showUnfocusedDescription": true,
+                    "detail": {
+                      "type": "VerticalLayout",
+                      "elements": [
+
+                        {
+                          "label": "Type",
+                          "type": "Control",
+                          "scope": "#/properties/@type"
+
+                        },
+                        {
+                          "label": "Name",
+                          "type": "Control",
+                          "scope": "#/properties/name"
+
+                        },
+                        {
+                          "label": "Url",
+                          "type": "Control",
+                          "scope": "#/properties/url",
+                          "description":"An Identifier (e.g. ORCID) or identifying property. ",
+
+                        },
+                      ]}
+                  }
+                },
+
               ]
             }
           }
@@ -276,7 +332,33 @@ const cat3 = {
           label: '6.2 Related Resources',
           scope: '#/properties/isRelatedTo',
           options: {
-            showUnfocusedDescription: true
+            "elementLabelProp": "name",
+
+            showUnfocusedDescription: true,
+            "detail": {
+              "type": "VerticalLayout",
+              "elements": [
+
+                {
+                  "label": "Type",
+                  "type": "Control",
+                  "scope": "#/properties/@type"
+
+                },
+                {
+                  "label": "Name",
+                  "type": "Control",
+                  "scope": "#/properties/name"
+
+                },
+                {
+                  "label": "URL",
+                  "type": "Control",
+                  "scope": "#/properties/url",
+                  "description":"An Identifier (e.g. ORCID) or identifying property. ",
+
+                },
+              ]}
           }
         }
       ]
