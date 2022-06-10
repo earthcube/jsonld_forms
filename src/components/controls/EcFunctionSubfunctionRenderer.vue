@@ -10,7 +10,7 @@
         <!--          :errors="control.childErrors"-->
         <!--        />-->
         <v-spacer></v-spacer>
-
+<!--
         <v-tooltip bottom>
           <template v-slot:activator="{ on: onTooltip }">
             <v-btn
@@ -35,10 +35,26 @@
           </template>
           {{ `Add to ${control.label}` }}
         </v-tooltip>
+-->
       </v-toolbar>
     </v-card-title>
     <v-card-text>
       <v-container justify-space-around align-content-center>
+<!-- if we are planning to have both on screen at the same time, it feels better above the data -->
+<!--
+          <v-combobox
+              v-model="control.data"
+              :items="control.uischema.options.suggestion"
+              label="Select a favorite activity or create a new one"
+              multiple
+              chips
+          >
+          </v-combobox>
+-->
+          <v-container v-if="noData" :class="styles.arrayList.noData">
+            No data
+          </v-container>
+
         <v-row justify="center">
           <v-simple-table class="array-container flex">
             <thead v-if="control.schema.type === 'object'">
@@ -67,24 +83,6 @@
                 :key="`${control.path}-${index}`"
                 :class="styles.arrayList.item"
             >
-              <td
-                  v-for="propName in getValidColumnProps(control.schema)"
-                  :key="
-                    composePaths(
-                      composePaths(control.path, `${index}`),
-                      propName
-                    )
-                  "
-              >
-                <dispatch-renderer
-                    :schema="control.schema"
-                    :uischema="resolveUiSchema(propName)"
-                    :path="composePaths(control.path, `${index}`)"
-                    :enabled="control.enabled"
-                    :renderers="control.renderers"
-                    :cells="control.cells"
-                />
-              </td>
               <td
                   v-if="control.enabled"
                   :class="
@@ -133,49 +131,86 @@
                   </template>
                   Move Down
                 </v-tooltip>
-                <v-tooltip bottom>
-                  <template v-slot:activator="{ on: onTooltip }">
-                    <v-btn
-                        v-on="onTooltip"
-                        fab
-                        text
-                        elevation="0"
-                        small
-                        aria-label="Delete"
-                        :class="styles.arrayList.itemDelete"
-                        :disabled="
-                          !control.enabled ||
-                          (appliedOptions.restrict &&
-                            arraySchema !== undefined &&
-                            arraySchema.minItems !== undefined &&
-                            control.data.length <= arraySchema.minItems)
-                        "
-                        @click.native="removeItemsClick($event, [index])"
-                    >
-                      <v-icon class="notranslate">mdi-delete</v-icon>
-                    </v-btn>
-                  </template>
-                  Delete
-                </v-tooltip>
+
+                <div class="remove_button">
+                    <v-tooltip bottom>
+                      <template v-slot:activator="{ on: onTooltip }">
+                        <v-btn
+                            v-on="onTooltip"
+                            fab
+                            text
+                            elevation="0"
+                            small
+                            color="#E2E2E2"
+                            aria-label="Delete"
+                            :class="styles.arrayList.itemDelete"
+                            :disabled="
+                              !control.enabled ||
+                              (appliedOptions.restrict &&
+                                arraySchema !== undefined &&
+                                arraySchema.minItems !== undefined &&
+                                control.data.length <= arraySchema.minItems)
+                            "
+                            @click.native="removeItemsClick($event, [index])"
+                        >
+                          <v-icon class="notranslate">mdi-minus-circle</v-icon>
+                        </v-btn>
+                      </template>
+                      Delete
+                    </v-tooltip>
+                </div>
+              </td>
+              <td
+                  v-for="propName in getValidColumnProps(control.schema)"
+                  :key="
+                    composePaths(
+                      composePaths(control.path, `${index}`),
+                      propName
+                    )
+                  "
+              >
+                <dispatch-renderer
+                    :schema="control.schema"
+                    :uischema="resolveUiSchema(propName)"
+                    :path="composePaths(control.path, `${index}`)"
+                    :enabled="control.enabled"
+                    :renderers="control.renderers"
+                    :cells="control.cells"
+                />
               </td>
             </tr>
             </tbody>
           </v-simple-table>
         </v-row>
-        <v-row>
-          <v-combobox
-              v-model="control.data"
-              :items="control.uischema.options.suggestion"
-              label="Select a favorite activity or create a new one"
-              multiple
-              chips
 
-          >
-          </v-combobox>
-        </v-row>
-      </v-container>
-      <v-container v-if="noData" :class="styles.arrayList.noData">
-        No data
+        <div class="add_button">
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on: onTooltip }">
+                <v-btn
+                    fab
+                    text
+                    elevation="0"
+                    small
+                    color="#70A5C9"
+                    :aria-label="`Add to ${control.label}`"
+                    v-on="onTooltip"
+                    :class="styles.arrayList.addButton"
+                    :disabled="
+                    !control.enabled ||
+                    (appliedOptions.restrict &&
+                      arraySchema !== undefined &&
+                      arraySchema.maxItems !== undefined &&
+                      control.data.length >= arraySchema.maxItems)
+                  "
+                    @click="addButtonClick"
+                >
+                  <v-icon>mdi-plus-circle</v-icon>
+                </v-btn>
+              </template>
+              {{ `Add to ${control.label}` }}
+            </v-tooltip>
+        </div>
+
       </v-container>
     </v-card-text>
   </v-card>
@@ -323,7 +358,7 @@ export default controlRenderer;
 
 export const entry: JsonFormsRendererRegistryEntry = {
   renderer: controlRenderer,
-  tester: rankWith(6, or(uiTypeIs('EcFunction'), isObjectArrayControl, isPrimitiveArrayControl)),
+  tester: rankWith(5, or(uiTypeIs('EcFunction'), isObjectArrayControl, isPrimitiveArrayControl)),
   //tester: rankWith(5,  uiTypeIs('ArrayString')),
 };
 </script>
@@ -353,4 +388,25 @@ export const entry: JsonFormsRendererRegistryEntry = {
   padding: 0;
   margin: 0;
 }
+
+</style>
+<style>
+
+.add_button {
+    margin-top: 1rem;
+    margin-left: -0.5rem;
+}
+
+.remove_button button .v-icon {
+    /* made a bit darker to compensate for row background grey */
+    color: #d2d2d2 !important;
+}
+
+.v-select__selections {
+    padding: .5rem;
+    background-color: #FBFBFB;
+    border: 1px solid #E2E2E2;
+    border-radius: 4px;
+}
+
 </style>

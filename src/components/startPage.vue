@@ -1,14 +1,22 @@
 <template>
   <v-main>
-    <h2>Forms</h2>
-    <v-list>
-      <v-list-item><router-link to="/ecrr" >Create Resource Description</router-link></v-list-item>
-    </v-list>
+    <div class="padded">
+        <h2>Forms</h2>
+        <v-list>
+          <v-list-item>
+            <v-btn large color="primary" background-color="#18598B" class="create_resource_button" to="/ecrr">Create Resource Description</v-btn>
+<!--            <router-link to="/ecrr" >Create Resource Description</router-link>-->
+          </v-list-item>
+        </v-list>
+    </div>
 
     <v-divider></v-divider>
-    <examples></examples>
-   <list-user-files></list-user-files>
-    <list-registry-files></list-registry-files>
+
+    <div class="padded">
+        <examples></examples>
+        <list-user-files></list-user-files>
+        <list-registry-files></list-registry-files>
+    </div>
   </v-main>
 </template>
 
@@ -27,5 +35,13 @@ export default {
 </script>
 
 <style scoped>
+
+.padded {
+    padding: 1rem;
+}
+
+.create_resource_button {
+    padding: 2em !important;
+}
 
 </style>

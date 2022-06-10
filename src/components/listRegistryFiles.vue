@@ -1,6 +1,7 @@
 <template>
-  <v-container fluid v-if="userItems.length >0">
 
+
+  <v-container fluid ma-0 pa-0>
     <v-data-iterator
         :items="userItems"
         item-key="etag"
@@ -9,76 +10,70 @@
         hide-default-footer
     >
       <template v-slot:header>
-      <v-toolbar
-          class="mb-2"
-          color="indigo darken-5"
-          dark
-          flat
-      >
-        <v-toolbar-title>Published Registry Records</v-toolbar-title>
-      </v-toolbar>
-    </template>
+        <v-toolbar
+            class="mb-2"
+            color="#aaa"
+            dark
+            flat
+        >
+          <v-toolbar-title>Registry Files</v-toolbar-title>
+        </v-toolbar>
+      </template>
 
       <template v-slot:default="props">
-        <v-row>
-          <v-col
-              v-for="item in props.items"
-              :key="item.name"
-              cols="12"
-              sm="6"
-              md="4"
-              lg="3"
-          >
-            <v-card>
-              <v-card-title>
-                  <h4>{{ item.name }}</h4>
-                <v-btn
-                    text
-                    color="primary"
-                    :to="{ name: 'ECRR',
-                   query: { s3file: item.name  }
-                 }"
-                >
-                  Load File
-                </v-btn>
-              </v-card-title>
+        <div class="json_list">
+          <v-card v-for="item in props.items" :key="item.name" :to="{ name: 'ECRR', query: { jsonldfile:item.file }}">
+            <v-card-title>
+              <div class="json_name">{{ item.name }}</div>
+              <div class="button_label">Load File</div>
+              <!--
+              no longer needed as the entire card is clickable
+                                <v-btn
+                                    text
+                                    color="primary"
+                                    :to="{ name: 'ECRR',
+                                query: { jsonldfile:item.file }
+                               }"
+                                >
+                                  Load File
+                                </v-btn>
+              -->
+            </v-card-title>
+          </v-card>
+        </div>
+        <!--
+                  <v-row>
+                    <v-col
+                        v-for="item in props.items"
+                        :key="item.name"
+                        cols="12"
+                        sm="6"
+                        md="4"
+                        lg="3"
+                    >
+                      <v-card>
+                        <v-card-title>
+                          <h4>{{ item.name }}</h4>
+                          <v-btn
+                              text
+                              color="primary"
+                              :to="{ name: 'ECRR',
+                          query: { jsonldfile:item.file }
+                         }"
+                          >
+                            Load File
+                          </v-btn>
+                        </v-card-title>
 
-              <v-divider></v-divider>
-              <v-list
-                  dense
-              >
-                <v-list-item v-if="item.path">
-                  <v-list-item-content>Path:</v-list-item-content>
-                  <v-list-item-content class="align-end">
-                    {{ item.path }}
-                  </v-list-item-content>
-                </v-list-item>
-                <v-list-item>
-                  <v-list-item-content>last Modified:</v-list-item-content>
-                  <v-list-item-content class="align-end">
-                    {{ item.lastModified }}
-                  </v-list-item-content>
-                </v-list-item>
-                <v-list-item>
-                  <v-list-item-content>Metadata:</v-list-item-content>
-                  <v-list-item-content class="align-end">
-                    {{ item.metadata }}
-                  </v-list-item-content>
-                </v-list-item>
-                <v-list-item>
-                  <v-list-item-content>Size:</v-list-item-content>
-                  <v-list-item-content class="align-end">
-                    {{ item.size }}
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
-            </v-card>
-          </v-col>
-        </v-row>
+
+                      </v-card>
+                    </v-col>
+                  </v-row>
+        -->
       </template>
       <template v-slot:footer>
         <v-row
-            class="mt-2"
+            class="mt-4"
             align="center"
             justify="center"
         >
@@ -88,7 +83,7 @@
               <v-btn
                   dark
                   text
-                  color="primary"
+                  color="#18598B"
                   class="ml-2"
                   v-bind="attrs"
                   v-on="on"
@@ -119,7 +114,7 @@
           <v-btn
               fab
               dark
-              color="blue darken-3"
+              color="#18598B"
               class="mr-1"
               @click="formerPage"
           >
@@ -128,7 +123,7 @@
           <v-btn
               fab
               dark
-              color="blue darken-3"
+              color="#18598B"
               class="ml-1"
               @click="nextPage"
           >
@@ -200,5 +195,58 @@ export default {
 </script>
 
 <style scoped>
+.json_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
 
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+}
+
+.json_list > .v-card {
+  width: 100%;
+  min-height: 160px;
+  transition: transform .2s ease-out;
+}
+
+.json_list > .v-card:hover {
+  color: #fff;
+  background-color: #18598B;
+
+  transform: scale(1.08);
+  z-index: 1000;
+}
+
+.json_list > .v-card .v-card__title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  height: 100%;
+
+  line-height: 120%;
+}
+
+.json_list > .v-card .json_name {
+  flex-grow: 1;
+  font-size: 1.1rem;
+}
+
+.json_list > .v-card .button_label {
+  font-size: .85rem;
+  text-transform: uppercase;
+}
+
+@media (min-width: 600px) {
+  .json_list > .v-card {
+    width: 48%;
+  }
+}
+@media (min-width: 1000px) {
+  .json_list > .v-card {
+    width: 32%;
+  }
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
   <v-container fluid v-if="control.visible">
+<!--
     <v-row>
-
       <div class="text-center">
         <v-chip v-for="l in this.control.data " :key="l.name"
                 class="ma-2"
@@ -27,6 +27,30 @@
         ></v-checkbox>
       </v-col>
     </v-row>
+-->
+    <div class="chip_list">
+        <v-chip v-for="l in this.control.data " :key="l.name"
+                class="ma-2"
+                close
+                @click:close="toggle(l)"
+        >
+          {{ l.name }}
+        </v-chip>
+    </div>
+
+    <div class="multiple_columns">
+        <v-checkbox v-for="(o, index) in control.options" :key="o.value.name"
+          :label="o.label"
+          :input-value="dataHasEnum(o.value)"
+          :id="control.id + `-input-${index}`"
+          :path="composePaths(control.path, `${index}`)"
+          :error-messages="control.errors"
+          :disabled="!control.enabled"
+          :indeterminate="control.data === undefined"
+          v-bind="vuetifyProps(`v-checkbox[${o.value}]`)"
+          @change="(value) => toggle(o.value, value)"
+        ></v-checkbox>
+    </div>
   </v-container>
 </template>
 
@@ -197,3 +221,71 @@ export const entry: JsonFormsRendererRegistryEntry = {
   ),
 };
 </script>
+
+
+<style>
+.multiple_columns {
+    margin-top: .5rem;
+}
+
+@media (min-width: 960px) {
+    .multiple_columns {
+        column-count: 2;
+        column-width: 50%;
+        column-gap: 4rem;
+        column-rule: 1px solid #ddd;
+    }
+
+    .multiple_columns .v-input--checkbox {
+         /* hack needed to fix chrome from clipping the checkboxes */
+        display: inline-block;
+        width: 100%;
+
+        margin-top: 0px !important;
+    }
+}
+
+.chip_list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.v-chip {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.v-chip .v-chip__content {
+    display: block;
+    max-width: 420px;
+    height: auto;
+
+    /* enough room for the close icon */
+    padding-right: 15px;
+
+    overflow: hidden;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.v-application--is-ltr .v-chip .v-chip__close.v-icon.v-icon--right {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    z-index: 100;
+
+    margin-right: 0;
+    transform: translate(0%, -50%);
+}
+
+.v-input--selection-controls {
+    margin-top: .5rem;
+}
+
+.v-input--checkbox label {
+    font-weight: normal;
+}
+
+</style>

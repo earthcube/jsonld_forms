@@ -185,7 +185,7 @@
             "value":[ {
                 "@type": "Person",
                 "name": "person, Megan Scanderbeg Argo Data Management Team",
-                "url": "https://orcid.org/0000-0002-0398-7272"
+                "identifier": "https://orcid.org/0000-0002-0398-7272"
             } ]
         },
         {
