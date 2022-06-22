@@ -7,7 +7,8 @@
   >
     <v-expansion-panel-header v-if="layout.uischema.label" :class="styles.group.label">
       <template v-slot:actions>
-        <v-icon class="icon" small>$expand</v-icon>
+        <v-icon class="icon" color="#18598B" small>mdi-plus</v-icon>
+        <!--<v-icon class="icon" small>$expand</v-icon>-->
       </template>
       <span class="header"> {{
           layout.uischema.label
@@ -78,25 +79,50 @@ export const entry: JsonFormsRendererRegistryEntry = {
 <style >
 .icon {
   order: 0;
+  color: #18598B;
 }
 
 .header {
   order: 1;
-  font-size: 0.8em;
-  color: blue;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #18598B;
 }
+
+.additionalgroup {
+    margin-top: 0rem;
+}
+
+/* addition group blocks */
+.additionalgroup .v-expansion-panel-header {
+    min-height: auto;
+    padding: .5rem;
+}
+
 .additionalgroup .group-item {
   border-left-color: #D4E4EF;
-  border-left-width: 2em;
+  border-left-width: 10px;
   border-left-style: solid;
-
+  margin-left: .7rem;
 }
+
+.v-expansion-panel-content__wrap {
+    padding-left: .75rem;
+}
+
 .array-list-add .v-button__content {
   order: 0;
   left: 0;
   padding: 0px;
 }
-.array-list-toolbar .array-list-label, .array-list-toolbar .spacer{
+
+.array-list-label {
+    font-size: .8rem !important;
+    font-weight: bold !important;
+}
+
+.array-list-toolbar .array-list-label,
+.array-list-toolbar .spacer{
   order: 8;
   padding-left: -16px;
 

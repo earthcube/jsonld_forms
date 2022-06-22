@@ -71,8 +71,32 @@ entry = {
 
 </script>
 
-<style scoped>
+<style>
 .highlight {
-  color:peru;
+  color: #E09500;
+}
+.readonly {
+    font-size: .75rem;
+    text-transform: uppercase;
+    color: #aaa;
+}
+
+/* main label is bold, secondary is normal */
+.v-label {
+/*    font-weight: bold; */
+}
+.v-label div:not(:empty) {
+    margin-top: .5rem;
+/*    font-weight: normal; */
+    font-size: .85rem;
+}
+
+/* field label when active or has value */
+.v-label.v-label--active {
+    display: none;
+}
+
+.v-input__control label {
+    margin-left: .5rem;
 }
 </style>

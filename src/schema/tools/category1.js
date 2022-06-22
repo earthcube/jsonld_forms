@@ -9,7 +9,7 @@
           "elements": [
             {
               "type": "Label",
-              "text": "1.1.1 Short Name for the <span style='color:peru;'>Resource</span>",
+              "text": "1.1.1 Short Name for the <span class='highlight'>Resource</span>",
 
             },
             {
@@ -45,7 +45,7 @@
               "elements": [
                 {
                   "type": "Label",
-                  "text": "1.1.2 <span style='color:peru;'> Identifier </span> Readonly"
+                  "text": "1.1.2 <span class='highlight'> Identifier </span> <span class='readonly'>(Readonly)</span>"
                 },
                 {
                   "label": "Identifier",
@@ -204,7 +204,7 @@
                     "elementLabelProp": "url",
                     "showUnfocusedDescription": true,
                     "detail" : {
-                      "type": "HorizontalLayout",
+                      "type": "VerticalLayout",
                       "elements": [
 
                         {
@@ -299,17 +299,42 @@
                         {
                           "type": "ShowGroup",
                           "label": "Add Responsible Parties",
-                          "decription":"Persons or organizations with roles in the creation of the resource content, e.g. Creator, Editor, Contributor... ",
+                          "description":"Persons or organizations with roles in the creation of the resource content, e.g. Creator, Editor, Contributor... ",
                           "elements": [
 
                             {
                               "type": "Control",
                               "label": "1.3.1.1 Creator",
                               "scope": "#/properties/creator",
-                              "options": { "elementLabelProp": "name",
-                                "showUnfocusedDescription": true
+                              "options": {
+                                "elementLabelProp": "name",
+                                "showUnfocusedDescription": true,
+                                "detail": {
+                                  "type": "VerticalLayout",
+                                  "elements": [
 
+                                    {
+                                      "label": "Type",
+                                      "type": "Control",
+                                      "scope": "#/properties/@type"
+
+                                    },
+                                    {
+                                      "label": "Name",
+                                      "type": "Control",
+                                      "scope": "#/properties/name"
+
+                                    },
+                                    {
+                                      "label": "Identifier",
+                                      "type": "Control",
+                                      "scope": "#/properties/identifier",
+                                      "description":"An Identifier (e.g. ORCID) or identifying property. ",
+
+                                    },
+                                  ]}
                               }
+
                             },
                              {
                               "type": "Label",
@@ -322,7 +347,7 @@
                               "options": {"elementLabelProp": "name",
                                 "showUnfocusedDescription": true,
                                 "detail": {
-                                        "type": "HorizontalLayout",
+                                        "type": "VerticalLayout",
                                         "elements": [
 
                                           {
@@ -341,7 +366,7 @@
                                             "label": "Identifier",
                                             "type": "Control",
                                             "scope": "#/properties/identifier",
-                                               "decription":"An Identifier (e.g. DOI) or standard academic citation for publication that specifies or describes the resource. ",
+                                               "description":"An Identifier (e.g. DOI) or standard academic citation for publication that specifies or describes the resource. ",
 
                                           },
                                           ]}
@@ -351,16 +376,64 @@
                               "type": "Control",
                               "label": "1.3.1.1 contributor",
                               "scope": "#/properties/contributor",
-                              "options": {"elementLabelProp": "name",
-                                "showUnfocusedDescription": true
+                              "options": { "elementLabelProp": "name",
+                                "showUnfocusedDescription": true,
+                                "detail": {
+                                  "type": "VerticalLayout",
+                                  "elements": [
+
+                                    {
+                                      "label": "Type",
+                                      "type": "Control",
+                                      "scope": "#/properties/@type"
+
+                                    },
+                                    {
+                                      "label": "Name",
+                                      "type": "Control",
+                                      "scope": "#/properties/name"
+
+                                    },
+                                    {
+                                      "label": "Identifier",
+                                      "type": "Control",
+                                      "scope": "#/properties/identifier",
+                                      "description":"An Identifier (e.g. ORCID) or identifying property. ",
+
+                                    },
+                                  ]}
                               }
                             },
                             {
                               "type": "Control",
                               "label": "1.3.1.1 editor",
                               "scope": "#/properties/editor",
-                              "options": {"elementLabelProp": "name",
-                                "showUnfocusedDescription": true
+                              "options": { "elementLabelProp": "name",
+                                "showUnfocusedDescription": true,
+                                "detail": {
+                                  "type": "VerticalLayout",
+                                  "elements": [
+
+                                    {
+                                      "label": "Type",
+                                      "type": "Control",
+                                      "scope": "#/properties/@type"
+
+                                    },
+                                    {
+                                      "label": "Name",
+                                      "type": "Control",
+                                      "scope": "#/properties/name"
+
+                                    },
+                                    {
+                                      "label": "Identifier",
+                                      "type": "Control",
+                                      "scope": "#/properties/identifier",
+                                      "description":"An Identifier (e.g. ORCID) or identifying property. ",
+
+                                    },
+                                  ]}
                               }
                             },
 
@@ -368,8 +441,32 @@
                               "type": "Control",
                               "label": "1.3.1.1 developer",
                               "scope": "#/properties/developer",
-                              "options": {"elementLabelProp": "name",
-                                "showUnfocusedDescription": true
+                              "options": { "elementLabelProp": "name",
+                                "showUnfocusedDescription": true,
+                                "detail": {
+                                  "type": "VerticalLayout",
+                                  "elements": [
+
+                                    {
+                                      "label": "Type",
+                                      "type": "Control",
+                                      "scope": "#/properties/@type"
+
+                                    },
+                                    {
+                                      "label": "Name",
+                                      "type": "Control",
+                                      "scope": "#/properties/name"
+
+                                    },
+                                    {
+                                      "label": "Identifier",
+                                      "type": "Control",
+                                      "scope": "#/properties/identifier",
+                                      "description":"An Identifier (e.g. ORCID) or identifying property. ",
+
+                                    },
+                                  ]}
                               }
                             },
                              ]

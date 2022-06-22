@@ -57,12 +57,17 @@
             "identifier": "undefined"
         }
     ],
-    "funder": [
+    "funding": [
         {
-            "@type": "Organization",
-            "name": "US National Science Foundation (US NSF)",
-            "identifier": "https://ror.org/021nxhr62"
+            "@type": "Grant",
+            "name": "NSF Grant",
+            "funder":  {
+                "@type": "Organization",
+                "name": "US National Science Foundation (US NSF)",
+                "identifier": "https://ror.org/021nxhr62"
+            }
         }
+
     ],
     "audience": [
         {
@@ -180,7 +185,7 @@
             "value":[ {
                 "@type": "Person",
                 "name": "person, Megan Scanderbeg Argo Data Management Team",
-                "url": "https://orcid.org/0000-0002-0398-7272"
+                "identifier": "https://orcid.org/0000-0002-0398-7272"
             } ]
         },
         {

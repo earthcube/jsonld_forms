@@ -12,15 +12,14 @@
   />
       <v-spacer></v-spacer>
       <v-divider></v-divider>
-    <v-footer class="d-flex">
-      <span> <JsonViewer :json="jsonldObj" name="form JSON">
-      </JsonViewer>
-      </span>
-      <span>
-         <JsonViewer :json="unflattenLocal(jsonldObj)" name="JSON-LD">
-      </JsonViewer>
 
-      </span>
+    <v-footer class="json_footer">
+      <div>
+        <JsonViewer :json="jsonldObj" name="form JSON"></JsonViewer>
+      </div>
+      <div>
+         <JsonViewer :json="unflattenLocal(jsonldObj)" name="JSON-LD"></JsonViewer>
+      </div>
 
       <save-files :json="jsonldObj" :originalName="filename"></save-files>
     </v-footer>
@@ -37,9 +36,9 @@ import 'vue-json-pretty/lib/styles.css';
 
 
 import {default as saveFiles} from './controls/saveJson'
-import { default as schema, schemaWithEnum , flattenList} from '../schema/tools/ecrr_jsonschema_1_0' ;
+import { default as schema, schemaWithEnum , flattenList} from '../schema/tools/ecrr_jsonschema_1_1' ;
 
-import uischema from '../schema/tools/ecrr_1_0_uischema';
+import uischema from '../schema/tools/ecrr_1_1_uischema';
 // @ts-ignore
 const baseJsonLdObj = require('../assets/basefiles/tools/ecrrempty.json');
 
@@ -47,8 +46,9 @@ import {entry as AltGroupRenderer} from './controls/AdditionalDetailsRenderer'
 import {entry as HtmlLabelRender } from './controls/htmlLabelRenderer'
 import {entry as ArrayOfStringRenderer} from './controls/ArrayOfStringRenderer'
 import {entry as ArrayControlStringRenderer} from './controls/ArrayControlStringRenderer'
-//import {arrayOverride} from '../arrayOverride'
-import {entry as EnumArrayRenderer } from './controls/EnumArrayObjectRenderer'
+import {entry as ArrayLayoutRenderer} from './controls/ArrayLayoutRenderer'
+import {entry as EnumArrayObjectRenderer } from './controls/EnumArrayObjectRenderer'
+import {entry as EcFunctionsRenderer} from './controls/EcFunctionSubfunctionRenderer'
 
 import {default as JsonViewer} from './viewJson'
 import {createAjv} from "@jsonforms/core";
@@ -69,8 +69,10 @@ const renderers = [
   HtmlLabelRender,
   ArrayOfStringRenderer,
   ArrayControlStringRenderer,
- // arrayOverride,
-  EnumArrayRenderer,
+  ArrayLayoutRenderer,
+  EnumArrayObjectRenderer,
+  EcFunctionsRenderer
+
 ];
 
 const tool = defineComponent({
@@ -196,6 +198,17 @@ export default tool
 </script>
 
 <style>
+
+.json_footer {
+    display: flex;
+    align-items: center;
+
+    margin-top: 3rem;
+    padding: 1rem;
+
+    background: none !important;
+}
+
 .icon {
   order: 0;
 }

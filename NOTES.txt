@@ -1,5 +1,28 @@
 
 Notes:
+
+ui notes 20220415
+add min width to license list.
+
+labels add padding to get away from slot
+
+padding between sections, list 2 and three to create visual hierachry.
+
+separte content bewteen
+
+tight 1,1,1
+connect
+
+
+downdown menu in function should be a plus button.
+
+by default down.
+
+
+software.
+protocol nodata has an extra container
+
+====
 ECRR documents:
 
 The examples are in:

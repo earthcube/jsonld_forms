@@ -9,9 +9,9 @@
     "clean": "rimraf dist"
   },
   "dependencies": {
-    "@jsonforms/core": "^3.0.0-beta.1",
-    "@jsonforms/vue2": "^3.0.0-beta.1",
-    "@jsonforms/vue2-vuetify": "^3.0.0-beta.1.1",
+    "@jsonforms/core": "^3.0.0-beta.3",
+    "@jsonforms/vue2": "^3.0.0-beta.3",
+    "@jsonforms/vue2-vuetify": "^3.0.0-beta.2",
     "@types/lodash": "^4.14.179",
     "@vue/composition-api": "^1.4.6",
     "core-js": "^3.6.5",
@@ -42,6 +42,7 @@
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^10.0.0",
     "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.5",
     "csv-loader": "^3.0.3",
     "deepmerge": "^4.2.2",
     "eslint": "^6.7.2",
