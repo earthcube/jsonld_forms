@@ -7,16 +7,14 @@
         {
           "type": "VerticalLayout",
           "elements": [
-            {
-              "type": "Label",
-              "text": "1.1.1 Short Name for the <span class='highlight'>Resource</span>",
-
+            { "type": "Label",
+              "text": "Short Name for the <span class='highlight'>Resource</span>",
             },
             {
-              "label": " Name",
+              "label": "Name",
               "type": "Control",
               "scope": "#/properties/name",
-            "description": "Alternate names by which the resource might be known or discovered.",
+              "description": "Name by which the resource might be known or discovered.",
               "options": {
                 "showUnfocusedDescription": true
               }
@@ -25,15 +23,12 @@
               "type": "ShowGroup",
               "label": "Add Additional Names",
               "elements": [
-
-                {
-                    // "type": "Control",
-                   "type": "Control",
-                  "label": "1.1.1.1 Alternate Resource Name(s)",
-                  "description": "URL to access information about the resource on the Web.",
+                { "type": "Control",
+                  "label": "Alternate Resource Name(s)",
+                  "description": "Other names by which the resource might be known or discovered.",
                   "scope": "#/properties/alternateName",
                   "options": {
-                    "showUnfocusedDescription": true
+                  "showUnfocusedDescription": true
                   }
                 }
               ]
@@ -41,115 +36,50 @@
 
             {
               "type": "ShowGroup",
-              "label": "Add Additional Identifiers",
+              "label": "Identifiers",
               "elements": [
-                {
-                  "type": "Label",
-                  "text": "1.1.2 <span class='highlight'> Identifier </span> <span class='readonly'>(Readonly)</span>"
+                {"type": "Label",
+                  "text": "<span class='highlight'> Metadata record identifier </span> <span class='readonly'>(Readonly)</span>"
                 },
-                {
+                {"type": "Control",
                   "label": "Identifier",
-                  "type": "Control",
                   "scope": "#/properties/@id",
-
+                  //display the ARK identifier for the metadata record
                   "options": {
                     "showUnfocusedDescription": true,
                     "readonly": true,
-                      "elementLabelProp": "value",
-                      "detail" : {
-                                              "type": "HorizontalLayout",
-                        "elements": [
-                          {
-                            "label": "Indentifier",
-                            "type": "Control",
-                            "scope": "#/properties/value"
-                          },
-                          {
-                            "label": "Type",
-                            "type": "Control",
-                            "scope": "#/properties/propertyID"
-                          },
-                          {
-                            "label": "PropertyName",
-                            "type": "Control",
-                            "scope": "#/properties/name"
-                          }
-                         ]
-                       }
+                    "elementLabelProp": "value"
+                    /*     ,             "detail" : {"type": "HorizontalLayout",
+,                                          *                        "elements": [
+                                           *  {
+                                           *    "label": "Indentifier",
+                                           *    "type": "Control",
+                                           *    "scope": "#/properties/value"
+                                           *  },
+                                           *  {
+                                           *    "label": "Type",
+                                           *    "type": "Control",
+                                           *    "scope": "#/properties/propertyID"
+                                           *  },
+                                           *  {
+                                           *    "label": "PropertyName",
+                                           *    "type": "Control",
+                                           *    "scope": "#/properties/name"
+                                           *  }
+                                           * ]
+
+                                         }*/
 
                     }
 
               },
-//                 { "type": "Control",
-//                 "label":"PropertyTest Additional Identifiers" ,
-//                 "scope": "#/properties/identifier",
-//                 },
-//                                 { "type": "JsonLdProperty",
-//                                 "label":"PropertyTest Additional Identifiers" ,
-//                                 "scope": "#/properties/identifiersTest",
-//                                 }
 
-            {
-              type: 'Control',
-              label: '1.1.1.1 Additional Identifiers',
-
+            {type: 'Control',
+              label: 'Identifiers',
+              description:"any identifiers associated with the resource, e.g. DOI",
               scope: '#/properties/identifier',
               options: {
-                showUnfocusedDescription: true
-
-                //                      // "elementLabelProp": "value",
-                //                       //"elementLabelProp": [ "value", "#", "Not Set"],
-                //                      // "detail": "Generated"
-                //                       "detail" : {
-                //                         "type": "HorizontalLayout",
-                //                         "elements": [
-                // //                          {
-                // //                             "label": "Type",
-                // //                             "type": "Control",
-                // //                             "scope": "#/properties/@type",
-                // //                             "rule": {
-                // //                                 "effect": "HIDE",
-                // //                                 "condition": {
-                // //                                   "schema": {
-                // //                                     "const": true
-                // //                                   }
-                // //                                 }
-                // //                               }
-                // //
-                // //                           },
-                // //                             {
-                // //                                                       "label": "Indentifier",
-                // //                                                       "type": "Control",
-                // //                                                       "scope": "#"
-                // //                                                     },
-                //                                                     {
-                //                             "label": "Indentifier",
-                //                             "type": "Control",
-                //                             "scope": "#/properties/value"
-                //                           },
-                //                           {
-                //                             "label": "Type",
-                //                             "type": "Control",
-                //                             "scope": "#/properties/propertyID",
-                //                             "options": {
-                //                                 "suggestion":["DOI", "PURL"]
-                //                             }
-                //
-                //                           },
-                //                           {
-                //                             "label": "PropertyName",
-                //                             "type": "Control",
-                //                             "scope": "#/properties/name",
-                //                             "options": {
-                //                                                             "suggestion":["DOI", "PURL"]
-                //                                                         }
-                //
-                //                           }
-                //                         ]
-                //
-                //
-                //                     }
-              }
+              showUnfocusedDescription: true     }
             }
           ]
         }
@@ -162,8 +92,8 @@
           "elements": [
             {
               "type": "Label",
-              "text": "1.2.1 Description",
-              "decription": "Please provide as much detail as possible, so that we can automatically extract additional information, and search engine text indexing will provide useful results. Feel free to copy and paste from respective web sites, papers, reports, etc.",
+              "text": "Description",
+              "description": "Please provide as much detail as possible, so that we can automatically extract additional information, and search engine text indexing will provide useful results. Feel free to copy and paste from respective web sites, papers, reports, etc.",
             },
             {
               "type": "Control",
@@ -177,15 +107,15 @@
 
             {
               "type": "ShowGroup",
-              "label": "Add Reccomended Details",
+              "label": "Recommended Details",
               "elements": [
                 {
                   "type": "Label",
-                  "text": "1.2.0.1 Date"
+                  "text": "Date"
                 },
                 {
                   "type": "Control",
-                  "label": "Publication Date of Most Recent Release. This will be formated at YYYY-MM-DD in the output",
+                  "label": "Publication Date of Most Recent Release. This will be formatted as YYYY-MM-DD in the output",
                   "scope": "#/properties/datePublished",
                   "options": {
                     "showUnfocusedDescription": true
@@ -193,12 +123,11 @@
                 },
                 {
                   "type": "Label",
-                  "text": "1.2.0.1 URL to User Readable Page",
-                  "description": "URL to access information about the resource on the Web.",
+                  "text": "URL to User Readable Page"
                 },
                 {
                   "type": "Control",
-                  "label": "URL to User-Readable Page",
+                  "description": "URL to access information about the resource on the Web.",
                   "scope": "#/properties/subjectOf",
                   "options": {
                     "elementLabelProp": "url",
@@ -206,18 +135,15 @@
                     "detail" : {
                       "type": "VerticalLayout",
                       "elements": [
-
                         {
                           "label": "URL",
                           "type": "Control",
                           "scope": "#/properties/url"
-
                         },
-                        {
+                        { "type": "Control",
                           "label": "Description",
-                          "description": "Some suggestions",
-                          "type": "Control",
-                          "scope": "#/properties/name",
+                          "description": "Some suggested link labels",
+                          "scope": "#/properties/linkRelationship",
                           "options": {
                             "suggestion": [
                               "DOI Landing Page",
@@ -228,15 +154,13 @@
                           }
                         }
                       ]
-
-
                     }
                   }
                 },
 
                 {
                   "type": "Label",
-                  "text": "1.2.3 Keywords",
+                  "text": "Keywords",
                   "description": "use words or phrases you would expect searchers to enter into search engines.",
                 },
                 {
@@ -256,25 +180,13 @@
           "elements": [
             {
               "type": "Label",
-              "text": "1.3.1 Citation",
-              "decription":"Please provide a recommended citation to reference this resource in publications, using a standard bibliographic format"
+              "text": "Citation",
+              "description":"Please provide a recommended citation to reference this resource in publications, using a standard bibliographic format"
             },
-              /* citation is an additional propery
-              {
- "@type": "PropertyValue",
-  "propertyID": "dc:BibliographicCitation",
-"name": "Bibligraphic citation",
-"value":"IRIS, no date, SAC Data File Format, http://ds.iris.edu/files/sac-manual/manual/file_format.html"
-  },
-
-               */
         {
           type: 'Control',
-          scope: '#/properties/dc:BibliographicCitation',
-
-              //    "scope": "#/properties/additionalProperty/items/anyOf/0/",
+          scope: '#/properties/dct:bibliographicCitation',
               "options": {
-
                 "showUnfocusedDescription": true,
                 "elementLabelProp": "value",
                 "detail" : {
@@ -287,12 +199,10 @@
                       "scope": "#/properties/value",
                       "options":{
                       "multi": true,
-                                                 "showUnfocusedDescription": true
+                      "showUnfocusedDescription": true
                       }
                     }
                   ]
-
-
                 }
               }
             },
@@ -304,7 +214,8 @@
 
                             {
                               "type": "Control",
-                              "label": "1.3.1.1 Creator",
+                              "label": "Creator or Author",
+                              "description":"one or more person or organization entities responsible for the intellectual content of the resource",
                               "scope": "#/properties/creator",
                               "options": {
                                 "elementLabelProp": "name",
@@ -312,25 +223,18 @@
                                 "detail": {
                                   "type": "VerticalLayout",
                                   "elements": [
-
-                                    {
-                                      "label": "Type",
+                                    {"label": "Type",
                                       "type": "Control",
                                       "scope": "#/properties/@type"
-
                                     },
-                                    {
-                                      "label": "Name",
+                                    {"label": "Name",
                                       "type": "Control",
                                       "scope": "#/properties/name"
-
                                     },
-                                    {
-                                      "label": "Identifier",
+                                    {"label": "Identifier",
                                       "type": "Control",
                                       "scope": "#/properties/identifier",
-                                      "description":"An Identifier (e.g. ORCID) or identifying property. ",
-
+                                      "description":"An Identifier (e.g. ORCID) or identifying property. "
                                     },
                                   ]}
                               }
@@ -338,11 +242,13 @@
                             },
                              {
                               "type": "Label",
-                              "text": "1.3.1.1 publisher"
+                              "text": "Publisher",
+                               "description":"person or organization that makes the resource available"
                             },
                             {
                               "type": "Control",
-                              "label": "1.3.1.1 publisher",
+                              "label": "Publisher",
+
                               "scope": "#/properties/publisher",
                               "options": {"elementLabelProp": "name",
                                 "showUnfocusedDescription": true,
@@ -365,8 +271,7 @@
                                              {
                                             "label": "Identifier",
                                             "type": "Control",
-                                            "scope": "#/properties/identifier",
-                                               "description":"An Identifier (e.g. DOI) or standard academic citation for publication that specifies or describes the resource. ",
+                                            "scope": "#/properties/identifier"
 
                                           },
                                           ]}
@@ -374,19 +279,18 @@
                             },
                             {
                               "type": "Control",
-                              "label": "1.3.1.1 contributor",
+                              "label": "Contributor(s)",
+                              "description":"one or more person or organization entities who contributed to creation of the resource",
                               "scope": "#/properties/contributor",
                               "options": { "elementLabelProp": "name",
                                 "showUnfocusedDescription": true,
                                 "detail": {
                                   "type": "VerticalLayout",
                                   "elements": [
-
                                     {
                                       "label": "Type",
                                       "type": "Control",
                                       "scope": "#/properties/@type"
-
                                     },
                                     {
                                       "label": "Name",
@@ -439,32 +343,29 @@
 
                             {
                               "type": "Control",
-                              "label": "1.3.1.1 developer",
+                              "label": "developer",
+                              "description":"one or more person or organization entities who created, debugged, and maintain a software resource",
                               "scope": "#/properties/developer",
                               "options": { "elementLabelProp": "name",
                                 "showUnfocusedDescription": true,
                                 "detail": {
                                   "type": "VerticalLayout",
                                   "elements": [
-
                                     {
                                       "label": "Type",
                                       "type": "Control",
                                       "scope": "#/properties/@type"
-
                                     },
                                     {
                                       "label": "Name",
                                       "type": "Control",
                                       "scope": "#/properties/name"
-
                                     },
                                     {
                                       "label": "Identifier",
                                       "type": "Control",
                                       "scope": "#/properties/identifier",
                                       "description":"An Identifier (e.g. ORCID) or identifying property. ",
-
                                     },
                                   ]}
                               }
@@ -476,27 +377,20 @@
         //ecrro:ECRRO_0000600 Primary publication
             {
               "type": "ShowGroup",
-              "label": "Add Primary Publication",
+              "label": "Primary Publication(s) about the resource",
               "elements": [
                 {
                   "type": "Label",
                   "text": "EXAMPLE: Barnes, Stanley L., 1980, Report on a Meeting to Establish a Common Doppler Radar Data Exchange Format: Bulletin of the American Meteorological Society, vol. 61, no. 11, pp. 1401–1404. (accessed at http://www.jstor.org/stable/26221476)",
-
                 },
                 {
                   "type": "Control",
-                  "label": "1.1.1.1 Primary Publication",
-                  //#/definitions/additionalProperty_type/anyOf/3/type
-                  //#/definitions/additionalProperty_type/anyOf/3/properties/propertyID/const
-                  //#/definitions/additionalProperty_type/anyOf/5/$anchor
-                //  "scope": "#/properties/additionalProperty/items/#ECRRO_0000600",
-                //#/properties/additionalProperty/items/$ref
-                //  "scope": "#/properties/additionalProperty/items/anyOf/5/", // works
-                //  "scope": "https://example.com/schemas/properties/additionalProperty/items/anyOf/#ECRRO0000600", //fails
-                    "scope": "#/properties/ecrro:ECRRO_0000600",
+                 // "scope": "#/properties/additionalProperty/items/ecrro:ECRRO_0000600",
+                  "scope": "#/properties/primaryPublication",
+                 //   "scope": "#/properties/ecrro:ECRRO_0000600",
                   "options": {
                     "showUnfocusedDescription": true,
-
+                    childLabelProp: 'value',
             detail: {
               type: 'HorizontalLayout',
               elements: [
@@ -504,11 +398,6 @@
                   label: 'Citation',
                   type: 'Control',
                   scope: '#/properties/value'
-                },
-                {
-                  label: 'Name',
-                  type: 'Control',
-                  scope: '#/properties/name'
                 }
               ]
             }

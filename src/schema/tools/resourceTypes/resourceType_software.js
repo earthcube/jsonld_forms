@@ -16,12 +16,9 @@ const resourceTypeBase = {
          "const":
 [
 {
-"name":
-"Software",
-"@type":
-"CreativeWork",
-"url":
-"http://cor.esipfed.org/ont/earthcube/ECRRO_0000206"
+"name": "Software",
+"@type": "DefinedTerm",
+  "identifier": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000206"
 }
 ]
       }

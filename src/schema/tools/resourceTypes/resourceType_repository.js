@@ -12,8 +12,8 @@ const resourceType = {
                   "name":
                   "Repository",
                   "@type":
-                  "CreativeWork",
-                  "url":
+                  "DefinedTerm",
+                  "identifier":
                   "http://cor.esipfed.org/ont/earthcube/ECRRO_0000209"
                   }
                   ]

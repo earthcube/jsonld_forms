@@ -1,12 +1,10 @@
-
-import  resourceTypeSheet from 'dsv-loader!./resourcetypes.csv'
-
-export const resourceTypes =   function()  {
-    const nameCol = "Resource Type"
+// oneOf.. this is part of an array. so each item is unique
+import  scienceDomain from  'dsv-loader!../controlledFromGooglesheet/sciencedomains.csv'
+export const scienceDomains =   function()  {
+    const nameCol = "SCIENCE DOMAIN"
     const urlCol ="URI"
-    const sheet = resourceTypeSheet
+    const sheet = scienceDomain
     let propList =  sheet.filter(o => o[nameCol]).map( o => {
-//values implemented as schema:DefinedTerm
         return  {  "title": o[nameCol],
             "const": {
                 "name": o[nameCol],
@@ -17,4 +15,4 @@ export const resourceTypes =   function()  {
     })
     return {"anyOf":   propList }
 }
-export { resourceTypes as resourceTypeList}
+export { scienceDomains as scienceDomainList}

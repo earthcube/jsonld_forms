@@ -13,12 +13,9 @@ const resourceTypeBase = {
          "const":
 [
 {
-"name":
-"Service Instance",
-"@type":
-"CreativeWork",
-"url":
-"http://cor.esipfed.org/ont/earthcube/ECRRO_0000202"
+"name": "Service Instance",
+"@type": "DefinedTerm",
+  "identifier": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000202"
 }
 ]
       }

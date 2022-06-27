@@ -14,8 +14,8 @@ const resourceType = {
                   "name":
                   "Interface/API",
                   "@type":
-                  "CreativeWork",
-                  "url":
+                  "DefinedTerm",
+                  "identifier":
                   "http://cor.esipfed.org/ont/earthcube/ECRRO_0000207"
                   }
                   ]

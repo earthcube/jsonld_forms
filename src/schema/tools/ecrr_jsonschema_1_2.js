@@ -2,21 +2,23 @@
 // 2022-06-20 copied from ecrr_jsonschema1_0.js to update and align with ecrrjsonschema1.1_jsonforms.json schema.
 // Stephen Richard
 import {
-    licenseList,
     resourceTypeList,
-    //functionList,
-    //platformList,
-    //protocolList
+    specificationOneOf,
+    semanticResourceOneOf,
+    functionList,
+    runtimeEnumList,
+    audienceList,
+    communicationList,
     scienceDomainList,
     maturityOneOf,
     lifetimeOneOf,
-    audienceOneOf
+    licenseList
 }
     from './controlledFromGooglesheet';
 
 const jsonschema = {
     type: 'object',
-    //  Simplified for use in a forms application. Additional properties are included inLine as opposed to array of additionalProperty/PropertyValue elements. Edits to schema should be made in the ECRR jsonforms application (https://github.com/earthcube/jsonld_forms/blob/master/src/schema/tools/ecrr_jsonschema_1_1.js) to show up in the forms UI.
+    //  Simplified for use in forms application. Additional properties are included inLine as opposed to array of additionalProperty/PropertyValue elements. Edits to schema should be made in the ECRR jsonforms application (https://github.com/earthcube/jsonld_forms/blob/master/src/schema/tools/ecrr_jsonschema_1_2.js) to show up in the forms UI.
     title: 'EarthCube Resource Registry (ECRR) Resource Description v1.1',
     description:
         'JSON schema for EarthCube Resource Registry (ECRR) resource descriptions. The base object is common to all resource types, and definition section adds resource-specific properties. Resource types are Specification, UseCase, InterchangeFormat, Software, Interface. This schema Updated by S. Richard to align with existing ECRR metadata.',
@@ -24,7 +26,7 @@ const jsonschema = {
         '@id': {
             type: 'string',
             description:
-                'globally identifier string for this metadata record, commonly a UUID with or without an HTTP prefix for web resolution'
+                'globally unique identifier string for this metadata record, commonly a UUID with or without an HTTP prefix for web resolution'
         },
         '@type': {
             type: 'array',
@@ -115,11 +117,6 @@ const jsonschema = {
                 $ref: '#/definitions/agent_type'
             }
         },
-
-        // stewardship: {
-        //     $ref: '#/definitions/agent_type'
-        // },
-
         keywords: {
             type: 'array',
             items: {
@@ -136,8 +133,6 @@ const jsonschema = {
             items: {
                 //populated from licenseList
                 //     "$ref": "#/definitions/creativeWork_type"
-                //should this be left empty??
-                // or have type: 'string'
             }
         },
         version: {
@@ -186,8 +181,7 @@ const jsonschema = {
                 properties: {
                     '@type': {
                         type: 'string',
-                        default: 'Thing',
-                        const: 'Thing'
+                        default: 'Thing'
                     },
                     name: {
                         type: 'string'
@@ -225,11 +219,9 @@ const jsonschema = {
             title: 'Type of Resource',
             description:
                 'Labeled link url is URI for ECRR resource type; name is ECRR resource type name. The ECRR URI (ECRRO_ or SFO_ prefix URIs) in the url value is used to validate resource specific properties. If the resource type is Specification or Semantic Resource, a more specific resource type from the SPKT or SRT vocabulary (respectively) can be specified.',
-            //populated from resourceTypeList
-            //     "$ref": "#/definitions/creativeWork_type"
-            // "uniqueItems": true,
+            type: 'array',
             items: {
-                //     //    "$ref": "#/definitions/resourceTypes_type"
+                //     "$ref": "#/definitions/definedTerm_type"
             }
         },
         encodingFormat: {
@@ -254,13 +246,12 @@ const jsonschema = {
         applicationCategory: {
             title: 'Application function and subfunction',
             description:
-                'strings use special syntac like {function: ... uri: ... }. The function value is the label associated with the ECRR uri in the function vocabulary (http://cor.esipfed.org/ont/earthcube/SFO_0000001)',
+                'DefinedTerm with name and identifier. The function value is the label associated with the ECRR uri in the function vocabulary (http://cor.esipfed.org/ont/earthcube/SFO_0000001)',
 
             type: 'array',
             items: {
                 //populated from functionList
-                //     "$ref": "#/definitions/definedTerm_type"
-                type: 'string'
+                //"$ref": "#/definitions/definedTerm_type"
             }
         },
         runtimePlatform: {
@@ -271,8 +262,7 @@ const jsonschema = {
             type: 'array',
             items: {
                 //populate from platformList
-                //     "$ref": "#/definitions/definedTerm_type"
-                type: 'string'
+                //"$ref": "#/definitions/definedTerm_type"
             }
         },
         programmingLanguage: {
@@ -380,9 +370,8 @@ const jsonschema = {
             description:
                 "text citation to one or more publications about the resource; value is array of strings that are standard bibliographic citations; map to ecrro:ECRRO_0000600 in JSON-LD context",
             propertyID: 'ecrro:ECRRO_0000600',
-            items: {
-                'type': 'string'
-            }
+            items: {type: 'string'}
+
         },
         profileOf: {
             title: 'Profile of',
@@ -398,197 +387,52 @@ const jsonschema = {
             type: 'array',
             items: {
                 //populated from protocolList
-                //     "$ref": "#/definitions/definedTerm_type"
+                "$ref": "#/definitions/definedTerm_type"
+            }
+        },
+
+        resourceMaturity: {
+            title: 'Maturity',
+            propertyID: 'ecrro:ECRRO_0000138',
+            description: 'ECRR resource maturity status, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/MTU',
+            // "$ref": "#/definitions/definedTerm_type"
+            properties: {
 
             }
+        },
+        expectedLifetime: {
+            propertyID: 'ecrro:ECRRO_0000219',
+            description: 'Expected lifetime-- how long is it anticipated that the resource will be maintained and accessible online, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/ELT',
+            '$ref': "#/definitions/definedTerm_type"
+        },
+        stewardship: {
+            propertyID: 'ecrro:ECRRO_0000218',
+            description: 'name of person or organization responsible for maintenance of the resource',
+            '$ref': '#/definitions/agent_type'
+        },
+        dependencies: {
+            description: 'dependencies and their url',
+            propertyID: 'http://purl.obolibrary.org/obo/RO_0002502',
+            '$ref': '#/definitions/creativeWork_type'
+        },
+        usage: {
+            title: 'Current Usage Level',
+            propertyID: 'ecrro:ECRRO_0000017',
+            description:
+                'usage volume from controlled vocabulary at http://cor.esipfed.org/ont/earthcube/UBA',
+            '$ref': '#/definitions/definedTerm_type'
+
+        },
+        interfaceType: {
+            propertyID: 'ecrro:ECRRO_0000503',
+            description: 'Interface specification',
+            '$ref': '#/definitions/creativeWork_type'
         },
         registrationMetadata: {
             title: 'registration metadata',
             description: 'object to define metadata creator and update date',
             propertyID: 'ecrro:ECRRO_0001301',
-            $ref: '#/definitions/metadataCreatorType'
-        },
-
-        'resourceMaturity': {
-            title: 'Maturity',
-            propertyID: 'ecrro:ECRRO_0000138',
-            type: 'object',
-            description:
-                'ECRR resource maturity status, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/MTU',
-            properties: {
-                /*                value: {
-                                   oneOf:[]
-                               },
-                               '@type': {
-                                   type: 'string',
-                                   default: 'PropertyValue',
-                                   const: 'PropertyValue'
-                               },
-                               propertyID: {
-                                   type: 'string',
-                                   default: 'ecrro:ECRRO_0000138',
-                                   const: 'ecrro:ECRRO_0000138'
-                               },
-                               name: {
-                                   type: 'string',
-                                   default: 'has maturity state',
-                                   readonly: true
-                               }
-               */
-                //populated from maturityOneOf
-                // "$ref": "#/definitions/definedTerm_type"}
-            }
-        },
-        'expectedLifetime': {
-            type: 'object',
-            propertyID: 'ecrro:ECRRO_0000219',
-            description:
-                'Expected lifetime-- how long is it anticipated that the resource will be maintained and accessible online, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/ELT',
-            properties: {
-// populate from lifetimeOneOf
-//   "$ref": "#/definitions/definedTerm_type"
-                /*                name: {
-                                    type: 'string',
-                                    default: 'expected lifetime'
-                                },
-                                '@type': {
-                                    type: 'string',
-                                    default: 'PropertyValue',
-                                    const: 'PropertyValue'
-                                },
-                                propertyID: {
-                                    type: 'string',
-                                    default: 'ecrro:ECRRO_0000219',
-                                    const: 'ecrro:ECRRO_0000219'
-                                },
-
-
-                                value: {
-                                    type: 'object',
-                                    properties: {
-                                        name: {
-                                            type: 'string'
-                                        },
-                                        '@type': {
-                                            type: 'string',
-                                            default: 'DefinedTerm',
-                                            const: 'DefinedTerm'
-                                        },
-
-                                        identifier: {
-                                            type: 'string'
-                                        }
-                                    },
-                                    required:[ 'identifier', '@type', 'name']
-                                }
-                */
-            }
-        },
-
-
-//SMR stop updating here 2022-06-21
-
-        'stewardship': {
-            type: 'object',
-            description:
-                'stewardship: name of person or organization responsible for maintenance of the resource',
-            properties: {
-                '@type': {
-                    type: 'string',
-                    const: 'PropertyValue',
-                    default: 'PropertyValue'
-                },
-                propertyID: {
-                    type: 'string',
-                    default: 'ecrro:ECRRO_0000218',
-                    const: 'ecrro:ECRRO_0000218'
-                },
-                name: {
-                    type: 'string',
-                    default: 'Stewardship',
-                    const: 'Stewardship'
-                },
-                value: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/agent_type'
-                    }
-                }
-            }
-        },
-        dependencies: {
-            type: 'object',
-            description: 'dependencies and their url',
-            properties: {
-                name: {
-                    type: 'string'
-                },
-                '@type': {
-                    type: 'string', const: 'PropertyValue'
-                },
-                propertyID: {
-                    type: 'string',
-                    const: 'http://purl.obolibrary.org/obo/RO_0002502'
-                },
-
-                value: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/creativeWork_type'
-                    }
-                }
-            }
-        },
-        'ecrro:ECRRO_0000017': {
-            type: 'object',
-            title: 'Current Usage Level',
-            description:
-                'usage volume from controlled vocabulary at http://cor.esipfed.org/ont/earthcube/UBA',
-            properties: {
-                name: {
-                    type: 'string',
-                    default: 'Usage',
-                    const: 'Usage'
-                },
-                '@type': {
-                    type: 'string',
-                    default: 'PropertyValue',
-                    const: 'PropertyValue'
-                },
-                propertyID: {
-                    type: 'string',
-                    default: 'ecrro:ECRRO_0000017',
-                    const: 'ecrro:ECRRO_0000017'
-                },
-                value: {
-                    $ref: '#/definitions/definedTerm_type'
-                }
-            }
-        },
-        'ecrro:ECRRO_0000503': {
-            type: 'object',
-            description: 'Interface specification',
-            properties: {
-                '@type': {
-                    type: 'string',
-                    default: 'PropertyValue',
-                    const: 'PropertyValue'
-                },
-                propertyID: {
-                    type: 'string',
-                    default: 'ecrro:ECRRO_0000503',
-                    const: 'ecrro:ECRRO_0000503'
-                },
-                name: {
-                    type: 'string'
-                },
-                value: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/creativeWork_type'
-                    }
-                }
-            }
+            '$ref': '#/definitions/metadataCreatorType'
         },
         /*  ADDITIONAL PROPERTIES
          *
@@ -869,8 +713,8 @@ const jsonschema = {
                 },
                 propertyID: {
                     type: 'string',
-                    default: 'dc:BibliographicCitation',
-                    const: 'dc:BibliographicCitation'
+                    default: 'dct:bibliographicCitation',
+                    const: 'dct:bibliographicCitation'
                 },
 
                 value: {
@@ -932,30 +776,11 @@ const jsonschema = {
         },
 
         additionalProperty_type: {
-            anyOf: [{
-                type: 'object',
-                properties: {
-                    '@type': {
-                        type: 'string',
-                        default: 'PropertyValue',
-                        const: 'PropertyValue'
-                    },
-                    propertyID: {
-                        type: 'string',
-                        default: 'dc:BibliographicCitation',
-                        const: 'dc:BibliographicCitation'
-                    },
-                    name: {
-                        type: 'string'
-                    },
-                    value: {
-                        type: 'string'
-                    }
-                }
-            },
+            anyOf: [
                 {
+                    title: 'Interface specification',
                     type: 'object',
-                    description: 'Interface specification',
+                    description: "Creative work Link to specification defining input and output file formats and information models, and protocol for requesting operations",
                     properties: {
                         '@type': {
                             type: 'string',
@@ -979,8 +804,9 @@ const jsonschema = {
                     }
                 },
                 {
+                    title: 'Dependencies',
                     type: 'object',
-                    description: 'dependencies and their url',
+                    description: 'creative work name and URL for other resources required for operation of this resource ',
                     properties: {
                         '@type': {
                             type: 'string',
@@ -1002,8 +828,11 @@ const jsonschema = {
                             }
                         }
                     }
-                }, {
+                },
+                {
+                    title: 'Resource maturity status',
                     type: 'object',
+
                     description:
                         'ECRR resource maturity status, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/MTU',
                     properties: {
@@ -1025,7 +854,9 @@ const jsonschema = {
                             $ref: '#/definitions/definedTerm_type'
                         }
                     }
-                }, {
+                },
+                {
+                    title: 'Expected lifetime',
                     type: 'object',
                     description:
                         'Expected lifetime-- how long is it anticipated that the resource will be maintained and accessible online, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/ELT',
@@ -1048,7 +879,9 @@ const jsonschema = {
                             $ref: '#/definitions/definedTerm_type'
                         }
                     }
-                }, {
+                },
+                {
+                    title: 'Primary publication',
                     type: 'object',
                     description:
                         "primary publication-- a text citation to one or more publications about the resource; separated by pipe ('|') characters",
@@ -1068,10 +901,13 @@ const jsonschema = {
                             default: 'primary publication'
                         },
                         value: {
-                            type: 'string'
+                            type: 'array',
+                            items: {type: 'string'}
                         }
                     }
-                }, {
+                },
+                {
+                    title: 'Stewardship',
                     type: 'object',
                     description:
                         'stewardship: name of person or organization responsible for maintenance of the resource',
@@ -1097,7 +933,9 @@ const jsonschema = {
                             }
                         }
                     }
-                }, {
+                },
+                {
+                    title: 'Usage volume',
                     type: 'object',
                     description:
                         'usage volume from controlled vocabulary at http://cor.esipfed.org/ont/earthcube/UBA',
@@ -1120,7 +958,60 @@ const jsonschema = {
                             $ref: '#/definitions/definedTerm_type'
                         }
                     }
-                }, {
+                },
+                {
+                    title: 'Profile of',
+                    type: 'object',
+                    description: 'Links to base specifications that a specification resource profiles. Only applicable if resource type is specification.  Map key to ecrro:ECRRO_0000501 in JSON-LD context',
+                    properties: {
+                        '@type': {
+                            type: 'string',
+                            default: 'PropertyValue',
+                            const: 'PropertyValue'
+                        },
+                        propertyID: {
+                            type: 'string',
+                            default: 'ecrro:ECRRO_0000501',
+                            const: 'ecrro:ECRRO_0000501'
+                        },
+                        name: {
+                            type: 'string',
+                            default: 'Profile of'
+                        },
+                        value: {
+                            type: 'array',
+                            items: {'$ref': '#/definitions/creativeWork_type'}
+                        }
+                    }
+                },
+                {
+                    title: 'Communication Protocol(s)',
+                    description: 'communication protocol(s) used. Use ECRR controlled vocabulary',
+                    type: "object",
+                    properties: {
+                        '@type': {
+                            type: 'string',
+                            default: 'PropertyValue',
+                            const: 'PropertyValue'
+                        },
+                        name: {
+                            type: 'string',
+                            default: 'communication protocol'
+                        },
+                        propertyID: {
+                            type: 'string',
+                            default: 'ecrro:ECRRO_0000502',
+                            const: 'ecrro:ECRRO_0000502'
+                        },
+                        value: {
+                            type: 'array',
+                            items: {'$ref': '#/definitions/definedTerm_type'}
+                        }
+                    }
+                },
+
+                {
+                    title: 'Registration metadata',
                     type: 'object',
                     description: 'metadata contributor information',
                     properties: {
@@ -1167,9 +1058,7 @@ const jsonschema = {
                                         }
                                     }
                                 },
-                                datePublished: {
-                                    type: 'string'
-                                }
+                                datePublished: {type: 'string'}
                             }
                         }
                     }
@@ -1178,60 +1067,79 @@ const jsonschema = {
     }
 };
 
+//this function plugs the controlled vocabularies into the JSON schema from the files in the controlledFromGooglesheet subfolder.
+/*
+resourceTypeList,
+    specificationOneOf,
+    semanticResourceOneOf,
+    functionList,
+    runtimeEnumList,
+    audienceList,
+    communicationList,
+    scienceDomainList,
+    maturityOneOf,
+    lifetimeOneOf,
+    licenseList
+ */
 const withEnum = function () {
-    let licenses = licenseList();
-    // const licenseOneOf = [...licenseList ]
-    jsonschema.properties.license.items = licenses;
+    let rtypes = resourceTypeList().anyOf;
+    let spectype = specificationOneOf().oneOf;
+    let semrestype = semanticResourceOneOf().oneOf;
+//   rtypes = rtypes.concat(spectype).concat(semrestype)
 
-    let rtypes = resourceTypeList();
-    jsonschema.properties.mainEntity.oneOf = rtypes.oneOf;
-    //jsonschema.properties.mainEntity.items= rtypes
-    //jsonschema.definitions.resourceTypes_type.items= rtypes
+    jsonschema.properties.mainEntity.items.anyOf = rtypes;
+    //need to concatenate specificationType list and semanticResource type list to resource type list
 
-    // not good at suggestions, so let's try suggestions
-    // but using oneOf means the list must match
-    // let functions = functionenum()
-    // jsonschema.properties.applicationCategory.items = functions
+    let functions = functionList();
+    jsonschema.properties.applicationCategory.items = functions;
+    //doesn't handle function subcategories    TBD  :  subcategories !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    let runtimePlatforms = runtimeEnumList();
+    jsonschema.properties.runtimePlatform.items = runtimePlatforms;
+
+    let audience = audienceList();
+    jsonschema.properties.audience.items = audience;
+
+    let commprotocols = communicationList();
+    jsonschema.properties.communicationProtocol.items = commprotocols;
 
     let scienceDomains = scienceDomainList();
     jsonschema.properties.about.items = scienceDomains;
 
     let maturity = maturityOneOf();
-    jsonschema.properties['ecrro:ECRRO_0000138'].properties.value = maturity;
+    jsonschema.properties.resourceMaturity.properties = maturity;
 
     let lifetime = lifetimeOneOf();
-    jsonschema.properties['ecrro:ECRRO_0000219'].properties.value = lifetime;
+    jsonschema.properties.expectedLifetime.properties = lifetime;
 
-    let audience = audienceOneOf();
-    jsonschema.properties.audience.items = audience;
+    let licenses = licenseList();
+    jsonschema.properties.license.items = licenses;
 
     return jsonschema;
 };
 
-// one case where the propertyID causes issues with the json ref path, so it cannot be used as
-// the name for a jsonld form. otherwise the propertyID and the flattened are the same.
+// maps text labels for properties to propertyID URI
 const flattenList = [{
-    flattened: 'dc:BibliographicCitation', flattenTo: 'additionalProperty'
+    flattened: 'primaryPublication', propertyID: 'ecrro:ECRRO_0000600,', flattenTo: 'additionalProperty'
 }, {
-    flattened: 'dependencies',
-    propertyID: 'http://purl.obolibrary.org/obo/RO_0002502',
-    flattenTo: 'additionalProperty'
+    flattened: 'profileOf', propertyID: 'ecrro:ECRRO_0000501', flattenTo: 'additionalProperty'
 }, {
-    flattened: 'ecrro:ECRRO_0000600,', flattenTo: 'additionalProperty'
+    flattened: 'communicationProtocol', propertyID: 'ecrro:ECRRO_0000502', flattenTo: 'additionalProperty'
 }, {
-    flattened: 'ecrro:ECRRO_0000138', flattenTo: 'additionalProperty'
+    flattened: 'dependencies', propertyID: 'http://purl.obolibrary.org/obo/RO_0002502', flattenTo: 'additionalProperty'
 }, {
-    flattened: 'ecrro:ECRRO_0000219', flattenTo: 'additionalProperty'
+    flattened: 'resourceMaturity', propertyID: 'ecrro:ECRRO_0000138', flattenTo: 'additionalProperty'
 }, {
-    flattened: 'ecrro:ECRRO_0000218', flattenTo: 'additionalProperty'
+    flattened: 'expectedLifetime', propertyID: 'ecrro:ECRRO_0000219', flattenTo: 'additionalProperty'
 }, {
-    flattened: 'ecrro:ECRRO_0000017', flattenTo: 'additionalProperty'
+    flattened: 'stewardship', propertyID: 'ecrro:ECRRO_0000218', flattenTo: 'additionalProperty'
 }, {
-    flattened: 'ecrro:ECRRO_0000503', flattenTo: 'additionalProperty'
+    flattened: 'usage', propertyID: 'ecrro:ECRRO_0000017', flattenTo: 'additionalProperty'
 }, {
-    flattened: 'ecrro:ECRRO_0001301', flattenTo: 'additionalProperty'
+    flattened: 'interfaceType', propertyID: 'ecrro:ECRRO_0000503', flattenTo: 'additionalProperty'
+}, {
+    flattened: 'registrationMetadata', propertyID: 'ecrro:ECRRO_0001301', flattenTo: 'additionalProperty'
 }];
-
 export {
     jsonschema as default, withEnum as schemaWithEnum, flattenList
 };

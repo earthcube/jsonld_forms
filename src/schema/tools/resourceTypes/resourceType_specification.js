@@ -11,10 +11,8 @@ const resourceType = {
                   {
                   "name":
                   "Specification",
-                  "@type":
-                  "CreativeWork",
-                  "url":
-                  "http://cor.esipfed.org/ont/earthcube/ECRRO_0000204"
+                  "@type":  "DefinedTerm",
+                    "identifier":  "http://cor.esipfed.org/ont/earthcube/ECRRO_0000204"
                   }
                   ]
       }

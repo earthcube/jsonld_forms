@@ -1,6 +1,6 @@
 
 import  licenseSheet from  'dsv-loader!../controlledFromGooglesheet/softwarelicenses.csv'
-const licenseOneOf =   function()  {
+export const licenses =   function()  {
     const nameCol = "Pruned for the form"
     //labels are abbreviated to fit in the form better
     const urlCol ="URI"
@@ -15,7 +15,7 @@ const licenseOneOf =   function()  {
             }
         }
     })
-    return {"oneOf":   propList }
+    return {"anyOf":   propList }
 
 }
-export { licenseOneOf as licenseList}
+export { licenses as licenseList}

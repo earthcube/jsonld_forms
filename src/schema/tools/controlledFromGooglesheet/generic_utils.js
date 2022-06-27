@@ -1,11 +1,10 @@
-import  csvFile from  'dsv-loader!../controlledFromGooglesheet/marutity.csv'
+//maturity JSCO schema values as oneOf [schema:DefinedTerm objects]
+import  csvFile from  'dsv-loader!../controlledFromGooglesheet/maturity.csv'
 const oneOf =   function()  {
     const nameCol = "Maturity"
     const proplCol ="URI"
      const sheet = csvFile
-//    var  licenseSheet = require( 'csv-loader!../controlledFromGooglesheet/ECRR Controlled Vocabularies - Software Licenses.csv' )
      let propList =  sheet.filter(o => o[nameCol]).map( o => {
-
               return  {  "title": o[nameCol],
                            "const": {
                                   "name": o[nameCol],
@@ -14,38 +13,28 @@ const oneOf =   function()  {
                                   }
                         }
                })
-     return {"oneOf":   propList }
-
+     return {"oneOf":   propList }  //shouldn't this be JSON array for [propList]?
  }
-
 export {oneOf as default }
 
+//function subcategory pick list
 import  suggestionSheet from  'dsv-loader!../controlledFromGooglesheet/function_subcategory.csv'
 const enumList =   function()  {
     const nameCol = "Combined (shown in the form)"
-
      const sheet = suggestionSheet
-//    var  licenseSheet = require( 'csv-loader!../controlledFromGooglesheet/ECRR Controlled Vocabularies - Software Licenses.csv' )
      let propList =  sheet.filter(o => o[nameCol]).map( o => {
-
               return   o[nameCol]
-
                })
      return {"type":"string", "enum":   propList }
-
  }
+
 const suggestionList =   function()  {
     const nameCol = "Combined (shown in the form)"
-
      const sheet = suggestionSheet
-//    var  licenseSheet = require( 'csv-loader!../controlledFromGooglesheet/ECRR Controlled Vocabularies - Software Licenses.csv' )
      let propList =  sheet.filter(o => o[nameCol]).map( o => {
-
               return   o[nameCol]
-
                })
      return  propList
-
  }
 export { enumList as enumList, suggestionList as suggestionList}
 

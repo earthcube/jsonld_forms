@@ -144,8 +144,8 @@
     "additionalProperty": [
         {
             "@type": "PropertyValue",
-            "propertyID": "dc:BibliographicCitation",
-            "name": "Bibligraphic citation",
+            "propertyID": "dct:bibliographicCitation",
+            "name": "Bibliographic citation",
             "value": "Susanna Anil, Steve Diggs, Sarah Purkey, Donata Giglio, Megan Scanderbeg, & Tyler Tucker. (2021). Interactive Jupyter notebook for hydrographic ocean data exploration, retrieval and visualization via the Argovis API (v1.1). Zenodo. https://doi.org/10.5281/zenodo.5496281"
         },
         {

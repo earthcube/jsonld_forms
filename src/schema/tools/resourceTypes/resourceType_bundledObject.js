@@ -1,4 +1,4 @@
-const interchange = {
+const bundledobject = {
   type: 'Group',
   label: 'Bundled Object options',
   rule: {
@@ -8,14 +8,9 @@ const interchange = {
       schema: {
        // const: 'Bundled Object'
          "const": [
-                  {
-                  "name":
-                  "Bundled Object",
-                  "@type":
-                  "CreativeWork",
-                  "url":
-                  "http://cor.esipfed.org/ont/earthcube/SFO_0000075"
-                  }
+                  { "name":  "Bundled Object",
+                  "@type":  "DefinedTerm",
+                  "identifier":     "http://cor.esipfed.org/ont/earthcube/SFO_0000075"       }
                   ]
       }
     }
@@ -70,7 +65,7 @@ const interchange = {
         "(NEEDS CHECKING)Select from Semantic Resources already entered in the Registry. The intention is to link the interchange format with its underlying information model and vocabularies used to populate values in instance documents; these specify the semantics of the content in interchange format files. Visit https://tinyurl.com/ecrr-semanticresource to see a current list of registered semantic resources if the resource you need is not listed. Use the resource title in the 'other' option here to add it."
     },
     // TODO: Assuning this is correct.
-    // Custom UI for entered and related resourcces, needed
+    // Custom UI for entered and related resources, needed
     {
       label: ' Semantic Resource',
       type: 'Control',
@@ -102,4 +97,4 @@ const interchange = {
   ]
 };
 
-export default interchange;
+export default bundledobject;

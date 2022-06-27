@@ -60,7 +60,7 @@ ecrro:0001301:
   datePublished: "2019-10-21"
 ecrro:0000219: "ecrro:0000301"
 ecrro:0000017: "http://cor.esipfed.org/ont/earthcube/UBA_0000001"
-dc:BibliographicCitation: "recommended citation for MiniSEED"
+dct:bibliographicCitation: "recommended citation for MiniSEED"
 about: "http://cor.esipfed.org/ont/earthcube/ADO/ADO__0000099"
 identifier: "not specified"
 provider:

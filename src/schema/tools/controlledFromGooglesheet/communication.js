@@ -1,5 +1,5 @@
 import  csvFile from  'dsv-loader!../controlledFromGooglesheet/communication.csv'
-const communicationOneOf =   function()  {
+export const communicationProtocols =   function()  {
     const nameCol = "Communication Protocol"
     const proplCol ="URI"
     const sheet = csvFile
@@ -12,7 +12,7 @@ const communicationOneOf =   function()  {
             }
         }
     })
-    return {"oneOf":   propList }
+    return {"anyOf":   propList }
 }
 
-export {communicationOneOf as communicationOneOf }
+export {communicationProtocols as communicationList }
