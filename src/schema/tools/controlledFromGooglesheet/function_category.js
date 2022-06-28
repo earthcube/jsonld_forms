@@ -1,31 +1,30 @@
+import suggestionSheet from 'dsv-loader!../controlledFromGooglesheet/function_category.csv'
 
-import  suggestionSheet from  'dsv-loader!../controlledFromGooglesheet/function_category.csv'
-const fucntionenum =   function()  {
-    const nameCol = "Category"
-
+const functionList =   function()  {
+     const nameCol = "Category"
+    const proplCol ="URI"
      const sheet = suggestionSheet
-//    var  licenseSheet = require( 'csv-loader!../controlledFromGooglesheet/ECRR Controlled Vocabularies - Software Licenses.csv' )
-     let propList =  sheet.filter(o => o[nameCol]).map( o => {
-
-              return   o[nameCol]
-
-               })
-     return {"type":"string", "enum":   propList }
-
+    let propList =  sheet.filter(o => o[nameCol]).map( o => {
+        return  {  "title": o[nameCol],
+            "const": {
+                "name": o[nameCol],
+                "@type": "DefinedTerm",
+                "identifier": o[proplCol]
+            }
+        }
+    })
+    return {"anyOf":   propList }
  }
+
+
 const functionsuggestion =   function()  {
-    const nameCol = "Combined (shown in the form)"
-
+     const nameCol = "Category"
      const sheet = suggestionSheet
-//    var  licenseSheet = require( 'csv-loader!../controlledFromGooglesheet/ECRR Controlled Vocabularies - Software Licenses.csv' )
-     let propList =  sheet.filter(o => o[nameCol]).map( o => {
-
-              return   o[nameCol]
-
-               })
-     return  propList
-
+     return  sheet.filter(o => o[nameCol]).map(o => {
+         return o[nameCol]
+     })
  }
-export { fucntionenum as functionenum, functionsuggestion as functionsuggestion}
+
+export { functionList as functionList, functionsuggestion as functionsuggestion}
 
 

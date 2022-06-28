@@ -1,9 +1,8 @@
-import  csvFile from  'dsv-loader!../controlledFromGooglesheet/marutity.csv'
+import  csvFile from  'dsv-loader!../controlledFromGooglesheet/maturity.csv'
 const oneOf =   function()  {
     const nameCol = "MATURITY"
     const proplCol ="URI"
      const sheet = csvFile
-//    var  licenseSheet = require( 'csv-loader!../controlledFromGooglesheet/ECRR Controlled Vocabularies - Software Licenses.csv' )
      let propList =  sheet.filter(o => o[nameCol]).map( o => {
 
               return  {  "title": o[nameCol],

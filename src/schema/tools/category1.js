@@ -493,7 +493,7 @@
                 //#/properties/additionalProperty/items/$ref
                 //  "scope": "#/properties/additionalProperty/items/anyOf/5/", // works
                 //  "scope": "https://example.com/schemas/properties/additionalProperty/items/anyOf/#ECRRO0000600", //fails
-                    "scope": "#/properties/ecrro:ECRRO_0000600",
+                    "scope": "#/properties/primaryPublication",
                   "options": {
                     "showUnfocusedDescription": true,
 

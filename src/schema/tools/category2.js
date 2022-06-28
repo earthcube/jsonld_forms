@@ -21,20 +21,20 @@ const cat2 = {
       type: 'Control',
       scope: '#/properties/mainEntity',
 
-      //  "elementLabelProp": "name",
+        "elementLabelProp": "name",
       options: {
-        // "elementLabelProp": "#/properties/mainEntity/properties/name"
-        //           format: 'radio',
-        //                       "detail": {
-        //                         "type": "VertialLayout",
-        //                         "elements": [
-        //                           {
-        //                             "type": "Control",
-        //                             "scope": "#/properties/name",
-        //
-        //                           }
-        //                         ]
-        //                       }
+        "elementLabelProp": "#/properties/mainEntity/properties/name",
+                  format: 'radio',
+                              "detail": {
+                                "type": "VertialLayout",
+                                "elements": [
+                                  {
+                                    "type": "Control",
+                                    "scope": "#/properties/name",
+
+                                  }
+                                ]
+                              }
       }
     }
   ]

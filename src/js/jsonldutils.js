@@ -19,32 +19,34 @@ const unflatten =(jsonflat,  flattenList)=>{
     jsonld.additionalProperty = []
 
     flattenList.forEach ( (f)=> {
-            if (jsonld[f.propertyID?  f.propertyID : f.flattened ] ) {
-                 jsonld.additionalProperty.push(jsonld[f.propertyID?  f.propertyID : f.flattened ] )
-                 delete jsonld[f.propertyID?  f.propertyID : f.flattened ]
-            }
-        } )
+        const whichValue = f.flattened? f.flattened: f.propertyID
+        if (jsonld[ whichValue] ) { //  get the flattened value
+            // populate with the property value
+            jsonld.additionalProperty.push(jsonld[whichValue ] )
+            delete jsonld[whichValue ]
+        }
+    } )
     return jsonld
 
 }
 
 const getProperty= (jsonld, additionalProperty, propertyId ) =>{
- if (jsonld[additionalProperty] ){
+    if (jsonld[additionalProperty] ){
         return _.find(jsonld[additionalProperty],(o) => {
-            if (o["propertyID" ] == propertyId ) {
-            return true
+                if (o["propertyID" ] == propertyId ) {
+                    return true
+                }
+                return false
             }
-            return false
-        }
         )
- }
- return undefined
+    }
+    return undefined
 }
 
 // const merge= (jsonld, mergeToProperty, propertyMerge )=>{
 // }
 
 export {
-flatten as flatten,
-unflatten as unflatten
+    flatten as flatten,
+    unflatten as unflatten
 }

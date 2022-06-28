@@ -26,6 +26,6 @@ const functionsuggestion =   function()  {
      return  propList
 
  }
-export { fucntionenum as functionenum, functionsuggestion as functionsuggestion}
+export { fucntionenum as subfunctionList, functionsuggestion as subfunctionsuggestion}
 
 

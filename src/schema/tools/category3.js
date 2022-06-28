@@ -33,7 +33,7 @@ const cat3 = {
         {
           type: 'Control',
           //   "label": "2.1 Maturity",
-          scope: '#/properties/ecrro:ECRRO_0000138',
+          scope: '#/properties/resourceMaturity',
           options: {
             showUnfocusedDescription: true,
             detail: {
