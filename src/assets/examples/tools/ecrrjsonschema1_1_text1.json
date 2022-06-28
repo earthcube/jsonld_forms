@@ -1,0 +1,376 @@
+{
+    "@context": "./ecrr-context.json",
+    "@id": "@id",
+    "@type": ["CreativeWork"],
+    "name": "name",
+    "alternateName": [
+        "alternateName0",
+        "alternateName2"
+    ],
+    "subjectOf": [
+        {
+            "name": "name",
+            "@type": "CreativeWork",
+            "url": "http://example.org/subjectofURL"
+        }
+    ],
+    "identifier": [
+        "identifier0",
+        "doi:10.12765/testing"
+    ],
+    "description": "description of the resource, could be long text",
+    "datePublished": "2000-10-19",
+    "creator": [
+        {
+            "name": "creatorName1",
+            "@type": "Person",
+            "identifier": "CreatorIdentifier1"
+        },
+        {
+            "name": "creatorName2",
+            "@type": "Person",
+            "identifier": "CreatorIdentifier2"
+        }
+    ],
+    "editor": [
+        {
+            "name": "editorName",
+            "@type": "Person",
+            "identifier": "identifier"
+        }
+    ],
+    "contributor": [
+        {
+            "name": "contributorName1",
+            "@type": "Person",
+            "identifier": "contributoridentifier"
+        },
+        {
+            "name": "contributorname2",
+            "@type": "Person",
+            "identifier": "contributoridentifier2"
+        },
+        {
+            "name": "contributorname3",
+            "@type": "Person",
+            "identifier": "contributoridentifier3"
+        }
+    ],
+    "publisher": {
+        "name": "PublisherName",
+        "@type": "Person",
+        "identifier": "PublisherIdentifier"
+    },
+    "developer": [
+        {
+            "name": "DeveloperName",
+            "@type": "Person",
+            "identifier": "DeveloperIdentifier"
+        }
+    ],
+    "keywords": [
+        "keywords0",
+        "keyword1",
+        "keyword2",
+        "keyword3"
+    ],
+    "license": [
+        {
+            "name": "Creative Commons Attribution (CC BY)",
+            "@type": "CreativeWork",
+            "url": "http://cor.esipfed.org/ont/CCL_0000001"
+        }
+    ],
+    "version": "version",
+    "funding": [
+        {
+            "@type": "Grant",
+            "name": "fundingGrant1",
+            "identifier": "GrantIdentifier1",
+            "funder": {
+                "name": "Grant1Funder",
+                "@type": "Person",
+                "identifier": "Grant1FunderIdentifier"
+            }
+        },
+        {
+            "@type": "Grant",
+            "name": "fundingGrant2",
+            "identifier": "GrantIdentifier2",
+            "funder": {
+                "name": "Grant2Funder",
+                "@type": "Person",
+                "identifier": "Grant2FunderIdentifier"
+            }
+        }
+    ],
+    "audience": [
+        {
+            "identifier": "http://cor.esipfed.org/ont/earthcube/AUT_0000001",
+            "audienceType": "Data Producers",
+            "@type": "Audience"
+        },
+        {
+            "audienceType": "Data Users",
+            "@type": "Audience",
+            "identifier": "http://cor.esipfed.org/ont/earthcube/AUT_0000002"
+        }
+    ],
+    "about": [
+        {
+            "name": "Anthropology",
+            "@type": "DefinedTerm",
+            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000012"
+        },
+        {
+            "name": "Atmospheric Dynamics",
+            "@type": "DefinedTerm",
+            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000038"
+        }
+    ],
+    "contentType": [
+        {
+            "name": "content type term",
+            "identifier": "http://cor.esipfed.org/ont/contenttype1",
+            "@type": "Thing"
+        },
+        {"name": "some contenttype 2"}
+    ],
+    "isRelatedTo": [
+        {
+            "@type": "@type",
+            "name": "name",
+            "url": "url"
+        }
+    ],
+    "mainEntity": [
+        {
+            "name": "Bundled Object",
+            "@type": "DefinedTerm",
+            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000075"
+        },
+        {
+            "name": "Software",
+            "@type": "DefinedTerm",
+            "identifier": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000206"
+        }
+    ],
+    "encodingFormat": ["encodingFormat0"],
+    "isBasedOn": [
+        {
+            "name": "basedONname1",
+            "@type": "CreativeWork",
+            "url": "http://example.org/isBasedOn1"
+        }
+    ],
+    "applicationCategory": [
+        {
+            "name": "research software function",
+            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000001",
+            "@type": "DefinedTerm"
+        },
+        {
+            "name": "user interaction",
+            "@type": "DefinedTerm",
+            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000003"
+        }
+    ],
+    "runtimePlatform": [
+        {
+            "name": "HPC rundtime platform",
+            "@type": "DefinedTerm",
+            "identifier": "http://cor.esipfed.org/runtimePlatform/RTE_000002"
+        }
+    ],
+    "programmingLanguage": [
+        {
+            "@type": "ComputerLanguage",
+            "name": "fortran",
+            "identifier": "computerLanguageIdentifier1"
+        },
+        {
+            "@type": "ComputerLanguage",
+            "name": "fortran2",
+            "identifier": "computerLanguageIdentifier2"
+        },
+        {
+            "@type": "ComputerLanguage",
+            "name": "python",
+            "identifier": "computerLanguageIdentifier3"
+        }
+    ],
+    "supportingData": [
+        {
+            "name": "supportingDataFeed",
+            "@type": "DataFeed",
+            "position": "input",
+            "encodingFormat": [
+                "encodingFormat0",
+                "encodingformat1",
+                "encodingFormat2"
+            ]
+        }
+    ],
+    "codeRepository": [
+        {
+            "name": "codeRepository1",
+            "@type": "CreativeWork",
+            "url": "codeRepository1url"
+        }
+    ],
+    "installUrl": [
+        {
+            "name": "installURL1Label",
+            "@type": "CreativeWork",
+            "url": "installURL1url"
+        }
+    ],
+    "potentialAction": [
+        {
+            "@type": "Action",
+            "name": "Execute web application",
+            "target": {
+                "@type": "EntryPoint",
+                "description": "Open software on the web",
+                "urlTemplate": "http://example.org/{template}/{parameter}",
+                "httpMethod": ["GET"]
+            }
+        }
+    ],
+    "url": [
+        {
+            "@type": "LinkRole",
+            "url": "htt://url.org/linkurl",
+            "linkRelationship": "linkRelationship"
+        }
+    ],
+    "dct:conformsTo": [
+        {
+            "name": "specification that resource conforms to:",
+            "@type": "CreativeWork",
+            "url": "url"
+        }
+    ],
+    "dct:bibliographicCitation": "dct:bibliographicCitation text citation...",
+    "additionalProperty": [
+        {
+            "@type": "PropertyValue",
+            "propertyID": "ecrro:ECRRO_0000600",
+            "name": "primary publications",
+            "value": [
+                "pub citation string",
+                "pub citation string2"
+            ]
+        },
+        {
+            "@type": "PropertyValue",
+            "propertyID": "ecrro:ECRRO_0000600",
+            "name": "interfaceType",
+            "value": [
+                {
+                    "name": "interfaceSpecName",
+                    "@type": "CreativeWork",
+                    "url": "interfaceSpecURL"
+                },
+                {
+                    "name": "interfaceSpecName2",
+                    "@type": "CreativeWork",
+                    "url": "interfaceSpecURL2"
+                }
+            ]
+        },
+        {
+            "@type": "PropertyValue",
+            "propertyID": "ecrro:ECRRO_0000600",
+            "name": "dependsOn",
+            "value": [
+                {
+                    "name": "dependencyname",
+                    "@type": "CreativeWork",
+                    "url": "dependencyurl"
+                }
+            ]
+        },
+        {
+            "@type": "PropertyValue",
+            "propertyID": "ecrro:ECRRO_0000138",
+            "name": "maturity status",
+            "value": {
+                "name": "Used in multiple places",
+                "@type": "DefinedTerm",
+                "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000001"
+            }
+        },
+        {
+            "@type": "PropertyValue",
+            "propertyID": "ecrro:ECRRO_0000138",
+            "name": "expectedLifetime",
+            "value": {
+                "name": "1 - 5 years",
+                "@type": "DefinedTerm",
+                "identifier": "http://cor.esipfed.org/ont/earthcube/ELT_0000003"
+            }
+        },
+        {
+            "@type": "PropertyValue",
+            "propertyID": "ecrro:ECRRO_0000138",
+            "name": "usage",
+            "value": {
+                "name": "Low usage",
+                "@type": "DefinedTerm",
+                "identifier": "http://cor.esipfed.org/ont/earthcube/UBA_0000003"
+            }
+        },
+        {
+            "@type": "PropertyValue",
+            "propertyID": "ecrro:ECRRO_0000138",
+            "name": "stewardship",
+            "value": [
+                {
+                    "name": "stewardpName",
+                    "@type": "Person",
+                    "identifier": "stewardidentifier"
+                }
+            ]
+        },
+        {
+            "@type": "PropertyValue",
+            "propertyID": "ecrro:ECRRO_0000501",
+            "name": "profileOf",
+            "value": [
+                {
+                    "name": "link to base specification for a profile",
+                    "@type": "CreativeWork",
+                    "url": "http://url.org/forBaseSpecification"
+                }
+            ]
+        },
+        {
+            "@type": "PropertyValue",
+            "propertyID": "ecrro:ECRRO_0000502",
+            "name": "communication protocol",
+            "value": [
+                {
+                    "name": "ssh",
+                    "@type": "DefinedTerm",
+                    "identifier": "http://cor.esipfed.org/ont/earthcube/CMPR_0000005"
+                }
+            ]
+        },
+        {
+            "@type": "PropertyValue",
+            "propertyID": "ecrro:ECRRO_0001301",
+            "name": "registration metadata",
+            "value": {
+                "@type": "StructuredValue",
+                "additionalType": "ecrro:ECRRO_0000156",
+                "contributor": {
+                    "@type": "Person",
+                    "name": "metadataContributorname",
+                    "identifier": "metadataContributoridentifier"
+                },
+                "datePublished": "2020-01-22T01:01:01Z"
+            }
+        }
+    ]
+}
