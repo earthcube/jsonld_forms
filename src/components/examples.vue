@@ -147,7 +147,8 @@ export default {
   data(){
     return {
       examples: [
-        {name:"1.schema 1.1 test example", file:"tools/ecrrjsonschema1_1_text1.json"},
+        {name:"0.schema 1.1 test example", file:"tools/ecrrjsonschema1_1_text1.json"},
+        {name:"1.schema 1.1 test example", file:"tools/argovis-Notebook.jsonld.json"},
         {name:"2.Repository-EarthChemLibrary-SDO.JSON", file:"tools/Repository-EarthChemLibrary-SDO.JSON"},
         {name:"3.Interface-ChordsWebAPIv2-SDO-toLoad.json", file:"tools/Interface-ChordsWebAPIv2-SDO-toLoad.json"},
         {name:"Interface-ChordsWebAPIv2-SDO.json", file:"tools/Interface-ChordsWebAPIv2-SDO.json"},
