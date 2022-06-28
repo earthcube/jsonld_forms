@@ -29,7 +29,7 @@ const resourceType = {
     {
       label: 'Protocol',
       type: 'Control',
-      scope: '#/properties/ecrro:ECRRO_0000502',
+      scope: '#/properties/communicationProtocol',
       options: {
         showUnfocusedDescription: true,
         detail: {

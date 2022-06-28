@@ -29,7 +29,7 @@ const resourceTypeBase = {
     {
       label: 'Interface',
       type: 'Control',
-      scope: '#/properties/ecrro:ECRRO_0000503',
+      scope: '#/properties/interfaceType',
       options: {
         showUnfocusedDescription: true,
         detail: {

@@ -219,7 +219,7 @@ const jsonschema = {
             title: 'Type of Resource',
             description:
                 'Labeled link url is URI for ECRR resource type; name is ECRR resource type name. The ECRR URI (ECRRO_ or SFO_ prefix URIs) in the url value is used to validate resource specific properties. If the resource type is Specification or Semantic Resource, a more specific resource type from the SPKT or SRT vocabulary (respectively) can be specified.',
-            type: 'array',
+           // type: 'array',
             items: {
                 //     "$ref": "#/definitions/definedTerm_type"
             }

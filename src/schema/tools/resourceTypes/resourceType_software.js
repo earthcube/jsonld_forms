@@ -32,7 +32,7 @@ const resourceTypeBase = {
     {
       label: 'Protocol',
       type: 'Control',
-      scope: '#/properties/ecrro:ECRRO_0000502',
+      scope: '#/properties/communicationProtocol',
       options: {
         showUnfocusedDescription: true,
         detail: {
@@ -127,7 +127,7 @@ const resourceTypeBase = {
         {
           label: ' Interface specification',
           type: 'Control',
-          scope: '#/properties/ecrro:ECRRO_0000503',
+          scope: '#/properties/interfaceType',
           options: {
             showUnfocusedDescription: true,
             detail: {
