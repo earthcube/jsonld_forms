@@ -21,28 +21,28 @@ const cat2 = {
       type: 'Control',
       scope: '#/properties/mainEntity',
       options: {
-        "elementLabelProp": "name" ,
-        "showUnfocusedDescription": true,
-        "detail": {
-          "type": "VerticalLayout",
-          "elements": [
-            {
-              "label": "Type",
-              "type": "Control",
-              "scope": "#/properties/@type"
-            },
-            {
-              "label": "Name",
-              "type": "Control",
-              "scope": "#/properties/name"
-            },
-            {
-              "label": "Identifier",
-              "type": "Control",
-              "scope": "#/properties/identifier"
-
-            },
-          ]}
+        // "elementLabelProp": "name" ,
+        // "showUnfocusedDescription": true,
+        // "detail": {
+        //   "type": "VerticalLayout",
+        //   "elements": [
+        //     {
+        //       "label": "Type",
+        //       "type": "Control",
+        //       "scope": "#/properties/@type"
+        //     },
+        //     {
+        //       "label": "Name",
+        //       "type": "Control",
+        //       "scope": "#/properties/name"
+        //     },
+        //     {
+        //       "label": "Identifier",
+        //       "type": "Control",
+        //       "scope": "#/properties/identifier"
+        //
+        //     },
+        //   ]}
       }
     }
   ]
