@@ -1217,7 +1217,7 @@ const flattenList = [{
     propertyID: 'http://purl.obolibrary.org/obo/RO_0002502',
     flattenTo: 'additionalProperty'
 }, {
-    flattened: 'ecrro:ECRRO_0000600,', flattenTo: 'additionalProperty'
+    flattened: 'ecrro:ECRRO_0000600', flattenTo: 'additionalProperty'
 }, {
     flattened: 'ecrro:ECRRO_0000138', flattenTo: 'additionalProperty'
 }, {

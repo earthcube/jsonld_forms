@@ -42,7 +42,7 @@ const resourceType = {
         {
           label: 'Profile of',
           type: 'Control',
-          scope: '#/properties/eccro:ECRRO_0000501',
+          scope: '#/properties/profileOf',
           options: {
             showUnfocusedDescription: true,
             detail: {

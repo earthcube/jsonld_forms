@@ -77,7 +77,7 @@ import {saveAs} from "file-saver";
 export default {
   name: "saveDialog",
   props: {
-    json: {type: String },
+    json: {type: Object },
     originalName: {type: String },
   },
   data() {

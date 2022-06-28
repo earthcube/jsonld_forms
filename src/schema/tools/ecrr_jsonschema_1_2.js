@@ -219,7 +219,7 @@ const jsonschema = {
             title: 'Type of Resource',
             description:
                 'Labeled link url is URI for ECRR resource type; name is ECRR resource type name. The ECRR URI (ECRRO_ or SFO_ prefix URIs) in the url value is used to validate resource specific properties. If the resource type is Specification or Semantic Resource, a more specific resource type from the SPKT or SRT vocabulary (respectively) can be specified.',
-            type: 'array',
+           // type: 'array',
             items: {
                 //     "$ref": "#/definitions/definedTerm_type"
             }
@@ -392,18 +392,21 @@ const jsonschema = {
         },
 
         resourceMaturity: {
+            type: 'object',
             title: 'Maturity',
             propertyID: 'ecrro:ECRRO_0000138',
             description: 'ECRR resource maturity status, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/MTU',
             // "$ref": "#/definitions/definedTerm_type"
-            properties: {
-
-            }
+// items used in oneOf
+            items: {}
         },
         expectedLifetime: {
+            type: 'object',
             propertyID: 'ecrro:ECRRO_0000219',
             description: 'Expected lifetime-- how long is it anticipated that the resource will be maintained and accessible online, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/ELT',
-            '$ref': "#/definitions/definedTerm_type"
+            //'$ref': "#/definitions/definedTerm_type"
+// items used in oneOf
+            items: {}
         },
         stewardship: {
             propertyID: 'ecrro:ECRRO_0000218',
@@ -1107,10 +1110,10 @@ const withEnum = function () {
     jsonschema.properties.about.items = scienceDomains;
 
     let maturity = maturityOneOf();
-    jsonschema.properties.resourceMaturity.properties = maturity;
+    jsonschema.properties.resourceMaturity.items = maturity;
 
     let lifetime = lifetimeOneOf();
-    jsonschema.properties.expectedLifetime.properties = lifetime;
+    jsonschema.properties.expectedLifetime.items = lifetime;
 
     let licenses = licenseList();
     jsonschema.properties.license.items = licenses;
@@ -1120,7 +1123,7 @@ const withEnum = function () {
 
 // maps text labels for properties to propertyID URI
 const flattenList = [{
-    flattened: 'primaryPublication', propertyID: 'ecrro:ECRRO_0000600,', flattenTo: 'additionalProperty'
+    flattened: 'primaryPublication', propertyID: 'ecrro:ECRRO_0000600', flattenTo: 'additionalProperty'
 }, {
     flattened: 'profileOf', propertyID: 'ecrro:ECRRO_0000501', flattenTo: 'additionalProperty'
 }, {
