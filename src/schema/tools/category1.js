@@ -413,11 +413,6 @@
                   label: 'Citation',
                   type: 'Control',
                   scope: '#/properties/value'
-                },
-                {
-                  label: 'Name',
-                  type: 'Control',
-                  scope: '#/properties/name'
                 }
               ]
             }

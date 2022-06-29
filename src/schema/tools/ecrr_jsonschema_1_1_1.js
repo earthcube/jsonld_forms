@@ -138,7 +138,10 @@ const jsonschema = {
           title: 'short name',
           default: 'primary publication'
         },
-        value: {type: 'string'}
+        value: {
+          type:'array',
+          items: {type: 'string'}
+        }
       }
     },
     keywords: {
