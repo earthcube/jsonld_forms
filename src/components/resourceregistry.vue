@@ -39,7 +39,7 @@ import {default as saveFiles} from './controls/saveJson'
 import { default as schema, schemaWithEnum , flattenList} from '../schema/tools/ecrr_jsonschema_1_1_1' ;
 
 import uischema from '../schema/tools/ecrr_1_1_1_uischema';
-// @ts-ignore
+
 const baseJsonLdObj = require('../assets/basefiles/tools/ecrrempty.json');
 
 import {entry as AltGroupRenderer} from './controls/AdditionalDetailsRenderer'
@@ -119,7 +119,6 @@ const tool = defineComponent({
   },
      created() {
     if (this.jsonldfile){
-// @ts-ignore
       let exampleData = require('../assets/examples/' +  this.jsonldfile);
       this.filename = this.jsonldfile.substring(this.jsonldfile.lastIndexOf('/')+1)
       exampleData = flatten(exampleData, flattenList)
@@ -129,7 +128,7 @@ const tool = defineComponent({
        this.filename = this.s3file.substring(this.s3file.lastIndexOf('/')+1)
        this.getUsers3()
      }
-// @ts-ignore
+
      console.log(process.env.VUE_APP_BUCKET)
     // this.$on('loadfile', async  function (filepath) {
     //   this.jsonldObj =  await getFroms3( filepath, this.BUCKET, this.s3Credentials)
