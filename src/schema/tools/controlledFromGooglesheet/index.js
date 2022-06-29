@@ -54,7 +54,11 @@
 // }
 
 //import  licenseSheet from  'csv-loader!../controlledFromGooglesheet/ECRR Controlled Vocabularies - Software Licenses.csv'
-import  licenseSheet from 'dsv-loader!./softwareLicenses.csv'
+import licenseSheet from 'dsv-loader!./softwareLicenses.csv'
+
+// oneOf. this is part of an array. so each item is unique
+import scienceDomain from 'dsv-loader!../controlledFromGooglesheet/sciencedomains.csv'
+
 const licenseOneOf =   function()  {
     const nameCol = "Pruned for the form"
     const urlCol ="URI"
@@ -76,29 +80,6 @@ const licenseOneOf =   function()  {
 
 export { licenseOneOf as licenseList}
 
-import  resourceTypeSheet from 'dsv-loader!./resourceTypes.csv'
-const resourceTypeOneOf =   function()  {
-    const nameCol = "Resource Type"
-    const urlCol ="URI"
-     const sheet = resourceTypeSheet
-//    var  licenseSheet = require( 'csv-loader!../controlledFromGooglesheet/ECRR Controlled Vocabularies - Software Licenses.csv' )
-     let propList =  sheet.filter(o => o[nameCol]).map( o => {
-
-              return  {  "title": o[nameCol],
-                           "const": [{
-                                  "name": o[nameCol],
-                                  "@type": "CreativeWork",
-                                  "url": o[urlCol]
-                                  } ]
-                        }
-               })
-     return {"oneOf":   propList }
-
- }
-export { resourceTypeOneOf as resourceTypeList}
-
-// oneOf.. this is part of an array. so each item is unique
-import  scienceDomain from  'dsv-loader!../controlledFromGooglesheet/sciencedomains.csv'
 const scienceDomainTypeOneOf =   function()  {
     const nameCol = "SCIENCE DOMAIN"
     const urlCol ="URI"
@@ -127,3 +108,4 @@ export {maturityOneOf as maturityOneOf} from './maturity'
 export {lifetimeOneOf as lifetimeOneOf} from './lifetime'
 export {audienceOneOf as audienceOneOf} from './audience'
 export { enumList as runtimeEnumList, suggestionList as runtimeSuggestionList} from './runtime'
+export {resourceTypeList as resourceTypeList} from './resourceTypes'
