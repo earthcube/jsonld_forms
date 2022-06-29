@@ -1,6 +1,6 @@
 const interchange = {
   type: 'Group',
-  label: 'Interchange file format options',
+  label: 'Interchange file format',
   rule: {
     effect: 'SHOW',
     condition: {
@@ -23,50 +23,23 @@ const interchange = {
   elements: [
     {
       type: 'Label',
-      text: 'Base Format'
+      text: 'Base Format- generic mime type or value from https://github.com/earthcube/GeoCODES-Metadata/blob/main/resources/encodingFormat.csv'
     },
     {
-      label: ' Base Format',
+      label: 'String(s) that will be used to match software with file formats that work with that software.',
       type: 'Control',
       scope: '#/properties/encodingFormat',
       options: {
         showUnfocusedDescription: true
       }
     },
+
     {
       type: 'Label',
-      text: 'Supporting Data'
+      text: 'Specification(s) that define the format'
     },
     {
-      label: ' Supporting Data',
-      type: 'Control',
-      scope: '#/properties/supportingData',
-      options: {
-        showUnfocusedDescription: true,
-        detail: {
-          type: 'HorizontalLayout',
-          elements: [
-            { label: 'name', type: 'Control', scope: '#/properties/name' },
-            {
-              label: 'position',
-              type: 'Control',
-              scope: '#/properties/position'
-            },
-            {
-              label: 'encodingFormat',
-              type: 'Control',
-              scope: '#/properties/encodingFormat'
-            }
-          ]
-        }
-      }
-    },
-    {
-      type: 'Label',
-      text: 'Conforms to'
-    },
-    {
-      label: ' Conforms to',
+      label: 'Conforms to',
       type: 'Control',
       scope: '#/properties/dct:conformsTo',
       options: {
