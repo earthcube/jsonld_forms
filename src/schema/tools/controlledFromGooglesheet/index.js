@@ -8,3 +8,4 @@ export { enumList as runtimeEnumList, suggestionList as runtimeSuggestionList} f
 export {resourceTypeList as resourceTypeList} from './resourceTypes'
 export {scienceDomainTypeOneOf as scienceDomainList} from './sciencedomains';
 export {licenseOneOf as licenseList} from './softwareLicenses';
+export {communicationProtocols as communicationList } from './communication';

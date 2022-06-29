@@ -6,7 +6,8 @@ import {
   scienceDomainList,
   maturityOneOf,
   lifetimeOneOf,
-  audienceOneOf
+  audienceOneOf,
+  communicationList
 } from './controlledFromGooglesheet';
 
 const jsonschema = {
@@ -265,29 +266,11 @@ const jsonschema = {
           $ref: '#/definitions/creativeWork_type'
         }
       },
-      'eccro:ECRRO_0000501': {
-        title: 'profile of',
-        description:
-            'Links to base specifications that a specifcation resource profiles. Only applicable if resource type is specification',
-        type: 'array',
-        items: {
-          $ref: '#/definitions/creativeWork_type'
-        }
-      },
-      'ecrro:ECRRO_0000502': {
-        title: 'Communication Protocol(s)',
-        description:
-            'communication protocol(s) used. Use ECRR controlled vocabulary',
 
-        type: 'array',
-        items: {
-          $ref: '#/definitions/definedTerm_type'
-        }
-      },
       applicationCategory: {
         title: 'Application function and subfunction',
         description:
-            'strings use special syntac like {function: ... uri: ... }. The function value is the label associated with the ECRR uri in the function vocabulary (http://cor.esipfed.org/ont/earthcube/SFO_0000001)',
+            'strings use special syntax like {function: ... uri: ... }. The function value is the label associated with the ECRR uri in the function vocabulary (http://cor.esipfed.org/ont/earthcube/SFO_0000001)',
 
         type: 'array',
         items: {
@@ -384,15 +367,7 @@ const jsonschema = {
           }
         }
       },
-      additionalProperty: {
-        type: 'array',
-        title: 'Other Properties',
-        description:
-            'EC resource registry properties that extend Schema.org are implemented as an array of PropertyValue inside a schema:additionalProperty',
-        items: {
-          $ref: '#/definitions/additionalProperty_type'
-        }
-      },
+
       /* EXPOSED ADDITIONAL PROPERTIES
       These will need to be stored in the additionalProperty.
       But for defining the form, they are stored at the top level
@@ -535,7 +510,42 @@ const jsonschema = {
           value: {$ref: '#/definitions/definedTerm_type'}
         }
       },
-      'ecrro:ECRRO_0000503': {
+    'eccro:ECRRO_0000501': {
+      title: 'profile of',
+      description:
+          'Links to base specifications that a specification resource profiles. Only applicable if resource type is specification',
+      type: 'array',
+      items: {
+        $ref: '#/definitions/creativeWork_type'
+      }
+    },
+    'ecrro:ECRRO_0000502': {
+      title: 'Communication Protocol(s)',
+      description:
+          'communication protocol(s) used. Use ECRR controlled vocabulary',
+      type: 'object',
+
+      properties: {
+        '@type': {
+          type: 'string',
+          default: 'PropertyValue',
+          const: 'PropertyValue'
+        },
+        propertyID: {
+          type: 'string',
+          default: 'ecrro:ECRRO_0000502',
+          const: 'ecrro:ECRRO_0000502'
+        },
+        name: {type: 'string'},
+        value: {
+          type: 'array',
+          uniqueItems: true,
+          items: {$ref: '#/definitions/definedTerm_type'}
+        }
+      }
+    },
+
+      'ecrro:ECRRO_0000503': {title: 'Interface specification',
         type: 'object',
         description: 'Interface specification',
         properties: {
@@ -555,7 +565,16 @@ const jsonschema = {
             items: {$ref: '#/definitions/creativeWork_type'}
           }
         }
+      },
+    additionalProperty: {
+      type: 'array',
+      title: 'Other Properties',
+      description:
+          'EC resource registry properties that extend Schema.org are implemented as an array of PropertyValue inside a schema:additionalProperty',
+      items: {
+        $ref: '#/definitions/additionalProperty_type'
       }
+    }
     },
     required: [
       "@id",
@@ -702,8 +721,8 @@ const jsonschema = {
             const: 'DefinedTerm'
           },
           identifier: {type: 'string'}
-        },
-        required: ['identifier', '@type', 'name']
+        }
+ //       required: ['identifier', '@type', 'name']
       },
       supportingData_type: {
         type: 'object',
@@ -839,7 +858,6 @@ const jsonschema = {
       additionalProperty_type: {
         anyOf: [
           {
-
             type: 'object',
             properties: {
               '@type': {
@@ -857,7 +875,6 @@ const jsonschema = {
             }
           },
           {
-
             type: 'object',
             description: 'Interface specification',
             properties: {
@@ -924,6 +941,33 @@ const jsonschema = {
             }
           },
           {
+            type: 'object',
+            description:
+                'communication protocols used; populate from http://cor.esipfed.org/ont/earthcube/CMPR',
+            properties: {
+              '@type': {
+                type: 'string',
+                default: 'PropertyValue',
+                const: 'PropertyValue'
+              },
+              propertyID: {
+                type: 'string',
+                default: 'ecrro:ECRRO_0000502',
+                const: 'ecrro:ECRRO_0000502'
+              },
+              name: {
+                type: 'string',
+ //               default: 'communication protocol'
+              },
+              value: {
+                type: 'array',
+                items: {$ref: '#/definitions/definedTerm_type'}
+              }
+            }
+          },
+
+
+          {
 
             type: 'object',
             description:
@@ -966,7 +1010,10 @@ const jsonschema = {
                 type: 'string',
                 default: 'primary publication'
               },
-              value: {type: 'string'}
+              value: {
+                type: 'array',
+                items: {type: 'string'}
+              }
             }
           },
           {
@@ -1097,6 +1144,9 @@ const withEnum = function() {
 //  let lifetime = lifetimeOneOf();
   jsonschema.properties['ecrro:ECRRO_0000219'].properties.value = lifetimeOneOf();
 
+//  let commprotocols = communicationList();
+  jsonschema.properties['ecrro:ECRRO_0000502'].properties.value.items = communicationList();
+
 //  let audience = audienceOneOf();
   jsonschema.properties.audience.items = audienceOneOf();
 
@@ -1118,6 +1168,7 @@ const flattenList = [
   { flattened: 'ecrro:ECRRO_0000218', flattenTo: 'additionalProperty' },
   { flattened: 'ecrro:ECRRO_0000017', flattenTo: 'additionalProperty' },
   { flattened: 'ecrro:ECRRO_0000503', flattenTo: 'additionalProperty' },
+  { flattened: 'ecrro:ECRRO_0000502', flattenTo: 'additionalProperty' },
   { flattened: 'ecrro:ECRRO_0001301', flattenTo: 'additionalProperty' }
 ];
 export { jsonschema as default, withEnum as schemaWithEnum, flattenList };

@@ -18,4 +18,4 @@ export const scienceDomainTypeOneOf = function () {
     return {"oneOf": propList}
 
 }
-export {scienceDomainTypeOneOf as scienceDomainList};
+// export {scienceDomainTypeOneOf as scienceDomainList};

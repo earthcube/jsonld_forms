@@ -28,11 +28,11 @@ const cat3 = {
       elements: [
         {
           type: 'Label',
-          text: '2.1 Maturity'
+          text: 'Maturity'
         },
         {
           type: 'Control',
-          //   "label": "2.1 Maturity",
+          //   "label": "Maturity",
           scope: '#/properties/ecrro:ECRRO_0000138',
           options: {
             showUnfocusedDescription: true,
@@ -67,11 +67,11 @@ const cat3 = {
         },
         {
           type: 'Label',
-          text: '2.2 Lifecycle'
+          text: '2Lifecycle'
         },
         {
           type: 'Control',
-          //       "label": "2.2 Lifecycle",
+          //       "label": "Lifecycle",
           scope: '#/properties/ecrro:ECRRO_0000219',
           options: {
             showUnfocusedDescription: true,
@@ -112,7 +112,7 @@ const cat3 = {
       elements: [
         {
           type: 'Control',
-          label: '1.1.1.1 Funder',
+          label: 'Funder',
           scope: '#/properties/funding',
           options: {
             showUnfocusedDescription: true,
@@ -150,9 +150,8 @@ const cat3 = {
       type: 'ShowGroup',
       label: 'Stewardship',
       elements: [
-        {
+        {label: 'Stewardship',
           type: 'Control',
-          label: '4.1 Stewardship',
           scope: '#/properties/ecrro:ECRRO_0000218',
           options: {
             showUnfocusedDescription: true,
@@ -208,30 +207,15 @@ const cat3 = {
           scope: '#/properties/audience',
           options: {
             childLabelProp: 'audienceType'
-            //                              "detail" : {
-            //                                 "type": "HorizontalLayout",
-            //                                "elements": [
-            //                                    {
-            //                                          "label": "Audience Type",
-            //                                          "type": "Control",
-            //                                          "scope": "#/items/audienceType"
-            //                                     },
-            //                                       {
-            //                                        "type": "Control",
-            //                                        "label": "Identifier",
-            //                                        "scope": "#/items/identifier"
-            //                                      },
-            //                                 ]
-            //                                 }
           }
         },
         {
           type: 'Label',
-          text: '5.2 Science Domain'
+          text: 'Science Domain'
         },
         {
           type: 'Control',
-          label: '5.2 Science Domain',
+          label: 'Science Domain',
           scope: '#/properties/about',
           options: {
             showUnfocusedDescription: true,
@@ -242,15 +226,14 @@ const cat3 = {
                   type: 'Control',
                   scope: '#/properties/name',
                   options: {}
-                },
-
+                }
               ]
             }
           }
         },
         {
           type: 'Control',
-          label: '5.3 Current Usage Level',
+          label: 'Current Usage Level',
           scope: '#/properties/ecrro:ECRRO_0000017',
           options: {
             showUnfocusedDescription: true,
@@ -274,11 +257,11 @@ const cat3 = {
       elements: [
         {
           type: 'Label',
-          text: '6.1 Dependencies and thier URL'
+          text: 'Dependencies and their URL'
         },
         {
           type: 'Control',
-          label: '6.1 Dependencies and thier URL',
+          label: 'Dependencies and their URL',
           scope: '#/properties/dependencies',
           options: {
             detail: {
@@ -325,11 +308,11 @@ const cat3 = {
         },
         {
           type: 'Label',
-          text: '6.2 Related Resources'
+          text: 'Related Resources'
         },
         {
           type: 'Control',
-          label: '6.2 Related Resources',
+          label: 'Related Resources',
           scope: '#/properties/isRelatedTo',
           options: {
             "elementLabelProp": "name",

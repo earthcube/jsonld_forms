@@ -4,7 +4,6 @@ const resourceTypeOneOf = function () {
     const nameCol = "Resource Type"
     const urlCol = "URI"
     const sheet = resourceTypeSheet
-//    var  licenseSheet = require( 'csv-loader!../controlledFromGooglesheet/ECRR Controlled Vocabularies - Software Licenses.csv' )
     let propList = sheet.filter(o => o[nameCol]).map(o => {
 
         return {

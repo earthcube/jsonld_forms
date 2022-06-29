@@ -41,11 +41,10 @@ const resourceTypeBase = {
         detail: {
           type: 'HorizontalLayout',
           elements: [
-            { label: 'name', type: 'Control', scope: '#/properties/name' },
-            {
-              label: 'identifier',
+            {label: 'communication protocol',
               type: 'Control',
-              scope: '#/properties/identifier'
+              scope: '#/properties/value/',
+              options:{"childLabelProp": "name"}
             }
           ]
         }
@@ -65,24 +64,7 @@ const resourceTypeBase = {
         autocomplete: true
       }
     },
-    //     {
-    //           "type": "ShowGroup",
-    //           "label": "add additional function details",
-    //           "elements": [
-    //                   {
-    //                     "type": "Label",
-    //                     "text": "Function subcategory"
-    //                   },
-    //                   {
-    //                   //  "label": "Protocol",
-    //                     "type": "Control",
-    //                     "scope": "#/properties/applicationCategory",
-    //                     "options": {
-    //                       "showUnfocusedDescription": true
-    //                     }
-    //                   },
-    //                   ]
-    //      },
+
     {
       type: 'Label',
       text: 'Runtime Environment'
@@ -104,8 +86,7 @@ const resourceTypeBase = {
           type: 'Label',
           text: 'Implementation Language'
         },
-        {
-          label: ' Conforms to',
+        {label: ' Conforms to',
           type: 'Control',
           scope: '#/properties/programmingLanguage',
           options: {
@@ -128,7 +109,7 @@ const resourceTypeBase = {
           text: 'Interface specification'
         },
         {
-          label: ' Interface specification',
+          label: 'Interface specification',
           type: 'Control',
           scope: '#/properties/ecrro:ECRRO_0000503',
           options: {
@@ -137,7 +118,7 @@ const resourceTypeBase = {
               type: 'HorizontalLayout',
               elements: [
                 {
-                  label: 'Interfaces',
+                  label: 'Interfaces list',
                   type: 'Control',
                   scope: '#/properties/value/'
                 }
@@ -158,7 +139,9 @@ const resourceTypeBase = {
             detail: {
               type: 'HorizontalLayout',
               elements: [
-                { label: 'name', type: 'Control', scope: '#/properties/name' },
+                { label: 'name',
+                  type: 'Control',
+                  scope: '#/properties/name' },
                 {
                   label: 'position',
                   type: 'Control',
