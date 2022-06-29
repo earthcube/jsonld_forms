@@ -1074,9 +1074,9 @@ const jsonschema = {
 
 
 const withEnum = function() {
-  let licenses = licenseList();
+  //let licenses = licenseList();
   // const licenseOneOf = [...licenseList ]
-  jsonschema.properties.license.items = licenses;
+  jsonschema.properties.license.items = licenseList();
 
   let rtypes = resourceTypeList();
   jsonschema.properties.mainEntity.oneOf = rtypes.oneOf;
@@ -1088,17 +1088,17 @@ const withEnum = function() {
   // let functions = functionenum()
   // jsonschema.properties.applicationCategory.items = functions
 
-  let scienceDomains = scienceDomainList();
-  jsonschema.properties.about.items = scienceDomains;
+//  let scienceDomains = scienceDomainList();
+  jsonschema.properties.about.items = scienceDomainList();
 
-  let maturity = maturityOneOf();
-  jsonschema.properties['ecrro:ECRRO_0000138'].properties.value = maturity;
+//  let maturity = maturityOneOf();
+  jsonschema.properties['ecrro:ECRRO_0000138'].properties.value = maturityOneOf();
 
-  let lifetime = lifetimeOneOf();
-  jsonschema.properties['ecrro:ECRRO_0000219'].properties.value = lifetime;
+//  let lifetime = lifetimeOneOf();
+  jsonschema.properties['ecrro:ECRRO_0000219'].properties.value = lifetimeOneOf();
 
-  let audience = audienceOneOf();
-  jsonschema.properties.audience.items = audience;
+//  let audience = audienceOneOf();
+  jsonschema.properties.audience.items = audienceOneOf();
 
   return jsonschema;
 };
