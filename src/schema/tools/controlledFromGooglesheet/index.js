@@ -9,3 +9,4 @@ export {resourceTypeList as resourceTypeList} from './resourceTypes'
 export {scienceDomainTypeOneOf as scienceDomainList} from './sciencedomains';
 export {licenseOneOf as licenseList} from './softwareLicenses';
 export {communicationProtocols as communicationList } from './communication';
+export {usageOneOf as usageOneOf } from './usage';

@@ -211,6 +211,27 @@ const cat3 = {
         },
         {
           type: 'Label',
+          text: 'Current Usage Level'
+        },
+        {
+          type: 'Control',
+          label: 'Current Usage Level',
+          scope: '#/properties/ecrro:ECRRO_0000017',
+          options: {
+            showUnfocusedDescription: true,
+            detail: {
+              type: 'HorizontalLayout',
+              elements: [
+                {
+                  type: 'Control',
+                  scope: '#/properties/value'
+                }
+              ]
+            }
+          }
+        },
+        {
+          type: 'Label',
           text: 'Science Domain'
         },
         {
@@ -226,24 +247,6 @@ const cat3 = {
                   type: 'Control',
                   scope: '#/properties/name',
                   options: {}
-                }
-              ]
-            }
-          }
-        },
-        {
-          type: 'Control',
-          label: 'Current Usage Level',
-          scope: '#/properties/ecrro:ECRRO_0000017',
-          options: {
-            showUnfocusedDescription: true,
-            detail: {
-              type: 'HorizontalLayout',
-              elements: [
-                {
-                  label: 'Value',
-                  type: 'Control',
-                  scope: '#/properties/value'
                 }
               ]
             }
@@ -278,18 +281,10 @@ const cat3 = {
                     "detail": {
                       "type": "VerticalLayout",
                       "elements": [
-
-                        {
-                          "label": "Type",
-                          "type": "Control",
-                          "scope": "#/properties/@type"
-
-                        },
                         {
                           "label": "Name",
                           "type": "Control",
                           "scope": "#/properties/name"
-
                         },
                         {
                           "label": "Url",
@@ -315,7 +310,7 @@ const cat3 = {
           label: 'Related Resources',
           scope: '#/properties/isRelatedTo',
           options: {
-            "elementLabelProp": "name",
+            "childLabelProp": "name",
 
             showUnfocusedDescription: true,
             "detail": {
@@ -325,7 +320,12 @@ const cat3 = {
                 {
                   "label": "Type",
                   "type": "Control",
-                  "scope": "#/properties/@type"
+                  "scope": "#/properties/@type",
+                  "options": {
+                    "suggestion": [
+                      "Dataset",  "Article", "Thesis", "Guide",  "Review",
+                      "type name of other schema.org entity"
+                    ] }
 
                 },
                 {

@@ -7,7 +7,8 @@ import {
   maturityOneOf,
   lifetimeOneOf,
   audienceOneOf,
-  communicationList
+  communicationList,
+    usageOneOf
 } from './controlledFromGooglesheet';
 
 const jsonschema = {
@@ -1150,6 +1151,9 @@ const withEnum = function() {
 //  let audience = audienceOneOf();
   jsonschema.properties.audience.items = audienceOneOf();
 
+  //  let usage = usageOneOf();
+  jsonschema.properties['ecrro:ECRRO_0000017'].properties.value = usageOneOf();
+
   return jsonschema;
 };
 
@@ -1162,11 +1166,11 @@ const flattenList = [
     propertyID: 'http://purl.obolibrary.org/obo/RO_0002502',
     flattenTo: 'additionalProperty'
   },
-  { flattened: 'ecrro:ECRRO_0000600', flattenTo: 'additionalProperty' },
+  { flattened: 'ecrro:ECRRO_0000600', flattenTo: 'additionalProperty' },  //primary publication
   { flattened: 'ecrro:ECRRO_0000138', flattenTo: 'additionalProperty' },
   { flattened: 'ecrro:ECRRO_0000219', flattenTo: 'additionalProperty' },
   { flattened: 'ecrro:ECRRO_0000218', flattenTo: 'additionalProperty' },
-  { flattened: 'ecrro:ECRRO_0000017', flattenTo: 'additionalProperty' },
+  { flattened: 'ecrro:ECRRO_0000017', flattenTo: 'additionalProperty' }, // usage
   { flattened: 'ecrro:ECRRO_0000503', flattenTo: 'additionalProperty' },
   { flattened: 'ecrro:ECRRO_0000502', flattenTo: 'additionalProperty' },
   { flattened: 'ecrro:ECRRO_0001301', flattenTo: 'additionalProperty' }

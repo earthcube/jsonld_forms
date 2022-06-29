@@ -1,0 +1,6 @@
+Usage Volume,URI
+Wide usage (>50 adopters),http://cor.esipfed.org/ont/earthcube/UBA_0000001
+Some usage (10-50 adopters),http://cor.esipfed.org/ont/earthcube/UBA_0000002
+Low usage,http://cor.esipfed.org/ont/earthcube/UBA_0000003
+Unknown,http://cor.esipfed.org/ont/earthcube/UBA_0000004
+Not applicable,http://cor.esipfed.org/ont/earthcube/UBA_0000005
