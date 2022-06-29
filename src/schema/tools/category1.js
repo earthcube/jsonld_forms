@@ -256,10 +256,10 @@
           "elements": [
             {
               "type": "Label",
-              "text": "1.3.1 Citation",
-              "decription":"Please provide a recommended citation to reference this resource in publications, using a standard bibliographic format"
+              "text": "Recommended Citation",
+              "description":"Please provide a recommended citation to reference this resource in publications, using a standard bibliographic format"
             },
-              /* citation is an additional propery
+              /* citation is an additional property
               {
  "@type": "PropertyValue",
   "propertyID": "dct:bibliographicCitation",
