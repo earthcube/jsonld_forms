@@ -35,11 +35,7 @@ const interchange = {
     },
 
     {
-      type: 'Label',
-      text: 'Specification(s) that define the format'
-    },
-    {
-      label: 'Conforms to',
+      label: 'Specification(s) that define the format',
       type: 'Control',
       scope: '#/properties/dct:conformsTo',
       options: {
@@ -52,6 +48,28 @@ const interchange = {
           ]
         }
       }
+    },
+
+    {
+      label: 'Vocabularies or Ontologies used by this format',
+      type: 'Control',
+      scope: '#/properties/isBasedOn',
+      options: {
+        showUnfocusedDescription: true,
+        detail: {
+          type: 'HorizontalLayout',
+          elements: [
+            { label: 'name',
+              type: 'Control',
+              scope: '#/properties/name' },
+            { label: 'URL or URI',
+              type: 'Control',
+              scope: '#/properties/url' }
+          ]
+        }
+      }
+
+
     }
   ]
 };
