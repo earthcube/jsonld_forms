@@ -76,7 +76,7 @@ const licenseOneOf =   function()  {
 
 export { licenseOneOf as licenseList}
 
-import  resourceTypeSheet from  'dsv-loader!../controlledFromGooglesheet/ECRR Controlled Vocabularies - Resource Types.csv'
+import  resourceTypeSheet from 'dsv-loader!./resourceTypes.csv'
 const resourceTypeOneOf =   function()  {
     const nameCol = "Resource Type"
     const urlCol ="URI"
