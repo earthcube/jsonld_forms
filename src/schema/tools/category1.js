@@ -9,28 +9,27 @@
           "elements": [
             {
               "type": "Label",
-              "text": "1.1.1 Short Name for the <span class='highlight'>Resource</span>",
+              "text": "Short Name for the <span class='highlight'>Resource</span>",
 
             },
             {
               "label": " Name",
               "type": "Control",
               "scope": "#/properties/name",
-            "description": "Alternate names by which the resource might be known or discovered.",
               "options": {
                 "showUnfocusedDescription": true
               }
             },
             {
               "type": "ShowGroup",
-              "label": "Add Additional Names",
+              "label": "Additional name(s) for the resource",
+              "description": "Alternate names by which the resource might be known ",
               "elements": [
 
                 {
-                    // "type": "Control",
-                   "type": "Control",
-                  "label": "1.1.1.1 Alternate Resource Name(s)",
-                  "description": "URL to access information about the resource on the Web.",
+                  "type": "Control",
+                   "label": "Alternate Name(s) for the Resource",
+                  // "description": "Other names by which the resource might be known or discovered.",
                   "scope": "#/properties/alternateName",
                   "options": {
                     "showUnfocusedDescription": true
@@ -41,11 +40,11 @@
 
             {
               "type": "ShowGroup",
-              "label": "Add Additional Identifiers",
+              "label": "Identifiers",
               "elements": [
                 {
                   "type": "Label",
-                  "text": "1.1.2 <span class='highlight'> Identifier </span> <span class='readonly'>(Readonly)</span>"
+                  "text": "<span class='highlight'>Identifier for metadata record</span> <span class='readonly'>(Readonly)</span>"
                 },
                 {
                   "label": "Identifier",
@@ -57,10 +56,10 @@
                     "readonly": true,
                       "elementLabelProp": "value",
                       "detail" : {
-                                              "type": "HorizontalLayout",
+                        "type": "HorizontalLayout",
                         "elements": [
                           {
-                            "label": "Indentifier",
+                            "label": "Identifier",
                             "type": "Control",
                             "scope": "#/properties/value"
                           },
@@ -80,75 +79,14 @@
                     }
 
               },
-//                 { "type": "Control",
-//                 "label":"PropertyTest Additional Identifiers" ,
-//                 "scope": "#/properties/identifier",
-//                 },
-//                                 { "type": "JsonLdProperty",
-//                                 "label":"PropertyTest Additional Identifiers" ,
-//                                 "scope": "#/properties/identifiersTest",
-//                                 }
-
             {
               type: 'Control',
-              label: '1.1.1.1 Additional Identifiers',
+              label: 'Additional Identifiers',
 
               scope: '#/properties/identifier',
               options: {
                 showUnfocusedDescription: true
 
-                //                      // "elementLabelProp": "value",
-                //                       //"elementLabelProp": [ "value", "#", "Not Set"],
-                //                      // "detail": "Generated"
-                //                       "detail" : {
-                //                         "type": "HorizontalLayout",
-                //                         "elements": [
-                // //                          {
-                // //                             "label": "Type",
-                // //                             "type": "Control",
-                // //                             "scope": "#/properties/@type",
-                // //                             "rule": {
-                // //                                 "effect": "HIDE",
-                // //                                 "condition": {
-                // //                                   "schema": {
-                // //                                     "const": true
-                // //                                   }
-                // //                                 }
-                // //                               }
-                // //
-                // //                           },
-                // //                             {
-                // //                                                       "label": "Indentifier",
-                // //                                                       "type": "Control",
-                // //                                                       "scope": "#"
-                // //                                                     },
-                //                                                     {
-                //                             "label": "Indentifier",
-                //                             "type": "Control",
-                //                             "scope": "#/properties/value"
-                //                           },
-                //                           {
-                //                             "label": "Type",
-                //                             "type": "Control",
-                //                             "scope": "#/properties/propertyID",
-                //                             "options": {
-                //                                 "suggestion":["DOI", "PURL"]
-                //                             }
-                //
-                //                           },
-                //                           {
-                //                             "label": "PropertyName",
-                //                             "type": "Control",
-                //                             "scope": "#/properties/name",
-                //                             "options": {
-                //                                                             "suggestion":["DOI", "PURL"]
-                //                                                         }
-                //
-                //                           }
-                //                         ]
-                //
-                //
-                //                     }
               }
             }
           ]
@@ -162,7 +100,7 @@
           "elements": [
             {
               "type": "Label",
-              "text": "1.2.1 Description",
+              "text": "Description of resource",
               "decription": "Please provide as much detail as possible, so that we can automatically extract additional information, and search engine text indexing will provide useful results. Feel free to copy and paste from respective web sites, papers, reports, etc.",
             },
             {
@@ -177,45 +115,44 @@
 
             {
               "type": "ShowGroup",
-              "label": "Add Reccomended Details",
+              "label": "Recommended Detail Properties",
               "elements": [
                 {
                   "type": "Label",
-                  "text": "1.2.0.1 Date"
+                  "text": "Publication date"
                 },
                 {
                   "type": "Control",
-                  "label": "Publication Date of Most Recent Release. This will be formated at YYYY-MM-DD in the output",
+                  "text": "Publication Date of Most Recent Release. This will be formatted at YYYY-MM-DD in the output",
                   "scope": "#/properties/datePublished",
                   "options": {
                     "showUnfocusedDescription": true
                   }
                 },
-                {
-                  "type": "Label",
-                  "text": "1.2.0.1 URL to User Readable Page",
-                  "description": "URL to access information about the resource on the Web.",
-                },
+                // {
+                //   "type": "Label",
+                //   "text": "URL to User Readable Page",
+                //   "description": "URL to access information about the resource on the Web.",
+                // },
                 {
                   "type": "Control",
                   "label": "URL to User-Readable Page",
+                  // populate with schema:CreativeWork to get label and name
                   "scope": "#/properties/subjectOf",
                   "options": {
-                    "elementLabelProp": "url",
+                  //  "elementLabelProp": "url",
                     "showUnfocusedDescription": true,
                     "detail" : {
                       "type": "VerticalLayout",
                       "elements": [
-
                         {
                           "label": "URL",
                           "type": "Control",
                           "scope": "#/properties/url"
-
                         },
                         {
-                          "label": "Description",
-                          "description": "Some suggestions",
+                          "label": "Label for this link",
+                       //   "description": "Some suggestions",
                           "type": "Control",
                           "scope": "#/properties/name",
                           "options": {
@@ -228,15 +165,13 @@
                           }
                         }
                       ]
-
-
                     }
                   }
                 },
 
                 {
                   "type": "Label",
-                  "text": "1.2.3 Keywords",
+                  "text": "Keywords",
                   "description": "use words or phrases you would expect searchers to enter into search engines.",
                 },
                 {
@@ -259,22 +194,10 @@
               "text": "Recommended Citation",
               "description":"Please provide a recommended citation to reference this resource in publications, using a standard bibliographic format"
             },
-              /* citation is an additional property
-              {
- "@type": "PropertyValue",
-  "propertyID": "dct:bibliographicCitation",
-"name": "Bibligraphic citation",
-"value":"IRIS, no date, SAC Data File Format, http://ds.iris.edu/files/sac-manual/manual/file_format.html"
-  },
-
-               */
-        {
+         {
           type: 'Control',
           scope: '#/properties/dct:bibliographicCitation',
-
-              //    "scope": "#/properties/additionalProperty/items/anyOf/0/",
               "options": {
-
                 "showUnfocusedDescription": true,
                 "elementLabelProp": "value",
                 "detail" : {
@@ -287,12 +210,10 @@
                       "scope": "#/properties/value",
                       "options":{
                       "multi": true,
-                                                 "showUnfocusedDescription": true
+                      "showUnfocusedDescription": true
                       }
                     }
                   ]
-
-
                 }
               }
             },
@@ -301,10 +222,9 @@
                           "label": "Add Responsible Parties",
                           "description":"Persons or organizations with roles in the creation of the resource content, e.g. Creator, Editor, Contributor... ",
                           "elements": [
-
                             {
                               "type": "Control",
-                              "label": "1.3.1.1 Creator",
+                              "label": "Creator",
                               "scope": "#/properties/creator",
                               "options": {
                                 "elementLabelProp": "name",
@@ -312,25 +232,21 @@
                                 "detail": {
                                   "type": "VerticalLayout",
                                   "elements": [
-
                                     {
                                       "label": "Type",
                                       "type": "Control",
                                       "scope": "#/properties/@type"
-
                                     },
                                     {
                                       "label": "Name",
                                       "type": "Control",
                                       "scope": "#/properties/name"
-
                                     },
                                     {
                                       "label": "Identifier",
                                       "type": "Control",
                                       "scope": "#/properties/identifier",
                                       "description":"An Identifier (e.g. ORCID) or identifying property. ",
-
                                     },
                                   ]}
                               }
@@ -338,11 +254,11 @@
                             },
                              {
                               "type": "Label",
-                              "text": "1.3.1.1 publisher"
+                              "text": "Publisher"
                             },
                             {
                               "type": "Control",
-                              "label": "1.3.1.1 publisher",
+                              "label": "Publisher",
                               "scope": "#/properties/publisher",
                               "options": {"elementLabelProp": "name",
                                 "showUnfocusedDescription": true,
@@ -374,7 +290,7 @@
                             },
                             {
                               "type": "Control",
-                              "label": "1.3.1.1 contributor",
+                              "label": "contributor",
                               "scope": "#/properties/contributor",
                               "options": { "elementLabelProp": "name",
                                 "showUnfocusedDescription": true,
@@ -406,7 +322,7 @@
                             },
                             {
                               "type": "Control",
-                              "label": "1.3.1.1 editor",
+                              "label": "Editor",
                               "scope": "#/properties/editor",
                               "options": { "elementLabelProp": "name",
                                 "showUnfocusedDescription": true,
@@ -439,7 +355,7 @@
 
                             {
                               "type": "Control",
-                              "label": "1.3.1.1 developer",
+                              "label": "Software Developer",
                               "scope": "#/properties/developer",
                               "options": { "elementLabelProp": "name",
                                 "showUnfocusedDescription": true,
@@ -485,15 +401,8 @@
                 },
                 {
                   "type": "Control",
-                  "label": "1.1.1.1 Primary Publication",
-                  //#/definitions/additionalProperty_type/anyOf/3/type
-                  //#/definitions/additionalProperty_type/anyOf/3/properties/propertyID/const
-                  //#/definitions/additionalProperty_type/anyOf/5/$anchor
-                //  "scope": "#/properties/additionalProperty/items/#ECRRO_0000600",
-                //#/properties/additionalProperty/items/$ref
-                //  "scope": "#/properties/additionalProperty/items/anyOf/5/", // works
-                //  "scope": "https://example.com/schemas/properties/additionalProperty/items/anyOf/#ECRRO0000600", //fails
-                    "scope": "#/properties/ecrro:ECRRO_0000600",
+                  "label": "Primary Publication",
+                  "scope": "#/properties/ecrro:ECRRO_0000600",
                   "options": {
                     "showUnfocusedDescription": true,
 
