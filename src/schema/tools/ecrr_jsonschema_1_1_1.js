@@ -133,6 +133,7 @@ const jsonschema = {
         },
         name: {
           type: 'string',
+          title: 'short name',
           default: 'primary publication'
         },
         value: {type: 'string'}
@@ -1111,7 +1112,7 @@ const flattenList = [
     propertyID: 'http://purl.obolibrary.org/obo/RO_0002502',
     flattenTo: 'additionalProperty'
   },
-  { flattened: 'ecrro:ECRRO_0000600,', flattenTo: 'additionalProperty' },
+  { flattened: 'ecrro:ECRRO_0000600', flattenTo: 'additionalProperty' },
   { flattened: 'ecrro:ECRRO_0000138', flattenTo: 'additionalProperty' },
   { flattened: 'ecrro:ECRRO_0000219', flattenTo: 'additionalProperty' },
   { flattened: 'ecrro:ECRRO_0000218', flattenTo: 'additionalProperty' },

@@ -54,7 +54,7 @@
 // }
 
 //import  licenseSheet from  'csv-loader!../controlledFromGooglesheet/ECRR Controlled Vocabularies - Software Licenses.csv'
-import  licenseSheet from  'dsv-loader!../controlledFromGooglesheet/ECRR Controlled Vocabularies - Software Licenses.csv'
+import  licenseSheet from 'dsv-loader!./softwareLicenses.csv'
 const licenseOneOf =   function()  {
     const nameCol = "Pruned for the form"
     const urlCol ="URI"
