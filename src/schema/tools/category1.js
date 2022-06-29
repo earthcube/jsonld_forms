@@ -262,7 +262,7 @@
               /* citation is an additional propery
               {
  "@type": "PropertyValue",
-  "propertyID": "dc:BibliographicCitation",
+  "propertyID": "dct:bibliographicCitation",
 "name": "Bibligraphic citation",
 "value":"IRIS, no date, SAC Data File Format, http://ds.iris.edu/files/sac-manual/manual/file_format.html"
   },
@@ -270,7 +270,7 @@
                */
         {
           type: 'Control',
-          scope: '#/properties/dc:BibliographicCitation',
+          scope: '#/properties/dct:bibliographicCitation',
 
               //    "scope": "#/properties/additionalProperty/items/anyOf/0/",
               "options": {

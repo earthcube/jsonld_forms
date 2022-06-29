@@ -399,7 +399,7 @@ const jsonschema = {
       'ecrro:ECRRO_0001301': {
         $ref: '#/definitions/metadataCreatorType'
       },
-      'dc:BibliographicCitation': {
+      'dct:bibliographicCitation': {
         title: 'Bibliographic Citation',
         $ref: '#/definitions/citationType'
       },
@@ -783,8 +783,8 @@ const jsonschema = {
           },
           propertyID: {
             type: 'string',
-            default: 'dc:BibliographicCitation',
-            const: 'dc:BibliographicCitation'
+            default: 'dct:bibliographicCitation',
+            const: 'dct:bibliographicCitation'
           },
 
           value: {type: 'string'}
@@ -848,8 +848,8 @@ const jsonschema = {
               },
               propertyID: {
                 type: 'string',
-                default: 'dc:BibliographicCitation',
-                const: 'dc:BibliographicCitation'
+                default: 'dct:bibliographicCitation',
+                const: 'dct:bibliographicCitation'
               },
               name: {type: 'string'},
               value: {type: 'string'}
@@ -1105,7 +1105,7 @@ const withEnum = function() {
 // one case where the propertyID causes issues with the json ref path, so it cannot be used as
 // the name for a jsonld form. otherwise the propertyID and the flattened are the same.
 const flattenList = [
-  { flattened: 'dc:BibliographicCitation', flattenTo: 'additionalProperty' },
+  { flattened: 'dct:bibliographicCitation', flattenTo: 'additionalProperty' },
   {
     flattened: 'dependencies',
     propertyID: 'http://purl.obolibrary.org/obo/RO_0002502',

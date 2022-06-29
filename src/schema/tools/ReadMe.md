@@ -4,7 +4,7 @@ These are the schemas.
 Rather than one set of monster form, ecrr_1_0_uischema.json
 I've made this into a set of javascript classes, that buidl on each other
 
-ecrr_1_1_uischema.js
+ecrr_1_1_1_uischema.js
 * category1
    * resourceTypes
 * category2
