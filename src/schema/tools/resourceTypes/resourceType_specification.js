@@ -20,11 +20,28 @@ const resourceType = {
       }
     }
   },
+
+  //need to pick specific specification type.
+
+
+
   elements: [
     {
       type: 'Label',
       text: 'Specification: A specification is a document that defines how a particular activity can be done for consistency between different implementers of that activity.'
     },
+
+
+      {
+          type: 'Control',
+          label:'please choose a more specific specification type',
+          scope: '#/properties/mainEntity',
+
+          //  "elementLabelProp": "name",
+          options: {
+          }
+      },
+
     {
       label: 'File Format: how is the specification represented digitally',
       type: 'Control',
