@@ -1,5 +1,5 @@
 import {
-  functionsuggestion,
+  functionallsuggestion,
   runtimeSuggestionList
 } from '../controlledFromGooglesheet';
 import _ from 'lodash';
@@ -68,6 +68,15 @@ const resourceTypeBase = {
     {
       type: 'Label',
       text: 'Runtime Environment'
+    },
+    {
+      label: 'Runtime Environment',
+      type: 'Control',
+      scope: '#/properties/runtimePlatform',
+      options: {
+        suggestion: [],
+        showUnfocusedDescription: true
+      }
     },
     {
       label: 'Runtime Environment',
@@ -269,8 +278,10 @@ const resourceTypeBase = {
     }
   ]
 };
+
+// function to add suggested values in the uiSchema.
 const resourceType = function() {
-  let functionsuggestionList = functionsuggestion();
+  let functionsuggestionList = functionallsuggestion();
   let applicationCategory = _.find(resourceTypeBase.elements, o => {
     return o.scope === '#/properties/applicationCategory';
   });

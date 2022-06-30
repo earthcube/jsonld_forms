@@ -1,4 +1,4 @@
-import { functionsuggestion } from '../controlledFromGooglesheet';
+import { functionallsuggestion} from '../controlledFromGooglesheet';
 import _ from 'lodash';
 
 const resourceTypeBase = {
@@ -182,11 +182,11 @@ const resourceTypeBase = {
   ]
 };
 const resourceType = function() {
-  let functionsuggestionList = functionsuggestion();
+  let functionsuggestionList = functionallsuggestion();
   let applicationCategory = _.find(resourceTypeBase.elements, o => {
     return o.scope === '#/properties/applicationCategory';
   });
-  console.log(applicationCategory, functionsuggestionList);
+//  console.log(applicationCategory, functionsuggestionList);
   applicationCategory.options.suggestion = functionsuggestionList;
   return resourceTypeBase;
 };

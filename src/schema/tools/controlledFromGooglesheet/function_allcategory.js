@@ -1,20 +1,19 @@
 
-import  suggestionSheet from  'dsv-loader!../controlledFromGooglesheet/function_category.csv';
-const nameCol = "Category";
-const sheet = suggestionSheet;
-
-const functioncatenum =   function()  {
+import  suggestionSheet from  'dsv-loader!../controlledFromGooglesheet/function_allcategory.csv';
+const nameCol = "Category"
+const sheet = suggestionSheet
+const fucntionenum =   function()  {
      let propList =  sheet.filter(o => o[nameCol]).map( o => {
               return   o[nameCol]
                })
      return {"type":"string", "enum":   propList }
  }
-const functioncatsuggestion =   function()  {
+const functionsuggestion =   function()  {
      let propList =  sheet.filter(o => o[nameCol]).map( o => {
               return   o[nameCol]
                })
      return  propList
  }
-export {functioncatenum, functioncatsuggestion}
+export { fucntionenum, functionsuggestion}
 
 

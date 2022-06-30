@@ -1,6 +1,29 @@
-//import {functionsuggestion as functionsuggestion} from '../controlledFromGooglesheet'
 
-const resourceType = {
+/*
+A specification that defines a web service (webAPI) intended for implementation by multiple
+servers (e.g. OGC API). In the original ECRR design, Interface/API was considered as
+separate resource.  Based on the resource descriptions compiled in the initial development
+phase, it became apparent that it is unnecessary to make a distinction between the
+interface as a conceptual entity, the specification for that interface, and the
+applications/service instances that implement the interface. There are many API endpoints
+that are implemented with some documentation specific to that endpoint, but not a
+specification intended to be useful to implement other service endpoints that operate
+the same way. Service instances should be represented as Service Instance resources , with
+dct:conformsTo providing a
+link to the service specification (this resource type) if there is such a specification.
+*/
+
+
+// properties of Interface/API:
+//communication  protocol DefinedTerm, property ecrro:ECRRO_0000502
+//function  schema:applicationCategory. string. String values should use this syntax: “function: ... uri: ...”.
+//    The function value is the label associated with the ECRR uri in the function vocabulary
+//conformsTo dct:conformsTo, array of CreativeWork.
+
+import { functionallsuggestion } from '../controlledFromGooglesheet';
+import _ from "lodash";
+
+const interfaceResource = {
   type: 'Group',
   label: 'Interface/API options',
   rule: {
@@ -9,80 +32,47 @@ const resourceType = {
       scope: '#/properties/mainEntity/',
       schema: {
        // const: 'Interface/API'
-         "const": [
-                  {
-                  "name":
-                  "Interface/API",
-                  "@type":
-                  "CreativeWork",
-                  "url":
-                  "http://cor.esipfed.org/ont/earthcube/ECRRO_0000207"
-                  }
-                  ]
+         "const":
+[
+{ "name": "Interface/API",
+"@type": "CreativeWork",
+"url":
+"http://cor.esipfed.org/ont/earthcube/ECRRO_0000207"
+ }
+]
       }
     }
   },
   elements: [
-    {
-      type: 'Label',
-      text: 'Community specification'
-    },
-    {
-      label: 'Protocol',
+    {label: 'Communication protocol for API',
       type: 'Control',
-      scope: '#/properties/ecrro:ECRRO_0000503',
+      scope: '#/properties/ecrro:ECRRO_0000502',
       options: {
         showUnfocusedDescription: true,
         detail: {
           type: 'HorizontalLayout',
           elements: [
-            { label: 'name', type: 'Control', scope: '#/properties/name' },
-            { label: 'Value', type: 'Control', scope: '#/properties/value/' }
+            {label: 'communication protocol',
+              type: 'Control',
+              scope: '#/properties/value/',
+              options:{"childLabelProp": "name"}
+            }
           ]
         }
       }
     },
-    {
-      type: 'Label',
-      text: 'General Functions'
-    },
-    {
-      label: 'General Functions',
+
+    {label: 'Interface Functions',
       type: 'Control',
       scope: '#/properties/applicationCategory',
       options: {
         autocomplete: true,
-        showUnfocusedDescription: true
-        //                   "suggestion": functionsuggestion()
+        suggestion: []
       }
     },
-    //     {
-    //           "type": "ShowGroup",
-    //           "label": "add additional function details",
-    //           "elements": [
-    //                   {
-    //                     "type": "Label",
-    //                     "text": "Function subcategory"
-    //                   },
-    //                   {
-    //                     "label": "Function subcategory",
-    //                     "type": "Control",
-    //                     "scope": "#/properties/applicationCategory",
-    //                     "options": {
-    //                       "showUnfocusedDescription": true
-    //                     }
-    //                   },
-    //                   ]},
-    {
-      type: 'ShowGroup',
-      label: 'Describe the interface',
-      elements: [
-        {
-          type: 'Label',
-          text: 'Conforms to'
-        },
-        {
-          label: ' Conforms to',
+    // TBD-- figure out how to add subfunction categories.
+
+    { label: 'Specification(s) of interface operation and interaction protocols',
           type: 'Control',
           scope: '#/properties/dct:conformsTo',
           options: {
@@ -96,12 +86,8 @@ const resourceType = {
             }
           }
         },
-        {
-          type: 'Label',
-          text: 'Potential Actions'
-        },
-        {
-          label: 'Potential Actions',
+
+    {label: 'Potential Actions',
           type: 'Control',
           scope: '#/properties/potentialAction',
           options: {
@@ -109,19 +95,16 @@ const resourceType = {
             detail: {
               type: 'VerticalLayout',
               elements: [
-                {
-                  label: '@type',
+
+                { label: 'name',
                   type: 'Control',
-                  scope: '#/properties/target/properties/@type'
-                },
-                { label: 'name', type: 'Control', scope: '#/properties/name' },
+                  scope: '#/properties/name' },
                 {
                   label: 'description',
                   type: 'Control',
                   scope: '#/properties/target/properties/description'
                 },
-                {
-                  label: 'urlTemplate',
+                {label: 'urlTemplate',
                   type: 'Control',
                   scope: '#/properties/target/properties/urlTemplate'
                 },
@@ -131,12 +114,12 @@ const resourceType = {
                   type: 'Control',
                   scope: '#/properties/target/properties/httpMethod',
                   options: {
-                    detail: {
-                      type: 'HorizontalLayout',
-                      elements: [
-                        { label: 'Method', type: 'Control', scope: '#' }
-                      ]
-                    }
+                    // detail: {
+                    //   type: 'HorizontalLayout',
+                    //   elements: [
+                    //     { label: 'Method', type: 'Control', scope: '#' }
+                    //   ]
+                    // }
                   }
                 }
               ]
@@ -144,8 +127,18 @@ const resourceType = {
           }
         }
       ]
-    }
-  ]
+    };
+
+const resourceType2 = function() {
+  let functionsuggestionList = functionallsuggestion();
+  let applicationCategory = _.find(interfaceResource.elements, o => {
+    return o.scope === '#/properties/applicationCategory';
+  });
+  applicationCategory.options.suggestion = functionsuggestionList;
+  return interfaceResource;
 };
 
-export default resourceType;
+let theschema = resourceType2();
+
+//export default resourceType2;
+export default theschema;

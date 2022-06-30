@@ -2,7 +2,7 @@
 import {
   licenseList,
   resourceTypeList,
-  //functionenum,
+//  function,
   scienceDomainList,
   maturityOneOf,
   lifetimeOneOf,
@@ -523,8 +523,8 @@ const jsonschema = {
         $ref: '#/definitions/creativeWork_type'
       }
     },
-    'ecrro:ECRRO_0000502': {
-      title: 'Communication Protocol(s)',
+
+    'ecrro:ECRRO_0000502': {title: 'Communication Protocol(s)',
       description:
           'communication protocol(s) used. Use ECRR controlled vocabulary',
       type: 'object',
@@ -1131,13 +1131,6 @@ const withEnum = function() {
 
   let rtypes = resourceTypeList();
   jsonschema.properties.mainEntity.oneOf = rtypes.oneOf;
-  //jsonschema.properties.mainEntity.items= rtypes
-  //jsonschema.definitions.resourceTypes_type.items= rtypes
-
-  // not good at suggestions, so let's try suggestions
-  // but using oneOf means the list must match
-  // let functions = functionenum()
-  // jsonschema.properties.applicationCategory.items = functions
 
 //  let scienceDomains = scienceDomainList();
   jsonschema.properties.about.items = scienceDomainList();
