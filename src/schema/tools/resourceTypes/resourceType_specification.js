@@ -23,23 +23,19 @@ const resourceType = {
   elements: [
     {
       type: 'Label',
-      text: 'Specification'
+      text: 'Specification: A specification is a document that defines how a particular activity can be done for consistency between different implementers of that activity.'
     },
     {
-      label: 'encodingFormat',
+      label: 'File Format: how is the specification represented digitally',
       type: 'Control',
       scope: '#/properties/encodingFormat',
       options: {
         showUnfocusedDescription: true
       }
     },
-    {
-      type: 'ShowGroup',
-      label: 'add additional details',
-      elements: [
-        {
+         {
           type: 'Label',
-          text: 'Profile of'
+          text: 'Profile of: A profile defines a set of clauses, classes, options or parameters from one or more base specifications that are used to implement a particular set of requirements. Profiles must be constructed such that conformance to the profile implies conformance to the base specification from which it is derived.'
         },
         {
           label: 'Profile of',
@@ -57,8 +53,6 @@ const resourceType = {
           }
         }
       ]
-    }
-  ]
-};
+    };
 
 export default resourceType;

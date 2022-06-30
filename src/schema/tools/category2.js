@@ -33,8 +33,8 @@ const cat2 = {
   ]
 };
 
-cat2.elements.push(servicedesc());
-cat2.elements.push(software());
+cat2.elements.push(servicedesc);
+cat2.elements.push(software);
 cat2.elements.push(interchange);
 cat2.elements.push(specification);
 cat2.elements.push(catalog);

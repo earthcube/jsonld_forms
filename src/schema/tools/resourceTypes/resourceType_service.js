@@ -1,7 +1,7 @@
 import { functionallsuggestion} from '../controlledFromGooglesheet';
 import _ from 'lodash';
 
-const resourceTypeBase = {
+let resourceTypeBase = {
   type: 'Group',
   label: 'Service Instance options',
   rule: {
@@ -190,4 +190,7 @@ const resourceType = function() {
   applicationCategory.options.suggestion = functionsuggestionList;
   return resourceTypeBase;
 };
-export default resourceType;
+
+resourceTypeBase = resourceType();
+
+export default resourceTypeBase;

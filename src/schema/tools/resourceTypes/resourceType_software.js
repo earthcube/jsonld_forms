@@ -4,7 +4,7 @@ import {
 } from '../controlledFromGooglesheet';
 import _ from 'lodash';
 
-const resourceTypeBase = {
+let resourceTypeBase = {
   type: 'Group',
   label: 'Software options',
   rule: {
@@ -30,26 +30,9 @@ const resourceTypeBase = {
   elements: [
     {
       type: 'Label',
-      text: 'Interface'
+      text: 'Communication protocol used by software'
     },
-    {
-      label: 'Protocol',
-      type: 'Control',
-      scope: '#/properties/ecrro:ECRRO_0000502',
-      options: {
-        showUnfocusedDescription: true,
-        detail: {
-          type: 'HorizontalLayout',
-          elements: [
-            {label: 'communication protocol',
-              type: 'Control',
-              scope: '#/properties/value/',
-              options:{"childLabelProp": "name"}
-            }
-          ]
-        }
-      }
-    },
+
     {
       type: 'Label',
       text: 'General Functions'
@@ -66,19 +49,6 @@ const resourceTypeBase = {
     },
 
     {
-      type: 'Label',
-      text: 'Runtime Environment'
-    },
-    {
-      label: 'Runtime Environment',
-      type: 'Control',
-      scope: '#/properties/runtimePlatform',
-      options: {
-        suggestion: [],
-        showUnfocusedDescription: true
-      }
-    },
-    {
       label: 'Runtime Environment',
       type: 'Control',
       scope: '#/properties/runtimePlatform',
@@ -91,15 +61,13 @@ const resourceTypeBase = {
       type: 'ShowGroup',
       label: 'Describe the Implementation',
       elements: [
-        {
-          type: 'Label',
-          text: 'Implementation Language'
-        },
-        {label: ' Conforms to',
+
+        {label: 'Programming language(s) used',
           type: 'Control',
           scope: '#/properties/programmingLanguage',
           options: {
             showUnfocusedDescription: true,
+            childLabelProp: "name",
             detail: {
               type: 'HorizontalLayout',
               elements: [
@@ -113,12 +81,9 @@ const resourceTypeBase = {
             }
           }
         },
+
         {
-          type: 'Label',
-          text: 'Interface specification'
-        },
-        {
-          label: 'Interface specification',
+          label: 'Interfaces implemented by the software',
           type: 'Control',
           scope: '#/properties/ecrro:ECRRO_0000503',
           options: {
@@ -295,4 +260,7 @@ const resourceType = function() {
 
   return resourceTypeBase;
 };
-export default resourceType;
+
+resourceTypeBase = resourceType();
+
+export default resourceTypeBase;

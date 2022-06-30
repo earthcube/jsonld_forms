@@ -1,7 +1,6 @@
 
 /*
-A specification that defines a web service (webAPI) intended for implementation by multiple
-servers (e.g. OGC API). In the original ECRR design, Interface/API was considered as
+In the original ECRR design, Interface/API was considered as
 separate resource.  Based on the resource descriptions compiled in the initial development
 phase, it became apparent that it is unnecessary to make a distinction between the
 interface as a conceptual entity, the specification for that interface, and the
@@ -140,5 +139,5 @@ const resourceType2 = function() {
 
 let theschema = resourceType2();
 
-//export default resourceType2;
+//return object, not function, for consistency
 export default theschema;

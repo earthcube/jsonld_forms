@@ -198,9 +198,9 @@ const jsonschema = {
         type: 'object',
         properties: {
           '@type': {
+            title:'kind of resources listed; use schema.org types',
             type: 'string',
             default: 'Thing',
-            const: 'Thing'
           },
           name: {
             type: 'string'

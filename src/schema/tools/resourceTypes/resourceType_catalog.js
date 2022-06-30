@@ -26,13 +26,29 @@ const resourceType = {
       text: 'Type of the Cataloged Object'
     },
     {
-      label: 'encodingFormat',
+      label: 'access interface',
       type: 'Control',
-      scope: '#/properties/encodingFormat',
+      scope: '#/properties/ecrro:ECRRO_0000503',
       options: {
         showUnfocusedDescription: true
       }
-    }
+    },
+      {
+          label: 'type of resource cataloged',
+          type: 'Control',
+          scope: '#/properties/contentType',
+          options: {
+              showUnfocusedDescription: true,
+              detail: {
+                  type: 'VerticalLayout',
+                  elements: [
+                      { label: 'schema.org type', type: 'Control', scope: '#/properties/@type' },
+                      { label: 'name', type: 'Control', scope: '#/properties/name' },
+                      { label: 'identifier', type: 'Control', scope: '#/properties/identifier' }
+                  ]
+              }
+          }
+      }
   ]
 };
 

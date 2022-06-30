@@ -18,4 +18,4 @@ export const licenseOneOf = function () {
     return {"oneOf": propList}
 
 }
-export {licenseOneOf as licenseList};
+//export {licenseOneOf as licenseList};

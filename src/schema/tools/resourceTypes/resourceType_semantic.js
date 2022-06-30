@@ -9,7 +9,6 @@ const resourceType = {
        // const: 'Semantic Resource'
      //  https://github.com/eclipsesource/jsonforms/issues/1141
          "enum":[
-                [
                   {
                   "name":
                   "Semantic Resource",
@@ -17,61 +16,58 @@ const resourceType = {
                   "CreativeWork",
                   "url":
                   "http://cor.esipfed.org/ont/earthcube/ECRRO_0000210"
-                  }
-                  ],
-                  [{
+                  },
+                  {
+                  "name":
+                  "Glossary",
                   "@type": "CreativeWork",
-                  "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000210",
-                  "name": "Semantic Resource"
-                  },{
-                  "@type": "CreativeWork",
-                  "url": "http://cor.esipfed.org/ont/earthcube/srt_0000003",
-                  "name": "Ontology"
-                  }
+                  "url": "http://cor.esipfed.org/ont/earthcube/srt_0000001"
+                  },
+           {
+             "name":
+             "Thesaurus",
+             "@type": "CreativeWork",
+             "url": "http://cor.esipfed.org/ont/earthcube/srt_0000002"
+           },
+           {
+             "name": "Ontology",
+             "@type": "CreativeWork",
+             "url": "http://cor.esipfed.org/ont/earthcube/srt_0000003"
+           },
+           {
+             "name": "Controlled Vocabulary",
+             "@type": "CreativeWork",
+             "url": "http://cor.esipfed.org/ont/earthcube/srt_0000004"
+           },
+           {
+             "name":"Taxonomy",
+             "@type": "CreativeWork",
+             "url": "http://cor.esipfed.org/ont/earthcube/srt_0000005"
+           },
+           {
+             "name": "Conceptual Model",
+             "@type": "CreativeWork",
+             "url": "http://cor.esipfed.org/ont/earthcube/srt_0000006"
+           },
+           {
+             "name": "RDF Vocabulary",
+             "@type": "CreativeWork",
+             "url": "http://cor.esipfed.org/ont/earthcube/srt_0000007"
+           },
+           {
+             "name": "SKOS Vocabulary",
+             "@type": "CreativeWork",
+             "url": "http://cor.esipfed.org/ont/earthcube/srt_0000008"
+           }
                   ]
-             ]
-//               "oneOf":[
-//                              {
-//                                  "scope": "#",
-//                                   "schema": {
-//                                     "const": [
-//                                                {
-//                                                "name":
-//                                                "Semantic Resource",
-//                                                "@type":
-//                                                "CreativeWork",
-//                                                "url":
-//                                                "http://cor.esipfed.org/ont/earthcube/ECRRO_0000210"
-//                                                }
-//                                            ]
-//                                     }
-//
-//                                 },
-//                                {
-//                                "scope": "#",
-//                                 "schema": {
-//                                   "const": [{
-//                                        "@type": "CreativeWork",
-//                                        "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000210",
-//                                        "name": "Semantic Resource"
-//                                        },{
-//                                        "@type": "CreativeWork",
-//                                        "url": "http://cor.esipfed.org/ont/earthcube/srt_0000003",
-//                                        "name": "Ontology"
-//                                        }
-//                                      ]
-//                                      }}
-//                           ]
+
       }
     }
   },
   elements: [
+
     {
-      type: 'Label',
-      text: 'Semantic Resource Type'
-    },
-    {
-      label: 'Semantic  Resource Type',
+      label: 'Specification for the semantic resource',
       type: 'Control',
       scope: '#/properties/dct:conformsTo',
       options: {
@@ -87,26 +83,26 @@ const resourceType = {
     },
     {
       type: 'ShowGroup',
-      label: 'add Resourse Details',
+      label: 'Resource Details',
       elements: [
         {
-          type: 'Label',
-          text: 'Model Language'
-        },
-        {
-          label: 'Model Language',
+          label: 'Programming or knowledge representation language',
           type: 'Control',
           scope: '#/properties/programmingLanguage',
           options: {
-            showUnfocusedDescription: true
+            showUnfocusedDescription: true,
+            detail: {
+              type: 'HorizontalLayout',
+              elements: [
+                { label: 'Language name', type: 'Control', scope: '#/properties/name' },
+                { label: 'Identifier', type: 'Control', scope: '#/properties/identifier' }
+              ]
+            }
           }
         },
+
         {
-          type: 'Label',
-          text: 'Specification Type'
-        },
-        {
-          label: 'encodingFormat',
+          label: 'Encoding Format for representations of the resource',
           type: 'Control',
           scope: '#/properties/encodingFormat',
           options: {
