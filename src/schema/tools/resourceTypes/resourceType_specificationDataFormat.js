@@ -1,6 +1,6 @@
 const resourceType = {
   type: 'Group',
-  label: 'Specification',
+  label: 'Data Format Specification',
   rule: {
     effect: 'SHOW',
     condition: {
@@ -10,11 +10,11 @@ const resourceType = {
          "const": [
                   {
                   "name":
-                  "Specification",
+                  "Data Format Convention",
                   "@type":
                   "CreativeWork",
                   "url":
-                  "http://cor.esipfed.org/ont/earthcube/ECRRO_0000204"
+                  "http://cor.esipfed.org/ont/earthcube/SPKT_0000001"
                   }
                   ]
       }
@@ -28,7 +28,7 @@ const resourceType = {
   elements: [
     {
       type: 'Label',
-      text: 'Specification: A specification is a document that defines how a particular activity can be done for consistency between different implementers of that activity.'
+      text: 'A specification that includes the mandatory, preferred or optional ways the components of the data are formatted.'
     },
 
     {
@@ -41,7 +41,7 @@ const resourceType = {
     },
          {
           type: 'Label',
-          text: 'Profile of: A profile defines a set of clauses, classes, options or parameters from one or more base specifications that are used to implement a particular set of requirements. Profiles must be constructed such that conformance to the profile implies conformance to the base specification from which it is derived.'
+          text: 'optional: A profile defines a set of clauses, classes, options or parameters from one or more base specifications that are used to implement a particular set of requirements. Profiles must be constructed such that conformance to the profile implies conformance to the base specification from which it is derived.'
         },
         {
           label: 'Profile of',

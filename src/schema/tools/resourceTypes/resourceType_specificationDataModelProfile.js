@@ -1,6 +1,6 @@
 const resourceType = {
   type: 'Group',
-  label: 'Specification',
+  label: 'Specification of Data Model Profile',
   rule: {
     effect: 'SHOW',
     condition: {
@@ -10,7 +10,7 @@ const resourceType = {
          "const": [
                   {
                   "name":
-                  "Specification",
+                  "Data Model Convention",
                   "@type":
                   "CreativeWork",
                   "url":
@@ -21,14 +21,10 @@ const resourceType = {
     }
   },
 
-  //need to pick specific specification type.
-
-
-
   elements: [
     {
       type: 'Label',
-      text: 'Specification: A specification is a document that defines how a particular activity can be done for consistency between different implementers of that activity.'
+      text: 'A specification based on a data model that extends the requirements of that data model for some purpose and domain; a data model profile'
     },
 
     {

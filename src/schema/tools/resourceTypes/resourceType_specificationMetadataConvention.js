@@ -1,6 +1,6 @@
 const resourceType = {
   type: 'Group',
-  label: 'Specification',
+  label: 'Specification of Metadata Profile',
   rule: {
     effect: 'SHOW',
     condition: {
@@ -10,26 +10,22 @@ const resourceType = {
          "const": [
                   {
                   "name":
-                  "Specification",
+                  "Metadata Convention",
                   "@type":
                   "CreativeWork",
                   "url":
-                  "http://cor.esipfed.org/ont/earthcube/ECRRO_0000204"
+                  "http://cor.esipfed.org/ont/earthcube/SPKT_0000006"
                   }
                   ]
       }
     }
   },
 
-  //need to pick specific specification type.
-
-
-
   elements: [
-    {
-      type: 'Label',
-      text: 'Specification: A specification is a document that defines how a particular activity can be done for consistency between different implementers of that activity.'
-    },
+      {
+          type: 'Label',
+          text: 'A specification based on a metadata standard that extends the requirements of that standard for some purpose and/or domain.'
+      },
 
     {
       label: 'File Format: how is the specification represented digitally',

@@ -1,6 +1,6 @@
 const resourceType = {
   type: 'Group',
-  label: 'Specification',
+  label: 'Specification of Programming Language',
   rule: {
     effect: 'SHOW',
     condition: {
@@ -10,27 +10,22 @@ const resourceType = {
          "const": [
                   {
                   "name":
-                  "Specification",
+                  "Programming Language",
                   "@type":
                   "CreativeWork",
                   "url":
-                  "http://cor.esipfed.org/ont/earthcube/ECRRO_0000204"
+                  "http://cor.esipfed.org/ont/earthcube/SPKT_0000007"
                   }
                   ]
       }
     }
   },
 
-  //need to pick specific specification type.
-
-
-
   elements: [
     {
       type: 'Label',
-      text: 'Specification: A specification is a document that defines how a particular activity can be done for consistency between different implementers of that activity.'
+      text: 'A specification containing a vocabulary and set of grammatical rules for instructing a computer or computing device to perform specific tasks.'
     },
-
     {
       label: 'File Format: how is the specification represented digitally',
       type: 'Control',
@@ -39,12 +34,28 @@ const resourceType = {
         showUnfocusedDescription: true
       }
     },
-         {
-          type: 'Label',
-          text: 'Profile of: A profile defines a set of clauses, classes, options or parameters from one or more base specifications that are used to implement a particular set of requirements. Profiles must be constructed such that conformance to the profile implies conformance to the base specification from which it is derived.'
-        },
+
+      {label: 'Programming language name',
+          type: 'Control',
+          scope: '#/properties/programmingLanguage',
+          options: {
+              showUnfocusedDescription: true,
+              childLabelProp: "name",
+              detail: {
+                  type: 'HorizontalLayout',
+                  elements: [
+                      { label: 'name', type: 'Control', scope: '#/properties/name' },
+                      {
+                          label: 'identifier',
+                          type: 'Control',
+                          scope: '#/properties/identifier'
+                      }
+                  ]
+              }
+          }
+      },
         {
-          label: 'Profile of',
+          label: 'Link to base language definition if this is a profile/restriction/extension of that language specification',
           type: 'Control',
           scope: '#/properties/eccro:ECRRO_0000501',
           options: {

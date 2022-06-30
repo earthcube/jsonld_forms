@@ -1,6 +1,6 @@
 const resourceType = {
   type: 'Group',
-  label: 'Specification',
+  label: 'Specification of File Packaging Convention',
   rule: {
     effect: 'SHOW',
     condition: {
@@ -10,25 +10,21 @@ const resourceType = {
          "const": [
                   {
                   "name":
-                  "Specification",
+                  "File Packaging Convention",
                   "@type":
                   "CreativeWork",
                   "url":
-                  "http://cor.esipfed.org/ont/earthcube/ECRRO_0000204"
+                  "http://cor.esipfed.org/ont/earthcube/SPKT_0000010"
                   }
                   ]
       }
     }
   },
 
-  //need to pick specific specification type.
-
-
-
   elements: [
     {
       type: 'Label',
-      text: 'Specification: A specification is a document that defines how a particular activity can be done for consistency between different implementers of that activity.'
+      text: 'Specification for how one or many files should be packaged for some purpose such as transfer or archival. E.g. bagit'
     },
 
     {
@@ -44,7 +40,7 @@ const resourceType = {
           text: 'Profile of: A profile defines a set of clauses, classes, options or parameters from one or more base specifications that are used to implement a particular set of requirements. Profiles must be constructed such that conformance to the profile implies conformance to the base specification from which it is derived.'
         },
         {
-          label: 'Profile of',
+          label: 'Link to base specification that this spec is based on.',
           type: 'Control',
           scope: '#/properties/eccro:ECRRO_0000501',
           options: {

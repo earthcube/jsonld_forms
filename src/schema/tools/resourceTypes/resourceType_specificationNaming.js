@@ -1,6 +1,6 @@
 const resourceType = {
   type: 'Group',
-  label: 'Specification',
+  label: 'Naming convention',
   rule: {
     effect: 'SHOW',
     condition: {
@@ -10,11 +10,11 @@ const resourceType = {
          "const": [
                   {
                   "name":
-                  "Specification",
+                  "Naming Convention",
                   "@type":
                   "CreativeWork",
                   "url":
-                  "http://cor.esipfed.org/ont/earthcube/ECRRO_0000204"
+                  "http://cor.esipfed.org/ont/earthcube/SPKT_0000002"
                   }
                   ]
       }
@@ -28,23 +28,31 @@ const resourceType = {
   elements: [
     {
       type: 'Label',
-      text: 'Specification: A specification is a document that defines how a particular activity can be done for consistency between different implementers of that activity.'
+      text: 'Specification of a generally agreed to scheme for naming things, e.g. files, samples, software...'
     },
 
+
+      {
+          type: 'Control',
+          label:'please choose a more specific specification type',
+          scope: '#/properties/mainEntity',
+
+          //  "elementLabelProp": "name",
+          options: {
+          }
+      },
+
     {
-      label: 'File Format: how is the specification represented digitally',
+      label: 'File Format: how is the specification represented digitally (typically as a text file, e.g. pdf, txt, docx',
       type: 'Control',
       scope: '#/properties/encodingFormat',
       options: {
         showUnfocusedDescription: true
       }
     },
-         {
-          type: 'Label',
-          text: 'Profile of: A profile defines a set of clauses, classes, options or parameters from one or more base specifications that are used to implement a particular set of requirements. Profiles must be constructed such that conformance to the profile implies conformance to the base specification from which it is derived.'
-        },
+
         {
-          label: 'Profile of',
+          label: 'Base specification that this is a profile on; restricts conventions from the base profile',
           type: 'Control',
           scope: '#/properties/eccro:ECRRO_0000501',
           options: {
