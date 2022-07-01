@@ -1,29 +1,40 @@
-import { default as interchange } from './resourceTypes/resourceType_interchangeformat';
-import { default as catalog } from './resourceTypes/resourceType_catalog';
-import { default as semantic } from './resourceTypes/resourceType_semantic';
-import { default as interfaceapi } from './resourceTypes/resourceType_interface';
-import { default as servicedesc } from './resourceTypes/resourceType_service';
-import { default as software } from './resourceTypes/resourceType_software';
-import { default as repository } from './resourceTypes/resourceType_repository';
-import { default as platform } from './resourceTypes/resourceType_platform';
-import { default as usecase } from './resourceTypes/resourceType_usecase';
-import { default as bundledobject } from './resourceTypes/resourceType_bundledObject';
+import { default as interchange } from './resourceTypes/interchangeformat';
+import { default as catalog } from './resourceTypes/catalog';
+import { default as interfaceapi } from './resourceTypes/interface';
+import { default as servicedesc } from './resourceTypes/service';
+import { default as software } from './resourceTypes/software';
+import { default as repository } from './resourceTypes/repository';
+import { default as platform } from './resourceTypes/platform';
+import { default as usecase } from './resourceTypes/usecase';
+import { default as bundledobject } from './resourceTypes/bundledObject';
 
-import { default as specification } from './resourceTypes/resourceType_specification';
-import { default as dataformatspec } from './resourceTypes/resourceType_specificationDataFormat';
-import { default as namingconvention } from './resourceTypes/resourceType_specificationNaming';
-import { default as webservicespec } from './resourceTypes/resourceType_specificationWebService';
-import { default as datamodelspec } from './resourceTypes/resourceType_specificationDataModel';
-import { default as dataconversionspec} from './resourceTypes/resourceType_specificationDataConversion';
-import { default as metadataprofile } from './resourceTypes/resourceType_specificationMetadataConvention';
-import { default as programlangspec } from './resourceTypes/resourceType_specificationProgrammingLanguage';
-import { default as datamodelprofile } from './resourceTypes/resourceType_specificationDataModelProfile';
-import { default as filepackagespec } from './resourceTypes/resourceType_specificationFilePackaging';
-import { default as interopspec } from './resourceTypes/resourceType_specificationInteroperability';
-import { default as apispec } from './resourceTypes/resourceType_specificationAPI';
-import { default as processmodelspec } from './resourceTypes/resourceType_specificationProcessModel';
+import { default as specification } from './resourceTypes/specification';
+import { default as dataformatspec } from './resourceTypes/specificationDataFormat';
+import { default as namingconvention } from './resourceTypes/specificationNaming';
+import { default as webservicespec } from './resourceTypes/specificationWebService';
+import { default as datamodelspec } from './resourceTypes/specificationDataModel';
+import { default as dataconversionspec} from './resourceTypes/specificationDataConversion';
+import { default as metadataprofile } from './resourceTypes/specificationMetadataConvention';
+import { default as programlangspec } from './resourceTypes/specificationProgrammingLanguage';
+import { default as datamodelprofile } from './resourceTypes/specificationDataModelProfile';
+import { default as filepackagespec } from './resourceTypes/specificationFilePackaging';
+import { default as interopspec } from './resourceTypes/specificationInteroperability';
+import { default as apispec } from './resourceTypes/specificationAPI';
+import { default as processmodelspec } from './resourceTypes/specificationProcessModel';
+
+import { default as semantic } from './resourceTypes/semantic';
+import { default as conceptmod } from './resourceTypes/semanticConceptualModel';
+import { default as controlvoc } from './resourceTypes/semanticControlledVocab';
+import { default as glossary } from './resourceTypes/semanticGlossary';
+import { default as ontology } from './resourceTypes/semanticOntology';
+import { default as rdfvocab } from './resourceTypes/semanticRDFvocab';
+import { default as skosvocab } from './resourceTypes/semanticSKOSVocab';
+import { default as taxonomy } from './resourceTypes/semanticTaxonomy';
+import { default as thesaurus } from './resourceTypes/semanticThesaurus';
 
 
+// TBD-- there must be a way to get the initial resource type selection
+// then dynamically load only the component needed for cat2...
 
 const cat2 = {
   type: 'Category',
@@ -31,7 +42,7 @@ const cat2 = {
   elements: [
     {
       type: 'Label',
-      text: 'What is the type of resource. The ECRR resource type is used to select resource specific properties.'
+      text: 'What is the type of resource? The ECRR resource type is used to select resource specific properties. Resource specific properties will appear on the lower part of the form'
     },
     {
       type: 'Control',
@@ -40,7 +51,6 @@ const cat2 = {
       options: {
       }
     }
-
   ]
 };
 
@@ -55,6 +65,9 @@ cat2.elements.push(usecase);
 cat2.elements.push(bundledobject);
 
 //specifications and subtypes of specification
+// this duplication would not be necessary if a rule
+// could be constructed to SHOW on one of a list of
+// resource types. I couldn't make it work (smr 2022-06-30)
 cat2.elements.push(specification);
 cat2.elements.push(dataformatspec);
 cat2.elements.push(namingconvention);
@@ -71,4 +84,13 @@ cat2.elements.push(processmodelspec);
 
 //semantic resources and subtypes
 cat2.elements.push(semantic);
+cat2.elements.push(conceptmod);
+cat2.elements.push(controlvoc);
+cat2.elements.push(glossary);
+cat2.elements.push(ontology);
+cat2.elements.push(rdfvocab);
+cat2.elements.push(skosvocab);
+cat2.elements.push(taxonomy);
+cat2.elements.push(thesaurus);
+
 export default cat2;
