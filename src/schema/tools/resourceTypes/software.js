@@ -28,14 +28,9 @@ let resourceTypeBase = {
     }
   },
   elements: [
-    {
+     {
       type: 'Label',
-      text: 'Communication protocol used by software'
-    },
-
-    {
-      type: 'Label',
-      text: 'General Functions'
+      text: 'Software Functions'
     },
     {
       label: 'Function',

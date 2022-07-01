@@ -43,6 +43,20 @@ const interfaceResource = {
     }
   },
   elements: [
+    {
+      type:'Label',
+      text:'This resource type is deprecated, and included here for backward compatibility. ' +
+          'In the original ECRR design, Interface/API was considered a' +
+          'separate resource.  Based on the resource descriptions compiled in the initial deployment ' +
+          'phase, it became apparent that it is unnecessary to make a distinction between the ' +
+          'interface as a conceptual entity, the specification for that interface, and the ' +
+          'applications/service instances that implement the interface.  Service instances ' +
+          'should be represented as Service Instance resources with dct:conformsTo providing a ' +
+          'link to a service specification (API or WebService specification resource type).'
+
+    },
+
+
     {label: 'Communication protocol for API',
       type: 'Control',
       scope: '#/properties/ecrro:ECRRO_0000502',

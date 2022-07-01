@@ -1,6 +1,6 @@
 const resourceType = {
   type: 'Group',
-  label: 'Specification',
+  label: 'Specification options',
   rule: {
     effect: 'SHOW',
     condition: {
@@ -21,14 +21,17 @@ const resourceType = {
     }
   },
 
-  //need to pick specific specification type.
-
-
-
   elements: [
     {
       type: 'Label',
-      text: 'Specification: A specification is a document that defines how a particular activity can be done for consistency between different implementers of that activity.'
+      text: 'Specification: A specification is a document that defines how a particular activity ' +
+          'can be done for consistency between different implementers of that activity. ' +
+           'Note that more specific sub types for specification can be selected;' +
+                  ' these include: Data Format Convention; Naming Convention; ' +
+        'Web Service Convention;  Data Model; Data Model Convention;  Metadata Convention; ' +
+        'Programming Language;  Data Conversion; Metadata Vocabulary;  File Packaging Convention; ' +
+          'Interoperability Specification;  API;  Process Model. ' +
+                  'Selecting one of these provides a more informative metadata record.'
     },
 
     {
