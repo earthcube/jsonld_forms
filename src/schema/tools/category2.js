@@ -7,6 +7,7 @@ import { default as repository } from './resourceTypes/repository';
 import { default as platform } from './resourceTypes/platform';
 import { default as usecase } from './resourceTypes/usecase';
 import { default as bundledobject } from './resourceTypes/bundledObject';
+import { default as dataset } from './resourceTypes/dataset';
 
 import { default as specification } from './resourceTypes/specification';
 import { default as dataformatspec } from './resourceTypes/specificationDataFormat';
@@ -38,19 +39,9 @@ import { default as thesaurus } from './resourceTypes/semanticThesaurus';
 
 const cat2 = {
   type: 'Category',
-  label: 'Resource Type',
+  label: 'Resource Details',
   elements: [
-    {
-      type: 'Label',
-      text: 'What is the type of resource? The ECRR resource type is used to select resource specific properties. Resource specific properties will appear on the lower part of the form'
-    },
-    {
-      type: 'Control',
-      label:false,
-      scope: '#/properties/mainEntity',
-      options: {
-      }
-    }
+
   ]
 };
 
@@ -63,6 +54,7 @@ cat2.elements.push(repository);
 cat2.elements.push(platform);
 cat2.elements.push(usecase);
 cat2.elements.push(bundledobject);
+cat2.elements.push(dataset);
 
 //specifications and subtypes of specification
 // this duplication would not be necessary if a rule

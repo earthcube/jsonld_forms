@@ -1,6 +1,10 @@
 <template>
   <v-main>
     <div class="padded">
+
+      <h2 class="headline font-weight-bold mb-3">
+        Important Links
+      </h2>
         <h2>Forms</h2>
         <v-list>
           <v-list-item>

@@ -1,6 +1,6 @@
 <template>
   <div>
-
+    <h2>Welcome to the GeoCODES resource description editor</h2>
   <json-forms
       :data="jsonldObj"
       :schema="schema"
@@ -38,7 +38,7 @@ import 'vue-json-pretty/lib/styles.css';
 import {default as saveFiles} from './controls/saveJson'
 import { default as schema, schemaWithEnum , flattenList} from '../schema/tools/ecrr_jsonschema_1_1_1' ;
 
-import uischema from '../schema/tools/ecrr_1_1_1_uischema';
+import uischema from '../schema/tools/geocodesMerge_uischema';
 
 const baseJsonLdObj = require('../assets/basefiles/tools/ecrrempty.json');
 

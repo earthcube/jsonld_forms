@@ -2,37 +2,38 @@ const cat3 = {
   type: 'Category',
   label: 'Availability and Stewardship',
   elements: [
-    {
-      type: 'Label',
-      text: '1. License'
-    },
-    {
-      type: 'Control',
-      scope: '#/properties/license',
-      options: {
-        detail: {
-          type: 'VerticalLayout',
-          elements: [
-            {
-              type: 'Control',
-              scope: '#/properties/name',
-              options: {}
-            }
-          ]
-        }
-      }
-    },
-    {
-      type: 'ShowGroup',
-      label: 'Lifecyle',
+
+    {label: "Primary Publication",
+      type: "ShowGroup",
       elements: [
         {
-          type: 'Label',
-          text: 'Maturity'
+          "type": "Label",
+          "text": "Cite Primary Publication about the resource. EXAMPLE: Barnes, Stanley L., 1980, Report on a Meeting to Establish a Common Doppler Radar Data Exchange Format: Bulletin of the American Meteorological Society, vol. 61, no. 11, pp. 1401–1404. (accessed at http://www.jstor.org/stable/26221476)"
         },
-        {
+        { "type": "Control",
+          "scope": "#/properties/ecrro:ECRRO_0000600",
+          "options": {
+            "showUnfocusedDescription": true,
+            detail: {
+              type: 'HorizontalLayout',
+              elements: [
+                {
+                  label: 'Citation',
+                  type: 'Control',
+                  scope: '#/properties/value'
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {label: 'Lifecyle status',
+      type: 'ShowGroup',
+      elements: [
+        //ecrro:ECRRO_0000600 Primary publication
+        {label: "Maturity of resource",
           type: 'Control',
-          //   "label": "Maturity",
           scope: '#/properties/ecrro:ECRRO_0000138',
           options: {
             showUnfocusedDescription: true,
@@ -65,13 +66,9 @@ const cat3 = {
             }
           }
         },
-        {
-          type: 'Label',
-          text: '2Lifecycle'
-        },
-        {
+
+        {"label": "Lifecycle/Development status",
           type: 'Control',
-          //       "label": "Lifecycle",
           scope: '#/properties/ecrro:ECRRO_0000219',
           options: {
             showUnfocusedDescription: true,
@@ -106,9 +103,9 @@ const cat3 = {
         }
       ]
     },
-    {
+    { label: 'Funding',
       type: 'ShowGroup',
-      label: 'Funding',
+
       elements: [
         {
           type: 'Control',
@@ -132,11 +129,6 @@ const cat3 = {
                     },
                 {
                   "type": "Control",
-                  "label": "Sponsor",
-                  "scope": "#/properties/sponsor"
-                },
-                {
-                  "type": "Control",
                   "label": "Funder",
                   "scope": "#/properties/funder"
                 }
@@ -146,9 +138,8 @@ const cat3 = {
         }
       ]
     },
-    {
+    {label: 'Stewardship: who is responsible for resource maintenance or operation',
       type: 'ShowGroup',
-      label: 'Stewardship',
       elements: [
         {label: 'Stewardship',
           type: 'Control',
@@ -197,46 +188,18 @@ const cat3 = {
         }
       ]
     },
-    {
+    {label: 'Users and usage level',
       type: 'ShowGroup',
-      label: 'Resource Audience',
       elements: [
-        {
+        {label: 'Intended Users',
           type: 'Control',
-          label: 'Audience',
           scope: '#/properties/audience',
           options: {
             childLabelProp: 'audienceType'
           }
         },
-        {
-          type: 'Label',
-          text: 'Current Usage Level'
-        },
-        {
+        {label: 'Target science community',
           type: 'Control',
-          label: 'Current Usage Level',
-          scope: '#/properties/ecrro:ECRRO_0000017',
-          options: {
-            showUnfocusedDescription: true,
-            detail: {
-              type: 'HorizontalLayout',
-              elements: [
-                {
-                  type: 'Control',
-                  scope: '#/properties/value'
-                }
-              ]
-            }
-          }
-        },
-        {
-          type: 'Label',
-          text: 'Science Domain'
-        },
-        {
-          type: 'Control',
-          label: 'Science Domain',
           scope: '#/properties/about',
           options: {
             showUnfocusedDescription: true,
@@ -251,20 +214,31 @@ const cat3 = {
               ]
             }
           }
+        },
+        {label: 'Current Usage Level',
+          type: 'Control',
+          scope: '#/properties/ecrro:ECRRO_0000017',
+          options: {
+            showUnfocusedDescription: true,
+            detail: {
+              type: 'HorizontalLayout',
+              elements: [
+                {
+                  type: 'Control',
+                  scope: '#/properties/value'
+                }
+              ]
+            }
+          }
         }
       ]
     },
-    {
+    {label: 'Related Resources',
       type: 'ShowGroup',
-      label: 'Related Resources',
+
       elements: [
-        {
-          type: 'Label',
-          text: 'Dependencies and their URL'
-        },
-        {
+        {label: 'Dependencies and their URL',
           type: 'Control',
-          label: 'Dependencies and their URL',
           scope: '#/properties/dependencies',
           options: {
             detail: {
@@ -301,22 +275,16 @@ const cat3 = {
             }
           }
         },
-        {
-          type: 'Label',
-          text: 'Related Resources'
-        },
-        {
+
+        {  label: 'Related Resources',
           type: 'Control',
-          label: 'Related Resources',
           scope: '#/properties/isRelatedTo',
           options: {
             "childLabelProp": "name",
-
             showUnfocusedDescription: true,
             "detail": {
               "type": "VerticalLayout",
               "elements": [
-
                 {
                   "label": "Type",
                   "type": "Control",

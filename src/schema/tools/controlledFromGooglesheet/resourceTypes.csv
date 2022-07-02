@@ -10,6 +10,7 @@ Service Instance,http://cor.esipfed.org/ont/earthcube/ECRRO_0000202,base
 Software,http://cor.esipfed.org/ont/earthcube/ECRRO_0000206,base
 Specification,http://cor.esipfed.org/ont/earthcube/ECRRO_0000204,base
 Use Case,http://cor.esipfed.org/ont/earthcube/ECRRO_0000005,base
+Dataset,http://schema.org/Dataset,base
 Data Format Convention,http://cor.esipfed.org/ont/earthcube/SPKT_0000001,Specification
 Naming Convention,http://cor.esipfed.org/ont/earthcube/SPKT_0000002,Specification
 Web Service Convention,http://cor.esipfed.org/ont/earthcube/SPKT_0000003,Specification
