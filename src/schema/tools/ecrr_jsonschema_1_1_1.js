@@ -12,11 +12,15 @@ import {
 } from './controlledFromGooglesheet';
 
 const jsonschema = {
-  $comment: "Simplified for use in a forms application. Generated. Edits to schema  should happen in the the ECRR jsonforms application. https://github.com/earthcube/jsonld_forms/blob/master/src/schema/tools/ecrr_jsonschema_1_0.js",
+  $comment: 'Simplified for use in a forms application. Encoded as Javascript object in the the ECRR ' +
+      'jsonforms application. Will need to pay attention to synchronization with JSON schema in ' +
+      ' github. ',
   type: 'object',
   title: 'EarthCube Resource Registry (ECRR) Resource Description',
   description:
-      'JSON schema for EarthCube Resource Registry (ECRR) resource descriptions. The base object is common to allresource types, and definition section adds resource-specific properties. Resource types are Specification, UseCase, InterchangeFormat, Software, Interface, ',
+      'JSON schema for EarthCube Resource Registry (ECRR) resource descriptions. The base object is common to all ' +
+      'resource types, and definition section adds resource-specific properties. Resource types are Specification, ' +
+      'UseCase, InterchangeFormat, Software, Interface,...',
   properties: {
     '@id': {
       type: 'string',
@@ -25,7 +29,10 @@ const jsonschema = {
     },
     '@type': {
       type: 'array',
-      "description": "a schema.org Class that specifies the expected information content for the metadata record. For GeoCodes, expected values are (CreativeWork, SoftwareApplication, Product, WebAPI, Dataste). The type classes for a given resource description are selected based on the schema.org properties used to describe the resource.",
+      "description": 'a schema.org Class that specifies the expected information content for the metadata record. '  +
+          'For GeoCodes, expected values are (CreativeWork, SoftwareApplication, Product, WebAPI, Dataset). The ' +
+          'type classes for a given resource description enable the schema.org properties used ' +
+          'to describe the resource.',
       minItems: 1,
       items: {
         type:"string",
@@ -70,6 +77,7 @@ const jsonschema = {
       type: 'string'
     },
     datePublished: {
+      title:'date of publication',
       type: 'string',
       format: 'date'
     },
@@ -110,7 +118,8 @@ const jsonschema = {
       $ref: '#/definitions/agent_type'
     },
     funding: {
-      description: "An array of grants. Grant has a funder -- person or organization that provides financial support, or a sponsor-- person or organization that provides financial or other kinds of support (office space, lab supplies",
+      description: 'An array of grants. Grant has a funder -- person or organization that provides financial ' +
+          'support, or a sponsor-- person or organization that provides financial or other kinds of support (office space, lab supplies',
       type: "array",
       items: {"$ref": "#/definitions/grant_type"}
     },
@@ -162,7 +171,7 @@ const jsonschema = {
     potentialAction: {
       title: 'Direct invocation of App on the web',
       description:
-          "use schema.org Action to document url or url template and parameters to invoke the application through a web accessible location. At this point, schema is set up for online one action-- an HTTP Get that invokes the web application. The url template can have only one paramter 'contentURL' that will be the contentURL from a distribution for a dataset that has an encoding format matching the supportingData input for this application.",
+          "use schema.org Action to document url or url template and parameters to invoke the application through a web accessible location. At this point, schema is set up for online one action-- an HTTP Get that invokes the web application. The url template can have only one parameter 'contentURL' that will be the contentURL from a distribution for a dataset that has an encoding format matching the supportingData input for this application.",
 
       type: 'array',
       items: {
@@ -530,7 +539,7 @@ const jsonschema = {
           value: {$ref: '#/definitions/definedTerm_type'}
         }
       },
-      'eccro:ECRRO_0000501': {
+      'ecrro:ECRRO_0000501': {
       title: 'profile of',
       description:
           'Links to base specifications that a specification resource profiles. Only applicable if resource type is specification',
@@ -669,24 +678,67 @@ const jsonschema = {
       "$ref": "#/definitions/agent_type"
     },
     "spatialCoverage": {
-      "oneOf": [
-        {"$ref": "#/definitions/spatialCoverage_type"},
-        {
+      //have to specify properties inline to work with JSON forms/vue
+
           "type": "array",
-          "items": {"$ref": "#/definitions/spatialCoverage_type"}
-        }
-      ]
+
+          "items": {title:'schema.org place-geo point or box',
+            type: "object",
+            properties: {
+              "@type": {
+                "type": "string",
+                "const": "Place",
+                "default": "Place"
+              },
+              "geo": {
+                "oneOf": [
+                  { "title":"WGS84 point location with lat and long",
+                    "type": "object",
+                    "description": "A point location. Point locations are recommended for data that is associated with specific sample locations, particularly if these are widely spaced such that an enclosing bounding box would be a misleading representation of the spatial location. Be aware that some client applications might only index or display bounding box extents or a single point location.",
+                    "properties": {
+                      "@type": {
+                        "type": "string",
+                        "const": "GeoCoordinates",
+                        "default": "GeoCoordinates"
+                      },
+                      "latitude": {"type": "number"},
+                      "longitude": {"type": "number"}
+                    }
+                  },
+                  { "title":"GeoShape schema:box",
+                    "type": "object",
+                    "description": "A schema:GeoShape can describe spatial coverage as a line (e.g. a ship track), a bounding box, a polygon, or a circle; This form implementation restricts GeoShape to be a box. The geometry is described with a set of latitude/longitude pairs (in that order).The documentation for schema:GeoShape states 'Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points.'",
+                    "properties": {
+                      "@type": {
+                        "type": "string",
+                        "enum": ["GeoShape"],
+                        "default": "GeoShape"
+                      },
+
+                      "box": {
+                        "type": "string",
+                        "description": "A GeoShape box defines an area on the surface of the earth defined by point locations of the southwest corner and northeast corner of the rectangle in latitude-longitude coordinates. A space should be used to separate the latitude and longitude values. The two corner coordinate points are separated by a space. 'East longitude' means positive longitude values are east of the prime (Greenwich) meridian."
+                      }
+                    }
+                  }
+                ]
+              }
+            }}
+
     },
     "temporalCoverage": {
       "description": "The time interval during which data was collected or observations were made; or a time period that an activity or collection is linked to intellectually or thematically (for example, 1997 to 1998; the 18th century) (see https://documentation.ardc.edu.au/display/DOC/Temporal+coverage). For documentation of Earth Science, Paleobiology or Paleontology datasets, we are interested in the second case-- the time period that data are linked to thematically.",
       "oneOf": [
-        {"title":"calendar date, time, or dateTime",
-          "type": "string",
-          "description": "Simple ISO8601 encoding of calendar date, dateTime, or time interval. Use the Start/End encoding of calendar time intervals, e.g. &quot;2007-03-01T13:00:00Z/2008-05-11T15:30:00Z&quot;.  For non-calendar time intervals use time:ProperInterval encoding. See ESIP SOSO guidance"
+        {title:"calendar date, time, or dateTime",
+          type: "string",
+          description: 'Simple ISO8601 encoding of calendar date, dateTime, or time interval. Use the Start/End ' +
+              'encoding of calendar time intervals, e.g. &quot;2007-03-01T13:00:00Z/2008-05-11T15:30:00Z&quot;.  ' +
+                  'For non-calendar time intervals use time:ProperInterval encoding. ' +
+                  'See ESIP SOSO guidance https://github.com/ESIPFed/science-on-schema.org/blob/develop/guides/Dataset.md#temporal-coverage',
         },
         {"title":"Geologic (W3C proper) time interval",
           "type": "object",
-          "description": "a w3c time proper interval; use for geologic age bounds on the temporal coverage. This is an ESIP Science on Schema.org (SOSO) schema.org extension",
+          "description": "A w3c time proper interval; use for geologic age bounds on the temporal coverage. This is an ESIP Science on Schema.org (SOSO) schema.org extension",
           "properties": {
             "@context": {"const": "{\"time\": \"http://www.w3.org/2006/time#\"}"},
             "@type": {
@@ -694,8 +746,76 @@ const jsonschema = {
               "default": "time:ProperInterval",
               "const": "time:ProperInterval"
             },
-            "time:hasBeginning": {"$ref": "#/definitions/intervalBound_type"},
-            "time:hasEnd": {"$ref": "#/definitions/intervalBound_type"}
+            "time:hasBeginning":
+                { "type": "object",
+                  "properties": {
+                    "@type": {
+                      "type": "string",
+                      "default": "time:Instant",
+                      "const": "time:Instant"
+                    },
+                    "time:inTimePosition":
+                    //{"$ref": "#/definitions/timePosition_type"}
+                        { "type": "object",
+                          "properties": {
+                            "rdf:type": {
+                              "type": "string",
+                              "default": "time:TimePosition",
+                              "enum":[ "time:TimePosition" ]
+                            },
+                            "time:hasTRS": {
+                              title:'Temporal reference system (TRS) for time coordinate',
+                              "type": "object",
+                              "description":"For temporal reference systems, recommend using those listed in registry at http://linked.data.gov.au/def/trs",
+                              "properties": {
+                                "@id": {"type": "string"}
+                              }
+                            },
+                            'time:numericPosition': {
+                              title:'numeric coordinate, in years, Ka, Ma, Ga (based on TRS) before present',
+                              type: "number"},
+                            'time:nominalPosition': {
+                              title:"Position assigned using a named time ordinal era, e.g. geologic time scale",
+                              type:"string"}
+
+                          }}
+                  }},
+//{"$ref": "#/definitions/intervalBound_type"}
+            "time:hasEnd":
+                { "type": "object",
+                  "properties": {
+                    "@type": {
+                      "type": "string",
+                      "default": "time:Instant",
+                      "const": "time:Instant"
+                    },
+                    "time:inTimePosition":
+                        //{"$ref": "#/definitions/timePosition_type"}
+                        { "type": "object",
+                          "properties": {
+                            "rdf:type": {
+                              "type": "string",
+                              "default": "time:TimePosition",
+                              "enum":[ "time:TimePosition" ]
+                            },
+                            "time:hasTRS": {
+                              title:'Temporal reference system (TRS) for time coordinate',
+                              "type": "object",
+                              "description":"For temporal reference systems, recommend using those listed in registry at http://linked.data.gov.au/def/trs",
+                              "properties": {
+                                "@id": {"type": "string"}
+                              }
+                            },
+                            'time:numericPosition': {
+                              title:'numeric coordinate, in years, Ka, Ma, Ga (based on TRS) before present',
+                              type: "number"},
+                            'time:nominalPosition': {
+                              title:"Position assigned using a named time ordinal era, e.g. geologic time scale",
+                              type:"string"}
+
+                          }}
+                  }}
+//{"$ref": "#/definitions/intervalBound_type"}
           }
         }
       ]
@@ -718,28 +838,7 @@ const jsonschema = {
       "mainEntity"
     ],
     definitions: {
-      // identifier_type: {
-      //   type: 'object',
-      //   title: 'identifier',
-      //   properties: {
-      //     value: {type: 'string'},
-      //     '@type': {
-      //       type: 'string',
-      //       const: 'PropertyValue',
-      //       default: 'PropertyValue'
-      //     },
-      //     propertyID: {
-      //       type: 'string',
-      //       // "enum": ["DATACITEURL", "PERLURL","DOIURL"],
-      //       default: 'DOIURL'
-      //     },
-      //     name: {
-      //       type: 'string',
-      //       //  "enum": ["DATACITE", "DOI","OTHER"],
-      //       default: 'DOI'
-      //     }
-      //   }
-      // },
+
       agent_type: {
         description:
             '{name (optional)identifier} pairs, typed either Person or Organization.  Other person or organization properties could be added',
@@ -786,18 +885,20 @@ const jsonschema = {
           "funder": {
             "description": "agent that provided and administers financial support to create or maintain the resource",
             "$comment": "$ref not working. #/definitions/agent_type",
-            type: 'object',
-            properties: {
-              name: {type: 'string'},
-              '@type': {
-                type: 'string',
-                enum: ['Person', 'Organization'],
-                default: 'Person'
-              },
+            '$ref':'#/definitions/agent_type'
+           // type: 'object',
 
-              identifier: {type: 'string'}
-            },
-            required: ['@type', 'name']
+            // properties: {
+            //   name: {type: 'string'},
+            //   '@type': {
+            //     type: 'string',
+            //     enum: ['Person', 'Organization'],
+            //     default: 'Person'
+            //   },
+            //
+            //   identifier: {type: 'string'}
+            // },
+            // required: ['@type', 'name']
           }
         },
         "required": [
@@ -1024,9 +1125,9 @@ const jsonschema = {
         ]
       },
 
-      "distribution_type": {
-        "type": "object",
-        "properties": {
+      distribution_type: {
+        type: "object",
+        properties: {
           "@type": {
             "type": "string",
             "default": "DataDownload",
@@ -1051,9 +1152,9 @@ const jsonschema = {
           "encodingFormat"
         ]
       },
-      "spatialCoverage_type": {
-        "type": "object",
-        "properties": {
+      spatialCoverage_type: {
+        type: "object",
+        properties: {
           "@type": {
             "type": "string",
             "const": "Place",
@@ -1162,7 +1263,7 @@ const jsonschema = {
             },
             "unitCode": {
               "type": "string",
-              "description": "Value is expected to be TEXT or URL. We recommend providing an HTTP URI that identifies a unit of measure from a vocabulary accessible on the web. The QUDT unit vocabulary provides and extensive set of registered units of measure that can be used to populate the schema:unitCode property to specify the units of measure used to report datavalues when that is appropriate."
+              "description": "Value is expected to be TEXT or URL. We recommend providing an HTTP URI that identifies a unit of measure from a vocabulary accessible on the web. The QUDT unit vocabulary provides and extensive set of registered units of measure that can be used to populate the schema:unitCode property to specify the units of measure used to report data values when that is appropriate."
             },
             "minValue": {
               "type": "number",

@@ -103,41 +103,6 @@ const cat3 = {
         }
       ]
     },
-    { label: 'Funding',
-      type: 'ShowGroup',
-
-      elements: [
-        {
-          type: 'Control',
-          label: 'Funder',
-          scope: '#/properties/funding',
-          options: {
-            showUnfocusedDescription: true,
-            childLabelProp: 'name',
-            "detail" : {
-               "type": "HorizontalLayout",
-              "elements": [
-                  {
-                        "label": "Name",
-                        "type": "Control",
-                        "scope": "#/properties/name"
-                   },
-                     {
-                      "type": "Control",
-                      "label": "Identifier",
-                      "scope": "#/properties/identifier"
-                    },
-                {
-                  "type": "Control",
-                  "label": "Funder",
-                  "scope": "#/properties/funder"
-                }
-               ]
-               }
-          }
-        }
-      ]
-    },
     {label: 'Stewardship: who is responsible for resource maintenance or operation',
       type: 'ShowGroup',
       elements: [
