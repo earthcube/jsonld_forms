@@ -40,6 +40,7 @@ import { default as schema, schemaWithEnum , flattenList} from '../schema/tools/
 
 import uischema from '../schema/tools/geocodesMerge_uischema';
 
+/* tslint:disable no-var-requires */
 const baseJsonLdObj = require('../assets/basefiles/tools/ecrrempty.json');
 
 import {entry as AltGroupRenderer} from './controls/AdditionalDetailsRenderer'
@@ -119,7 +120,9 @@ const tool = defineComponent({
   },
      created() {
     if (this.jsonldfile){
+      /* tslint:disable no-var-requires */
       let exampleData = require('../assets/examples/' +  this.jsonldfile);
+
       this.filename = this.jsonldfile.substring(this.jsonldfile.lastIndexOf('/')+1)
       exampleData = flatten(exampleData, flattenList)
       this.jsonldObj = Object.assign({}, this.jsonldObj, exampleData)
