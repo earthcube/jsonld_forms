@@ -1,12 +1,15 @@
 {
-    "@context": {
-        "@vocab": "http://schema.org/",
-        "dcat": "http://www.w3.org/ns/dcat#",
-        "dc": "http://purl.org/dc/elements/1.1/",
-        "dct": "http://purl.org/dc/terms/",
-        "ecrro": "http://cor.esipfed.org/ont/earthcube/",
-        "ecrr": "https://n2t.net/ark:/23942/g2"
-    },
+
+    "@context": [
+        "https://schema.org/",
+        {
+            "dcat": "http://www.w3.org/ns/dcat#",
+            "dc": "http://purl.org/dc/elements/1.1/",
+            "dct": "http://purl.org/dc/terms/",
+            "ecrro": "http://cor.esipfed.org/ont/earthcube/",
+            "ecrr": "https://n2t.net/ark:/23942/g2"
+        }
+    ],
     "@id": "ID for this metadata record",
     "@type": [
         "CreativeWork",
