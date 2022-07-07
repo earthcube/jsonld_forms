@@ -30,18 +30,38 @@
            }
          },
 //resource type (required)
-         {
+          {
            type: 'Label',
-           text: 'What is the type of resource? The ECRR resource type is used to select resource specific ' +
-               'properties. Resource specific properties will appear on the Resource Details tab'
-         },
-         {
-           type: 'Control',
-           label:false,
-           scope: '#/properties/mainEntity',
-           options: {
-           }
-         },
+          text: 'What is the type of resource? The ECRR resource type is used to select resource specific ' +
+              'properties. Resource specific properties will appear on the Resource Details tab'
+          },
+         // {
+         //   type: 'VerticalLayout',
+         //   label:false,
+         //  elements:
+         //    [
+              {type:'Control',
+               scope: '#/properties/mainEntity',
+                options: {
+                  showUnfocusedDescription: true,
+                   childLabelProp: 'name'
+                  // detail : {
+                  //   type: "VerticalLayout",
+                  //   elements: [
+                  //     {
+                  //       label: 'Name',
+                  //       type: 'Control',
+                  //       scope: '#/properties/title'
+                  //      }
+                  //     // {
+                  //     //   type: 'Control',
+                  //     //   label: 'Identifier',
+                  //     //   scope: '#/properties/url'
+                  //     // }
+                  //   ]
+                  // }
+                }
+            },
 //Licenses (Required)
          {
            type:'ShowGroup',
@@ -50,22 +70,7 @@
 [
   {type:'Control',
   scope: '#/properties/license' }
-    // {
-    //        type: 'Control',
-    //        scope: '#/properties/license',
-    //        options: {
-    //          detail: {
-    //            type: 'VerticalLayout',
-    //            elements: [
-    //              {
-    //                type: 'Control',
-    //                scope: '#/properties/name',
-    //                options: {}
-    //              }
-    //            ]
-    //          }
-    //        }
-    //      }
+
          ]
      },
 //other recommended properties-funding, pub date, keywords, other identifiers, responsible parties
