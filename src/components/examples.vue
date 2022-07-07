@@ -147,27 +147,26 @@ export default {
   data(){
     return {
       examples: [
-        {name:"1.argovis-Notebook.jsonld.json", file:"tools/argovis-Notebook.jsonld.json"},
-        {name:"2.Repository-EarthChemLibrary-SDO.JSON", file:"tools/Repository-EarthChemLibrary-SDO.JSON"},
-        {name:"3.Interface-ChordsWebAPIv2-SDO-toLoad.json", file:"tools/Interface-ChordsWebAPIv2-SDO-toLoad.json"},
-        {name:"Interface-ChordsWebAPIv2-SDO.json", file:"tools/Interface-ChordsWebAPIv2-SDO.json"},
-        {name:"Registry-XDomes-SDO.json", file:"tools/Registry-XDomes-SDO.json"},
-        {name:"ECRRTemplateSDO.JSON", file:"tools/ECRRTemplateSDO.JSON"},
-        {name:"ECRRTemplateSDO-Service-v2.JSON", file:"tools/ECRRTemplateSDO-Service-v2.JSON"},
-        {name:"ECRRTemplateSDO-Software.JSON", file:"tools/ECRRTemplateSDO-Software.JSON"},
-        {name:"InformationModel-Sweet-SDO.json", file:"tools/InformationModel-Sweet-SDO.json"},
-        {name:"InterchangeFormat-MiniSeed-SDO.JSON", file:"tools/InterchangeFormat-MiniSeed-SDO.JSON"},
-        {name:"Interface-ChordsWebAPI-W3Cdraft.json", file:"tools/Interface-ChordsWebAPI-W3Cdraft.json"},
+// Datasets
+        {name:"Argo dataset example", file:"datasets/argo.jsonld.json"},
+        {name:"BCO-DMO dataset example", file:"datasets/bcodmo1.json"},
+        {name:"EarthChem Library dataset example", file:"datasets/earthchem1.json"},
+        {name:"Hydroshare collection dataset example", file:"datasets/hydroshare1.json"},
+        {name:"Magnetics Consortium dataset example", file:"datasets/magic1.json"},
+        {name:"Open Topography dataset example", file:"datasets/opentopo1.json"},
+        {name:"USGS Water Information Sites example", file:"datasets/nwis-sites.jsonld"},
+        {name:"USGS Water Information Instantaneous Values example", file:"datasets/nwis-instantaneous_values.jsonld"},
 
-
-
-
-
-        {name:"Service-IRIS-fsdnEvent-JSON.json", file:"tools/Service-IRIS-fsdnEvent-JSON.json"},
-        {name:"Software-ERDDAP-SDO.JSON", file:"tools/Software-ERDDAP-SDO.JSON"},
-        {name:"Specification-COARDS-SDO.JSON", file:"tools/Specification-COARDS-SDO.JSON"},
-        {name:"WebAPI-w3cdraft-IRIS-fsdnEvent-JSON.json", file:"tools/WebAPI-w3cdraft-IRIS-fsdnEvent-JSON.json"},
-
+// Misc resources
+        {name:"ARGOvis-Notebook", file:"tools/argovis-Notebook.jsonld.json"},
+        {name:"Repository-EarthChemLibrary", file:"tools/Repository-EarthChemLibrary-SDO.JSON"},
+        {name:"Interface-ChordsWebAPIv2", file:"tools/Interface-ChordsWebAPIv2-SDO-toLoad.json"},
+        {name:"Registry-XDomes-", file:"tools/Registry-XDomes-SDO.json"},
+        {name:"InformationModel-Sweet ontology", file:"tools/InformationModel-Sweet-SDO.json"},
+        {name:"InterchangeFormat-MiniSeed", file:"tools/InterchangeFormat-MiniSeed-SDO.JSON"},
+        {name:"Service-IRIS-fsdnEvent", file:"tools/Service-IRIS-fsdnEvent-JSON.json"},
+        {name:"Software-ERDDAP", file:"tools/Software-ERDDAP-SDO.JSON"},
+        {name:"Specification-COARDS", file:"tools/Specification-COARDS-SDO.JSON"},
       ],
       page: 1,
       itemsPerPage: 6,

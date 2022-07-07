@@ -1,88 +1,178 @@
 {
-	"@context": {
-		"@vocab": "http://schema.org/",
-		"datacite": "http://purl.org/spar/datacite/",
+    "@context": {
+        "@vocab": "http://schema.org/",
+        "dcat": "http://www.w3.org/ns/dcat#",
+        "dc": "http://purl.org/dc/elements/1.1/",
+        "dct": "http://purl.org/dc/terms/",
+        "ecrro": "http://cor.esipfed.org/ont/earthcube/ECRRO_",
+        "ecrr": "https://n2t.net/ark:/23942/g2"
+    },
+    "@id": "ID for this metadata record",
+    "@type": [
+        "CreativeWork",
+        "Product"
+    ],
+    "mainEntity": [
+        {
+            "@type": "CreativeWork",
+            "url": "URI from ECRR resource types",
+            "name": "label for resource type"
+        }
+    ],
+    "additionalType": ["other type identifiers"],
+    "name": "text",
+    "description": "Put description of the resource here. This example record is 'flattened' -- the ECRR defined properties are implemented as JSON keys; for schema.org compatibility, these would be implemented in an additional property array. The GeoCODES JSON forms tool handles transformation to that format.",
+    "creator": [
+        {
+            "@type": "[Organization or Person]",
+            "name": "Text",
+            "identifier": "URI for the person or organization"
+        }
+    ],
+    "datePublished": "A date value in ISO 8601 date format",
+    "keywords": [
+        "text1",
+        "text2",
+        "text3"
+    ],
+    "funding": [
+        {
+            "@type": "Grant",
+            "name": "NSF Grant",
+            "funder": {
+                "@type": "[Person or Organization]",
+                "name": "text"
+            }
+        }
+    ],
+    "license": [
+        {
+            "@type": "[sdo:CreativeWork or sdo:URL]",
+            "name": "use if creativeWork",
+            "url": "use if CreativeWork or URL; if use url, the value is a string"
+        }
+    ],
+    "isRelatedTo": [
+        {
+            "@type": "Thing",
+            "name": "relation type and target label (Note @type must include schema:Product for this to validate with schema.org validator...",
+            "url": "identifier for target item"
+        },
+        {
+            "@type": "Thing",
+            "name": "relationship label here",
+            "url": "URI for related resource"
+        }
+    ],
+    "about": [
+        {
+            "@type": "DefinedTerm",
+            "name": "science domain label",
+            "identifier": " uri from http://cor.esipfed.org/ont/earthcube/ado"
+        },
+        {
+            "@type": "DefinedTerm",
+            "name": "science domain label2",
+            "identifier": "uri from other vocab"
+        }
+    ],
+    "identifier": "http://identifiers.org/Exampleuri/356737",
+    "url": "http://url.org/URLforResourceLandingPage",
+    "provider": {
+        "@type": "[Person or Oganization]",
+        "name": "Free text"
+    },
+    "audience": [
+        {
+            "@type": "Audience",
+            "description": "describe audience in text"
+        }
+    ],
+    "dct:bibliographicCitation": {
+        "@type": "PropertyValue",
+        "name": "text: preferred citation for the described resource"
+    },
+    "dct:conformsTo": [
+        {
+            "@type": "CreativeWork",
+            "name": "name of specification",
+            "url": "resolvable identifier for specification"
+        }
+    ],
+    "dependencies": {
+        "name": "label for the dependency",
+        "@type": "PropertyValue",
+        "propertyID": "http://purl.obolibrary.org/obo/RO_0002502",
+        "value": [
+            {
+                "@type": "CreativeWork",
+                "name": "label for relation type and target item",
+                "url": "resolvable identifier"
+            },
+            {
+                "@type": "CreativeWork",
+                "name": "label for relation type and target item",
+                "url": "resolvable identifier"
+            }
+        ]
+    },
+    "ecrro:0000138": {
+        "name": "resource maturity",
+        "@type": "PropertyValue",
+        "propertyID": {
+            "type": "string",
+            "default": "ecrro:ECRRO_0000138",
+            "const": "ecrro:ECRRO_0000138"
+        },
+        "value": {
+            "name": "label for concept",
+            "@type": "DefinedTerm",
+            "identifier": "URI for concept"
+        }
+    },
+    "ecrro:0000600": {
+        "@type": "PropertyValue",
+        "propertyID": "ecrro:0000600",
+        "name": "short name; default is -primary publication-",
+        "value": [
+            "citation string 1",
+            "citation stirng 2"
+        ]
+    },
+    "ecrro:0001301": {
+        "@type": "PropertyValue",
+        "name": "Metadata registration information",
+        "propertyID": "ecrro:0001301",
+        "value": {
+            "@type": "StructuredValue",
+            "additionalType": "ecrro:0000156",
+            "contributor": {
+                "@type": "Person",
+                "name": "Person name",
+                "identifier": "person identifier"
+            },
+            "datePublished": "dateTime string"
+        }
+    },
+    "ecrro:0000219": {
+        "name": "default-expected lifetime; values are from controlled vocabulary",
+        "@type": "PropertyValue",
+        "propertyID": "ecrro:0000219",
+        "value": {
+            "name": "defined term label",
+            "@type": "DefinedTerm",
+            "identifier": "defined term identifier"
+        }
+    },
+    "ecrro:0000017": {
+            "name": "default- Usage",
+            "@type":  "PropertyValue",
+            "propertyID": "ecrro:0000017",
+            "value": {
+                "name": "defined term label",
+                "@type": "DefinedTerm",
+                "identifier": "defined term identifier"
+        }
+        }
 
-		"geolink": "http://schema.geolink.org/1.0/base/main#",
-		"vivo": "http://vivoweb.org/ontology/core#",
-		"dcat": "http://www.w3.org/ns/dcat#",
-		"ecrro": "http://purl.obolibrary.org/obo/ECRRO_"
-	},
-	"@id": "ID for this metadata record",
-	"@type": [
-		"CreativeWork",
-		"Product"
-	],
-	"additionalType": [
-		"ecrro:****type***** have to sort out abbreviations and context lookups for opaque ecrro URIs"
-	],
-	"name": "text",
-	"description": "Put description of the resource here, and remove this note. This resource type is not restricted only to source code, but the sdo type is included to use properties on the sdo:softwareSourceCode type",
-	"creator": {
-		"@type": "[Organization or Person]",
-		"name": "Text"
-	},
-	"datePublished": "[A date value in ISO 8601 date format]",
-	"keywords": [
-		"text"
-	],
-		"<http://purl.obolibrary.org/obo/RO_0002502> (obo:depends on)": [
-		"an array of dependency statements"
-	],
-	"funder": {
-		"@type": "[Person or Organization]",
-		"name": "text"
-	},
-	"license": {
-		"@type": "[sdo:CreativeWork or sdo:URL]",
-		"name": "use if creativeWork",
-		"url": "use if CreativeWork or URL; if use url, the value is a string"
-	},
-	"dcat:qualifiedRelation": [
-		{
-			"@type": "dcat:Relation",
-			"dct:relation": "(URI for related resource)",
-			"dcat:hadRole": "(URI for relationship type)"
-		},
-		{
-			"@type": ["dcat:Relation","Product"],
-			"name": "relationship label here [this is an alternate way to represent related resources with some relationship semantics",
-			"url": "URI for related resource"
-		}
-	],
-	"ecrro:0000009 (citation)": "text: preferred citation for the described resource",
-	"dct:conformsTo": [
-		"Specification(s)--ideally a URI for the described resource"
-	],
-	"about": [
-		"science domain/community term"
-	],
-	"identifier": {
-		"@type": "PropertyValue,  or sdo:Text, or sdo:URL",
-		"eg @type": "PropertyValue",
-		"propertyID": "http://purl.org/spar/datacite/orcid",
-		"value": "0000-0003-2591-5293"
-	},
-	"ecrro:0000129 (EC resource maturity)": "text",
-	"ecrro:primaryPublication": "URI identifying the publication, or foaf:Document?",
-	"ecrro:registryContributor": {
-		"@type": "ContactPoint",
-		"name": "Metadata contributor name",
-		"identifier": ""
-	},
-	"provider": {
-		"@type": "[Person or Oganization]",
-		"name": "Free text"
-	},
-	"ecrro:timeToLive": "text",
-	"url": "URLstring",
-	"ecrro:usage": "free text",
-	"sourceOrganization": {
-		"@type": "Organization",
-		"description": "originatingProject description"
-	},
-	"audience": {
-		"@type": "Audience",
-		"description": "describe audience in text"
-	}
 }
