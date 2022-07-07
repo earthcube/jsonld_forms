@@ -3,9 +3,11 @@
     <div class="padded">
 
       <h2 class="headline font-weight-bold mb-3">
-        Important Links
+        GeoCODES resource description form
       </h2>
-        <h2>Forms</h2>
+      Please submit resource descriptions by filling out the form.
+      Documentation for the information model representing resource other than datasets is at <a href="https://docs.google.com/document/d/1ZHfTVCSXLMYJMEXgzgSviwRw9wSHAGYc-RChcGu9fxA">JSON-LD implementation of ECRR Metadata</a>
+      <h2>Forms</h2>
         <v-list>
           <v-list-item>
             <v-btn large color="primary" background-color="#18598B" class="create_resource_button" to="/ecrr">Create Resource Description</v-btn>
