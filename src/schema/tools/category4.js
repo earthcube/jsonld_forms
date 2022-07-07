@@ -4,12 +4,12 @@ const cat4 = {
   elements: [
     {
       type: 'Label',
-      text: '4.1. Registry Contributor'
+      text: 'Registration Contributor'
     },
 
     {
       type: 'Control',
-      label: '1.3.1.1 Registry Contributor Details',
+      label: 'Resource description contributor details',
       scope: '#/properties/ecrro:ECRRO_0001301', // flattended
       //  "scope": "#/properties/additionalProperty/items/anyOf/8/",
       options: {
@@ -27,7 +27,7 @@ const cat4 = {
                     '#/properties/value/properties/contributor/properties/name'
                 },
                 {
-                  label: 'Identifier',
+                  label: 'Identifier for the contributor, ORCID is preferred',
                   type: 'Control',
                   scope:
                     '#/properties/value/properties/contributor/properties/identifier'

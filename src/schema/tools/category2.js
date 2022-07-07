@@ -1,7 +1,7 @@
 import { default as interchange } from './resourceTypes/interchangeformat';
 import { default as catalog } from './resourceTypes/catalog';
 import { default as interfaceapi } from './resourceTypes/interface';
-import { default as servicedesc } from './resourceTypes/service';
+import { default as servicedesc } from './resourceTypes/serviceInstance';
 import { default as software } from './resourceTypes/software';
 import { default as repository } from './resourceTypes/repository';
 import { default as platform } from './resourceTypes/platform';

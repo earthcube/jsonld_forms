@@ -52,11 +52,48 @@ let resourceTypeBase = {
         showUnfocusedDescription: true
       }
     },
+    {"label": "Software Developer",
+      type:'ShowGroup',
+      elements: [
+        {
+          "type": "Control",
+          "scope": "#/properties/developer",
+          "options": {
+            "elementLabelProp": "name",
+            "showUnfocusedDescription": true,
+            "detail": {
+              "type": "VerticalLayout",
+              "elements": [
+                {
+                  "label": "Type",
+                  "type": "Control",
+                  "scope": "#/properties/@type",
+                  default: 'Person'
+                },
+                {
+                  "label": "Name",
+                  "type": "Control",
+                  "scope": "#/properties/name"
+
+                },
+                {
+                  "label": "Identifier",
+                  "type": "Control",
+                  "scope": "#/properties/identifier",
+                  "description": "An Identifier (e.g. ORCID) or identifying property. ",
+
+                },
+              ]
+            }
+          }
+        }
+      ]
+    },
+
     {
       type: 'ShowGroup',
       label: 'Describe the Implementation',
       elements: [
-
         {label: 'Programming language(s) used',
           type: 'Control',
           scope: '#/properties/programmingLanguage',
@@ -95,66 +132,73 @@ let resourceTypeBase = {
             }
           }
         },
+
         {
-          type: 'Label',
-          text: 'Input and Output Formats'
-        },
-        {
-          label: ' Input Formats',
-          type: 'Control',
-          scope: '#/properties/supportingData',
-          options: {
-            showUnfocusedDescription: true,
-            detail: {
-              type: 'HorizontalLayout',
-              elements: [
-                { label: 'name',
-                  type: 'Control',
-                  scope: '#/properties/name' },
+          label: 'Input/Output Formats',
+          type: 'ShowGroup',
+          elements:
+              [
                 {
-                  label: 'position',
                   type: 'Control',
-                  scope: '#/properties/position'
-                },
-                {
-                  label: 'encodingFormat',
-                  type: 'Control',
-                  scope: '#/properties/encodingFormat'
+                  scope: '#/properties/supportingData',
+                  options: {
+                    showUnfocusedDescription: true,
+                    detail: {
+                      type: 'VerticalLayout',
+                      elements: [
+                        {
+                          label: 'name',
+                          type: 'Control',
+                          scope: '#/properties/name'
+                        },
+                        {
+                          label: 'position',
+                          type: 'Control',
+                          scope: '#/properties/position'
+                        },
+                        {
+                          label: 'encodingFormat',
+                          type: 'Control',
+                          scope: '#/properties/encodingFormat'
+                        }
+                      ]
+                    }
+                  }
                 }
               ]
-            }
-          }
         }
       ]
     },
     {
       type: 'ShowGroup',
-      label: 'additional Details',
+      label: 'Additional Details (code repository, specifications, installer, run in browser',
       elements: [
         {
-          type: 'Label',
-          text: 'codeRepository Github or other repository URL'
-        },
-        {
-          label: 'codeRepository',
-          type: 'Control',
-          scope: '#/properties/codeRepository',
-          options: {
-            showUnfocusedDescription: true,
-            detail: {
-              type: 'HorizontalLayout',
-              elements: [
-                { label: 'name', type: 'Control', scope: '#/properties/name' },
-                { label: 'url', type: 'Control', scope: '#/properties/url' }
-              ]
+          label: 'Code Repository (e.g. Github or other repository URL)',
+          type: 'ShowGroup',
+          elements: [
+
+            {
+              label: false,
+              type: 'Control',
+              scope: '#/properties/codeRepository',
+              options: {
+                showUnfocusedDescription: true,
+                detail: {
+                  type: 'HorizontalLayout',
+                  elements: [
+                    {label: 'Repository name', type: 'Control', scope: '#/properties/name'},
+                    {label: 'url', type: 'Control', scope: '#/properties/url'}
+                  ]
+                }
+              }
             }
-          }
+          ]
         },
         {
           type: 'Label',
-          text: 'Interface'
+          text: 'Applicable specifications'
         },
-        // might eed to be it's own
         {
           label: ' Conforms to',
           type: 'Control',
@@ -163,12 +207,51 @@ let resourceTypeBase = {
             showUnfocusedDescription: true
           }
         },
+        {label: 'Dependencies and their URL',
+          type: 'Control',
+          scope: '#/properties/dependencies',
+          options: {
+            detail: {
+              showUnfocusedDescription: true,
+              type: 'HorizontalLayout',
+              elements: [
+
+                {
+                  label: 'Dependencies',
+                  type: 'Control',
+                  scope: '#/properties/value',
+                  options: {"elementLabelProp": "name",
+                    "showUnfocusedDescription": true,
+                    "detail": {
+                      "type": "VerticalLayout",
+                      "elements": [
+                        {
+                          "label": "Name",
+                          "type": "Control",
+                          "scope": "#/properties/name"
+                        },
+                        {
+                          "label": "Url",
+                          "type": "Control",
+                          "scope": "#/properties/url",
+                          "description":"An Identifier (e.g. ORCID) or identifying property. ",
+
+                        },
+                      ]}
+                  }
+                },
+
+              ]
+            }
+          }
+        },
+
         {
           type: 'Label',
           text: 'Installer '
         },
         {
-          label: 'installURL',
+          label: 'URL to install code',
           type: 'Control',
           scope: '#/properties/installURL',
           options: {
@@ -186,53 +269,52 @@ let resourceTypeBase = {
             }
           }
         },
-
-        {
-          type: 'Label',
-          text: 'Web Application URL '
-        },
-        {
-          label: 'Web Application URL',
-          type: 'Control',
-          scope: '#/properties/potentialAction',
-          options: {
-            showUnfocusedDescription: true,
-            detail: {
-              type: 'VerticalLayout',
-              elements: [
-                {
-                  label: '@type',
-                  type: 'Control',
-                  scope: '#/properties/target/properties/@type'
-                },
-                { label: 'name', type: 'Control', scope: '#/properties/name' },
-                {
-                  label: 'description',
-                  type: 'Control',
-                  scope: '#/properties/target/properties/description'
-                },
-                {
-                  label: 'urlTemplate',
-                  type: 'Control',
-                  scope: '#/properties/target/properties/urlTemplate'
-                },
-
-                {
-                  label: 'httpMethod',
-                  type: 'Control',
-                  scope: '#/properties/target/properties/httpMethod',
-                  options: {
-                    detail: {
-                      type: 'HorizontalLayout',
-                      elements: [
-                        { label: 'Method', type: 'Control', scope: '#' }
-                      ]
+        {label: 'URL to run application in a web browser',
+          type: 'ShowGroup',
+          elements: [
+            {
+              label: 'Web Application URL',
+              type: 'Control',
+              scope: '#/properties/potentialAction',
+              options: {
+                showUnfocusedDescription: true,
+                detail: {
+                  type: 'VerticalLayout',
+                  elements: [
+                    {
+                      label: '@type',
+                      type: 'Control',
+                      scope: '#/properties/target/properties/@type'
+                    },
+                    {label: 'name', type: 'Control', scope: '#/properties/name'},
+                    {
+                      label: 'description',
+                      type: 'Control',
+                      scope: '#/properties/target/properties/description'
+                    },
+                    {
+                      label: 'urlTemplate',
+                      type: 'Control',
+                      scope: '#/properties/target/properties/urlTemplate'
+                    },
+                    {
+                      label: 'httpMethod',
+                      type: 'Control',
+                      scope: '#/properties/target/properties/httpMethod',
+                      options: {
+                        detail: {
+                          type: 'HorizontalLayout',
+                          elements: [
+                            {label: 'Method', type: 'Control', scope: '#'}
+                          ]
+                        }
+                      }
                     }
-                  }
+                  ]
                 }
-              ]
+              }
             }
-          }
+          ]
         }
       ]
     }

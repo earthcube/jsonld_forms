@@ -4,36 +4,23 @@ const resourceType = {
   rule: {
     effect: 'SHOW',
     condition: {
-      anyOf: [
-        {
-          scope: '#/properties/mainEntity/',
-          schema:
-              {
-                "const": [
+      scope: '#/properties/mainEntity/',
+      schema:
+          {
+            "const": [
 //schema:Dataset in schema:mainEntity property
-                  {
-                    "name":
-                        "Dataset",
-                    "@type":
-                        "CreativeWork",
-                    "url":
-                        "http://schema.org/Dataset"
-                  }
-                ]
-              }
-        },
-            {
-              scope: '#/properties/@type',
-              schema:
               {
-                "const": [
-                "http://schema.org/Dataset" ]
+                "name":
+                    "Dataset",
+                "@type":
+                    "CreativeWork",
+                "url":
+                    "http://schema.org/Dataset"
               }
-
+            ]
           }
-          ]
-      }
-    },
+    }
+  },
   elements: [
 // (mandatory)get the schema type correct (Dataset), will default to creativeWork.
     {
@@ -44,8 +31,10 @@ const resourceType = {
 // accessible for free?
     {label: "is dataset accessible without cost?",
       type: "Control",
-      scope: "#/properties/isAccessibleForFree"
+      scope: "#/properties/isAccessibleForFree",
+      default:false
     },
+
 //handle dates
     {
       "type": "ShowGroup",
@@ -93,8 +82,7 @@ const resourceType = {
                 label: "Type",
                 type: "Control",
                 scope: "#/properties/@type",
-                enum: ["DataDownload"],
-                readonly: true
+                enum: ["DataDownload","WebAPI","WebSite"],
               },
               {
                 "label": "Label for this distribution option",
@@ -103,9 +91,20 @@ const resourceType = {
                 "options": {}
               },
               {
-                "label": "URL to access the data",
-                "type": "Control",
-                "scope": "#/properties/contentUrl"
+                type:"HorizontalLayout",
+                elements:[
+                  {type:"Label",
+                    text: "URL to access the data"},
+                  {type: "Control",
+                    scope: '#/properties/contentUrl'}]
+              },
+              {
+                type:"HorizontalLayout",
+                elements:[
+                  {type:"Label",
+                    text:  "URL for distribution landing page"},
+                  {  "type": "Control",
+                "scope": "#/properties/url" } ]
               },
               {
                 type: "Control",
@@ -242,7 +241,11 @@ const resourceType = {
         {
           type:'Label',
           text:'Where were the data acquired or what is the spatial extent of the feature of interest ' +
-              'that was the target of observations. Value is one or more point locations or bounding boxes. '
+              'that was the target of observations. Value is one or more point locations or bounding boxes. ' +
+              'Bounding boxes can be obtained at <a href="https://boundingbox.klokantech.com/" target="_blank" >Bounding box tool</a> ' +
+              '(use the csv raw format). Note that this tool returns coordinates in longitude-latitude order, ' +
+              ' but schema.org GeoShape/box uses latitude-longitude coordinate order, so you will have to ' +
+              'manually reverse the coordinates. Recommendation is to round coordinates to 4 decimal places or less.'
         },
         {
           label: false,
@@ -261,7 +264,7 @@ const resourceType = {
           text:'Temporal extent has a begin and end. These boundaries can be specified with either a numeric ' +
               'coordinate or a named time ordinal era (e.g. from geologic time scale). ' +
               'The temporal reference system (TRS) value specifies the time scale or coordinate system used. ' +
-              ''
+              'Select the default values, sorry, we have not figured out how to autopopulate defaults  :('
         },
         {
           label: false,
