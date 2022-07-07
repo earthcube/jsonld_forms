@@ -45,30 +45,100 @@
 //Licenses (Required)
          {
            type:'ShowGroup',
-           label:"Licenses or other restrictions",
+           label:"Licenses or other restrictions; can provide only a url or a name and url. Form handler is clumsy, sorry!",
            elements:
-[         {
-           type: 'Control',
-           scope: '#/properties/license',
-           options: {
-             detail: {
-               type: 'VerticalLayout',
-               elements: [
-                 {
-                   type: 'Control',
-                   scope: '#/properties/name',
-                   options: {}
-                 }
-               ]
-             }
-           }
-         }]
+[
+  {type:'Control',
+  scope: '#/properties/license' }
+    // {
+    //        type: 'Control',
+    //        scope: '#/properties/license',
+    //        options: {
+    //          detail: {
+    //            type: 'VerticalLayout',
+    //            elements: [
+    //              {
+    //                type: 'Control',
+    //                scope: '#/properties/name',
+    //                options: {}
+    //              }
+    //            ]
+    //          }
+    //        }
+    //      }
+         ]
      },
-//other recommended properties-funding, pub date, keywords, other identifiers,
-  // recommended citation, responsible parties...
-         {"label": "Recommended Properties",
-              "type": "ShowGroup",
-              "elements": [
+//other recommended properties-funding, pub date, keywords, other identifiers, responsible parties
+         {label: "Recommended Properties (landing page, funding, pub date, keywords, other identifiers, responsible parties)",
+              type: "ShowGroup",
+              elements: [
+// landing page
+                {
+                  type:"HorizontalLayout",
+                  elements:[
+                    {type:"Label",
+                      text:  "URL for resource landing page"},
+                    {  "type": "Control",
+                      "scope": "#/properties/url" } ]
+                },
+
+//link to alternate metadata record (optional)
+                { type: 'Group',
+                  label: false,
+                  rule: {
+                    effect: 'HIDE',
+                    condition: {
+                      scope: '#/properties/mainEntity/',
+                      schema: {
+                        "const":[
+                          {
+                            "name":
+                                "Dataset",
+                            "@type":
+                                "CreativeWork",
+                            "url":
+                                "http://schema.org/Dataset"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  elements:[
+                    { "label": 'URL for other web pages about the resource',
+                      "type": "Control",
+                      // populate with schema:CreativeWork to get label and name
+                      "scope": "#/properties/subjectOf",
+
+                      "options": {
+                        "showUnfocusedDescription": true,
+                        childLabelProp: 'name',
+                        "detail" : {
+                          "type": "VerticalLayout",
+                          "elements": [
+                            {
+                              label: "Type",
+                              type: "Control",
+                              scope: "#/properties/@type",
+                              enum:["CreativeWork"]
+                            },
+                            {
+                              "label": "Label for this link, e.g. DOI landing page",
+                              "type": "Control",
+                              "scope": "#/properties/name",
+                            },
+                            {
+                              "label": "url",
+                              "type": "Control",
+                              "scope": "#/properties/url"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }   ,
+
+// publication date
                 {type:'Label',
                 text: 'Publication Date of Most Recent Release'},
                 {label: false,
@@ -78,12 +148,13 @@
                     showUnfocusedDescription: true
                   }
                 },
+// funding
                 { label: 'Funding',
                   type: 'ShowGroup',
                   elements: [
                     {
                       type: 'Control',
-                      label: 'Funder',
+                      label: 'Grants and their funders',
                       scope: '#/properties/funding',
                       options: {
                         showUnfocusedDescription: true,
@@ -112,7 +183,7 @@
                     }
                   ]
                 },
-
+// other identifiers
                 {label: 'Other resource identifiers if applicable',
                   type: 'Control',
                   scope: '#/properties/sameAs',
@@ -120,6 +191,7 @@
                     showUnfocusedDescription: true
                   }
                 },
+//keywords
                 {label: 'keywords- use words or phrases you would expect searchers to enter into search engines.',
                   "type": "Control",
 
@@ -128,6 +200,7 @@
                     "showUnfocusedDescription": true
                   }
                 },
+// recommended citation
                 {type:'Label',
                 text:'Please provide a recommended citation to reference this resource in publications, using a standard ' +
                     'bibliographic format'},
@@ -154,7 +227,8 @@
                 }
               }
             },
-                {label: "Add Responsible Parties",
+// responsible parties (author, creator, contributor, etc...
+                {label: "Add Responsible Parties (creator, publisher, Contributors, Editor...",
           type: "ShowGroup",
           description:"Persons or organizations with roles in the creation of the resource content, e.g. Creator, Editor, Contributor... ",
           elements: [
@@ -189,182 +263,117 @@
 
             },
             {"label": "Publisher",
-              "type": "Control",
-              "scope": "#/properties/publisher",
-              "options": {"elementLabelProp": "name",
-                "showUnfocusedDescription": true,
-                "detail": {
-                        "type": "VerticalLayout",
-                        "elements": [
+              type:'ShowGroup',
+              elements: [
+                {
+                  "type": "Control",
+                  "scope": "#/properties/publisher",
+                  "options": {
+                    "elementLabelProp": "name",
+                    "showUnfocusedDescription": true,
+                    "detail": {
+                      "type": "VerticalLayout",
+                      "elements": [
 
-                          {
-                            "label": "Type",
-                            "type": "Control",
-                            "scope": "#/properties/@type",
-                            default:'Organization'
-                          },
-                           {
-                              "label": "Name",
-                              "type": "Control",
-                              "scope": "#/properties/name"
+                        {
+                          "label": "Type",
+                          "type": "Control",
+                          "scope": "#/properties/@type",
+                          default: 'Organization'
+                        },
+                        {
+                          "label": "Name",
+                          "type": "Control",
+                          "scope": "#/properties/name"
 
-                            },
-                             {
-                            "label": "Identifier",
-                            "type": "Control",
-                            "scope": "#/properties/identifier",
-                               "description":"An Identifier (e.g. DOI) or standard academic citation for publication that specifies or describes the resource. ",
+                        },
+                        {
+                          "label": "Identifier",
+                          "type": "Control",
+                          "scope": "#/properties/identifier",
+                          "description": "An Identifier (e.g. DOI) or standard academic citation for publication that specifies or describes the resource. ",
 
-                          },
-                          ]}
-              }
+                        },
+                      ]
+                    }
+                  }
+                }
+              ]
             },
             {"label": "Contributor",
-              "type": "Control",
-              "scope": "#/properties/contributor",
-              "options": { "elementLabelProp": "name",
-                "showUnfocusedDescription": true,
-                "detail": {
-                  "type": "VerticalLayout",
-                  "elements": [
-                    {
-                      "label": "Type",
-                      "type": "Control",
-                      "scope": "#/properties/@type",
-                      default:'Person'
-                    },
-                    {
-                      "label": "Name",
-                      "type": "Control",
-                      "scope": "#/properties/name"
-                    },
-                    {
-                      "label": "Identifier",
-                      "type": "Control",
-                      "scope": "#/properties/identifier",
-                      "description":"An Identifier (e.g. ORCID) or identifying property. ",
-                    },
-                  ]}
-              }
+              type:'ShowGroup',
+              elements: [
+                {
+                  "type": "Control",
+                  "scope": "#/properties/contributor",
+                  "options": {
+                    "elementLabelProp": "name",
+                    "showUnfocusedDescription": true,
+                    "detail": {
+                      "type": "VerticalLayout",
+                      "elements": [
+                        {
+                          "label": "Type",
+                          "type": "Control",
+                          "scope": "#/properties/@type",
+                          default: 'Person'
+                        },
+                        {
+                          "label": "Name",
+                          "type": "Control",
+                          "scope": "#/properties/name"
+                        },
+                        {
+                          "label": "Identifier",
+                          "type": "Control",
+                          "scope": "#/properties/identifier",
+                          "description": "An Identifier (e.g. ORCID) or identifying property. ",
+                        },
+                      ]
+                    }
+                  }
+                }
+                ]
             },
             { "label": "Editor",
-              "type": "Control",
-              "scope": "#/properties/editor",
-              "options": { "elementLabelProp": "name",
-                "showUnfocusedDescription": true,
-                "detail": {
-                  "type": "VerticalLayout",
-                  "elements": [
-                    {
-                      "label": "Type",
-                      "type": "Control",
-                      "scope": "#/properties/@type",
-                      default:'Person'
-                    },
-                    {
-                      "label": "Name",
-                      "type": "Control",
-                      "scope": "#/properties/name"
-                    },
-                    {
-                      "label": "Identifier",
-                      "type": "Control",
-                      "scope": "#/properties/identifier",
-                      "description":"An Identifier (e.g. ORCID) or identifying property. "
-                    },
-                  ]}
-              }
-            },
-            {"label": "Software Developer",
-              "type": "Control",
-              "scope": "#/properties/developer",
-              "options": { "elementLabelProp": "name",
-                "showUnfocusedDescription": true,
-                "detail": {
-                  "type": "VerticalLayout",
-                  "elements": [
-                    {
-                      "label": "Type",
-                      "type": "Control",
-                      "scope": "#/properties/@type",
-                      default:'Person'
-                    },
-                    {
-                      "label": "Name",
-                      "type": "Control",
-                      "scope": "#/properties/name"
-
-                    },
-                    {
-                      "label": "Identifier",
-                      "type": "Control",
-                      "scope": "#/properties/identifier",
-                      "description":"An Identifier (e.g. ORCID) or identifying property. ",
-
-                    },
-                  ]}
-              }
+              type:'ShowGroup',
+              elements: [
+                {
+                  "type": "Control",
+                  "scope": "#/properties/editor",
+                  "options": {
+                    "elementLabelProp": "name",
+                    "showUnfocusedDescription": true,
+                    "detail": {
+                      "type": "VerticalLayout",
+                      "elements": [
+                        {
+                          "label": "Type",
+                          "type": "Control",
+                          "scope": "#/properties/@type",
+                          default: 'Person'
+                        },
+                        {
+                          "label": "Name",
+                          "type": "Control",
+                          "scope": "#/properties/name"
+                        },
+                        {
+                          "label": "Identifier",
+                          "type": "Control",
+                          "scope": "#/properties/identifier",
+                          "description": "An Identifier (e.g. ORCID) or identifying property. "
+                        },
+                      ]
+                    }
+                  }
+                }
+                ]
             },
              ]
         },
             ]
         },
-//link to alternate metadata record (optional)
-         { type: 'Group',
-           label: false,
-           rule: {
-             effect: 'HIDE',
-             condition: {
-               scope: '#/properties/mainEntity/',
-               schema: {
-                 "const":[
-                   {
-                     "name":
-                         "Dataset",
-                     "@type":
-                         "CreativeWork",
-                     "url":
-                         "http://schema.org/Dataset"
-                   }
-                 ]
-               }
-             }
-           },
-           elements:[
-             { "label": 'URL to User-Readable Page or landing page',
-               "type": "Control",
-               // populate with schema:CreativeWork to get label and name
-               "scope": "#/properties/subjectOf",
-               "options": {
-                 "showUnfocusedDescription": true,
-                 "detail" : {
-                   "type": "VerticalLayout",
-                   "elements": [
-                     {
-                       label: "Type",
-                       type: "Control",
-                       scope: "#/properties/@type",
-                       const:"CreativeWork"
-                     },
-
-                     {
-                       "label": "url",
-                       "type": "Control",
-                       "scope": "#/properties/url"
-                     },
-                     {
-                       "label": "Label for this link, e.g. DOI landing page",
-                       "type": "Control",
-                       "scope": "#/properties/name",
-                       "options": {
-                       }
-                     }
-                   ]
-                 }
-               }
-             }
-           ]
-         }   ,
 // automatically supplied ark identifier for the metadata record (TBD for new records!)
           {label:"Identifier for metadata record (Readonly)",
             type: "ShowGroup",
