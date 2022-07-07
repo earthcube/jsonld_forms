@@ -4,28 +4,37 @@ const resourceType = {
   rule: {
     effect: 'SHOW',
     condition: {
-      scope: '#/properties/mainEntity/',
+      //   scope: '#/properties/mainEntity/',
+      //   schema:
+      //       {
+      //         "const": [
+      //           {
+      //             "name":
+      //                 "Dataset",
+      //             "@type":
+      //                 "CreativeWork",
+      //             "url":
+      //                 "http://schema.org/Dataset"
+      //           }
+      //         ]
+      //       }
+      // }
+
+      scope: '#/properties/mainEntity/name',
       schema:
           {
-            "const": [
-//schema:Dataset in schema:mainEntity property
-              {
-                "name":
-                    "Dataset",
-                "@type":
-                    "CreativeWork",
-                "url":
-                    "http://schema.org/Dataset"
-              }
+            anyof: [{
+              "const": "Dataset"
+            }
             ]
           }
     }
-  },
+    },
   elements: [
 // (mandatory)get the schema type correct (Dataset), will default to creativeWork.
     {
       type: "Control",
-      label: "Resource type (Should be Dataset, remove default values if present)",
+      label: "Resource @type (Should be Dataset, remove default values if present)",
       scope: "#/properties/@type"
     },
 // accessible for free?
