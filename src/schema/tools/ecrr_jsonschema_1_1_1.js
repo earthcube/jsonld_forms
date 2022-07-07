@@ -2,7 +2,6 @@
 import {
   licenseList,
   resourceTypeList,
-//  function,
   scienceDomainList,
   maturityOneOf,
   lifetimeOneOf,
@@ -293,8 +292,10 @@ const jsonschema = {
     },
     mainEntity: {
       title: 'Type of Resource',
-      "description": "Labeled link url is URI for ECRR resource type; name is ECRR resource type name. The ECRR URI (ECRRO_ or SFO_ prefix URIs) is used to validate resource specific properties. If the resource type is Specification or Semantic Resource, a more specific resource type from the SPKT or srt vocabulary (respectively) can be specified.",
-      "items": {
+      description: "Labeled link url is URI for ECRR resource type; name is ECRR resource type name. The ECRR URI (ECRRO_ or SFO_ prefix URIs) is used to validate resource specific properties. If the resource type is Specification or Semantic Resource, a more specific resource type from the SPKT or srt vocabulary (respectively) can be specified.",
+      type:"array",
+
+      items: {
         //"type": "Object",
         // "uniqueItems": true,
         //       "items": {
@@ -1625,8 +1626,8 @@ const withEnum = function() {
   // const licenseOneOf = [...licenseList ]
 //  jsonschema.properties.license.items = licenseList();
 
-  let rtypes = resourceTypeList();
-  jsonschema.properties.mainEntity.oneOf = rtypes.oneOf;
+//  let rtypes = resourceTypeList();
+  jsonschema.properties.mainEntity.items = resourceTypeList();
 
 //  let scienceDomains = scienceDomainList();
   jsonschema.properties.about.items = scienceDomainList();

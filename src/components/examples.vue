@@ -2,7 +2,7 @@
   <div>
     <v-spacer></v-spacer>
     <h2>Earthcube Resource Registry Examples <a href="https://github.com/earthcube/ecrro">github</a></h2>
-    <v-banner outlined>Note: Not all examples load. Records with number prefixes have been 'cleaned'. </v-banner>
+    The JSON-LD for the example files are currently in <a href="https://github.com/earthcube/jsonld_forms/tree/feat-dataset-ecrr-merge/src/assets/examples">this github folder</a>
 
     <v-container fluid ma-0 pa-0>
       <v-data-iterator
