@@ -156,31 +156,7 @@
             "$comment": "this will be replaced by schema:maintainer when schema.org adopts that",
             "$ref": "#/definitions/agent_type"
         },
-        "ecrro:ECRRO_0000600": {
-            "type": "object",
-            "description": "primary publication-- a text citation to one or more publications about the resource; separated by pipe ('|') characters",
-            "properties": {
-                "@type": {
-                    "type": "string",
-                    "const": "PropertyValue",
-                    "default": "PropertyValue"
-                },
-                "propertyID": {
-                    "type": "string",
-                    "const": "ecrro:ECRRO_0000600",
-                    "default": "ecrro:ECRRO_0000600"
-                },
-                "name": {
-                    "type": "string",
-                    "title": "short name",
-                    "default": "primary publication"
-                },
-                "value": {
-                    "type": "array",
-                    "items": {"type": "string"}
-                }
-            }
-        },
+
         "audience": {
             "title": "Intended Audience/Target User",
             "description": "terms from controlled vocabulary to identify the kinds of users who are the target of the described resource",
@@ -240,12 +216,6 @@
         "isBasedOn": {
             "title": "Semantic Resources it Uses",
             "description": "references to Semantic Resources used by the described resource",
-            "type": "array",
-            "items": {"$ref": "#/definitions/creativeWork_type"}
-        },
-        "dct:conformsTo": {
-            "title": "Conforms to",
-            "description": "references to specifications that the described resource is in conformance with",
             "type": "array",
             "items": {"$ref": "#/definitions/creativeWork_type"}
         },
@@ -318,6 +288,12 @@
             }
         },
         "ecrro:ECRRO_0001301": {"$ref": "#/definitions/metadataCreatorType"},
+        "dct:conformsTo": {
+            "title": "Conforms to",
+            "description": "references to specifications that the described resource is in conformance with",
+            "type": "array",
+            "items": {"$ref": "#/definitions/creativeWork_type"}
+        },
         "dct:bibliographicCitation": {
             "title": "Bibliographic Citation",
             "$ref": "#/definitions/citationType"
@@ -504,12 +480,38 @@
                 }
             }
         },
+        "ecrro:ECRRO_0000600": {
+            "type": "object",
+            "description": "primary publication-- a text citation to one or more publications about the resource; separated by pipe ('|') characters",
+            "properties": {
+                "@type": {
+                    "type": "string",
+                    "const": "PropertyValue",
+                    "default": "PropertyValue"
+                },
+                "propertyID": {
+                    "type": "string",
+                    "const": "ecrro:ECRRO_0000600",
+                    "default": "ecrro:ECRRO_0000600"
+                },
+                "name": {
+                    "type": "string",
+                    "title": "short name",
+                    "default": "primary publication"
+                },
+                "value": {
+                    "type": "array",
+                    "items": {"type": "string"}
+                }
+            }
+        },
         "additionalProperty": {
             "type": "array",
             "title": "Other Properties",
             "description": "EC resource registry properties that extend Schema.org are implemented as an array of PropertyValue inside a schema:additionalProperty",
             "items": {"$ref": "#/definitions/additionalProperty_type"}
         },
+
         "additionalType": {
             "description": "identifiers for datatypes from other vocabularies (not schema.org) that apply to the described resource.",
             "type": "array",
