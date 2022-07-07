@@ -1,25 +1,34 @@
 <template>
   <div>
-    <h2>Welcome to the GeoCODES resource description editor</h2>
-  <json-forms
-      :data="jsonldObj"
-      :schema="schema"
-      :uischema="uischema"
-      :renderers="renderers"
-      @change="onChange"
-      :validationMode="currentValidationMode"
-      :ajv="ajv"
-  />
+
+<!--  <json-forms-->
+<!--      :data="jsonldObj"-->
+<!--      :schema="schema"-->
+<!--      :uischema="uischema"-->
+<!--      :renderers="renderers"-->
+<!--      @change="onChange"-->
+<!--      :validationMode="currentValidationMode"-->
+<!--      :ajv="ajv"-->
+<!--  />-->
+    <json-forms
+        :data="jsonldObj"
+        :schema="schema"
+
+        :renderers="renderers"
+        @change="onChange"
+        :validationMode="currentValidationMode"
+        :ajv="ajv"
+    />
       <v-spacer></v-spacer>
       <v-divider></v-divider>
 
     <v-footer class="json_footer">
       <div>
-        <JsonViewer :json="jsonldObj" name="form JSON"></JsonViewer>
+        <JsonViewer :json="jsonldObj" name="Dataset form JSON"></JsonViewer>
       </div>
-      <div>
-         <JsonViewer :json="unflattenLocal(jsonldObj)" name="JSON-LD"></JsonViewer>
-      </div>
+<!--      <div>-->
+<!--         <JsonViewer :json="unflattenLocal(jsonldObj)" name="Dataset JSON-LD"></JsonViewer>-->
+<!--      </div>-->
 
       <save-files :json="jsonldObj" :originalName="filename"></save-files>
     </v-footer>
@@ -36,12 +45,11 @@ import 'vue-json-pretty/lib/styles.css';
 
 
 import {default as saveFiles} from './controls/saveJson'
-import { default as schema, schemaWithEnum , flattenList} from '../schema/tools/ecrr_jsonschema_1_1_1' ;
+import { default as schema} from '../schema/dataset/GeoCodesDataset-schema' ;
 
-import uischema from '../schema/tools/geocodesMerge_uischema';
-
-/* tslint:disable no-var-requires */
-const baseJsonLdObj = require('../assets/basefiles/tools/ecrrempty.json');
+//import uischema from '../schema/tools/ecrr_1_1_uischema';
+// @ts-ignore
+const baseJsonLdObj = require('../assets/basefiles/dataset/datasetempty.json');
 
 import {entry as AltGroupRenderer} from './controls/AdditionalDetailsRenderer'
 import {entry as HtmlLabelRender } from './controls/htmlLabelRenderer'
@@ -53,7 +61,7 @@ import {entry as EcFunctionsRenderer} from './controls/EcFunctionSubfunctionRend
 
 import {default as JsonViewer} from './viewJson'
 import {createAjv} from "@jsonforms/core";
-import {flatten, unflatten} from "../js/jsonldutils"
+//import {flatten, unflatten} from "../js/jsonldutils"
 import {
   getFroms3,
   saveToUser} from '../js/s3store'
@@ -94,7 +102,7 @@ const tool = defineComponent({
       renderers,
       jsonldObj:baseJsonLdObj,
       schema,
-      uischema,
+      uischema: {},
       currentValidationMode: "ValidateAndHide", // ValidateAndShow, ValidateAndHide, NoValidation
 
       ajv: createAjv({useDefaults: true}), // use default values per:https://github.com/eclipsesource/jsonforms/issues/1193'
@@ -106,7 +114,7 @@ const tool = defineComponent({
         useSsl: Boolean(process.env.VUE_APP_useSSL)
       },
       BUCKET: process.env.VUE_APP_BUCKET,
-      filename:"tool.jsonld"
+      filename:"dataset.jsonld"
     };
   },
   beforeCreate() {
@@ -114,24 +122,23 @@ const tool = defineComponent({
     //       console.log(s)
     //       this.schema = s
     //      })
-    this.schema = schemaWithEnum()
+    this.schema = schema
     this.jsonldObj = baseJsonLdObj
 
   },
      created() {
     if (this.jsonldfile){
-      /* tslint:disable no-var-requires */
+// @ts-ignore
       let exampleData = require('../assets/examples/' +  this.jsonldfile);
-
       this.filename = this.jsonldfile.substring(this.jsonldfile.lastIndexOf('/')+1)
-      exampleData = flatten(exampleData, flattenList)
+     // exampleData = flatten(exampleData, flattenList)
       this.jsonldObj = Object.assign({}, this.jsonldObj, exampleData)
     }
      if (this.s3file){
        this.filename = this.s3file.substring(this.s3file.lastIndexOf('/')+1)
        this.getUsers3()
      }
-
+// @ts-ignore
      console.log(process.env.VUE_APP_BUCKET)
     // this.$on('loadfile', async  function (filepath) {
     //   this.jsonldObj =  await getFroms3( filepath, this.BUCKET, this.s3Credentials)
@@ -140,7 +147,7 @@ const tool = defineComponent({
   computed:{
     async getUsers3(){
       let exampleData = await getFroms3(this.s3file, this.BUCKET, this.s3Credentials)
-      exampleData = flatten(exampleData, flattenList)
+      //exampleData = flatten(exampleData, flattenList)
       this.jsonldObj = Object.assign({}, this.jsonldObj, exampleData)
     }
   },
@@ -149,16 +156,14 @@ const tool = defineComponent({
     onChange(event) {
       this.jsonldObj = event.data;
     },
-    unflattenLocal(json) {
-      return unflatten(json,flattenList)
-    },
+
     saveItem (json){
       let jsonstring = JSON.stringify(json)
       let itemMetadata = {
         status: 'draft',
          playground: true
       }
-      saveToUser(jsonstring,this.filename,itemMetadata, 'resourceregistry',
+      saveToUser(jsonstring,this.filename,itemMetadata, 'dataset',
           // process.env.VUE_APP_BUCKET,
           // process.env.VUE_APP_accessKey,
           // process.env.VUE_APP_secretKey,

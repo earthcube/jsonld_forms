@@ -13,6 +13,10 @@
             <v-btn large color="primary" background-color="#18598B" class="create_resource_button" to="/ecrr">Create Resource Description</v-btn>
 <!--            <router-link to="/ecrr" >Create Resource Description</router-link>-->
           </v-list-item>
+          <v-list-item>
+            <v-btn large color="primary" background-color="#18598B" class="create_resource_button" to="/dataset">Create Dataset Description</v-btn>
+            <!--            <router-link to="/ecrr" >Create Resource Description</router-link>-->
+          </v-list-item>
         </v-list>
     </div>
 

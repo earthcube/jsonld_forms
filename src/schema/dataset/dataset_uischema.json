@@ -20,8 +20,8 @@
           "type": "Control",
           "scope": "#/properties/birthDate"
         }
-      ]
     }
 
     ]
 }
+  ]
