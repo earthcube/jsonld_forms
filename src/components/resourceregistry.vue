@@ -42,6 +42,8 @@ import uischema from '../schema/tools/geocodesMerge_uischema';
 
 /* tslint:disable no-var-requires */
 const baseJsonLdObj = require('../assets/basefiles/tools/ecrrempty.json');
+//const baseJsonLdObj = require('../assets/basefiles/tools/ECRRTemplateSDO.JSON');
+
 
 import {entry as AltGroupRenderer} from './controls/AdditionalDetailsRenderer'
 import {entry as HtmlLabelRender } from './controls/htmlLabelRenderer'
