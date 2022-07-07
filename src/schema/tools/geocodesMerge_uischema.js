@@ -19,7 +19,4 @@ schema.elements.push(cat3);
 import cat4 from './category4';
 schema.elements.push(cat4);
 
-import cat5 from './category5';
-schema.elements.push(cat5);
-
 export default schema;

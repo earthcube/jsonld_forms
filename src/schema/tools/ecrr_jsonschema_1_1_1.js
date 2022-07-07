@@ -8,7 +8,7 @@ import {
   lifetimeOneOf,
   audienceOneOf,
   communicationList,
-    usageOneOf
+  usageOneOf
 } from './controlledFromGooglesheet';
 
 const jsonschema = {
@@ -20,7 +20,8 @@ const jsonschema = {
   description:
       'JSON schema for EarthCube Resource Registry (ECRR) resource descriptions. The base object is common to all ' +
       'resource types, and definition section adds resource-specific properties. Resource types are Specification, ' +
-      'UseCase, InterchangeFormat, Software, Interface,...',
+      'UseCase, InterchangeFormat, Software, Interface,...  Schema compiled by Stephen M. Richard based on Resource ' +
+      ' instance data and example GeoCODES dataset metadata from several providers 2022-07-05',
   properties: {
     '@id': {
       type: 'string',
@@ -36,7 +37,7 @@ const jsonschema = {
       minItems: 1,
       items: {
         type:"string",
-        enum: ['CreativeWork', 'SoftwareApplication', 'Product', 'WebAPI', 'Dataset']
+        enum: ['CreativeWork', 'SoftwareApplication', 'Product', 'WebAPI', 'Dataset','Collection']
       },
       "default": "CreativeWork"
     },
@@ -82,18 +83,22 @@ const jsonschema = {
       format: 'date'
     },
     version: {
-      type: 'string',
+      type: ['string','number'],
       description:
-          'string that identifies a particular version of the resource if it is not identified by the schema:identifier element'
+          'string or integer that identifies a particular version of the resource if it is not identified by the schema:identifier element'
     },
     license: {
-      title: 'legal statement of conditions for use and access',
+      title: 'Legal statement of conditions for use and access',
       type: 'array',
       uniqueItems: true,
       items: {
-        //         "oneOf": [
-        //
-        //         ]
+        oneOf: [
+          {
+            title:'Labeled link',
+            $ref: '#/definitions/creativeWork_type'},
+          {title:'URI for license',
+            type:'string'}
+            ]
       }
     },
     creator: {
@@ -227,10 +232,10 @@ const jsonschema = {
       }
     },
    audience: {
-      title: 'Intended Audience/Target User',
-      description:
-          'terms from controlled vocabulary to identify the kinds of users who are the target of the described resource',
-      //  "uniqueItems": true,
+      title: 'Intended Audience or Target User',
+      // description:
+      //     'terms from controlled vocabulary to identify the kinds of users who are the target of the described resource',
+    // uniqueItems: true,
       type: 'array',
       items: {
         //    "$ref": "#/definitions/audience_type"
@@ -398,6 +403,27 @@ const jsonschema = {
           $ref: '#/definitions/creativeWork_type'
         }
       },
+    hasPart: {
+      title: "parts of a composite resource",
+      description: "use to list the component parts in a Bundled Object/Collection resource.",
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          '@type': {
+            type: "string",
+            description: "should be a schema.org CreativeWork or subclass of that",
+            default: "CreativeWork"
+          },
+          name: {"type": "string"},
+          url: {"type": "string"},
+          encodingFormat: {
+            description: "format for this bundle/collection component; recommend using identifier from ECRR format registry (https://github.com/earthcube/GeoCODES-Metadata/blob/main/resources/encodingFormat.csv)",
+            type: "string"
+          }
+        }
+      }
+    },
 
 // EXPOSED ADDITIONAL PROPERTIES   These will need to be stored in the additionalProperty.
 //      But for defining the form, they are stored at the top level
@@ -429,8 +455,7 @@ const jsonschema = {
           },
           name: {
             type: 'string',
-            default: 'has maturity state',
-            readonly: true
+            default: 'has maturity state'
           }
           //   "value": {"$ref": "#/definitions/definedTerm_type"}
         }
@@ -671,7 +696,8 @@ const jsonschema = {
     },
     "isAccessibleForFree": {
       "type": "boolean",
-      "description": "Boolean (true|false) specifying if the dataset is accessible for free."
+      "description": "Boolean (true|false) specifying if the dataset is accessible for free.",
+      default:false
     },
     "provider": {
       "description": "Party who maintains the distribution options for the dataset. If there are multiple distributions from different providers, use the provider property on distribution/DataDownload. For more granularity on how a person contributed to a Dataset, use schema:Role. The schema.org documentation does not state that the Role type is an expected data type of author, creator and contributor, but that is addressed in this blog post (http://blog.schema.org/2014/06/introducing-role.html). see https://github.com/ESIPFed/science-on-schema.org/blob/develop/guides/Dataset.md#roles-of-people",
@@ -707,7 +733,7 @@ const jsonschema = {
                   },
                   { "title":"GeoShape schema:box",
                     "type": "object",
-                    "description": "A schema:GeoShape can describe spatial coverage as a line (e.g. a ship track), a bounding box, a polygon, or a circle; This form implementation restricts GeoShape to be a box. The geometry is described with a set of latitude/longitude pairs (in that order).The documentation for schema:GeoShape states 'Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points.'",
+                    "description": "This form implementation restricts GeoShape to be a box. The geometry is described with a set of <b>latitude/longitude</b> pairs (in that order).The documentation for schema:GeoShape states 'Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points.'",
                     "properties": {
                       "@type": {
                         "type": "string",
@@ -740,16 +766,21 @@ const jsonschema = {
           "type": "object",
           "description": "A w3c time proper interval; use for geologic age bounds on the temporal coverage. This is an ESIP Science on Schema.org (SOSO) schema.org extension",
           "properties": {
-            "@context": {"const": "{\"time\": \"http://www.w3.org/2006/time#\"}"},
+            "@context": {"type":"object",
+              "properties": {
+                "const": {"time": "http://www.w3.org/2006/time#"}
+              }
+            },
             "@type": {
               "type": "string",
-              "default": "time:ProperInterval",
+         //     "default": "time:ProperInterval",
               "const": "time:ProperInterval"
             },
             "time:hasBeginning":
                 { "type": "object",
                   "properties": {
                     "@type": {
+                      title: 'time:Instant is default and only choice',
                       "type": "string",
                       "default": "time:Instant",
                       "const": "time:Instant"
@@ -759,20 +790,25 @@ const jsonschema = {
                         { "type": "object",
                           "properties": {
                             "rdf:type": {
+                              title: 'time:TimePosition is default and only choice',
                               "type": "string",
                               "default": "time:TimePosition",
                               "enum":[ "time:TimePosition" ]
                             },
                             "time:hasTRS": {
-                              title:'Temporal reference system (TRS) for time coordinate',
-                              "type": "object",
-                              "description":"For temporal reference systems, recommend using those listed in registry at http://linked.data.gov.au/def/trs",
-                              "properties": {
-                                "@id": {"type": "string"}
+                        //      title:'Temporal reference system (TRS) for time coordinate',
+
+                              type: "object",
+                              properties: {
+                                "@id": {
+                                  title:'identifier for Temporal reference system (TRS) for time coordinate',
+                                  description:'For temporal reference systems, recommend identifiers from registry at ' +
+                                      'http://linked.data.gov.au/def/trs',
+                                  "type": "string"}
                               }
                             },
                             'time:numericPosition': {
-                              title:'numeric coordinate, in years, Ka, Ma, Ga (based on TRS) before present',
+                              description:'numeric coordinate, in years, Ka, Ma, Ga (based on TRS) before present',
                               type: "number"},
                             'time:nominalPosition': {
                               title:"Position assigned using a named time ordinal era, e.g. geologic time scale",
@@ -847,7 +883,7 @@ const jsonschema = {
           name: {type: 'string'},
           '@type': {
             type: 'string',
-            enum: ['Person', 'Organization'],
+            enum: ['Person', 'Organization','FundingAgency'],
             default: 'Person'
           },
           identifier: {type: 'string'}
@@ -879,8 +915,7 @@ const jsonschema = {
               },
 
               identifier: {type: 'string'}
-            },
-            required: ['@type', 'name']
+            }
           },
           "funder": {
             "description": "agent that provided and administers financial support to create or maintain the resource",
@@ -916,8 +951,7 @@ const jsonschema = {
             const: 'Audience'
           },
           identifier: {type: 'string'}
-        },
-        required: ['@type', 'audienceType']
+        }
       },
       creativeWork_type: {
         type: 'object',
@@ -986,7 +1020,13 @@ const jsonschema = {
       action_type: {
         type: 'object',
         properties: {
-          '@type': {type: 'string', default: 'Action', const: 'Action'},
+          '@type': {
+            type: 'string',
+            description:'Action is generic; SearchAction adds a query property that enables the ' +
+                'query-input specification of parameters in the urlTemplate',
+            default: 'Action',
+            enum: ["Action","SearchAction"]
+          },
           name: {type: 'string', default: 'Execute web application'},
           target: {
             type: 'object',
@@ -1001,7 +1041,6 @@ const jsonschema = {
                 default: 'Open software on the web'
               },
               urlTemplate: {type: 'string'},
-
               httpMethod: {
                 title: 'HTTP Method',
                 type: 'array',
@@ -1019,6 +1058,23 @@ const jsonschema = {
                     'OPTIONS',
                     'PROPFIND'
                   ]
+                }
+              },
+              'query-input': {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    '@type': {
+                      type: "string",
+                      default: "PropertyValueSpecification",
+                      const: "PropertyValueSpecification"
+                    },
+                    description: {"type": "string"},
+                    valueName: {"type": "string"},
+                    valueRequired: {"type": "boolean"},
+                    valuePattern: {"type": "string"}
+                  }
                 }
               }
             }
@@ -1128,30 +1184,40 @@ const jsonschema = {
       distribution_type: {
         type: "object",
         properties: {
-          "@type": {
-            "type": "string",
-            "default": "DataDownload",
-            "const": "DataDownload"
-          },
-          "name": {"type": "string"},
-          "contentUrl": {"type": "string"},
-          "contentSize": {"type": "string"},
-          "encodingFormat": {
+             "@type": {
+                type: 'array',
+//                uniqueItems: true,
+                items: {
+                   type: "string",
+                    default: "DataDownload",
+                    enum: ["WebSite", "DataDownload", "WebAPI"]
+                  }
+              },
+              "name": {"type": "string"},
+              "contentUrl": {
+                title: 'url to directly get the described distribution',
+                type: "string"
+              },
+              "url": {
+                title: 'web location for landing page to access download',
+                type: "string"
+              },
+              "contentSize": {"type": "string"},
+              "encodingFormat": {
                 "type": "array",
                 "items": {"type": "string"}
 
+              },
+              "provider": {
+                "description": "Party who maintains this particular distribution option for the dataset. Use this property if there are multiple distributions from different providers",
+                "$ref": "#/definitions/agent_type"
+              }
+            },
+            "required": [
+              "name",
+              "@type"
+            ]
           },
-          "provider": {
-            "description": "Party who maintains this particular distribution option for the dataset. Use this property if there are multiple distributions from different providers",
-            "$ref": "#/definitions/agent_type"
-          }
-        },
-        "required": [
-          "contentUrl",
-          "@type",
-          "encodingFormat"
-        ]
-      },
       spatialCoverage_type: {
         type: "object",
         properties: {
@@ -1551,13 +1617,13 @@ const jsonschema = {
         ]
       }
     }
-  }
+  } ;
 
 
 const withEnum = function() {
   //let licenses = licenseList();
   // const licenseOneOf = [...licenseList ]
-  jsonschema.properties.license.items = licenseList();
+//  jsonschema.properties.license.items = licenseList();
 
   let rtypes = resourceTypeList();
   jsonschema.properties.mainEntity.oneOf = rtypes.oneOf;
