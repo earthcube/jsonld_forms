@@ -33,7 +33,8 @@
           {
            type: 'Label',
           text: 'What is the type of resource? The ECRR resource type is used to select resource specific ' +
-              'properties. Resource specific properties will appear on the Resource Details tab'
+              'properties. Resource specific properties will appear on the Resource Details tab. Sorry about ' +
+              'the lack of labels on the resource type controls; click on one to see what you have!'
           },
          // {
          //   type: 'VerticalLayout',
@@ -44,22 +45,10 @@
                scope: '#/properties/mainEntity',
                 options: {
                   showUnfocusedDescription: true,
-                   childLabelProp: 'name'
-                  // detail : {
-                  //   type: "VerticalLayout",
-                  //   elements: [
-                  //     {
-                  //       label: 'Name',
-                  //       type: 'Control',
-                  //       scope: '#/properties/title'
-                  //      }
-                  //     // {
-                  //     //   type: 'Control',
-                  //     //   label: 'Identifier',
-                  //     //   scope: '#/properties/url'
-                  //     // }
-                  //   ]
-                  // }
+                  childLabelProp: 'name',
+                  detail : {
+
+                   }
                 }
             },
 //Licenses (Required)

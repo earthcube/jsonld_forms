@@ -28,7 +28,7 @@
             "default": "CreativeWork"
         },
         "@context":{
-           "type":"object",
+           "type":["string","object","array"],
            "description":"this is required for JSON-LD resolution to RDF, at"
         },
         "name": {
@@ -298,8 +298,7 @@
             "title": "Bibliographic Citation",
             "$ref": "#/definitions/citationType"
         },
-        "ecrro:ECRRO_0000138": {
-            "title": "Maturity",
+        "ecrro:ECRRO_0000138": { "title": "Maturity",
             "type": "object",
             "description": "ECRR resource maturity status, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/MTU",
             "properties": {
@@ -325,7 +324,7 @@
                 }
             }
         },
-        "ecrro:ECRRO_0000219": {
+        "ecrro:ECRRO_0000219": { "title":"Expected lifetime",
             "type": "object",
             "description": "Expected lifetime-- how long is it anticipated that the resource will be maintained and accessible online, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/ELT",
             "properties": {
@@ -362,7 +361,7 @@
                 }
             }
         },
-        "ecrro:ECRRO_0000218": {
+        "ecrro:ECRRO_0000218": { "title":"Stewardship/Maintainer",
             "type": "object",
             "description": "stewardship: name of person or organization responsible for maintenance of the resource",
             "properties": {
@@ -406,9 +405,8 @@
                 }
             }
         },
-        "ecrro:ECRRO_0000017": {
+        "ecrro:ECRRO_0000017": { "title": "Current Usage Level",
             "type": "object",
-            "title": "Current Usage Level",
             "description": "usage volume from controlled vocabulary at http://cor.esipfed.org/ont/earthcube/UBA",
             "properties": {
                 "name": {
@@ -429,14 +427,12 @@
                 "value": {"$ref": "#/definitions/definedTerm_type"}
             }
         },
-        "ecrro:ECRRO_0000501": {
-            "title": "profile of",
+        "ecrro:ECRRO_0000501": { "title": "profile of",
             "description": "Links to base specifications that a specification resource profiles. Only applicable if resource type is specification",
             "type": "array",
             "items": {"$ref": "#/definitions/creativeWork_type"}
         },
-        "ecrro:ECRRO_0000502": {
-            "title": "Communication Protocol(s)",
+        "ecrro:ECRRO_0000502": { "title": "Communication Protocol(s)",
             "description": "communication protocol(s) used. Use ECRR controlled vocabulary",
             "type": "object",
             "properties": {
@@ -458,8 +454,7 @@
                 }
             }
         },
-        "ecrro:ECRRO_0000503": {
-            "title": "Interface specification",
+        "ecrro:ECRRO_0000503": { "title": "Interface specification",
             "type": "object",
             "description": "Interface specification",
             "properties": {
@@ -480,9 +475,9 @@
                 }
             }
         },
-        "ecrro:ECRRO_0000600": {
+        "ecrro:ECRRO_0000600": { "title":"Primary publication",
             "type": "object",
-            "description": "primary publication-- a text citation to one or more publications about the resource; separated by pipe ('|') characters",
+            "description": "primary publication-- a text citation to one or more publications about the resource. Citations are in the value array.",
             "properties": {
                 "@type": {
                     "type": "string",

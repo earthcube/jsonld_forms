@@ -6,11 +6,11 @@ export const resourceTypeOneOf = function () {
     let propList = sheet.filter(o => o[nameCol]).map(o => {
         return {
             "title": o[nameCol],
-            "const": [{
+            "const": {
                 "name": o[nameCol],
                 "@type": "CreativeWork",
                 "url": o[urlCol]
-            }]
+            }
         }
     })
     return {"oneOf": propList}

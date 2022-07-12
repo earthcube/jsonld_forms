@@ -4,32 +4,20 @@ const bundledObject = {
   rule: {
     effect: 'SHOW',
     condition: {
-      //   scope: '#/properties/mainEntity/',
-      //   schema: {
-      //    // const: 'Bundled Object'
-      //      "const": [
-      //               {
-      //               "name":
-      //               "Bundled Object",
-      //               "@type":
-      //               "CreativeWork",
-      //               "url":
-      //               "http://cor.esipfed.org/ont/earthcube/SFO_0000075"
-      //               }
-      //               ]
-      //   }
-      // }
-
-      scope: '#/properties/mainEntity/name',
-      schema:
-          {
-            anyof: [{
-              "const": "Bundled Object"
-            }
-            ]
-          }
-    }
-  },
+        scope: '#/properties/mainEntity/',
+        schema: {
+           "const":
+                   [ {
+                    "name":
+                    "Bundled Object",
+                    "@type":
+                    "CreativeWork",
+                    "url":
+                    "http://cor.esipfed.org/ont/earthcube/SFO_0000075"
+                    }]
+        }
+      }
+    },
   elements: [
 
     {

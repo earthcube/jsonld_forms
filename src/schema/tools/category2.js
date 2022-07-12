@@ -16,6 +16,7 @@ import { default as webservicespec } from './resourceTypes/specificationWebServi
 import { default as datamodelspec } from './resourceTypes/specificationDataModel';
 import { default as dataconversionspec} from './resourceTypes/specificationDataConversion';
 import { default as metadataprofile } from './resourceTypes/specificationMetadataConvention';
+import { default as metadatavocab } from './resourceTypes/specificationMetadataVocabulary';
 import { default as programlangspec } from './resourceTypes/specificationProgrammingLanguage';
 import { default as datamodelprofile } from './resourceTypes/specificationDataModelProfile';
 import { default as filepackagespec } from './resourceTypes/specificationFilePackaging';
@@ -67,6 +68,7 @@ cat2.elements.push(webservicespec);
 cat2.elements.push(datamodelspec);
 cat2.elements.push(dataconversionspec);
 cat2.elements.push(metadataprofile);
+cat2.elements.push(metadatavocab);
 cat2.elements.push(programlangspec);
 cat2.elements.push(datamodelprofile);
 cat2.elements.push(filepackagespec);

@@ -4,31 +4,20 @@ const resourceType = {
   rule: {
     effect: 'SHOW',
     condition: {
-      //   scope: '#/properties/mainEntity/',
-      //   schema:
-      //       {
-      //         "const": [
-      //           {
-      //             "name":
-      //                 "Dataset",
-      //             "@type":
-      //                 "CreativeWork",
-      //             "url":
-      //                 "http://schema.org/Dataset"
-      //           }
-      //         ]
-      //       }
-      // }
-
-      scope: '#/properties/mainEntity/name',
-      schema:
-          {
-            anyof: [{
-              "const": "Dataset"
+        scope: '#/properties/mainEntity/',
+        schema:
+            {
+              "const":
+               [ {
+                  "name":
+                  "Dataset",
+                  "@type":
+                  "CreativeWork",
+                  "url":
+                  "http://schema.org/Dataset"
+                } ]
             }
-            ]
-          }
-    }
+      }
     },
   elements: [
 // (mandatory)get the schema type correct (Dataset), will default to creativeWork.

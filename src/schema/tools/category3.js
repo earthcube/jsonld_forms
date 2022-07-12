@@ -9,28 +9,7 @@ const cat3 = {
         childLabelProp: "audienceType",
         showUnfocusedDescription: true,
         detail: {
-          // type: 'HorizontalLayout',
-          // elements: [
-          //   {
-          //     label: 'Intended Users',
-          //     type: 'Control',
-          //     scope: '#/properties/audienceType',
-          //     options: {
-          //       // enum:['Data Producers',
-          //       //     'Data Users',
-          //       //     'Data Facilities and Repositories' +
-          //       //     'Technologists' ,
-          //       //     'Data Managers' ,
-          //       //     'Developers' ,
-          //       //     'Scientists' ,
-          //       //     'Infomaticists' ,
-          //       //     'Members of the Public' ,
-          //       //     'All']
-          //     }
-          //   }
-          //
-          // ]
-        }
+         }
       }
     },
 

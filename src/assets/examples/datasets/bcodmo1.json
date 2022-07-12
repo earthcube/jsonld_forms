@@ -1,5 +1,14 @@
 {
-    "@context": {"@vocab": "https://schema.org/"},
+        "@context": [
+        "https://schema.org/",
+        {
+            "dcat": "http://www.w3.org/ns/dcat#",
+            "dc": "http://purl.org/dc/elements/1.1/",
+            "dct": "http://purl.org/dc/terms/",
+            "ecrro": "http://cor.esipfed.org/ont/earthcube/",
+            "ecrr": "https://n2t.net/ark:/23942/g2"
+        }
+    ],
     "@id": "https://www.bco-dmo.org/dataset/2343",
     "identifier": "https://doi.org/10.1575/1912/bco-dmo.2343.1",
     "sameAs": ["http://lod.bco-dmo.org/id/dataset/2343"],
