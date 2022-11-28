@@ -1,6 +1,6 @@
 <template>
   <div>
-
+    <h2>Welcome to the GeoCODES resource description editor</h2>
   <json-forms
       :data="jsonldObj"
       :schema="schema"
@@ -36,11 +36,14 @@ import 'vue-json-pretty/lib/styles.css';
 
 
 import {default as saveFiles} from './controls/saveJson'
-import { default as schema, schemaWithEnum , flattenList} from '../schema/tools/ecrr_jsonschema_1_1' ;
+import { default as schema, schemaWithEnum , flattenList} from '../schema/tools/ecrr_jsonschema_1_1_1' ;
 
-import uischema from '../schema/tools/ecrr_1_1_uischema';
-// @ts-ignore
+import uischema from '../schema/tools/geocodesMerge_uischema';
+
+/* tslint:disable no-var-requires */
 const baseJsonLdObj = require('../assets/basefiles/tools/ecrrempty.json');
+//const baseJsonLdObj = require('../assets/basefiles/tools/ECRRTemplateSDO.JSON');
+
 
 import {entry as AltGroupRenderer} from './controls/AdditionalDetailsRenderer'
 import {entry as HtmlLabelRender } from './controls/htmlLabelRenderer'
@@ -119,8 +122,9 @@ const tool = defineComponent({
   },
      created() {
     if (this.jsonldfile){
-// @ts-ignore
+      /* tslint:disable no-var-requires */
       let exampleData = require('../assets/examples/' +  this.jsonldfile);
+
       this.filename = this.jsonldfile.substring(this.jsonldfile.lastIndexOf('/')+1)
       exampleData = flatten(exampleData, flattenList)
       this.jsonldObj = Object.assign({}, this.jsonldObj, exampleData)
@@ -129,7 +133,7 @@ const tool = defineComponent({
        this.filename = this.s3file.substring(this.s3file.lastIndexOf('/')+1)
        this.getUsers3()
      }
-// @ts-ignore
+
      console.log(process.env.VUE_APP_BUCKET)
     // this.$on('loadfile', async  function (filepath) {
     //   this.jsonldObj =  await getFroms3( filepath, this.BUCKET, this.s3Credentials)

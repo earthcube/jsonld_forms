@@ -1,0 +1,34 @@
+﻿Resource Type,URI,group
+API,http://cor.esipfed.org/ont/earthcube/SPKT_0000012,Specification
+Bundled Object,http://cor.esipfed.org/ont/earthcube/SFO_0000075,base
+Catalog/Registry,http://cor.esipfed.org/ont/earthcube/ECRRO_0000212,base
+Conceptual Model,http://cor.esipfed.org/ont/earthcube/srt_0000006,semantic resource
+Controlled Vocabulary,http://cor.esipfed.org/ont/earthcube/srt_0000004,semantic resource
+Data Conversion,http://cor.esipfed.org/ont/earthcube/SPKT_0000008,Specification
+Data Format Convention,http://cor.esipfed.org/ont/earthcube/SPKT_0000001,Specification
+Data Model,http://cor.esipfed.org/ont/earthcube/SPKT_0000004,Specification
+Data Model Convention,http://cor.esipfed.org/ont/earthcube/SPKT_0000005,Specification
+Dataset,http://schema.org/Dataset,base
+File Packaging Convention,http://cor.esipfed.org/ont/earthcube/SPKT_0000010,Specification
+Glossary,http://cor.esipfed.org/ont/earthcube/srt_0000001,semantic resource
+Interchange file format,http://cor.esipfed.org/ont/earthcube/ECRRO_0000208,base
+Interface/API,http://cor.esipfed.org/ont/earthcube/ECRRO_0000207,base
+Interoperability Specification,http://cor.esipfed.org/ont/earthcube/SPKT_0000011,Specification
+Metadata Convention,http://cor.esipfed.org/ont/earthcube/SPKT_0000006,Specification
+Metadata Vocabulary,http://cor.esipfed.org/ont/earthcube/SPKT_0000009,Specification
+Naming Convention,http://cor.esipfed.org/ont/earthcube/SPKT_0000002,Specification
+Ontology,http://cor.esipfed.org/ont/earthcube/srt_0000003,semantic resource
+Platform,http://cor.esipfed.org/ont/earthcube/ECRRO_0000211,base
+Process Model,http://cor.esipfed.org/ont/earthcube/SPKT_0000013,Specification
+Programming Language,http://cor.esipfed.org/ont/earthcube/SPKT_0000007,Specification
+RDF Vocabulary,http://cor.esipfed.org/ont/earthcube/srt_0000007,semantic resource
+Repository,http://cor.esipfed.org/ont/earthcube/ECRRO_0000209,base
+Semantic Resource,http://cor.esipfed.org/ont/earthcube/ECRRO_0000210,base
+Service Instance,http://cor.esipfed.org/ont/earthcube/ECRRO_0000202,base
+SKOS Vocabulary,http://cor.esipfed.org/ont/earthcube/srt_0000008,semantic resource
+Software,http://cor.esipfed.org/ont/earthcube/ECRRO_0000206,base
+Specification,http://cor.esipfed.org/ont/earthcube/ECRRO_0000204,base
+Taxonomy,http://cor.esipfed.org/ont/earthcube/srt_0000005,semantic resource
+Thesaurus,http://cor.esipfed.org/ont/earthcube/srt_0000002,semantic resource
+Use Case,http://cor.esipfed.org/ont/earthcube/ECRRO_0000005,base
+Web Service Convention,http://cor.esipfed.org/ont/earthcube/SPKT_0000003,Specification

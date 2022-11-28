@@ -1,45 +1,24 @@
 {
 	"@context": {
 		"@vocab": "http://schema.org/",
-		"ecrro": "http://cor.esipfed.org/ont/earthcube/",
+		"ecrro": "http://cor.esipfed.org/ont/earthcube/ECRRO_",
 		"ecrr": "https://n2t.net/ark:/23942/g2"
 	},
 	"@id": "ecrr:805014",
 	"@type": [
-		"WebAPI", "ECRRO_0000207"
-	],
-	"mainEntity":
-	[{
-		"name":
-		"Interface/API",
-		"@type":
-		"CreativeWork",
-		"url":
-		"http://cor.esipfed.org/ont/earthcube/ECRRO_0000207"
-	}],
-	"additionalType":[
-
-
-		{
-			"@type": "PropertyValue",
-			"propertyID":
-			"OTHER",
-			"name":
-			"Interface/API",
-			"value":
-			"http://cor.esipfed.org/ont/earthcube/ECRRO_0000207"
+		"WebAPI"	],
+	"mainEntity":[{
+"@type": "CreativeWork",
+			"name":"Interface/API",
+			"url":"http://cor.esipfed.org/ont/earthcube/ECRRO_0000207"
 		}
 
 	],
 	"name": "Download data from NCAR EarthCube CHORDS",
-	"documentation": "http://portal.chordsrt.com/about/data_urls",
+	"license":["not specified"],
+	"url": "http://portal.chordsrt.com/about/data_urls",
 	"description": "URL based API to access data from real time instruments and sensors; A specification for the API could not be found, but examples at the documentation link above can be reverse engineers without too much trouble. This document describes a particular service instance",
-	"identifier": [
-
-
-			"http://portal.chordsrt.com/api/v1/data"
-
-	],
+	"identifier": "http://portal.chordsrt.com/api/v1/data",
 	"potentialAction": [
 		{
 			"@type": "SearchAction",
@@ -62,7 +41,7 @@
 					"application/geo+json"
 				],
 				"documentation": "#supported mime type of response; implication is that this would be use in http header?",
-				"urlTemplate-input": [
+				"query-input": [
 					{
 						"@id": "http://portal.chordsrt.com/about/data_urls#encoding",
 						"@type": "PropertyValueSpecification",

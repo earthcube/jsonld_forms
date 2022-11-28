@@ -1,107 +1,147 @@
 {
-	"@context": {
-		"@vocab": "http://schema.org/",
-		"datacite": "http://purl.org/spar/datacite/",
-
-		"geolink": "http://schema.geolink.org/1.0/base/main#",
-		"vivo": "http://vivoweb.org/ontology/core#",
-		"dcat": "http://www.w3.org/ns/dcat#",
-		"ecrro": "http://purl.obolibrary.org/obo/ECRRO_"
-	},
-	"@id": "ID for this metadata record",
-	"@type": [
-		"CreativeWork",
-		"Product"
-	],
-	"additionalType": [
-		"ecrro:****type***** have to sort out abbreviations and context lookups for opaque ecrro URIs"
-	],
-	"name": "X-DOMES Ontology Registry and Repository (X-DOMES ORR)",
-	"description": "A registry and repository service for sensor terms",
-	"creator": [
-		{
-			"@type": "Person",
-			"name": "Janet Fredericks",
-			"identifier": "https://orcid.org/0000-0001-6143-5700}"
-		},
-		{
-			"@type": "Person",
-			"name": "Felimon Gayanilo"
-		},
-		{
-			"@type": "Person",
-			"name": "Carlos Rueda"
-		}
-	],
-	"datePublished": "[A date value in ISO 8601 date format]",
-	"keywords": [
-		"sensor",
-		"instrument",
-		"sensor types", "observable properties", "sensor capabilities"
-	],
-	"<http://purl.obolibrary.org/obo/RO_0002502> (obo:depends on)": [
-		"an array of dependency statements"
-	],
-	"funder": {
-		"@type": "Organization",
-		"name": "National Science Foundation, EarthCube Integrative Activity."
-	},
-	"license": "",
-	"dcat:qualifiedRelation": [
-		{
-			"@type": "dcat:Relation",
-			"dct:relation": "SensorML Registry and Repository",
-			"dcat:hadRole": "see also"
-		}
-	],
-	"ecrro:0000009 (citation)": "",
-	"dct:conformsTo": [
-		""
-	],
-	"about": [
-		"real time monitoring, instrumentation"
-	],
-	"identifier": "",
-	"ecrro:0000129 (EC resource maturity)": "in production",
-	"ecrro:primaryPublication": "",
-	"ecrro:registryContributor": {
-		"@type": "ContactPoint",
-		"name": "Janet Fredericks",
-		"identifier": "https://orcid.org/0000-0001-6143-5700"
-	},
-	"provider": [
-		{
-			"@type": "Person",
-			"name": "Felimon Gayanilo "
-		},
-		{
-			"@type": "Person",
-			"name": "Carlos Rueda"
-		}
-	],
-	"ecrro:timeToLive": "EarthCube project",
-	"url": [
-		"http://xdomes.org/ont#",
-		"https://mmisw.org/orrdoc/"
-	],
-	"ecrro:usage": "more than 10 users",
-	"sourceOrganization": [
-		{
-			"@type": "Organization",
-			"name": "Marine Metadata Initiative",
-			"description": "original developers of software"
-		},
-		{
-			"@type": "Organization",
-			"name": "Cross-Domain Observational Metadata for Environmental Sensing (X-DOMES) project",
-			"url": "https://www.earthcube.org/group/x-domes"
-		}
-	],
-	"audience": {
-		"@type": "Audience",
-		"description": "domain_researchers who use sensors; SPARQL queries from the SensorML Registry & Repository (SRR)"
-	},
-	"eccro:interface": [
-	"<eccro:SPARQL endpoint>", "<eccro:ORR upload>"
-	]
+    "@context": {
+        "@vocab": "https://schema.org/",
+        "dcat": "http://www.w3.org/ns/dcat#",
+        "dc": "http://purl.org/dc/elements/1.1/",
+        "dct": "http://purl.org/dc/terms/conformsTo",
+        "ecrro": "http://cor.esipfed.org/ont/earthcube/",
+        "ecrr": "https://n2t.net/ark:/23942/g2"
+    },
+    "@id": "http://n2t.net/ark:/23942/g2500005",
+    "@type": [
+        "CreativeWork",
+        "Product"
+    ],
+    "name": "X-DOMES Ontology Registry&Repository (X-DOMES ORR)",
+    "subjectOf": [
+        {
+            "@type": "CreativeWork",
+            "name": "linked web page",
+            "url": "http://xdomes.org/ont#"
+        },
+        {
+            "@type": "CreativeWork",
+            "name": "linked web page",
+            "url": "https://mmisw.org/orrdoc/"
+        }
+    ],
+    "identifier": "https://xdomes.org/ont#/",
+    "description": "A registry and repository service for sensor terms",
+    "funding": [
+       
+        {
+            "@type": "Grant",
+            "name": "EarthCube",
+            "funder": {
+                "@type": "Organization",
+                "name": "US National Science Foundation (US NSF)",
+            "identifier": "https://ror.org/021nxhr62"
+            }
+        },
+        {
+            "@type": "Grant",
+            "name": "MMI project",
+            "funder": {
+                "@type": "FundingAgency",
+                "name": "US National Science Foundation (US NSF)",
+            "identifier": "https://ror.org/021nxhr62"
+            }
+        }
+    ],
+    "license":["not specified"],
+    "audience": [
+        {
+            "@type": "Audience",
+            "audienceType": "Developers",
+            "identifier": "http://cor.esipfed.org/ont/earthcube/AUT_0000006"
+        },
+        {
+            "@type": "Audience",
+            "audienceType": "Informaticists",
+            "identifier": "undefined"
+        }
+    ],
+    "about":[{
+        "@type": "DefinedTerm",
+        "name": "Discipline-agnostic",
+        "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000188"
+    }],
+    "isRelatedTo": [
+        {
+            "@type": "CreativeWork",
+            "name": "linked resource: ESIP Community Ontology Repository(COR)",
+            "url":"http://cor.esipfed.org/ont#/"
+        },
+        {
+            "@type": "CreativeWork",
+            "name": "linked resource: SensorML Registry and Repository",
+            "url":"https://github.com/sensorml/sensors"
+        }
+    ],
+    "mainEntity": {
+        "@type": "CreativeWork",
+        "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000212",
+        "name": "Catalog/Registry"
+    },
+    "additionalProperty": [
+        {
+            "@type": "PropertyValue",
+            "propertyID": "ecrro:ECRRO_0000138",
+            "name": "has maturity state",
+            "value": {
+                "@type": "DefinedTerm",
+                "name": "Production ready",
+                "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000003"
+            }
+        },
+        {
+            "@type": "PropertyValue",
+            "propertyID": "ecrro:ECRRO_0000219",
+            "name": "expected lifetime",
+            "value": {
+                "@type": "DefinedTerm",
+                "name": "Unknown",
+                "identifier": "http://cor.esipfed.org/ont/earthcube/ELT_0000004"
+            }
+        },
+        {
+            "@type": "PropertyValue",
+            "propertyID": "ecrro:ECRRO_0000218",
+            "name": "Stewardship",
+            "value": [
+                {
+                    "@type": "Person",
+                    "name": "{Felimon Gayanilo"
+                },
+                {
+                    "@type": "Person",
+                    "name": "Carlos Rueda)"
+                }
+            ]
+        },
+        {
+            "@type": "PropertyValue",
+            "propertyID": "ecrro:ECRRO_0000017",
+            "name": "Usage",
+            "value": {
+                "@type": "DefinedTerm",
+                "name": "Low usage",
+                "identifier": "http://cor.esipfed.org/ont/earthcube/UBA_0000003"
+            }
+        },
+        {
+            "@type": "PropertyValue",
+            "propertyID": "ecrro:ECRRO_0001301",
+            "name": "registration metadata",
+            "value": {
+                "@type": "StructuredValue",
+                "additionalType": "ecrro:ECRRO_0000156",
+                "contributor": {
+                    "@type": "Person",
+                    "name": "Janet Fredericks"
+                },
+                "datePublished": "2021-02-10T21:11:19-0700"
+            }
+        }
+    ]
 }

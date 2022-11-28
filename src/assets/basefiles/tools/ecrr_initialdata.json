@@ -1,20 +1,21 @@
 {
-  "@context": {
-    "@vocab": "http://schema.org/",
-    "datacite": "http://purl.org/spar/datacite/",
-
-    "geolink": "http://schema.geolink.org/1.0/base/main#",
-    "vivo": "http://vivoweb.org/ontology/core#",
-    "dcat": "http://www.w3.org/ns/dcat#",
-    "ecrro": "http://purl.obolibrary.org/obo/ECRRO_"
-  },
+  "@context": [
+    "https://schema.org/",
+    {
+      "dcat": "http://www.w3.org/ns/dcat#",
+      "dc": "http://purl.org/dc/elements/1.1/",
+      "dct": "http://purl.org/dc/terms/",
+      "ecrro": "http://cor.esipfed.org/ont/earthcube/",
+      "ecrr": "https://n2t.net/ark:/23942/g2"
+    }
+  ],
   "@id": "ID for this metadata record",
   "@type": [
     "CreativeWork",
     "Product",
     "WebAPI"
   ],
-  "additionalType": [
+  "mainEntity": [
     "ecrro:0000202 (EC Data Service) or dc:Service if not a data service, e.g. a processing service"
   ],
   "name": "text that identifies the service instance",
@@ -28,7 +29,7 @@
     "recommended",
     "text"
   ],
-  "obo:dependsOn": {
+  "dependencies": {
     "@type": "PropertyValue",
     "propertyID": "http://purl.obolibrary.org/obo/RO_0002502",
     "value": [

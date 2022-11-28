@@ -27,6 +27,16 @@ export default new Router({
                 jsonldfile: route.query.jsonldfile,
                 s3file: route.query.s3file
             })
-        }
+        },
+        {
+            path: '/dataset',
+            component: () => import('./components/dataset.vue'),
+            name: "Dataset",
+            //   props: route => ({ jsonldfile: route.query.jsonldfile })
+            props: route => ({
+                jsonldfile: route.query.jsonldfile,
+                s3file: route.query.s3file
+            })
+        },
     ],
 });

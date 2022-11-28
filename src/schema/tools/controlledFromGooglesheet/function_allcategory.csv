@@ -1,0 +1,73 @@
+﻿Category,URI
+Data Acquisition,http://cor.esipfed.org/ont/earthcube/SFO_0000004
+Data Acquisition: Data Ingest,http://cor.esipfed.org/ont/earthcube/SFO_0000026
+Data Acquisition: Instrument Calibration,http://cor.esipfed.org/ont/earthcube/SFO_0000024
+Data Acquisition: Instrument Control,http://cor.esipfed.org/ont/earthcube/SFO_0000023
+Data Acquisition: Streaming Data Handling,http://cor.esipfed.org/ont/earthcube/SFO_0000025
+Data Analysis,http://cor.esipfed.org/ont/earthcube/SFO_0000010
+Data Analysis: Graph/Network Analysis,http://cor.esipfed.org/ont/earthcube/SFO_0000059
+Data Analysis: Image Processing,http://cor.esipfed.org/ont/earthcube/SFO_0000057
+Data Analysis: Machine Learning,http://cor.esipfed.org/ont/earthcube/SFO_0000060
+Data Analysis: Spatial Analysis,http://cor.esipfed.org/ont/earthcube/SFO_0000055
+Data Analysis: Statistical Analysis,http://cor.esipfed.org/ont/earthcube/SFO_0000056
+Data Analysis: Text Analysis,http://cor.esipfed.org/ont/earthcube/SFO_0000058
+Data Analysis: TIme Series Analysis,http://cor.esipfed.org/ont/earthcube/SFO_0000054
+Data Discovery & Access,http://cor.esipfed.org/ont/earthcube/SFO_0000005
+Data Discovery & Access: Data Access/Order,http://cor.esipfed.org/ont/earthcube/SFO_0000028
+Data Discovery & Access: Data Harvesting,http://cor.esipfed.org/ont/earthcube/SFO_0000030
+Data Discovery & Access: Data Query,http://cor.esipfed.org/ont/earthcube/SFO_0000027
+Data Discovery & Access: Web Crawling,http://cor.esipfed.org/ont/earthcube/SFO_0000029
+Data Exploration,http://cor.esipfed.org/ont/earthcube/SFO_0000006
+Data Exploration: Data Mining,http://cor.esipfed.org/ont/earthcube/SFO_0000033
+Data Exploration: Exploratory Data Analysis,http://cor.esipfed.org/ont/earthcube/SFO_0000034
+Data Preparation,http://cor.esipfed.org/ont/earthcube/SFO_0000007
+Data Preparation: Data Cleaning,http://cor.esipfed.org/ont/earthcube/SFO_0000042
+Data Preparation: Data Desensitization ,http://cor.esipfed.org/ont/earthcube/SFO_0000043
+Data Preparation: Data Transformation ,http://cor.esipfed.org/ont/earthcube/SFO_0000310
+Data Preparation: Metadata Assistance,http://cor.esipfed.org/ont/earthcube/SFO_0000041
+Data Preparation: QA/QC,http://cor.esipfed.org/ont/earthcube/SFO_0000036
+Data Preparation: Subsetting,http://cor.esipfed.org/ont/earthcube/SFO_0000039
+Data Preservation,http://cor.esipfed.org/ont/earthcube/SFO_0000013
+Data Preservation: Backup,http://cor.esipfed.org/ont/earthcube/SFO_0000106
+Data Preservation: Data Migration,http://cor.esipfed.org/ont/earthcube/SFO_0000107
+Data Preservation: Long-term Archiving,http://cor.esipfed.org/ont/earthcube/SFO_0000105
+Data Processing / Modeling,http://cor.esipfed.org/ont/earthcube/SFO_0000008
+Data Processing / Modeling: Computational Model,http://cor.esipfed.org/ont/earthcube/SFO_0000049
+Data Processing / Modeling: Data Integration,http://cor.esipfed.org/ont/earthcube/SFO_0000053
+Data Processing / Modeling: Data Processing,http://cor.esipfed.org/ont/earthcube/SFO_0000048
+Data Processing / Modeling: Grid or Mesh Generation,http://cor.esipfed.org/ont/earthcube/SFO_0000044
+Data Processing / Modeling: Inversion / Data assimilation,http://cor.esipfed.org/ont/earthcube/SFO_0000051
+Data Processing / Modeling: Model Calibration,http://cor.esipfed.org/ont/earthcube/SFO_0000050
+Data Processing / Modeling: Model Coupling,http://cor.esipfed.org/ont/earthcube/SFO_0000047
+Data Processing / Modeling: Output Validation,http://cor.esipfed.org/ont/earthcube/SFO_0000046
+Data Processing / Modeling: Test Data Generation,http://cor.esipfed.org/ont/earthcube/SFO_0000045
+Programmer Assistance,http://cor.esipfed.org/ont/earthcube/SFO_0000014
+Programmer Assistance: Code Optimization,http://cor.esipfed.org/ont/earthcube/SFO_0000072
+Programmer Assistance: Code Validation & Testing,http://cor.esipfed.org/ont/earthcube/SFO_0000073
+Programmer Assistance: Version Control,http://cor.esipfed.org/ont/earthcube/SFO_0000071
+Reporting ,http://cor.esipfed.org/ont/earthcube/SFO_0000012
+Reporting : Data Reporting,http://cor.esipfed.org/ont/earthcube/SFO_0000067
+Reporting : Document generation,http://cor.esipfed.org/ont/earthcube/SFO_0000065
+Reporting : Report Rendering,http://cor.esipfed.org/ont/earthcube/SFO_0000066
+Reporting : Usage Monitoring,http://cor.esipfed.org/ont/earthcube/SFO_0000068
+Research Planning,http://cor.esipfed.org/ont/earthcube/SFO_0000002
+Research Planning: Data Management Planning,http://cor.esipfed.org/ont/earthcube/SFO_0000018
+Research Planning: Logistics Planning,http://cor.esipfed.org/ont/earthcube/SFO_0000017
+Research Planning: Mental Modeling,http://cor.esipfed.org/ont/earthcube/SFO_0000015
+Research Planning: Project Planning,http://cor.esipfed.org/ont/earthcube/SFO_0000016
+User Interaction,http://cor.esipfed.org/ont/earthcube/SFO_0000003
+User Interaction: Authentication & Access Control,http://cor.esipfed.org/ont/earthcube/SFO_0000019
+User Interaction: Community Support / Social Networking,http://cor.esipfed.org/ont/earthcube/SFO_0000021
+User Interaction: Notification,http://cor.esipfed.org/ont/earthcube/SFO_0000022
+User Interaction: User Interface,http://cor.esipfed.org/ont/earthcube/SFO_0000020
+User Interaction: User Management,http://cor.esipfed.org/ont/earthcube/SFO_0000311
+Visualization,http://cor.esipfed.org/ont/earthcube/SFO_0000011
+Visualization: Animation,http://cor.esipfed.org/ont/earthcube/SFO_0000063
+Visualization: Display,http://cor.esipfed.org/ont/earthcube/SFO_0000062
+Visualization: Rendering,http://cor.esipfed.org/ont/earthcube/SFO_0000064
+Workflow Management,http://cor.esipfed.org/ont/earthcube/SFO_0000009
+Workflow Management: Provenance Management,http://cor.esipfed.org/ont/earthcube/SFO_0000101
+Workflow Management: Reproducibility Support,http://cor.esipfed.org/ont/earthcube/SFO_0000100
+Workflow Management: Workflow Design,http://cor.esipfed.org/ont/earthcube/SFO_0000102
+Workflow Management: Workflow Execution,http://cor.esipfed.org/ont/earthcube/SFO_0000104
+Workflow Management: Workflow Orchestration,http://cor.esipfed.org/ont/earthcube/SFO_0000103

@@ -70,7 +70,7 @@
 
 <script>
 import {unflatten} from "../../js/jsonldutils";
-import {flattenList} from "../../schema/tools/ecrr_jsonschema_1_1";
+import {flattenList} from "../../schema/tools/ecrr_jsonschema_1_1_1";
 import {saveToUser} from "../../js/s3store";
 import {saveAs} from "file-saver";
 

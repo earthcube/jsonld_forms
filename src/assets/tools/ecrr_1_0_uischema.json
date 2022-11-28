@@ -198,7 +198,7 @@
             },
             {
               "type": "Control",
-              "scope": "#/properties/dc:BibliographicCitation",
+              "scope": "#/properties/dct:bibliographicCitation",
 
               "options": {
 
