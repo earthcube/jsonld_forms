@@ -28,11 +28,11 @@ const cat3 = {
       elements: [
         {
           type: 'Label',
-          text: '2.1 Maturity'
+          text: 'Maturity'
         },
         {
           type: 'Control',
-          //   "label": "2.1 Maturity",
+          //   "label": "Maturity",
           scope: '#/properties/ecrro:ECRRO_0000138',
           options: {
             showUnfocusedDescription: true,
@@ -67,7 +67,7 @@ const cat3 = {
         },
         {
           type: 'Label',
-          text: '2.2 Lifecycle'
+          text: 'Lifecycle'
         },
         {
           type: 'Control',
@@ -112,7 +112,7 @@ const cat3 = {
       elements: [
         {
           type: 'Control',
-          label: '1.1.1.1 Funder',
+          label: 'Grants',
           scope: '#/properties/funding',
           options: {
             showUnfocusedDescription: true,
@@ -132,11 +132,6 @@ const cat3 = {
                     },
                 {
                   "type": "Control",
-                  "label": "Sponsor",
-                  "scope": "#/properties/sponsor"
-                },
-                {
-                  "type": "Control",
                   "label": "Funder",
                   "scope": "#/properties/funder"
                 }
@@ -148,11 +143,10 @@ const cat3 = {
     },
     {
       type: 'ShowGroup',
-      label: 'Stewardship',
       elements: [
         {
           type: 'Control',
-          label: '4.1 Stewardship',
+          label: 'Stewardship',
           scope: '#/properties/ecrro:ECRRO_0000218',
           options: {
             showUnfocusedDescription: true,
@@ -163,7 +157,8 @@ const cat3 = {
                   label: 'Steward',
                   type: 'Control',
                   scope: '#/properties/value',
-                  "options": { "elementLabelProp": "name",
+                  "options": {
+                    "elementLabelProp": "name",
                     "showUnfocusedDescription": true,
                     "detail": {
                       "type": "VerticalLayout",
@@ -208,49 +203,21 @@ const cat3 = {
           scope: '#/properties/audience',
           options: {
             childLabelProp: 'audienceType'
-            //                              "detail" : {
-            //                                 "type": "HorizontalLayout",
-            //                                "elements": [
-            //                                    {
-            //                                          "label": "Audience Type",
-            //                                          "type": "Control",
-            //                                          "scope": "#/items/audienceType"
-            //                                     },
-            //                                       {
-            //                                        "type": "Control",
-            //                                        "label": "Identifier",
-            //                                        "scope": "#/items/identifier"
-            //                                      },
-            //                                 ]
-            //                                 }
           }
         },
-        {
-          type: 'Label',
-          text: '5.2 Science Domain'
-        },
+
         {
           type: 'Control',
-          label: '5.2 Science Domain',
+          label: 'Science Domain',
           scope: '#/properties/about',
           options: {
             showUnfocusedDescription: true,
-            detail: {
-              type: 'HorizontalLayout',
-              elements: [
-                {
-                  type: 'Control',
-                  scope: '#/properties/name',
-                  options: {}
-                },
-
-              ]
-            }
+            childLabelProp: 'name'
           }
         },
         {
           type: 'Control',
-          label: '5.3 Current Usage Level',
+          label: 'Current Usage Level',
           scope: '#/properties/ecrro:ECRRO_0000017',
           options: {
             showUnfocusedDescription: true,

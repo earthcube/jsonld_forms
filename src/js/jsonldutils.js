@@ -19,9 +19,11 @@ const unflatten =(jsonflat,  flattenList)=>{
     jsonld.additionalProperty = []
 
     flattenList.forEach ( (f)=> {
-            if (jsonld[f.propertyID?  f.propertyID : f.flattened ] ) {
-                 jsonld.additionalProperty.push(jsonld[f.propertyID?  f.propertyID : f.flattened ] )
-                 delete jsonld[f.propertyID?  f.propertyID : f.flattened ]
+        const whichValue = f.flattened? f.flattened: f.propertyID
+            if (jsonld[ whichValue] ) { //  get the flattened value
+                // populate with the property value
+                 jsonld.additionalProperty.push(jsonld[whichValue ] )
+                 delete jsonld[whichValue ]
             }
         } )
     return jsonld

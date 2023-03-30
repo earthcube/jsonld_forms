@@ -11,10 +11,8 @@ const resourceType = {
                   {
                   "name":
                   "Specification",
-                  "@type":
-                  "CreativeWork",
-                  "url":
-                  "http://cor.esipfed.org/ont/earthcube/ECRRO_0000204"
+                  "@type":  "DefinedTerm",
+                    "identifier":  "http://cor.esipfed.org/ont/earthcube/ECRRO_0000204"
                   }
                   ]
       }
@@ -44,7 +42,7 @@ const resourceType = {
         {
           label: 'Profile of',
           type: 'Control',
-          scope: '#/properties/eccro:ECRRO_0000501',
+          scope: '#/properties/profileOf',
           options: {
             showUnfocusedDescription: true,
             detail: {

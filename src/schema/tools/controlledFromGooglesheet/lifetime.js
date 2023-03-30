@@ -3,7 +3,6 @@ const oneOf =   function()  {
     const nameCol = "Expected lifetime"
     const proplCol ="URI"
      const sheet = csvFile
-//    var  licenseSheet = require( 'csv-loader!../controlledFromGooglesheet/ECRR Controlled Vocabularies - Software Licenses.csv' )
      let propList =  sheet.filter(o => o[nameCol]).map( o => {
 
               return  {  "title": o[nameCol],

@@ -13,8 +13,8 @@ const resourceType = {
 "name":
 "Platform",
 "@type":
-"CreativeWork",
-"url":
+"DefinedTerm",
+"identifier":
 "http://cor.esipfed.org/ont/earthcube/ECRRO_0000211"
 }
 ]
@@ -29,7 +29,7 @@ const resourceType = {
     {
       label: 'Protocol',
       type: 'Control',
-      scope: '#/properties/ecrro:ECRRO_0000502',
+      scope: '#/properties/communicationProtocol',
       options: {
         showUnfocusedDescription: true,
         detail: {

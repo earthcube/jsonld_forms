@@ -1,11 +1,11 @@
-﻿Audience types,URI,#NAME?
-Data Producers,http://cor.esipfed.org/ont/earthcube/AUT_0000001,
-Data Users,http://cor.esipfed.org/ont/earthcube/AUT_0000002,
-Data Facilities and Repositories,http://cor.esipfed.org/ont/earthcube/AUT_0000003,
-Technologists,http://cor.esipfed.org/ont/earthcube/AUT_0000004,
-Data Managers,http://cor.esipfed.org/ont/earthcube/AUT_0000005,
-Developers,http://cor.esipfed.org/ont/earthcube/AUT_0000006,
-Scientists,http://cor.esipfed.org/ont/earthcube/AUT_0000007,
-Infomaticists,http://cor.esipfed.org/ont/earthcube/AUT_0000008,
-Members of the Public,http://cor.esipfed.org/ont/earthcube/AUT_0000009,
-All,http://cor.esipfed.org/ont/earthcube/AUT_0000010,
+﻿Audience types,URI
+Data Producers,http://cor.esipfed.org/ont/earthcube/AUT_0000001
+Data Users,http://cor.esipfed.org/ont/earthcube/AUT_0000002
+Data Facilities and Repositories,http://cor.esipfed.org/ont/earthcube/AUT_0000003
+Technologists,http://cor.esipfed.org/ont/earthcube/AUT_0000004
+Data Managers,http://cor.esipfed.org/ont/earthcube/AUT_0000005
+Developers,http://cor.esipfed.org/ont/earthcube/AUT_0000006
+Scientists,http://cor.esipfed.org/ont/earthcube/AUT_0000007
+Infomaticists,http://cor.esipfed.org/ont/earthcube/AUT_0000008
+Members of the Public,http://cor.esipfed.org/ont/earthcube/AUT_0000009
+All,http://cor.esipfed.org/ont/earthcube/AUT_0000010

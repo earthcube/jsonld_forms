@@ -198,7 +198,7 @@
             },
             {
               "type": "Control",
-              "scope": "#/properties/dc:BibliographicCitation",
+              "scope": "#/properties/dct:bibliographicCitation",
 
               "options": {
 
@@ -208,7 +208,7 @@
                   "type": "HorizontalLayout",
                   "elements": [
                     {
-                      "label": "Indentifier",
+                      "label": "Identifier",
                       "type": "Control",
                       "scope": "#/properties/value"
                     },

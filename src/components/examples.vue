@@ -147,7 +147,8 @@ export default {
   data(){
     return {
       examples: [
-        {name:"1.argovis-Notebook.jsonld.json", file:"tools/argovis-Notebook.jsonld.json"},
+        {name:"0.schema 1.1 test example", file:"tools/ecrrjsonschema1_1_text1.json"},
+        {name:"1.Argoviz Notebook", file:"tools/argovis-Notebook.jsonld.json"},
         {name:"2.Repository-EarthChemLibrary-SDO.JSON", file:"tools/Repository-EarthChemLibrary-SDO.JSON"},
         {name:"3.Interface-ChordsWebAPIv2-SDO-toLoad.json", file:"tools/Interface-ChordsWebAPIv2-SDO-toLoad.json"},
         {name:"Interface-ChordsWebAPIv2-SDO.json", file:"tools/Interface-ChordsWebAPIv2-SDO.json"},
@@ -158,11 +159,6 @@ export default {
         {name:"InformationModel-Sweet-SDO.json", file:"tools/InformationModel-Sweet-SDO.json"},
         {name:"InterchangeFormat-MiniSeed-SDO.JSON", file:"tools/InterchangeFormat-MiniSeed-SDO.JSON"},
         {name:"Interface-ChordsWebAPI-W3Cdraft.json", file:"tools/Interface-ChordsWebAPI-W3Cdraft.json"},
-
-
-
-
-
         {name:"Service-IRIS-fsdnEvent-JSON.json", file:"tools/Service-IRIS-fsdnEvent-JSON.json"},
         {name:"Software-ERDDAP-SDO.JSON", file:"tools/Software-ERDDAP-SDO.JSON"},
         {name:"Specification-COARDS-SDO.JSON", file:"tools/Specification-COARDS-SDO.JSON"},

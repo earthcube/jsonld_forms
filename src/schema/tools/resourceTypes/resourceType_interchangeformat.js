@@ -9,12 +9,9 @@ const interchange = {
        // const: 'Interchange file format'
         "const": [
                  {
-                 "@type":
-                 "CreativeWork",
-                 "url":
-                 "http://cor.esipfed.org/ont/earthcube/ECRRO_0000208",
-                 "name":
-                 "Interchange file format"
+                 "@type": "DefinedTerm",
+                 "identifier":  "http://cor.esipfed.org/ont/earthcube/ECRRO_0000208",
+                 "name":  "Interchange file format"
                  }
                  ]
       }

@@ -549,7 +549,7 @@
           "type": "object",
           "properties": {
             "@type": {"const": "PropertyValue"},
-            "propertyID": {"const": "dc:BibliographicCitation"},
+            "propertyID": {"const": "dct:bibliographicCitation"},
             "name": {"type": "string"},
             "value": {"type": "string"}
           }

@@ -10,12 +10,9 @@ const resourceType = {
          "const":
 [
 {
-"name":
-"Use Case",
-"@type":
-"CreativeWork",
-"url":
-"http://cor.esipfed.org/ont/earthcube/ECRRO_0000005"
+"name": "Use Case",
+"@type":  "DefinedTerm",
+  "identifier": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000005"
 }
 ]
       }

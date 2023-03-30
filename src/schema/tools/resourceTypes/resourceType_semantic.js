@@ -13,10 +13,8 @@ const resourceType = {
                   {
                   "name":
                   "Semantic Resource",
-                  "@type":
-                  "CreativeWork",
-                  "url":
-                  "http://cor.esipfed.org/ont/earthcube/ECRRO_0000210"
+                  "@type": "DefinedTerm",
+                    "identifier": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000210"
                   }
                   ],
                   [{

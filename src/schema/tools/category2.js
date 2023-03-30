@@ -15,26 +15,34 @@ const cat2 = {
   elements: [
     {
       type: 'Label',
-      text: '2.1 What is the type of resource'
+      text: 'What is the type of resource'
     },
     {
       type: 'Control',
       scope: '#/properties/mainEntity',
-
-      //  "elementLabelProp": "name",
       options: {
-        // "elementLabelProp": "#/properties/mainEntity/properties/name"
-        //           format: 'radio',
-        //                       "detail": {
-        //                         "type": "VertialLayout",
-        //                         "elements": [
-        //                           {
-        //                             "type": "Control",
-        //                             "scope": "#/properties/name",
+        // "elementLabelProp": "name" ,
+        // "showUnfocusedDescription": true,
+        // "detail": {
+        //   "type": "VerticalLayout",
+        //   "elements": [
+        //     {
+        //       "label": "Type",
+        //       "type": "Control",
+        //       "scope": "#/properties/@type"
+        //     },
+        //     {
+        //       "label": "Name",
+        //       "type": "Control",
+        //       "scope": "#/properties/name"
+        //     },
+        //     {
+        //       "label": "Identifier",
+        //       "type": "Control",
+        //       "scope": "#/properties/identifier"
         //
-        //                           }
-        //                         ]
-        //                       }
+        //     },
+        //   ]}
       }
     }
   ]

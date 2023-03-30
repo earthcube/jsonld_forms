@@ -14,8 +14,8 @@ const resourceType = {
                   "name":
                   "Interface/API",
                   "@type":
-                  "CreativeWork",
-                  "url":
+                  "DefinedTerm",
+                  "identifier":
                   "http://cor.esipfed.org/ont/earthcube/ECRRO_0000207"
                   }
                   ]
@@ -30,7 +30,7 @@ const resourceType = {
     {
       label: 'Protocol',
       type: 'Control',
-      scope: '#/properties/ecrro:ECRRO_0000503',
+      scope: '#/properties/interfaceType',
       options: {
         showUnfocusedDescription: true,
         detail: {

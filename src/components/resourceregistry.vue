@@ -36,7 +36,7 @@ import 'vue-json-pretty/lib/styles.css';
 
 
 import {default as saveFiles} from './controls/saveJson'
-import { default as schema, schemaWithEnum , flattenList} from '../schema/tools/ecrr_jsonschema_1_1' ;
+import { default as schema, schemaWithEnum , flattenList} from '../schema/tools/ecrr_jsonschema_1_2' ;
 
 import uischema from '../schema/tools/ecrr_1_1_uischema';
 // @ts-ignore

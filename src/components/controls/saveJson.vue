@@ -70,14 +70,14 @@
 
 <script>
 import {unflatten} from "../../js/jsonldutils";
-import {flattenList} from "../../schema/tools/ecrr_jsonschema_1_1";
+import {flattenList} from "../../schema/tools/ecrr_jsonschema_1_2";
 import {saveToUser} from "../../js/s3store";
 import {saveAs} from "file-saver";
 
 export default {
   name: "saveDialog",
   props: {
-    json: {type: String },
+    json: {type: Object },
     originalName: {type: String },
   },
   data() {

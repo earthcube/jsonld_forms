@@ -13,12 +13,9 @@ const resourceTypeBase = {
          "const":
 [
 {
-"name":
-"Service Instance",
-"@type":
-"CreativeWork",
-"url":
-"http://cor.esipfed.org/ont/earthcube/ECRRO_0000202"
+"name": "Service Instance",
+"@type": "DefinedTerm",
+  "identifier": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000202"
 }
 ]
       }
@@ -32,7 +29,7 @@ const resourceTypeBase = {
     {
       label: 'Interface',
       type: 'Control',
-      scope: '#/properties/ecrro:ECRRO_0000503',
+      scope: '#/properties/interfaceType',
       options: {
         showUnfocusedDescription: true,
         detail: {

@@ -10,7 +10,7 @@ const cat4 = {
     {
       type: 'Control',
       label: '1.3.1.1 Registry Contributor Details',
-      scope: '#/properties/ecrro:ECRRO_0001301', // flattended
+      scope: '#/properties/registrationMetadata', // flattended
       //  "scope": "#/properties/additionalProperty/items/anyOf/8/",
       options: {
         showUnfocusedDescription: true,
