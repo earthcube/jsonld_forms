@@ -1,32 +1,45 @@
-import Vue from 'vue';
-import Router from 'vue-router';
 
-Vue.use(Router);
+import { createRouter as _createRouter, createWebHistory } from 'vue-router'
 
-export default new Router({
-    base: process.env.BASE_URL,
-    scrollBehavior: (to, _, savedPosition) => {
-        if (to.hash) return { selector: to.hash };
-        if (savedPosition) return savedPosition;
+// @ts-ignore
+import  tool  from "./components/resourceregistry.vue"
+// @ts-ignore
+import startPage from "./components/startPage.vue";
 
-        return { x: 0, y: 0 };
-    },
-    routes: [
-        {
-            path: '/',
-            component: () => import('./components/startPage.vue'),
-            name:"Start"
 
+export function createRouter() {
+
+    return _createRouter({
+        base: process.env.BASE_URL,
+        history: createWebHistory(),
+            // @ts-ignore
+        scrollBehavior: (to, _, savedPosition) => {
+            if (to.hash) return {selector: to.hash};
+            if (savedPosition) return savedPosition;
+
+            return {x: 0, y: 0};
         },
-        {
-            path: '/ecrr',
-            component: () => import('./components/resourceregistry.vue'),
-            name: "ECRR",
-         //   props: route => ({ jsonldfile: route.query.jsonldfile })
-            props: route => ({
-                jsonldfile: route.query.jsonldfile,
-                s3file: route.query.s3file
-            })
-        }
-    ],
-});
+        routes: [
+            {
+                path: '/',
+                //  component: () => import('./components/startPage.vue'),
+                 component: startPage,
+                name: "Start"
+
+            },
+            {
+                path: '/ecrr',
+                // component: () => import('./components/resourceregistry.vue'),
+                   component: tool,
+                name: "ECRR",
+                //   props: route => ({ jsonldfile: route.query.jsonldfile })
+                props: route => ({
+                    jsonldfile: route.query.jsonldfile,
+                    s3file: route.query.s3file
+                })
+            }
+        ],
+    },
+        )
+}
+

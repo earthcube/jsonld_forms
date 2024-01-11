@@ -1,10 +1,45 @@
 // webpack.config.js
-
+const { VuetifyPlugin } = require('webpack-plugin-vuetify')
+const webpack = require("webpack");
 
 module.exports = {
+    plugins: [
+        new VuetifyPlugin({ autoImport: true }), // Enabled by default
+        new webpack.ProvidePlugin({
+            Buffer: ["buffer", "Buffer"],
+            process: "process/browser",
+        }),
+    ],
+    resolve: {
+        alias: {
+            vue: '@vue/compat'
+        },
+        fallback: {
+            http:  false ,
+            https:  false ,
+            crypto:  false ,
+            stream:  false ,
+            os:  false ,
+            url:  false ,
+            assert:  false ,
+            "path": false,
+            "timers": false,
+        },
+    },
     module: {
 
         rules: [
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader',
+                options: {
+                    compilerOptions: {
+                        compatConfig: {
+                            MODE: 2
+                        }
+                    }
+                }
+            },
             {
                 test: /\.s(c|a)ss$/,
                 use: [
@@ -17,13 +52,7 @@ module.exports = {
                             implementation: require('sass'),
                             indentedSyntax: true // optional
                         },
-                        // Requires >= sass-loader@^8.0.0
-                        options: {
-                            implementation: require('sass'),
-                            sassOptions: {
-                                indentedSyntax: true // optional
-                            },
-                        },
+
                     },
                 ],
             },

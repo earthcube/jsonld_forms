@@ -26,7 +26,7 @@
               :key="`${control.path}-${index}`"
               :class="styles.arrayList.item"
             >
-              <v-expansion-panel-header :class="styles.arrayList.itemHeader" class="pl-5 pt-0 pb-2">
+              <v-expansion-panel-text :class="styles.arrayList.itemHeader" class="pl-5 pt-0 pb-2">
                 <v-container py-0 pa-0>
                   <v-row
                     :style="`display: grid; grid-template-columns: ${
@@ -141,8 +141,8 @@
                     </v-col>
                   </v-row>
                 </v-container>
-              </v-expansion-panel-header>
-              <v-expansion-panel-content :class="styles.arrayList.itemContent">
+              </v-expansion-panel-text>
+              <v-expansion-panel-text :class="styles.arrayList.itemContent">
                 <dispatch-renderer
                   :schema="control.schema"
                   :uischema="foundUISchema"
@@ -151,7 +151,7 @@
                   :renderers="control.renderers"
                   :cells="control.cells"
                 />
-              </v-expansion-panel-content>
+              </v-expansion-panel-text>
             </v-expansion-panel>
           </v-expansion-panels>
         </v-row>
@@ -234,14 +234,14 @@ import {
   JsonSchema,
   getControlPath,
 } from '@jsonforms/core';
-import { defineComponent } from '@vue/composition-api';
+import { defineComponent } from 'vue';
 import {
   DispatchRenderer,
   rendererProps,
   useJsonFormsArrayControl,
   RendererProps,
-} from '@jsonforms/vue2';
-import { useNested, useVuetifyArrayControl } from '@jsonforms/vue2-vuetify';
+} from '@jsonforms/vue';
+import { useNested, useVuetifyArrayControl } from '@jsonforms/vue-vuetify';
 import {
   VCard,
   VCardActions,
@@ -260,14 +260,14 @@ import {
   VSpacer,
   VExpansionPanels,
   VExpansionPanel,
-  VExpansionPanelHeader,
-  VExpansionPanelContent,
+  VExpansionPanelText,
+  VExpansionPanelTitle,
   VMessages,
-} from 'vuetify/lib';
+} from 'vuetify/components';
 //import { ValidationIcon, ValidationBadge } from '../controls/components/index';
 //import { ValidationIcon, ValidationBadge } from '@jsonforms/vue2-vuetify';
 import { ErrorObject } from 'ajv';
-import { ref } from '@vue/composition-api';
+import { ref } from 'vue';
 
 const controlRenderer = defineComponent({
   name: 'array-layout-renderer-ec',
@@ -289,8 +289,8 @@ const controlRenderer = defineComponent({
     VSpacer,
     VExpansionPanels,
     VExpansionPanel,
-    VExpansionPanelHeader,
-    VExpansionPanelContent,
+    VExpansionPanelText,
+    VExpansionPanelTitle,
     VContainer,
 //    ValidationIcon,
 //    ValidationBadge,

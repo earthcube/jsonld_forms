@@ -45,7 +45,7 @@
       </v-container>
       <v-container justify-space-around align-content-center>
         <v-row justify="center">
-          <v-simple-table class="array-container flex">
+          <v-table class="array-container flex">
             <thead v-if="control.schema.type === 'object'">
               <tr>
                 <th
@@ -168,7 +168,7 @@
                 </td>
               </tr>
             </tbody>
-          </v-simple-table>
+          </v-table>
         </v-row>
       </v-container>
     </v-card-text>
@@ -190,15 +190,15 @@ import {
   //uiTypeIs,
 } from '@jsonforms/core';
 import startCase from 'lodash/startCase';
-import { defineComponent } from '@vue/composition-api';
+import { defineComponent } from 'vue';
 import {
   DispatchCell,
   DispatchRenderer,
   rendererProps,
   useJsonFormsArrayControl,
   RendererProps,
-} from '@jsonforms/vue2';
-import { useVuetifyArrayControl } from '@jsonforms/vue2-vuetify';
+} from '@jsonforms/vue';
+import { useVuetifyArrayControl } from '@jsonforms/vue-vuetify';
 import {
   VCard,
   VCardTitle,
@@ -213,8 +213,9 @@ import {
   VBtn,
   VAvatar,
   VSpacer,
-  VSimpleTable,
-} from 'vuetify/lib';
+  //VSimpleTable,
+  VTable,
+} from 'vuetify/components';
 //import { ValidationIcon, ValidationBadge } from '../controls/components/index';
 
 const controlRenderer = defineComponent({
@@ -237,7 +238,7 @@ const controlRenderer = defineComponent({
     VContainer,
     //ValidationIcon,
   //  ValidationBadge,
-    VSimpleTable,
+    VTable,
   },
   props: {
     ...rendererProps<ControlElement>(),

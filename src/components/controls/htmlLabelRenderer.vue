@@ -18,7 +18,7 @@ import {
   uiTypeIs,
  // LabelElement,
 } from '@jsonforms/core';
-import { defineComponent } from '@vue/composition-api';
+import { defineComponent } from 'vue';
 // import {
 //   DispatchRenderer,
 //   rendererProps,
@@ -27,7 +27,7 @@ import { defineComponent } from '@vue/composition-api';
 // } from '@jsonforms/vue2';
 // import { useVuetifyLayout, useTranslator } from '@jsonforms/vue2-vuetify';
 // import { VLabel } from 'vuetify/lib';
-import {LabelRenderer} from '@jsonforms/vue2-vuetify'
+import {LabelRenderer} from '@jsonforms/vue-vuetify'
 
 const htmlLabelRenderer = defineComponent({
   extends: LabelRenderer,

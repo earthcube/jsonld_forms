@@ -24,14 +24,16 @@
 import examples from './examples'
 import listUserFiles from "./listUserFiles";
 import listRegistryFiles from "./listRegistryFiles";
-export default {
+import {defineComponent} from "vue";
+export default defineComponent( {
   name: "startPage",
   components: {
     examples,
     listUserFiles,
     listRegistryFiles
   }
-}
+})
+
 </script>
 
 <style scoped>

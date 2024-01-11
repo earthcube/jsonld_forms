@@ -1,16 +1,62 @@
 const Dotenv = require('dotenv-webpack');
+const { VuetifyPlugin } = require('webpack-plugin-vuetify')
+const path = require("path");
 
 module.exports = {
     configureWebpack: {
       plugins: [
         new Dotenv({systemvars: true})
-      ]
+      ],
+        resolve: {
+            alias: {
+                vue: '@vue/compat'
+            },
+            fallback: {
+                http:  false ,
+                https:  false ,
+                crypto:  false ,
+                stream:  false ,
+                os:  false ,
+                url:  false ,
+                assert:  false ,
+                "path": false,
+                "timers": false,
+
+            },
+        },
     },
   devServer: {
-    watchOptions: {
-      ignored: ['node_modules'],
-      poll: true,
-    },
+      static: {
+          directory: path.resolve(__dirname, "static"),
+          staticOptions: {},
+          // Don't be confused with `devMiddleware.publicPath`, it is `publicPath` for static directory
+          // Can be:
+          // publicPath: ['/static-public-path-one/', '/static-public-path-two/'],
+          publicPath: "/static-public-path/",
+          // Can be:
+          // serveIndex: {} (options for the `serveIndex` option you can find https://github.com/expressjs/serve-index)
+          serveIndex: true,
+          // Can be:
+          // watch: {} (options for the `watch` option you can find https://github.com/paulmillr/chokidar)
+          watch: true,
+      },
   },
-  transpileDependencies: ['vuetify', '@jsonforms/core', '@jsonforms/vue2'],
+  //transpileDependencies: ['vuetify', '@jsonforms/core', '@jsonforms/vue2'],
+  chainWebpack: (config) => {
+    config.resolve.alias.set('vue', '@vue/compat')
+
+    config.module
+        .rule('vue')
+        .use('vue-loader')
+        .tap((options) => {
+          return {
+            ...options,
+            compilerOptions: {
+              compatConfig: {
+                MODE: 2
+              }
+            }
+          }
+        })
+  }
 }

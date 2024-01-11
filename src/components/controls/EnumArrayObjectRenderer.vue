@@ -73,16 +73,16 @@ import {
   DispatchPropsOfMultiEnumControl,
     update
 } from '@jsonforms/core';
-import { VCheckbox, VContainer, VRow, VCol, VCombobox } from 'vuetify/lib';
+import { VCheckbox, VContainer, VRow, VCol, VCombobox } from 'vuetify/components';
 import {
   DispatchRenderer,
   rendererProps,
   RendererProps,
   useControl,
   ControlProps,
-} from '@jsonforms/vue2';
-import { defineComponent } from '@vue/composition-api';
-import { useVuetifyBasicControl } from '@jsonforms/vue2-vuetify';
+} from '@jsonforms/vue';
+import { defineComponent } from 'vue';
+import { useVuetifyBasicControl } from '@jsonforms/vue-vuetify';
 import _ from 'lodash'
 
 //TODO: move into JsonForm Vue project under src/components/jsonFormsCompositions.ts

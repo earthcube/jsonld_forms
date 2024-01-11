@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import { JsonForms } from '@jsonforms/vue2';
-import { vuetifyRenderers } from '@jsonforms/vue2-vuetify';
+import { JsonForms } from '@jsonforms/vue';
+import { vuetifyRenderers } from '@jsonforms/vue-vuetify';
 import {defineComponent} from "@vue/composition-api";
 //import VueJsonPretty from 'vue-json-pretty';
 import 'vue-json-pretty/lib/styles.css';
@@ -40,6 +40,7 @@ import { default as schema, schemaWithEnum , flattenList} from '../schema/tools/
 
 import uischema from '../schema/tools/ecrr_1_1_uischema';
 // @ts-ignore
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const baseJsonLdObj = require('../assets/basefiles/tools/ecrrempty.json');
 
 import {entry as AltGroupRenderer} from './controls/AdditionalDetailsRenderer'
@@ -75,7 +76,7 @@ const renderers = [
 
 ];
 
-const tool = defineComponent({
+export default defineComponent({
   name: 'tools',
   components: {
     JsonForms,
@@ -194,7 +195,7 @@ const tool = defineComponent({
     // },
   },
 });
-export default tool
+
 </script>
 
 <style>

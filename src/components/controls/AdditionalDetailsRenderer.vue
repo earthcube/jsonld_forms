@@ -5,7 +5,7 @@
       :class="`pa-0 ${styles.group.root}`"
       elevation="2"
   >
-    <v-expansion-panel-header v-if="layout.uischema.label" :class="styles.group.label">
+    <v-expansion-panel-title v-if="layout.uischema.label" :class="styles.group.label">
       <template v-slot:actions>
         <v-icon class="icon" color="#18598B" small>mdi-plus</v-icon>
         <!--<v-icon class="icon" small>$expand</v-icon>-->
@@ -13,9 +13,9 @@
       <span class="header"> {{
           layout.uischema.label
         }}</span>
-     </v-expansion-panel-header>
+     </v-expansion-panel-title>
 
-    <v-expansion-panel-content
+    <v-expansion-panel-text
         v-for="(element, index) in layout.uischema.elements"
         :key="`${layout.path}-${index}`"
         :class="styles.group.item"
@@ -28,7 +28,7 @@
           :renderers="layout.renderers"
           :cells="layout.cells"
       />
-    </v-expansion-panel-content>
+    </v-expansion-panel-text>
   </v-expansion-panel>
   </v-expansion-panels>
 </template>
@@ -42,23 +42,23 @@ import {
   isLayout,
   uiTypeIs,
 } from '@jsonforms/core';
-import { defineComponent } from '@vue/composition-api';
+import { defineComponent } from 'vue';
 import {
   DispatchRenderer,
   rendererProps,
   useJsonFormsLayout,
   RendererProps,
-} from '@jsonforms/vue2';
-import { useVuetifyLayout } from '@jsonforms/vue2-vuetify';
-import { VCard, VCardTitle, VCardText } from 'vuetify/lib';
-import { VExpansionPanels, VExpansionPanel, VExpansionPanelContent,VExpansionPanelHeader } from 'vuetify/lib';
+} from '@jsonforms/vue';
+import { useVuetifyLayout } from '@jsonforms/vue-vuetify';
+import { VCard, VCardTitle, VCardText } from 'vuetify/components';
+import { VExpansionPanels, VExpansionPanel, VExpansionPanelTitle, VExpansionPanelText } from 'vuetify/components';
 const layoutRenderer = defineComponent({
   name: 'group-renderer',
   components: {
     DispatchRenderer,
     VCard,
     VCardTitle,
-    VCardText,VExpansionPanels, VExpansionPanel, VExpansionPanelContent,VExpansionPanelHeader
+    VCardText,VExpansionPanels, VExpansionPanel, VExpansionPanelText,VExpansionPanelTitle
   },
   props: {
     ...rendererProps<Layout>(),
