@@ -30,7 +30,7 @@
 <script>
 import { JsonForms } from '@jsonforms/vue';
 import { vuetifyRenderers } from '@jsonforms/vue-vuetify';
-import {defineComponent} from "@vue/composition-api";
+import {defineComponent} from "vue";
 //import VueJsonPretty from 'vue-json-pretty';
 import 'vue-json-pretty/lib/styles.css';
 
@@ -91,7 +91,7 @@ export default defineComponent({
   data() {
     return {
       //renderers: Object.freeze(renderers),
-      renderers,
+      renderers: Object.freeze(renderers),
       jsonldObj:baseJsonLdObj,
       schema,
       uischema,
@@ -198,6 +198,9 @@ export default defineComponent({
 
 </script>
 
+<style scoped>
+@import '~@jsonforms/vue-vuetify/lib/jsonforms-vue-vuetify.esm.css';
+</style>
 <style>
 
 .json_footer {

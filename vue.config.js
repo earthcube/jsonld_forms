@@ -1,11 +1,13 @@
 const Dotenv = require('dotenv-webpack');
-const { VuetifyPlugin } = require('webpack-plugin-vuetify')
+//const { VuetifyPlugin } = require('webpack-plugin-vuetify')
 const path = require("path");
 
 module.exports = {
+    lintOnSave: false,
     configureWebpack: {
       plugins: [
-        new Dotenv({systemvars: true})
+        new Dotenv({systemvars: true}),
+//          new VuetifyPlugin({ autoImport: true })
       ],
         resolve: {
             alias: {
@@ -21,11 +23,24 @@ module.exports = {
                 assert:  false ,
                 "path": false,
                 "timers": false,
+                "fs": false
 
             },
         },
+        module: {
+            rules: [
+
+                { test: /\.csv$/, loader: 'dsv-loader' },
+                // raw example files
+                { test: /\.yml$/, use: 'raw-loader' },
+                { test: /\.txt$/, use: 'raw-loader' },
+                { test: /\.xlsx$/, use: 'raw-loader' },
+            ],
+        }
+
     },
   devServer: {
+
       static: {
           directory: path.resolve(__dirname, "static"),
           staticOptions: {},
@@ -42,6 +57,7 @@ module.exports = {
       },
   },
   //transpileDependencies: ['vuetify', '@jsonforms/core', '@jsonforms/vue2'],
+    transpileDependencies: ['@jsonforms/core', '@jsonforms/vue', '@jsonforms/vue-vuetify'],
   chainWebpack: (config) => {
     config.resolve.alias.set('vue', '@vue/compat')
 

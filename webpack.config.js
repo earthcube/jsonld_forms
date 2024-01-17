@@ -24,6 +24,7 @@ module.exports = {
             assert:  false ,
             "path": false,
             "timers": false,
+        "fs": false
         },
     },
     module: {
@@ -56,7 +57,11 @@ module.exports = {
                     },
                 ],
             },
-            { test: /\.csv$/, loader: 'dsv-loader' }
+            { test: /\.csv$/, loader: 'dsv-loader' },
+            // raw example files
+           { test: /\.yml$/, use: 'raw-loader' },
+            { test: /\.txt$/, use: 'raw-loader' },
+            { test: /\.xlxs$/, use: 'raw-loader' },
 //             {
 //                       test: /\.csv$/,
 //                       loader: 'csv-loader',
