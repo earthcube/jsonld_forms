@@ -4,9 +4,10 @@
       <template v-slot:activator="{ on, attrs }">
         <v-fab-transition>
         <v-btn
+            v-bind="attrs"
             color="blue"
             dark
-            v-bind="attrs"
+
             v-on="on"
 
             class="float-right"

@@ -1,4 +1,4 @@
-import  csvFile from  'dsv-loader!../controlledFromGooglesheet/lifetime.csv'
+import  csvFile from  '@/schema/tools/controlledFromGooglesheet/lifetime.csv'
 const oneOf =   function()  {
     const nameCol = "Expected lifetime"
     const proplCol ="URI"

@@ -1,4 +1,4 @@
-import  resourceTypeSheet from 'dsv-loader!./specifications.csv'
+import  resourceTypeSheet from '@/schema/tools/controlledFromGooglesheet/specifications.csv'
 
 const sOneOf = function () {
     const nameCol = "Specification Types"

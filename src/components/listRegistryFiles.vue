@@ -81,11 +81,12 @@
           <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
               <v-btn
+                  v-bind="attrs"
                   dark
                   text
                   color="#18598B"
                   class="ml-2"
-                  v-bind="attrs"
+
                   v-on="on"
               >
                 {{ itemsPerPage }}

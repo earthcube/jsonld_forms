@@ -8,9 +8,10 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
+            v-bind="attrs"
             color="primary"
             dark
-            v-bind="attrs"
+
             v-on="on"
         >
           Save File

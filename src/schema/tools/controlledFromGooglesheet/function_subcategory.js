@@ -1,4 +1,4 @@
-import suggestionSheet from 'dsv-loader!../controlledFromGooglesheet/function_subcategory.csv'
+import suggestionSheet from '@/schema/tools/controlledFromGooglesheet/function_subcategory.csv'
 
 const subfunctionList =   function()  {
      const nameCol = "Combined (shown in the form)"

@@ -1,5 +1,5 @@
 //maturity JSCO schema values as oneOf [schema:DefinedTerm objects]
-import  csvFile from  'dsv-loader!../controlledFromGooglesheet/maturity.csv'
+import  csvFile from  '@/schema/tools/controlledFromGooglesheet/maturity.csv'
 const oneOf =   function()  {
     const nameCol = "Maturity"
     const proplCol ="URI"
@@ -18,7 +18,7 @@ const oneOf =   function()  {
 export {oneOf as default }
 
 //function subcategory pick list
-import  suggestionSheet from  'dsv-loader!../controlledFromGooglesheet/function_subcategory.csv'
+import  suggestionSheet from  '@/schema/tools/controlledFromGooglesheet/function_subcategory.csv'
 const enumList =   function()  {
     const nameCol = "Combined (shown in the form)"
      const sheet = suggestionSheet

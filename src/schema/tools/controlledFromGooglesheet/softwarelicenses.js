@@ -1,5 +1,6 @@
 
-import  licenseSheet from  'dsv-loader!../controlledFromGooglesheet/softwarelicenses.csv'
+//import  licenseSheet from  'dsv-loader!../controlledFromGooglesheet/softwarelicenses.csv'
+import  licenseSheet from  '@/schema/tools/controlledFromGooglesheet/softwarelicenses.csv'
 export const licenses =   function()  {
     const nameCol = "Pruned for the form"
     //labels are abbreviated to fit in the form better

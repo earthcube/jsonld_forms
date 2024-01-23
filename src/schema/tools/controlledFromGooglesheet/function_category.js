@@ -1,4 +1,4 @@
-import suggestionSheet from 'dsv-loader!../controlledFromGooglesheet/function_category.csv'
+import suggestionSheet from '@/schema/tools/controlledFromGooglesheet/function_category.csv'
 
 const functionList =   function()  {
      const nameCol = "Category"

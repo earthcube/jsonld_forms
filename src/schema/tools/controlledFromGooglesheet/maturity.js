@@ -1,4 +1,4 @@
-import  csvFile from  'dsv-loader!../controlledFromGooglesheet/maturity.csv'
+import  csvFile from  '@/schema/tools/controlledFromGooglesheet/maturity.csv'
 const oneOf =   function()  {
     const nameCol = "MATURITY"
     const proplCol ="URI"

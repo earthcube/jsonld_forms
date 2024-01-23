@@ -1,4 +1,4 @@
-import  resourceTypeSheet from 'dsv-loader!./semanticresources.csv'
+import  resourceTypeSheet from '@/schema/tools/controlledFromGooglesheet/semanticresources.csv'
 const semanticResourceOneOf =   function()  {
     const nameCol = "Semantic Resource Type"
     const urlCol ="URI"

@@ -103,7 +103,7 @@
                         aria-label="Move up"
                         :disabled="index <= 0 || !control.enabled"
                         :class="styles.arrayList.itemMoveUp"
-                        @click.native="moveUpClick($event, index)"
+                        @click="moveUpClick($event, index)"
                     >
                       <v-icon class="notranslate">mdi-arrow-up</v-icon>
                     </v-btn>
@@ -124,7 +124,7 @@
                           index >= control.data.length - 1 || !control.enabled
                         "
                         :class="styles.arrayList.itemMoveDown"
-                        @click.native="moveDownClick($event, index)"
+                        @click="moveDownClick($event, index)"
                     >
                       <v-icon class="notranslate">mdi-arrow-down</v-icon>
                     </v-btn>
@@ -151,7 +151,7 @@
                                 arraySchema.minItems !== undefined &&
                                 control.data.length <= arraySchema.minItems)
                             "
-                            @click.native="removeItemsClick($event, [index])"
+                            @click="removeItemsClick($event, [index])"
                         >
                           <v-icon class="notranslate">mdi-minus-circle</v-icon>
                         </v-btn>

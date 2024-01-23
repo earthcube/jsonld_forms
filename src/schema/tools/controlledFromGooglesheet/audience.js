@@ -1,4 +1,4 @@
-import  csvFile from  'dsv-loader!../controlledFromGooglesheet/audience.csv'
+import  csvFile from  '@/schema/tools/controlledFromGooglesheet/audience.csv'
 const audienceList =   function()  {
      const nameCol = "Audience types"
      const proplCol ="URI"

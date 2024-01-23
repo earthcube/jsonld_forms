@@ -2,9 +2,9 @@
 import { createRouter as _createRouter, createWebHistory } from 'vue-router'
 
 // @ts-ignore
-import  tool  from "./components/resourceregistry.vue"
+import  tool  from "@/components/resourceregistry.vue"
 // @ts-ignore
-import startPage from "./components/startPage.vue";
+import startPage from "@/components/startPage.vue";
 
 
 export function createRouter() {

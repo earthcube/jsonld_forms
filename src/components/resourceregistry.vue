@@ -35,28 +35,28 @@ import {defineComponent} from "vue";
 import 'vue-json-pretty/lib/styles.css';
 
 
-import {default as saveFiles} from './controls/saveJson'
-import { default as schema, schemaWithEnum , flattenList} from '../schema/tools/ecrr_jsonschema_1_2' ;
+import {default as saveFiles} from '@/components/controls/saveJson.vue'
+import { default as schema, schemaWithEnum , flattenList} from '@/schema/tools/ecrr_jsonschema_1_2' ;
 
-import uischema from '../schema/tools/ecrr_1_1_uischema';
+import uischema from '@/schema/tools/ecrr_1_1_uischema';
 // @ts-ignore
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const baseJsonLdObj = require('../assets/basefiles/tools/ecrrempty.json');
+import baseJsonLdObj  from '@/assets/basefiles/tools/ecrrempty.json?raw'
 
-import {entry as AltGroupRenderer} from './controls/AdditionalDetailsRenderer'
-import {entry as HtmlLabelRender } from './controls/htmlLabelRenderer'
-import {entry as ArrayOfStringRenderer} from './controls/ArrayOfStringRenderer'
-import {entry as ArrayControlStringRenderer} from './controls/ArrayControlStringRenderer'
-import {entry as ArrayLayoutRenderer} from './controls/ArrayLayoutRenderer'
-import {entry as EnumArrayObjectRenderer } from './controls/EnumArrayObjectRenderer'
-import {entry as EcFunctionsRenderer} from './controls/EcFunctionSubfunctionRenderer'
+import {entry as AltGroupRenderer} from '@/components/controls/AdditionalDetailsRenderer.vue'
+import {entry as HtmlLabelRender } from '@/components/controls/htmlLabelRenderer.vue'
+import {entry as ArrayOfStringRenderer} from '@/components/controls/ArrayOfStringRenderer.vue'
+import {entry as ArrayControlStringRenderer} from '@/components/controls/ArrayControlStringRenderer.vue'
+import {entry as ArrayLayoutRenderer} from '@/components/controls/ArrayLayoutRenderer.vue'
+import {entry as EnumArrayObjectRenderer } from '@/components/controls/EnumArrayObjectRenderer.vue'
+import {entry as EcFunctionsRenderer} from '@/components/controls/EcFunctionSubfunctionRenderer.vue'
+import {default as JsonViewer} from '@/components/viewJson.vue'
 
-import {default as JsonViewer} from './viewJson'
 import {createAjv} from "@jsonforms/core";
-import {flatten, unflatten} from "../js/jsonldutils"
+import {flatten, unflatten} from "@/js/jsonldutils"
 import {
   getFroms3,
-  saveToUser} from '../js/s3store'
+  saveToUser} from '@/js/s3store'
 import { saveAs } from 'file-saver';
 
 
@@ -199,7 +199,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-@import '~@jsonforms/vue-vuetify/lib/jsonforms-vue-vuetify.esm.css';
+@import '@jsonforms/vue-vuetify/lib/jsonforms-vue-vuetify.esm.css';
 </style>
 <style>
 

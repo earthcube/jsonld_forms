@@ -39,15 +39,18 @@
     </div>
 
     <div class="multiple_columns">
-        <v-checkbox v-for="(o, index) in control.options" :key="o.value.name"
-          :label="o.label"
+        <v-checkbox
+            v-bind="vuetifyProps(`v-checkbox[${o.value}]`)"
+            v-for="(o, index) in control.options" :key="o.value.name"
+
+                    :label="o.label"
           :input-value="dataHasEnum(o.value)"
           :id="control.id + `-input-${index}`"
           :path="composePaths(control.path, `${index}`)"
           :error-messages="control.errors"
           :disabled="!control.enabled"
           :indeterminate="control.data === undefined"
-          v-bind="vuetifyProps(`v-checkbox[${o.value}]`)"
+
           @change="(value) => toggle(o.value, value)"
         ></v-checkbox>
     </div>

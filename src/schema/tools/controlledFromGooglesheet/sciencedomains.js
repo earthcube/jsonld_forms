@@ -1,5 +1,5 @@
 // oneOf.. this is part of an array. so each item is unique
-import  scienceDomain from  'dsv-loader!../controlledFromGooglesheet/sciencedomains.csv'
+import  scienceDomain from  '@/schema/tools/controlledFromGooglesheet/sciencedomains.csv'
 export const scienceDomains =   function()  {
     const nameCol = "SCIENCE DOMAIN"
     const urlCol ="URI"

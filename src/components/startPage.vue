@@ -21,9 +21,9 @@
 </template>
 
 <script>
-import examples from './examples'
-import listUserFiles from "./listUserFiles";
-import listRegistryFiles from "./listRegistryFiles";
+import examples from '@/components/examples.vue'
+import listUserFiles from "@/components/listUserFiles.vue";
+import listRegistryFiles from "@/components/listRegistryFiles.vue";
 import {defineComponent} from "vue";
 export default defineComponent( {
   name: "startPage",

@@ -1,5 +1,5 @@
 
-import  resourceTypeSheet from 'dsv-loader!./resourcetypes.csv'
+import  resourceTypeSheet from '@/schema/tools/controlledFromGooglesheet/resourcetypes.csv'
 
 export const resourceTypes =   function()  {
     const nameCol = "Resource Type"

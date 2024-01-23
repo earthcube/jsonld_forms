@@ -1,4 +1,4 @@
-import  csvFile from  'dsv-loader!../controlledFromGooglesheet/communication.csv'
+import  csvFile from  '@/schema/tools/controlledFromGooglesheet/communication.csv'
 export const communicationProtocols =   function()  {
     const nameCol = "Communication Protocol"
     const proplCol ="URI"

@@ -1,4 +1,4 @@
-import suggestionSheet from 'dsv-loader!../controlledFromGooglesheet/runtime.csv'
+import suggestionSheet from '@/schema/tools/controlledFromGooglesheet/runtime.csv'
 
 export const enumList =   function()  {
      const nameCol = "Runtime Environments"
