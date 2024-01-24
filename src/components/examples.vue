@@ -58,7 +58,7 @@
                     v-on="on"
                 >
                   {{ itemsPerPage }}
-<!--                  <v-icon>mdi-chevron-down</v-icon>  -->
+                  <v-icon>mdi-chevron-down</v-icon>
                 </v-btn>
               </template>
               <v-list>
@@ -87,7 +87,7 @@
                 class="mr-1"
                 @click="formerPage"
             >
-<!--              <v-icon>mdi-chevron-left</v-icon>-->
+              <v-icon>mdi-chevron-left</v-icon>
             </v-btn>
             <v-btn
                 fab
@@ -96,7 +96,7 @@
                 class="ml-1"
                 @click="nextPage"
             >
-<!--              <v-icon>mdi-chevron-right</v-icon>-->
+              <v-icon>mdi-chevron-right</v-icon>
             </v-btn>
           </v-row>
         </template>
