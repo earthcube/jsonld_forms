@@ -33,9 +33,11 @@ export function createRouter() {
                    component: tool,
                 name: "ECRR",
                 //   props: route => ({ jsonldfile: route.query.jsonldfile })
+                // @ts-ignore
                 props: route => ({
-                    jsonldfile: route.query.jsonldfile,
-                    s3file: route.query.s3file
+                    // pass one of these ;)
+                    jsonldfile: route.query?.jsonldfile,
+                    s3file: route.query?.s3file
                 })
             }
         ],

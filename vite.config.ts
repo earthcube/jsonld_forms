@@ -9,7 +9,7 @@ import * as path from 'path';
 export default defineConfig({
     resolve: {
         alias: {
-            vue: '@vue/compat',
+            // vue: '@vue/compat',
             "@": path.resolve(__dirname, "./src"),
         }
     },

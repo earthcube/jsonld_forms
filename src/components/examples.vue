@@ -7,9 +7,9 @@
     <v-container fluid ma-0 pa-0>
       <v-data-iterator
           :items="examples"
-          item-key="file"
-          :items-per-page.sync="itemsPerPage"
-          :page.sync="page"
+
+          :items-per-page="itemsPerPage"
+          :page="page"
           hide-default-footer
       >
         <template v-slot:header>
@@ -23,56 +23,21 @@
           </v-toolbar>
         </template>
 
-        <template v-slot:default="props">
+        <template v-slot:default="{items}">
             <div class="json_list">
-              <v-card v-for="item in props.items" :key="item.name" :to="{ name: 'ECRR', query: { jsonldfile:item.file }}">
+              <!--    onvcard    :to="{ name: 'ECRR', query: { jsonldfile:item.raw.file }}"-->
+              <v-card v-for="(item, i) in items"
+                      :key="'examples'+i"
+                      :to="{ name: 'ECRR', query: { jsonldfile:item.raw.file }}"
+              >
                 <v-card-title>
-                  <div class="json_name">{{ item.name }}</div>
+                  <div class="json_name">{{ item.raw.name }}</div>
                   <div class="button_label">Load File</div>
-<!--
-no longer needed as the entire card is clickable
-                  <v-btn
-                      text
-                      color="primary"
-                      :to="{ name: 'ECRR',
-                  query: { jsonldfile:item.file }
-                 }"
-                  >
-                    Load File
-                  </v-btn>
--->
+
                 </v-card-title>
               </v-card>
             </div>
-<!--
-          <v-row>
-            <v-col
-                v-for="item in props.items"
-                :key="item.name"
-                cols="12"
-                sm="6"
-                md="4"
-                lg="3"
-            >
-              <v-card>
-                <v-card-title>
-                  <h4>{{ item.name }}</h4>
-                  <v-btn
-                      text
-                      color="primary"
-                      :to="{ name: 'ECRR',
-                  query: { jsonldfile:item.file }
-                 }"
-                  >
-                    Load File
-                  </v-btn>
-                </v-card-title>
 
-
-              </v-card>
-            </v-col>
-          </v-row>
--->
         </template>
         <template v-slot:footer>
           <v-row
@@ -93,7 +58,7 @@ no longer needed as the entire card is clickable
                     v-on="on"
                 >
                   {{ itemsPerPage }}
-                  <v-icon>mdi-chevron-down</v-icon>
+<!--                  <v-icon>mdi-chevron-down</v-icon>  -->
                 </v-btn>
               </template>
               <v-list>
@@ -122,7 +87,7 @@ no longer needed as the entire card is clickable
                 class="mr-1"
                 @click="formerPage"
             >
-              <v-icon>mdi-chevron-left</v-icon>
+<!--              <v-icon>mdi-chevron-left</v-icon>-->
             </v-btn>
             <v-btn
                 fab
@@ -131,7 +96,7 @@ no longer needed as the entire card is clickable
                 class="ml-1"
                 @click="nextPage"
             >
-              <v-icon>mdi-chevron-right</v-icon>
+<!--              <v-icon>mdi-chevron-right</v-icon>-->
             </v-btn>
           </v-row>
         </template>
@@ -144,7 +109,7 @@ no longer needed as the entire card is clickable
 
 <script>
 export default {
-  name: "examples",
+  name: "examplesFiles",
   data(){
     return {
       examples: [

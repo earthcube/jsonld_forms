@@ -11,7 +11,7 @@
           alt="EC Logo"
           class="shrink mr-3"
           contain
-          src="./assets/EarthCube-White-Long-Tagline.png"
+          src="@/assets/EarthCube-White-Long-Tagline.png"
           transition="scale-transition"
           width="100"
         />
@@ -21,7 +21,7 @@
           class="shrink mr-3 hidden-sm-and-down"
           contain
           min-width="100"
-          src="./assets/GeoCODES.png"
+          src="@/assets/GeoCODES.png"
           width="100"
         />
       </div>

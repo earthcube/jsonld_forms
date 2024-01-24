@@ -121,7 +121,9 @@ export default defineComponent({
      created() {
     if (this.jsonldfile){
 // @ts-ignore
-      let exampleData = require('../assets/examples/' +  this.jsonldfile);
+      let exampleData = require('@/assets/examples/' +  this.jsonldfile);
+      // fails
+      //import exampleData  from `@/assets/tools/argovis-Notebook.jsonld.json?raw`
       this.filename = this.jsonldfile.substring(this.jsonldfile.lastIndexOf('/')+1)
       exampleData = flatten(exampleData, flattenList)
       this.jsonldObj = Object.assign({}, this.jsonldObj, exampleData)

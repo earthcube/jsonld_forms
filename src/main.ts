@@ -5,17 +5,17 @@ import App from './App.vue'
 import {createVuetify} from "vuetify";
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
-//mport Router from 'vue-router'
+import { fa } from "vuetify/iconsets/fa";
+import { aliases, mdi } from "vuetify/lib/iconsets/mdi";
+// make sure to also import the coresponding css
+import "@mdi/font/css/materialdesignicons.css"; // Ensure you are using css-loader
+import "@fortawesome/fontawesome-free/css/all.css"; // Ensure your project is capable of handling css files
+
+
 import { createRouter } from './routes';
-//import VueCompositionAPI from 'vue';
 
-
-
-//Vue.use(VueCompositionAPI);
-//Vue.config.productionTip = false
-//Vue.use(Router)
 const router = createRouter()
-//import router from './routes'
+
 
 
 
@@ -26,8 +26,18 @@ const router = createRouter()
 // }).$mount('#app')
 
 const app = createApp(App)
-const vuetify = createVuetify({ components,
-    directives,})
+const vuetify = createVuetify({
+        icons: {
+            defaultSet: "mdi",
+            aliases,
+            sets: {
+                mdi,
+                fa,
+            },
+        },
+        components,
+    directives,
+},)
 app.use(vuetify)
 app.use(router)
 app.mount('#app')

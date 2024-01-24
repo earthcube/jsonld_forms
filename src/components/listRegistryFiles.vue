@@ -5,8 +5,8 @@
     <v-data-iterator
         :items="userItems"
         item-key="etag"
-        :items-per-page.sync="itemsPerPage"
-        :page.sync="page"
+        :items-per-page="itemsPerPage"
+        :page="page"
         hide-default-footer
     >
       <template v-slot:header>
@@ -20,11 +20,15 @@
         </v-toolbar>
       </template>
 
-      <template v-slot:default="props">
+      <template v-slot:default="{items}">
         <div class="json_list">
-          <v-card v-for="item in props.items" :key="item.name" :to="{ name: 'ECRR', query: { jsonldfile:item.file }}">
+          <v-card
+              v-for="(item, i) in items"
+                  :key="item.raw.name"
+              :to="{ name: 'ECRR', query: { jsonldfile:item.raw.file }}"
+          >
             <v-card-title>
-              <div class="json_name">{{ item.name }}</div>
+              <div class="json_name">{{ item.raw.name }}</div>
               <div class="button_label">Load File</div>
               <!--
               no longer needed as the entire card is clickable
