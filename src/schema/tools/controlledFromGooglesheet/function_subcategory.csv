@@ -1,4 +1,4 @@
-﻿Category,Subcategory,Combined (shown in the form),URI,Definition,Examples,#NAME?,,,,,,,,,,,,,,,,,,,,
+Category,Subcategory,Combined (shown in the form),URI,Definition,Examples,#NAME?,,,,,,,,,,,,,,,,,,,,
 Research Planning,Mental Modeling,Research Planning: Mental Modeling,http://cor.esipfed.org/ont/earthcube/SFO_0000015,"Functions that allow users to visually map relevant concepts, processes, and other entities relevant to planning their research.","mindmapping, concept mapping, brainstorming software",,,,,,,,,,,,,,,,,,,,,
 Research Planning,Project Planning,Research Planning: Project Planning,http://cor.esipfed.org/ont/earthcube/SFO_0000016,Functions that allow users to develop and manage implementation of a project plan.,"Microsoft Project, GanttPro, Redmine, Airtable, Trello",,,,,,,,,,,,,,,,,,,,,
 Research Planning,Logistics Planning,Research Planning: Logistics Planning,http://cor.esipfed.org/ont/earthcube/SFO_0000017,Functions that enable planning for the logistics needed to support research in the field.,"Easyship, LogiMap, DELMIA Quintiq Logistics Planning",,,,,,,,,,,,,,,,,,,,,

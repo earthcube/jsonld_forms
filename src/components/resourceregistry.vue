@@ -36,8 +36,8 @@ import 'vue-json-pretty/lib/styles.css';
 
 
 import {default as saveFiles} from '@/components/controls/saveJson.vue'
-//import { default as schema, schemaWithEnum , flattenList} from '@/schema/tools/ecrr_jsonschema_1_1' ;
-import { default as schema, schemaWithEnum , flattenList} from '@/schema/tools/ecrr_jsonschema_1_2' ;
+import { default as schema, schemaWithEnum , flattenList} from '@/schema/tools/ecrr_jsonschema_1_1' ;
+//import { default as schema, schemaWithEnum , flattenList} from '@/schema/tools/ecrr_jsonschema_1_2' ;
 import uischema from '@/schema/tools/ecrr_1_1_uischema';
 // @ts-ignore
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -66,18 +66,18 @@ const renderers = [
   ...vuetifyRenderers,
 
   // here you can add custom renderers
-  AltGroupRenderer,
-  HtmlLabelRender,
-  ArrayOfStringRenderer,
-  ArrayControlStringRenderer,
-  ArrayLayoutRenderer,
-  EnumArrayObjectRenderer,
-  EcFunctionsRenderer
+  // AltGroupRenderer,
+  // HtmlLabelRender,
+  // ArrayOfStringRenderer,
+  // ArrayControlStringRenderer,
+  // ArrayLayoutRenderer,
+  // EnumArrayObjectRenderer,
+  // EcFunctionsRenderer
 
 ];
 
 export default defineComponent({
-  name: 'tools',
+  name: 'ecrrTool',
   components: {
     JsonForms,
     JsonViewer,
@@ -89,6 +89,9 @@ export default defineComponent({
     s3file: {type:String}
   },
   data() {
+// Make AJV NON REACTIVE: https://github.com/eclipsesource/jsonforms/issues/1832
+    this.ajv = createAjv({useDefaults: true}) // use default values per:https://github.com/eclipsesource/jsonforms/issues/1193'
+
     return {
       //renderers: Object.freeze(renderers),
       renderers: Object.freeze(renderers),
@@ -97,7 +100,7 @@ export default defineComponent({
       uischema,
       currentValidationMode: "ValidateAndHide", // ValidateAndShow, ValidateAndHide, NoValidation
 
-      ajv: createAjv({useDefaults: true}), // use default values per:https://github.com/eclipsesource/jsonforms/issues/1193'
+     // ajv: createAjv({useDefaults: true}), // use default values per:https://github.com/eclipsesource/jsonforms/issues/1193'
       s3Credentials: {
         username: import.meta.env.VITE_accessKey,
         password: import.meta.env.VITE_secretKey,

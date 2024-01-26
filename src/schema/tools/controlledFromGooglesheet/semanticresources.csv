@@ -1,4 +1,4 @@
-﻿Semantic Resource Type,URI,Definition,#NAME?
+Semantic Resource Type,URI,Definition,#NAME?
 Glossary,http://cor.esipfed.org/ont/earthcube/srt_0000001,"terms and their definitions, possibly with synonyms - example, NSIDC's Cryosphere Glossary https://nsidc.org/cryosphere/glossary",
 Thesaurus,http://cor.esipfed.org/ont/earthcube/srt_0000002,"a structured controlled vocabulary where there is information about each term and its hierarchical, associative, or equivalence relationships to other terms in the thesaurus",
 Ontology,http://cor.esipfed.org/ont/earthcube/srt_0000003,"a set of concepts with attributes and relationships between the concepts which together define a domain of knowledge, expressed in machine-readable format",

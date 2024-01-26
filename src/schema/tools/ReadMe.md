@@ -1,5 +1,10 @@
 Tools schemas and UI Schemas
 
+WHEN SAVING UPDATED CSV files, be sure that the UTF is not "UTF with a BOM"
+used BBEdit on mac to convert  from UTF with BOM to UTF-8
+
+
+
 These are the schemas.
 Rather than one set of monster form, ecrr_1_0_uischema.json
 I've made this into a set of javascript classes, that buidl on each other
