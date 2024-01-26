@@ -10,7 +10,7 @@ import startPage from "@/components/startPage.vue";
 export function createRouter() {
 
     return _createRouter({
-        base: process.env.BASE_URL,
+       // base: process.env.BASE_URL,
         history: createWebHistory(),
             // @ts-ignore
         scrollBehavior: (to, _, savedPosition) => {

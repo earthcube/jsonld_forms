@@ -3,8 +3,8 @@
 // Stephen Richard
 import {
     resourceTypeList,
-    specificationOneOf,
-    semanticResourceOneOf,
+    // specificationOneOf,
+    // semanticResourceOneOf,
     functionList,
     runtimeEnumList,
     audienceList,
@@ -14,7 +14,7 @@ import {
     lifetimeOneOf,
     licenseList
 }
-    from './controlledFromGooglesheet';
+    from '@/schema/tools/controlledFromGooglesheet';
 
 const jsonschema = {
     type: 'object',
@@ -1086,8 +1086,8 @@ resourceTypeList,
  */
 const withEnum = function () {
     let rtypes = resourceTypeList().anyOf;
-    let spectype = specificationOneOf().oneOf;
-    let semrestype = semanticResourceOneOf().oneOf;
+    // let spectype = specificationOneOf().oneOf;
+    // let semrestype = semanticResourceOneOf().oneOf;
 //   rtypes = rtypes.concat(spectype).concat(semrestype)
 
     jsonschema.properties.mainEntity.items.anyOf = rtypes;

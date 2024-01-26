@@ -151,13 +151,13 @@ export default {
       userItems:[],
       groupItems: {},
       s3Credentials: {
-        username: process.env.VUE_APP_accessKey,
-        password: process.env.VUE_APP_secretKey,
-        endpoint: process.env.VUE_APP_endPoint,
-        port: parseInt(process.env.VUE_APP_port),
-        useSsl: Boolean(process.env.VUE_APP_useSSL)
+        username: import.meta.env.VITE_accessKey,
+        password: import.meta.env.VITE_secretKey,
+        endpoint: import.meta.env.VITE_endPoint,
+        port: parseInt(import.meta.env.VITE_port),
+        useSsl: Boolean(import.meta.env.VITE_useSSL)
       },
-      BUCKET: process.env.VUE_APP_BUCKET,
+      BUCKET: import.meta.env.VITE_BUCKET,
       page: 1,
       itemsPerPage: 4,
       itemsPerPageArray: [4, 8, 12],

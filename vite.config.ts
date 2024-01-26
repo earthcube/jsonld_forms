@@ -7,6 +7,10 @@ import * as path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    publicDir: 'public',
+    build: {
+        outDir: 'dist',
+    },
     resolve: {
         alias: {
             // vue: '@vue/compat',
@@ -28,7 +32,7 @@ export default defineConfig({
         nodePolyfills({
             // To add only specific polyfills, add them here. If no option is passed, adds all polyfills
             include: ['path','fs', 'util', 'stream', 'timers',
-                'timers/promises',],
+                'timers/promises','readable','https'],
         })
     ],
 })

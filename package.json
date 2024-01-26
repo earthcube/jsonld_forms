@@ -31,7 +31,8 @@
     "vue-router": "^4.1.6",
     "vuetify": "^3.4.10",
     "@mdi/font": "^7.4.47",
-    "@fortawesome/fontawesome-free": "^6.5.1"
+    "@fortawesome/fontawesome-free": "^6.5.1",
+    "ajv": "^8.12.0"
   },
   "devDependencies": {
     "@achrinza/node-ipc": "10.1.10",

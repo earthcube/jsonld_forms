@@ -10,9 +10,10 @@ import {
     scienceDomainList,
     maturityOneOf,
     lifetimeOneOf,
-    audienceOneOf
+   // audienceOneOf
+    audienceList,
 }
-    from './controlledFromGooglesheet';
+    from '@/schema/tools/controlledFromGooglesheet';
 
 const jsonschema = {
     type: 'object',
@@ -1195,14 +1196,15 @@ const withEnum = function () {
 
     let scienceDomains = scienceDomainList();
     jsonschema.properties.about.items = scienceDomains;
+    //
+    // let maturity = maturityOneOf();
+    // jsonschema.properties['ecrro:ECRRO_0000138'].properties.value = maturity;
+    //
+    // let lifetime = lifetimeOneOf();
+    // jsonschema.properties['ecrro:ECRRO_0000219'].properties.value = lifetime;
 
-    let maturity = maturityOneOf();
-    jsonschema.properties['ecrro:ECRRO_0000138'].properties.value = maturity;
-
-    let lifetime = lifetimeOneOf();
-    jsonschema.properties['ecrro:ECRRO_0000219'].properties.value = lifetime;
-
-    let audience = audienceOneOf();
+    //let audience = audienceOneOf();
+    let audience = audienceList();
     jsonschema.properties.audience.items = audience;
 
     return jsonschema;

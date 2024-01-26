@@ -1,6 +1,9 @@
 
 Notes:
-
+vue3 notes
+* need to replace require with some reader
+* controls need to be updated
+---
 ui notes 20220415
 add min width to license list.
 

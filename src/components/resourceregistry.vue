@@ -36,8 +36,8 @@ import 'vue-json-pretty/lib/styles.css';
 
 
 import {default as saveFiles} from '@/components/controls/saveJson.vue'
+//import { default as schema, schemaWithEnum , flattenList} from '@/schema/tools/ecrr_jsonschema_1_1' ;
 import { default as schema, schemaWithEnum , flattenList} from '@/schema/tools/ecrr_jsonschema_1_2' ;
-
 import uischema from '@/schema/tools/ecrr_1_1_uischema';
 // @ts-ignore
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -92,20 +92,20 @@ export default defineComponent({
     return {
       //renderers: Object.freeze(renderers),
       renderers: Object.freeze(renderers),
-      jsonldObj:baseJsonLdObj,
+      jsonldObj: {},
       schema,
       uischema,
       currentValidationMode: "ValidateAndHide", // ValidateAndShow, ValidateAndHide, NoValidation
 
       ajv: createAjv({useDefaults: true}), // use default values per:https://github.com/eclipsesource/jsonforms/issues/1193'
       s3Credentials: {
-        username: process.env.VUE_APP_accessKey,
-        password: process.env.VUE_APP_secretKey,
-        endpoint: process.env.VUE_APP_endPoint,
-        port: parseInt(process.env.VUE_APP_port),
-        useSsl: Boolean(process.env.VUE_APP_useSSL)
+        username: import.meta.env.VITE_accessKey,
+        password: import.meta.env.VITE_secretKey,
+        endpoint: import.meta.env.VITE_endPoint,
+        port: parseInt(import.meta.env.VITE_port),
+        useSsl: Boolean(import.meta.env.VITE_useSSL)
       },
-      BUCKET: process.env.VUE_APP_BUCKET,
+      BUCKET: import.meta.env.VITE_BUCKET,
       filename:"tool.jsonld"
     };
   },
@@ -115,38 +115,49 @@ export default defineComponent({
     //       this.schema = s
     //      })
     this.schema = schemaWithEnum()
-    this.jsonldObj = baseJsonLdObj
+    this.jsonldObj = JSON.parse(baseJsonLdObj)
 
   },
      created() {
     if (this.jsonldfile){
-// @ts-ignore
-      let exampleData = require('@/assets/examples/' +  this.jsonldfile);
+
+      //let exampleData = require('@/assets/examples/' +  this.jsonldfile);
+      const exampleDataUrl = `/examples/${this.jsonldfile}`
+     // const exampleDataUrl = new URL(`./${this.jsonldfile}`, import.meta.url).href
+      fetch(exampleDataUrl ).then( response => {
+        this.filename = this.jsonldfile.substring(this.jsonldfile.lastIndexOf('/')+1)
+        let exampleData =response.json()
+        exampleData =    flatten(exampleData, flattenList)
+        this.jsonldObj = Object.assign({}, this.jsonldObj, exampleData)
+      }).catch((err) => {console.error(`issue accessing ${exampleDataUrl} ${err}`)})
       // fails
       //import exampleData  from `@/assets/tools/argovis-Notebook.jsonld.json?raw`
-      this.filename = this.jsonldfile.substring(this.jsonldfile.lastIndexOf('/')+1)
-      exampleData = flatten(exampleData, flattenList)
-      this.jsonldObj = Object.assign({}, this.jsonldObj, exampleData)
+
     }
      if (this.s3file){
        this.filename = this.s3file.substring(this.s3file.lastIndexOf('/')+1)
        this.getUsers3()
      }
 // @ts-ignore
-     console.log(process.env.VUE_APP_BUCKET)
+     console.log(import.meta.env.VITE_BUCKET)
     // this.$on('loadfile', async  function (filepath) {
     //   this.jsonldObj =  await getFroms3( filepath, this.BUCKET, this.s3Credentials)
     // })
   },
   computed:{
+
+  },
+  methods: {
     async getUsers3(){
       let exampleData = await getFroms3(this.s3file, this.BUCKET, this.s3Credentials)
       exampleData = flatten(exampleData, flattenList)
       this.jsonldObj = Object.assign({}, this.jsonldObj, exampleData)
-    }
-  },
-  methods: {
-
+    },
+    async getJsonLDFromPublic3(){
+      let exampleData = await getFroms3(this.s3file, this.BUCKET, this.s3Credentials)
+      exampleData = flatten(exampleData, flattenList)
+      this.jsonldObj = Object.assign({}, this.jsonldObj, exampleData)
+    },
     onChange(event) {
       this.jsonldObj = event.data;
     },
