@@ -6,7 +6,8 @@ const schema = {
   elements: [],
   options: {
     variant: 'stepper',
-    showNavButtons: true
+    showNavButtons: true,
+    "vertical": false
   }
 };
 import cat1 from './category1';
