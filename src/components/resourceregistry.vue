@@ -66,13 +66,13 @@ const renderers = [
   ...vuetifyRenderers,
 
   // here you can add custom renderers
-  // AltGroupRenderer,
-  // HtmlLabelRender,
-  // ArrayOfStringRenderer,
-  // ArrayControlStringRenderer,
-  // ArrayLayoutRenderer,
-  // EnumArrayObjectRenderer,
-  // EcFunctionsRenderer
+  AltGroupRenderer,
+  HtmlLabelRender,
+  ArrayOfStringRenderer,
+  ArrayControlStringRenderer,
+  ArrayLayoutRenderer,
+  EnumArrayObjectRenderer,
+  EcFunctionsRenderer
 
 ];
 
