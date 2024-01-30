@@ -1,17 +1,15 @@
 <template>
   <div>
-  <v-label
+    <v-label
       v-if="label.visible"
       :class="styles.label.root"
       v-bind="vuetifyProps('v-label')"
-
-  >
-<!--      <span v-html="translatedLabel"></span>-->
-    <span v-html="label.text"></span>
-
-  </v-label>
-    <v-label v-if="label.visible && uischema.description" >
-      <div v-html="uischema.description"></div>
+    >
+      <!--      <span v-html="translatedLabel"></span>-->
+      <span v-html="label.text" />
+    </v-label>
+    <v-label v-if="label.visible && uischema.description">
+      <div v-html="uischema.description" />
     </v-label>
   </div>
 </template>
@@ -33,7 +31,7 @@ import {
 import { VLabel } from 'vuetify/components';
 import { useVuetifyLabel } from '@jsonforms/vue-vuetify';
 const htmlLabelRenderer = defineComponent({
-  name: 'html-label-renderer',
+  name: 'HtmlLabelRenderer',
   components: {
     DispatchRenderer,
     VLabel,

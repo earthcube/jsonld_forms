@@ -179,8 +179,8 @@ const resourceTypeBase = {
   ]
 };
 const resourceType = function() {
-  let functionsuggestionList = functionsuggestion();
-  let applicationCategory = _.find(resourceTypeBase.elements, o => {
+  const functionsuggestionList = functionsuggestion();
+  const applicationCategory = _.find(resourceTypeBase.elements, o => {
     return o.scope === '#/properties/applicationCategory';
   });
   console.log(applicationCategory, functionsuggestionList);

@@ -4,7 +4,7 @@ const oneOf =   function()  {
     const nameCol = "Maturity"
     const proplCol ="URI"
      const sheet = csvFile
-     let propList =  sheet.filter(o => o[nameCol]).map( o => {
+     const propList =  sheet.filter(o => o[nameCol]).map( o => {
               return  {  "title": o[nameCol],
                            "const": {
                                   "name": o[nameCol],
@@ -22,7 +22,7 @@ import  suggestionSheet from  '@/schema/tools/controlledFromGooglesheet/function
 const enumList =   function()  {
     const nameCol = "Combined (shown in the form)"
      const sheet = suggestionSheet
-     let propList =  sheet.filter(o => o[nameCol]).map( o => {
+     const propList =  sheet.filter(o => o[nameCol]).map( o => {
               return   o[nameCol]
                })
      return {"type":"string", "enum":   propList }
@@ -31,7 +31,7 @@ const enumList =   function()  {
 const suggestionList =   function()  {
     const nameCol = "Combined (shown in the form)"
      const sheet = suggestionSheet
-     let propList =  sheet.filter(o => o[nameCol]).map( o => {
+     const propList =  sheet.filter(o => o[nameCol]).map( o => {
               return   o[nameCol]
                })
      return  propList

@@ -1,49 +1,64 @@
 <template>
-  <v-card v-if="control.visible" :class="styles.arrayList.root" elevation="0">
+  <v-card
+    v-if="control.visible"
+    :class="styles.arrayList.root"
+    elevation="0"
+  >
     <v-card-title>
-      <v-toolbar flat :class="styles.arrayList.toolbar">
-        <v-toolbar-title :class="styles.arrayList.label">{{
-          computedLabel
-        }}</v-toolbar-title>
-<!--        <validation-icon-->
-<!--          v-if="control.childErrors.length > 0"-->
-<!--          :errors="control.childErrors"-->
-<!--        />-->
-        <v-spacer></v-spacer>
+      <v-toolbar
+        flat
+        :class="styles.arrayList.toolbar"
+      >
+        <v-toolbar-title :class="styles.arrayList.label">
+          {{
+            computedLabel
+          }}
+        </v-toolbar-title>
+        <!--        <validation-icon-->
+        <!--          v-if="control.childErrors.length > 0"-->
+        <!--          :errors="control.childErrors"-->
+        <!--        />-->
+        <v-spacer />
 
         <div class="add_button">
-            <v-tooltip bottom>
-              <template v-slot:activator="{ on: onTooltip }">
-                <v-btn
-                  fab
-                  text
-                  elevation="0"
-                  small
-                  :aria-label="`Add to ${control.label}`"
-                  v-on="onTooltip"
-                  :class="styles.arrayList.addButton"
-                  :disabled="
-                    !control.enabled ||
+          <v-tooltip bottom>
+            <template #activator="{ on: onTooltip }">
+              <v-btn
+                fab
+                text
+                elevation="0"
+                small
+                :aria-label="`Add to ${control.label}`"
+                :class="styles.arrayList.addButton"
+                :disabled="
+                  !control.enabled ||
                     (appliedOptions.restrict &&
                       arraySchema !== undefined &&
                       arraySchema.maxItems !== undefined &&
                       control.data.length >= arraySchema.maxItems)
-                  "
-                  @click="addButtonClick"
-                >
-                  <v-icon>mdi-plus</v-icon>
-                </v-btn>
-              </template>
-              {{ `Add to ${control.label}` }}
-            </v-tooltip>
+                "
+                v-on="onTooltip"
+                @click="addButtonClick"
+              >
+                <v-icon>mdi-plus</v-icon>
+              </v-btn>
+            </template>
+            {{ `Add to ${control.label}` }}
+          </v-tooltip>
         </div>
       </v-toolbar>
     </v-card-title>
     <v-card-text>
-      <v-container v-if="noData" :class="styles.arrayList.noData">
+      <v-container
+        v-if="noData"
+        :class="styles.arrayList.noData"
+      >
         No data
       </v-container>
-      <v-container justify-space-around align-content-center>
+      <v-container
+        justify-space-around
+        align-content-center
+      >
         <v-row justify="center">
           <v-table class="array-container flex">
             <thead v-if="control.schema.type === 'object'">
@@ -63,7 +78,7 @@
                       : 'fixed-cell-small'
                   "
                   scope="col"
-                ></th>
+                />
               </tr>
             </thead>
             <tbody>
@@ -99,9 +114,8 @@
                   "
                 >
                   <v-tooltip bottom>
-                    <template v-slot:activator="{ on: onTooltip }">
+                    <template #activator="{ on: onTooltip }">
                       <v-btn
-                        v-on="onTooltip"
                         v-if="appliedOptions.showSortButtons"
                         fab
                         text
@@ -110,17 +124,19 @@
                         aria-label="Move up"
                         :disabled="index <= 0 || !control.enabled"
                         :class="styles.arrayList.itemMoveUp"
+                        v-on="onTooltip"
                         @click="moveUpClick($event, index)"
                       >
-                        <v-icon class="notranslate">mdi-arrow-up</v-icon>
+                        <v-icon class="notranslate">
+                          mdi-arrow-up
+                        </v-icon>
                       </v-btn>
                     </template>
                     Move Up
                   </v-tooltip>
                   <v-tooltip bottom>
-                    <template v-slot:activator="{ on: onTooltip }">
+                    <template #activator="{ on: onTooltip }">
                       <v-btn
-                        v-on="onTooltip"
                         v-if="appliedOptions.showSortButtons"
                         fab
                         text
@@ -131,39 +147,44 @@
                           index >= control.data.length - 1 || !control.enabled
                         "
                         :class="styles.arrayList.itemMoveDown"
+                        v-on="onTooltip"
                         @click="moveDownClick($event, index)"
                       >
-                        <v-icon class="notranslate">mdi-arrow-down</v-icon>
+                        <v-icon class="notranslate">
+                          mdi-arrow-down
+                        </v-icon>
                       </v-btn>
                     </template>
                     Move Down
                   </v-tooltip>
 
-                    <div class="remove_button">
-                      <v-tooltip bottom>
-                        <template v-slot:activator="{ on: onTooltip }">
-                          <v-btn
-                            v-on="onTooltip"
-                            fab
-                            text
-                            elevation="0"
-                            small
-                            aria-label="Delete"
-                            :class="styles.arrayList.itemDelete"
-                            :disabled="
-                              !control.enabled ||
+                  <div class="remove_button">
+                    <v-tooltip bottom>
+                      <template #activator="{ on: onTooltip }">
+                        <v-btn
+                          fab
+                          text
+                          elevation="0"
+                          small
+                          aria-label="Delete"
+                          :class="styles.arrayList.itemDelete"
+                          :disabled="
+                            !control.enabled ||
                               (appliedOptions.restrict &&
                                 arraySchema !== undefined &&
                                 arraySchema.minItems !== undefined &&
                                 control.data.length <= arraySchema.minItems)
-                            "
-                            @click="removeItemsClick($event, [index])"
-                          >
-                            <v-icon class="notranslate">mdi-delete</v-icon>
-                          </v-btn>
-                        </template>
-                        Delete 222
-                      </v-tooltip>
+                          "
+                          v-on="onTooltip"
+                          @click="removeItemsClick($event, [index])"
+                        >
+                          <v-icon class="notranslate">
+                            mdi-delete
+                          </v-icon>
+                        </v-btn>
+                      </template>
+                      Delete 222
+                    </v-tooltip>
                   </div>
                 </td>
               </tr>
@@ -219,7 +240,7 @@ import {
 //import { ValidationIcon, ValidationBadge } from '../controls/components/index';
 
 const controlRenderer = defineComponent({
-  name: 'array-control-renderer',
+  name: 'ArrayControlRenderer',
   components: {
     DispatchCell,
     DispatchRenderer,

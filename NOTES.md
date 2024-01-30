@@ -1,8 +1,10 @@
 
 Notes:
 vue3 notes
-* need to replace require with some reader
+* ~~need to replace require with some reader~~
+* need to figure out why main entiity on category 2 is nto rendering.
 * controls need to be updated
+  * EnumArrayObjectRenderer.vue needs work. disabled
 ---
 ui notes 20220415
 add min width to license list.

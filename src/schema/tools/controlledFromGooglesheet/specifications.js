@@ -4,7 +4,7 @@ const sOneOf = function () {
     const nameCol = "Specification Types"
     const urlCol = "URI"
     const sheet = resourceTypeSheet
-    let propList = sheet.filter(o => o[nameCol]).map(o => {
+    const propList = sheet.filter(o => o[nameCol]).map(o => {
 //values implemented as schema:DefinedTerm
         return {
             "title": o[nameCol],

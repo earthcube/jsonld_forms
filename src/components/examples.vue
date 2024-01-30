@@ -1,61 +1,70 @@
 <template>
   <div>
-    <v-spacer></v-spacer>
+    <v-spacer />
     <h2>Earthcube Resource Registry Examples <a href="https://github.com/earthcube/ecrro">github</a></h2>
-    <v-banner outlined>Note: Not all examples load. Records with number prefixes have been 'cleaned'. </v-banner>
+    <v-banner outlined>
+      Note: Not all examples load. Records with number prefixes have been 'cleaned'.
+    </v-banner>
 
-    <v-container fluid ma-0 pa-0>
+    <v-container
+      fluid
+      ma-0
+      pa-0
+    >
       <v-data-iterator
-          :items="examples"
+        :items="examples"
 
-          :items-per-page="itemsPerPage"
-          :page="page"
-          hide-default-footer
+        :items-per-page="itemsPerPage"
+        :page="page"
+        hide-default-footer
       >
-        <template v-slot:header>
+        <template #header>
           <v-toolbar
-              class="mb-2"
-              color="#aaa"
-              dark
-              flat
+            class="mb-2"
+            color="#aaa"
+            dark
+            flat
           >
             <v-toolbar-title>Examples</v-toolbar-title>
           </v-toolbar>
         </template>
 
-        <template v-slot:default="{items}">
-            <div class="json_list">
-              <!--    onvcard    :to="{ name: 'ECRR', query: { jsonldfile:item.raw.file }}"-->
-              <v-card v-for="(item, i) in items"
-                      :key="'examples'+i"
-                      :to="{ name: 'ECRR', query: { jsonldfile:item.raw.file }}"
-              >
-                <v-card-title>
-                  <div class="json_name">{{ item.raw.name }}</div>
-                  <div class="button_label">Load File</div>
-
-                </v-card-title>
-              </v-card>
-            </div>
-
+        <template #default="{items}">
+          <div class="json_list">
+            <!--    onvcard    :to="{ name: 'ECRR', query: { jsonldfile:item.raw.file }}"-->
+            <v-card
+              v-for="(item, i) in items"
+              :key="'examples'+i"
+              :to="{ name: 'ECRR', query: { jsonldfile:item.raw.file }}"
+            >
+              <v-card-title>
+                <div class="json_name">
+                  {{ item.raw.name }}
+                </div>
+                <div class="button_label">
+                  Load File
+                </div>
+              </v-card-title>
+            </v-card>
+          </div>
         </template>
-        <template v-slot:footer>
+        <template #footer>
           <v-row
-              class="mt-4"
-              align="center"
-              justify="center"
+            class="mt-4"
+            align="center"
+            justify="center"
           >
             <span class="grey--text">Items per page</span>
             <v-menu offset-y>
-              <template v-slot:activator="{ on, attrs }">
+              <template #activator="{ on, attrs }">
                 <v-btn
-                    v-bind="attrs"
-                    dark
-                    text
-                    color="#18598B"
-                    class="ml-2"
+                  v-bind="attrs"
+                  dark
+                  text
+                  color="#18598B"
+                  class="ml-2"
 
-                    v-on:click="on"
+                  @click="on"
                 >
                   {{ itemsPerPage }}
                   <v-icon>mdi-chevron-down</v-icon>
@@ -63,38 +72,38 @@
               </template>
               <v-list>
                 <v-list-item
-                    v-for="(number, index) in itemsPerPageArray"
-                    :key="index"
-                    @click="updateItemsPerPage(number)"
+                  v-for="(number, index) in itemsPerPageArray"
+                  :key="index"
+                  @click="updateItemsPerPage(number)"
                 >
                   <v-list-item-title>{{ number }}</v-list-item-title>
                 </v-list-item>
               </v-list>
             </v-menu>
 
-            <v-spacer></v-spacer>
+            <v-spacer />
 
             <span
-                class="mr-4
+              class="mr-4
             grey--text"
             >
-            Page {{ page }} of {{ numberOfPages }}
-          </span>
+              Page {{ page }} of {{ numberOfPages }}
+            </span>
             <v-btn
-                fab
-                dark
-                color="#18598B"
-                class="mr-1"
-                @click="formerPage"
+              fab
+              dark
+              color="#18598B"
+              class="mr-1"
+              @click="formerPage"
             >
               <v-icon>mdi-chevron-left</v-icon>
             </v-btn>
             <v-btn
-                fab
-                dark
-                color="#18598B"
-                class="ml-1"
-                @click="nextPage"
+              fab
+              dark
+              color="#18598B"
+              class="ml-1"
+              @click="nextPage"
             >
               <v-icon>mdi-chevron-right</v-icon>
             </v-btn>
@@ -102,14 +111,12 @@
         </template>
       </v-data-iterator>
     </v-container>
-
   </div>
-
 </template>
 
 <script>
 export default {
-  name: "examplesFiles",
+  name: "ExamplesFiles",
   data(){
     return {
       examples: [

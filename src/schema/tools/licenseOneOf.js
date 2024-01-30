@@ -4,7 +4,7 @@
 const nameCol = "Pruned for the form"
 const urlCol ="URI"
 import toCreativeWork from '../controlledFromGooglesheet/sheetToCreativeWork'
-var  licenseSheet = require( 'csv-loader!../controlledFromGooglesheet/softwarelicenses.csv' )
+const  licenseSheet = require( 'csv-loader!../controlledFromGooglesheet/softwarelicenses.csv' )
 
 const licenseOneOf =   function()  {
  return {"oneOf":   toCreativeWork(licenseSheet, nameCol, urlCol) }

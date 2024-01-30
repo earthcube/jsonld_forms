@@ -1,35 +1,44 @@
 <template>
   <v-expansion-panels class="additionalgroup">
-  <v-expansion-panel
+    <v-expansion-panel
       v-if="layout.visible"
       :class="`pa-0 ${styles.group.root}`"
       elevation="2"
-  >
-    <v-expansion-panel-title v-if="layout.uischema.label" :class="styles.group.label">
-      <template v-slot:actions>
-        <v-icon class="icon" color="#18598B" small>mdi-plus</v-icon>
+    >
+      <v-expansion-panel-title
+        v-if="layout.uischema.label"
+        :class="styles.group.label"
+      >
+        <template #actions>
+          <v-icon
+            class="icon"
+            color="#18598B"
+            small
+          >
+            mdi-plus
+          </v-icon>
         <!--<v-icon class="icon" small>$expand</v-icon>-->
-      </template>
-      <span class="header"> {{
+        </template>
+        <span class="header"> {{
           layout.uischema.label
         }}</span>
-     </v-expansion-panel-title>
+      </v-expansion-panel-title>
 
-    <v-expansion-panel-text
+      <v-expansion-panel-text
         v-for="(element, index) in layout.uischema.elements"
         :key="`${layout.path}-${index}`"
         :class="styles.group.item"
-    >
-      <dispatch-renderer
+      >
+        <dispatch-renderer
           :schema="layout.schema"
           :uischema="element"
           :path="layout.path"
           :enabled="layout.enabled"
           :renderers="layout.renderers"
           :cells="layout.cells"
-      />
-    </v-expansion-panel-text>
-  </v-expansion-panel>
+        />
+      </v-expansion-panel-text>
+    </v-expansion-panel>
   </v-expansion-panels>
 </template>
 
@@ -53,7 +62,7 @@ import { useVuetifyLayout } from '@jsonforms/vue-vuetify';
 import { VCard, VCardTitle, VCardText } from 'vuetify/components';
 import { VExpansionPanels, VExpansionPanel, VExpansionPanelTitle, VExpansionPanelText } from 'vuetify/components';
 const layoutRenderer = defineComponent({
-  name: 'group-renderer',
+  name: 'GroupRenderer',
   components: {
     DispatchRenderer,
     VCard,
@@ -76,7 +85,7 @@ export const entry: JsonFormsRendererRegistryEntry = {
 };
 </script>
 
-<style >
+<style>
 .icon {
   order: 0;
   color: #18598B;

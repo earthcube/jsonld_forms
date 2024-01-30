@@ -1,26 +1,44 @@
 <template>
-  <v-card v-if="control.visible" :class="styles.arrayList.root" elevation="0">
+  <v-card
+    v-if="control.visible"
+    :class="styles.arrayList.root"
+    elevation="0"
+  >
     <v-card-title>
-      <v-toolbar flat :class="styles.arrayList.toolbar">
-        <v-toolbar-title :class="styles.arrayList.label">{{
-          computedLabel
-        }}</v-toolbar-title>
-<!--        <validation-icon-->
-<!--          v-if="control.childErrors.length > 0"-->
-<!--          :errors="control.childErrors"-->
-<!--        />-->
-        <v-messages :value="[control.description]"></v-messages>
-        <v-spacer></v-spacer>
-
+      <v-toolbar
+        flat
+        :class="styles.arrayList.toolbar"
+      >
+        <v-toolbar-title :class="styles.arrayList.label">
+          {{
+            computedLabel
+          }}
+        </v-toolbar-title>
+        <!--        <validation-icon-->
+        <!--          v-if="control.childErrors.length > 0"-->
+        <!--          :errors="control.childErrors"-->
+        <!--        />-->
+        <v-messages :value="[control.description]" />
+        <v-spacer />
       </v-toolbar>
     </v-card-title>
     <v-card-text>
-      <v-container v-if="noData" :class="styles.arrayList.noData">
+      <v-container
+        v-if="noData"
+        :class="styles.arrayList.noData"
+      >
         No data
       </v-container>
-      <v-container justify-space-around align-content-center>
+      <v-container
+        justify-space-around
+        align-content-center
+      >
         <v-row justify="center">
-          <v-expansion-panels accordion focusable v-model="currentlyExpanded">
+          <v-expansion-panels
+            v-model="currentlyExpanded"
+            accordion
+            focusable
+          >
             <v-expansion-panel
               v-for="(element, index) in control.data"
               :key="`${control.path}-${index}`"
@@ -37,33 +55,33 @@
                         : ''
                     }`"
                   >
-<!--                    <v-col v-if="!hideAvatar" align-self="center" px-0>-->
-<!--                      <validation-badge-->
-<!--                        overlap-->
-<!--                        bordered-->
-<!--                        :errors="childErrors(index)"-->
-<!--                      >-->
-<!--                        <v-avatar size="40" aria-label="Index" color="primary"-->
-<!--                          ><span class="primary&#45;&#45;text text&#45;&#45;lighten-5">{{-->
-<!--                            index + 1-->
-<!--                          }}</span></v-avatar-->
-<!--                        >-->
-<!--                      </validation-badge>-->
-<!--                    </v-col>-->
+                    <!--                    <v-col v-if="!hideAvatar" align-self="center" px-0>-->
+                    <!--                      <validation-badge-->
+                    <!--                        overlap-->
+                    <!--                        bordered-->
+                    <!--                        :errors="childErrors(index)"-->
+                    <!--                      >-->
+                    <!--                        <v-avatar size="40" aria-label="Index" color="primary"-->
+                    <!--                          ><span class="primary&#45;&#45;text text&#45;&#45;lighten-5">{{-->
+                    <!--                            index + 1-->
+                    <!--                          }}</span></v-avatar-->
+                    <!--                        >-->
+                    <!--                      </validation-badge>-->
+                    <!--                    </v-col>-->
 
                     <v-col
                       align-self="center"
                       :class="`text-truncate ${styles.arrayList.itemLabel}`"
-                      >{{ childLabelForIndex(index) }}</v-col
                     >
+                      {{ childLabelForIndex(index) }}
+                    </v-col>
                     <v-col
-                      align-self="center"
                       v-if="appliedOptions.showSortButtons"
+                      align-self="center"
                     >
                       <v-tooltip bottom>
-                        <template v-slot:activator="{ on: onTooltip }">
+                        <template #activator="{ on: onTooltip }">
                           <v-btn
-                            v-on="onTooltip"
                             fab
                             text
                             elevation="0"
@@ -72,22 +90,24 @@
                             aria-label="Move up"
                             :disabled="index <= 0 || !control.enabled"
                             :class="styles.arrayList.itemMoveUp"
+                            v-on="onTooltip"
                             @click="moveUpClick($event, index)"
                           >
-                            <v-icon class="notranslate">mdi-arrow-up</v-icon>
+                            <v-icon class="notranslate">
+                              mdi-arrow-up
+                            </v-icon>
                           </v-btn>
                         </template>
                         Move Up
                       </v-tooltip>
                     </v-col>
                     <v-col
-                      align-self="center"
                       v-if="appliedOptions.showSortButtons"
+                      align-self="center"
                     >
                       <v-tooltip bottom>
-                        <template v-slot:activator="{ on: onTooltip }">
+                        <template #activator="{ on: onTooltip }">
                           <v-btn
-                            v-on="onTooltip"
                             fab
                             text
                             elevation="0"
@@ -96,12 +116,15 @@
                             aria-label="Move down"
                             :disabled="
                               index >= control.data.length - 1 ||
-                              !control.enabled
+                                !control.enabled
                             "
                             :class="styles.arrayList.itemMoveDown"
+                            v-on="onTooltip"
                             @click="moveDownClick($event, index)"
                           >
-                            <v-icon class="notranslate">mdi-arrow-down</v-icon>
+                            <v-icon class="notranslate">
+                              mdi-arrow-down
+                            </v-icon>
                           </v-btn>
                         </template>
                         Move Down
@@ -109,9 +132,8 @@
                     </v-col>
                     <v-col align-self="center">
                       <v-tooltip bottom>
-                        <template v-slot:activator="{ on: onTooltip }">
+                        <template #activator="{ on: onTooltip }">
                           <v-btn
-                            v-on="onTooltip"
                             fab
                             text
                             elevation="0"
@@ -121,14 +143,17 @@
                             :class="styles.arrayList.itemDelete"
                             :disabled="
                               !control.enabled ||
-                              (appliedOptions.restrict &&
-                                arraySchema !== undefined &&
-                                arraySchema.minItems !== undefined &&
-                                control.data.length <= arraySchema.minItems)
+                                (appliedOptions.restrict &&
+                                  arraySchema !== undefined &&
+                                  arraySchema.minItems !== undefined &&
+                                  control.data.length <= arraySchema.minItems)
                             "
+                            v-on="onTooltip"
                             @click.stop="suggestToDelete = index"
                           >
-                            <v-icon class="notranslate">mdi-delete</v-icon>
+                            <v-icon class="notranslate">
+                              mdi-delete
+                            </v-icon>
                           </v-btn>
                         </template>
                         Delete
@@ -136,33 +161,32 @@
                     </v-col>
                   </v-row>
 
-        <div class="add_button">
-            <v-tooltip bottom>
-              <template v-slot:activator="{ on: onTooltip }">
-                <v-btn
-                  fab
-                  text
-                  elevation="0"
-                  small
-                  :aria-label="`Add to ${control.label}`"
-                  v-on="onTooltip"
-                  :class="styles.arrayList.addButton"
-                  :disabled="
-                    !control.enabled ||
-                    (appliedOptions.restrict &&
-                      arraySchema !== undefined &&
-                      arraySchema.maxItems !== undefined &&
-                      control.data.length >= arraySchema.maxItems)
-                  "
-                  @click="addButtonClick"
-                >
-                  <v-icon>mdi-plus</v-icon>
-                </v-btn>
-              </template>
-              {{ `Add to ${control.label}` }}
-            </v-tooltip>
-        </div>
-
+                  <div class="add_button">
+                    <v-tooltip bottom>
+                      <template #activator="{ on: onTooltip }">
+                        <v-btn
+                          fab
+                          text
+                          elevation="0"
+                          small
+                          :aria-label="`Add to ${control.label}`"
+                          :class="styles.arrayList.addButton"
+                          :disabled="
+                            !control.enabled ||
+                              (appliedOptions.restrict &&
+                                arraySchema !== undefined &&
+                                arraySchema.maxItems !== undefined &&
+                                control.data.length >= arraySchema.maxItems)
+                          "
+                          v-on="onTooltip"
+                          @click="addButtonClick"
+                        >
+                          <v-icon>mdi-plus</v-icon>
+                        </v-btn>
+                      </template>
+                      {{ `Add to ${control.label}` }}
+                    </v-tooltip>
+                  </div>
                 </v-container>
               </v-expansion-panel-title>
               <v-expansion-panel-text :class="styles.arrayList.itemContent">
@@ -174,16 +198,16 @@
                   :renderers="control.renderers"
                   :cells="control.cells"
                 />
-<!--                <string-control-renderer v-for="(dataRenderInfo, dataIndex) in control.data"-->
-<!--                                 :key="`${control.path}-${dataIndex}`"-->
-<!--                          :schema="dataRenderInfo.schema"-->
-<!--                          :uischema="dataRenderInfo.uischema"-->
-<!--                          :path="composePaths(control.path, `${index}`)"-->
-<!--                          :enabled="control.enabled"-->
-<!--                          :renderers="control.renderers"-->
-<!--                          :value="data"-->
-<!--                >-->
-<!--                </string-control-renderer>-->
+                <!--                <string-control-renderer v-for="(dataRenderInfo, dataIndex) in control.data"-->
+                <!--                                 :key="`${control.path}-${dataIndex}`"-->
+                <!--                          :schema="dataRenderInfo.schema"-->
+                <!--                          :uischema="dataRenderInfo.uischema"-->
+                <!--                          :path="composePaths(control.path, `${index}`)"-->
+                <!--                          :enabled="control.enabled"-->
+                <!--                          :renderers="control.renderers"-->
+                <!--                          :value="data"-->
+                <!--                >-->
+                <!--                </string-control-renderer>-->
               </v-expansion-panel-text>
             </v-expansion-panel>
           </v-expansion-panels>
@@ -204,12 +228,17 @@
         <v-card-text> The element will be deleted. </v-card-text>
 
         <v-card-actions>
-          <v-spacer></v-spacer>
+          <v-spacer />
 
-          <v-btn text @click="suggestToDelete = null"> Cancel </v-btn>
           <v-btn
             text
+            @click="suggestToDelete = null"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
             ref="confirm"
+            text
             @click="
               removeItemsClick([suggestToDelete]);
               suggestToDelete = null;
@@ -274,7 +303,7 @@ import { ErrorObject } from 'ajv';
 import { ref } from 'vue';
 
 const controlRenderer = defineComponent({
-  name: 'array-of-string-renderer',
+  name: 'ArrayOfStringRenderer',
   components: {
     DispatchRenderer,
     VCard,
@@ -319,7 +348,7 @@ const controlRenderer = defineComponent({
     foundUISchema(): UISchemaElement {
 
      // return findUISchema(
-      let uiSchema = findUISchema(
+      const uiSchema = findUISchema(
         this.control.uischemas,
         this.control.schema,
         this.control.uischema.scope,

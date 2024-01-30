@@ -21,28 +21,28 @@ const cat2 = {
       type: 'Control',
       scope: '#/properties/mainEntity',
       options: {
-        // "elementLabelProp": "name" ,
-        // "showUnfocusedDescription": true,
-        // "detail": {
-        //   "type": "VerticalLayout",
-        //   "elements": [
-        //     {
-        //       "label": "Type",
-        //       "type": "Control",
-        //       "scope": "#/properties/@type"
-        //     },
-        //     {
-        //       "label": "Name",
-        //       "type": "Control",
-        //       "scope": "#/properties/name"
-        //     },
-        //     {
-        //       "label": "Identifier",
-        //       "type": "Control",
-        //       "scope": "#/properties/identifier"
-        //
-        //     },
-        //   ]}
+        "elementLabelProp": "name" ,
+        "showUnfocusedDescription": true,
+        "detail": {
+          "type": "VerticalLayout",
+          "elements": [
+            {
+              "label": "Type",
+              "type": "Control",
+              "scope": "#/properties/@type"
+            },
+            {
+              "label": "Name",
+              "type": "Control",
+              "scope": "#/properties/name"
+            },
+            {
+              "label": "Identifier",
+              "type": "Control",
+              "scope": "#/properties/identifier"
+
+            },
+          ]}
       }
     }
   ]
@@ -52,11 +52,11 @@ cat2.elements.push(servicedesc());
 cat2.elements.push(software());
 cat2.elements.push(interchange);
 cat2.elements.push(specification);
-cat2.elements.push(catalog);
-cat2.elements.push(semantic);
-cat2.elements.push(interfaceapi);
-cat2.elements.push(repository);
-cat2.elements.push(platform);
-cat2.elements.push(usecase);
-cat2.elements.push(bundledobject);
+// cat2.elements.push(catalog);
+// cat2.elements.push(semantic);
+// cat2.elements.push(interfaceapi);
+// cat2.elements.push(repository);
+// cat2.elements.push(platform);
+// cat2.elements.push(usecase);
+// cat2.elements.push(bundledobject);
 export default cat2;

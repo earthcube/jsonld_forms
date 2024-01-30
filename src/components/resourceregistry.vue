@@ -1,29 +1,37 @@
 <template>
   <div>
-
-  <json-forms
+    <json-forms
       :data="jsonldObj"
       :schema="schema"
       :uischema="uischemaNoProxy"
       :renderers="renderers"
-      @change="onChange"
-      :validationMode="currentValidationMode"
+
+      :validation-mode="currentValidationMode"
       :ajv="ajv"
-  />
-      <v-spacer></v-spacer>
-      <v-divider></v-divider>
+      @change="onChange"
+    />
+    <v-spacer />
+    <v-divider />
 
     <v-footer class="json_footer">
       <div>
-        <JsonViewer :json="jsonldObj" name="form JSON"></JsonViewer>
+        <JsonViewer
+          :json="jsonldObj"
+          name="form JSON"
+        />
       </div>
       <div>
-         <JsonViewer :json="unflattenLocal(jsonldObj)" name="JSON-LD"></JsonViewer>
+        <JsonViewer
+          :json="unflattenLocal(jsonldObj)"
+          name="JSON-LD"
+        />
       </div>
 
-      <save-files :json="jsonldObj" :originalName="filename"></save-files>
+      <save-files
+        :json="jsonldObj"
+        :original-name="filename"
+      />
     </v-footer>
-
   </div>
 </template>
 
@@ -71,13 +79,13 @@ const renderers = [
   ArrayOfStringRenderer,
   ArrayControlStringRenderer,
   ArrayLayoutRenderer,
-  EnumArrayObjectRenderer,
+ EnumArrayObjectRenderer,
   EcFunctionsRenderer
 
 ];
 
 export default defineComponent({
-  name: 'ecrrTool',
+  name: 'EcrrTool',
   components: {
     JsonForms,
     JsonViewer,
@@ -85,7 +93,7 @@ export default defineComponent({
   },
 
   props:{
-    jsonldfile: {type: String },
+    jsonldfile: {type: String,  },
     s3file: {type:String}
   },
   data() {
@@ -111,6 +119,15 @@ export default defineComponent({
       BUCKET: import.meta.env.VITE_BUCKET,
       filename:"tool.jsonld"
     };
+  },
+  computed:{
+    uischemaNoProxy(){
+      if (this.uischema){
+        return toRaw((this.uischema))
+      } else { return {} }
+
+    }
+
   },
   beforeCreate() {
     // schemaWithEnum().then(s =>{
@@ -148,15 +165,6 @@ export default defineComponent({
     //   this.jsonldObj =  await getFroms3( filepath, this.BUCKET, this.s3Credentials)
     // })
   },
-  computed:{
-    uischemaNoProxy(){
-      if (this.uischema){
-        return toRaw((this.uischema))
-      }
-
-    }
-
-  },
   methods: {
     async getUsers3(){
       let exampleData = await getFroms3(this.s3file, this.BUCKET, this.s3Credentials)
@@ -175,8 +183,8 @@ export default defineComponent({
       return unflatten(json,flattenList)
     },
     saveItem (json){
-      let jsonstring = JSON.stringify(json)
-      let itemMetadata = {
+      const jsonstring = JSON.stringify(json)
+      const itemMetadata = {
         status: 'draft',
          playground: true
       }
@@ -193,15 +201,15 @@ export default defineComponent({
     },
     async saveJsonLD(json){
       //var blob = new Blob([...JSON.stringify(json)], {type: "text/plain;charset=utf-8"});
-      let  jsonstring = JSON.stringify(json)
-        let res = await this.$dialog.prompt({
+      const  jsonstring = JSON.stringify(json)
+        const res = await this.$dialog.prompt({
           text: "FileName",
           title: "Title",
           persistent: this.persistent
         });
         if (res) {
           this.filename = res
-           var file = new File([jsonstring], this.filename, {type: "text/plain;charset=utf-8"});
+           const file = new File([jsonstring], this.filename, {type: "text/plain;charset=utf-8"});
           saveAs(file);
       }
 
@@ -221,7 +229,7 @@ export default defineComponent({
 
 </script>
 
-<style >
+<style>
 @import '@jsonforms/vue-vuetify/lib/jsonforms-vue-vuetify.esm.css';
 </style>
 <style scoped>

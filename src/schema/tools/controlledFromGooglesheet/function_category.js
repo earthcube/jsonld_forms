@@ -4,7 +4,7 @@ const functionList =   function()  {
      const nameCol = "Category"
     const proplCol ="URI"
      const sheet = suggestionSheet
-    let propList =  sheet.filter(o => o[nameCol]).map( o => {
+    const propList =  sheet.filter(o => o[nameCol]).map( o => {
         return  {  "title": o[nameCol],
             "const": {
                 "name": o[nameCol],

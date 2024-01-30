@@ -3,7 +3,7 @@ const oneOf =   function()  {
     const nameCol = "Expected lifetime"
     const proplCol ="URI"
      const sheet = csvFile
-     let propList =  sheet.filter(o => o[nameCol]).map( o => {
+     const propList =  sheet.filter(o => o[nameCol]).map( o => {
 
               return  {  "title": o[nameCol],
                            "const": {

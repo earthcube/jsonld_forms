@@ -1,4 +1,4 @@
- let cat1 = {
+ const cat1 = {
       "type": "Category",
       "label": "General Resource  Information",
       "elements": [

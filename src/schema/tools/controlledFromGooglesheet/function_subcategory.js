@@ -4,7 +4,7 @@ const subfunctionList =   function()  {
      const nameCol = "Combined (shown in the form)"
      const propCol ="URI"
      const sheet = suggestionSheet
-     let propList =  sheet.filter(o => o[nameCol]).map( o => {
+     const propList =  sheet.filter(o => o[nameCol]).map( o => {
          return  {  "title": o[nameCol],
              "const": {
                  "name": o[nameCol],

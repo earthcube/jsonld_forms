@@ -6,7 +6,7 @@ export const licenses =   function()  {
     //labels are abbreviated to fit in the form better
     const urlCol ="URI"
     const sheet = licenseSheet
-    let propList =  sheet.filter(o => o[nameCol]).map( o => {
+    const propList =  sheet.filter(o => o[nameCol]).map( o => {
 //values implemented as schema:CreativeWork
         return  {  "title": o[nameCol],
             "const": {

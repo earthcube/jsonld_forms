@@ -31,8 +31,8 @@ function s3Client (  s3Credentials, publicBucket){
 function saveToUser(jsonstring, filename,itemMetadata, toolname,  bucket, s3Credentials ){
 
     // Using fPutObject API upload your file to the bucket europetrip.
-    let path = `${s3Credentials.username}/${toolname}/${filename}`
-    var metaData = {
+    const path = `${s3Credentials.username}/${toolname}/${filename}`
+    const metaData = {
         'Content-Type': 'application/ld+json',
         'X-Amz-Meta-Testing': 1234,
         'X-Amz-Meta-Status' : itemMetadata.status?itemMetadata.status: 'draft',
@@ -44,8 +44,8 @@ function saveToUser(jsonstring, filename,itemMetadata, toolname,  bucket, s3Cred
 function saveToGroup(jsonstring, filename,itemMetadata, toolname, bucket, s3Credentials, group ){
 
     // Using fPutObject API upload your file to the bucket europetrip.
-    let path = `${group}/${toolname}/${filename}`
-    var metaData = {
+    const path = `${group}/${toolname}/${filename}`
+    const metaData = {
         'Content-Type': 'application/ld+json',
         'X-Amz-Meta-Testing': 1234,
         'X-Amz-Meta-Status' : itemMetadata.status?itemMetadata.status: 'draft',
@@ -91,11 +91,11 @@ const  listUserFiles = async function(  bucketName, toolname,  s3Credentials ){
     return new Promise (function(resolve, reject) {
         const minioClient = s3Client(s3Credentials, false)
 
-        let prefix = `${s3Credentials.username}/${toolname}/`
-        let recursive = true
+        const prefix = `${s3Credentials.username}/${toolname}/`
+        const recursive = true
 
-        var data = []
-        var stream =  minioClient.extensions.listObjectsV2WithMetadata(bucketName, prefix, recursive)
+        const data = []
+        const stream =  minioClient.extensions.listObjectsV2WithMetadata(bucketName, prefix, recursive)
         stream.on('data', function(obj) {
          console.log(obj)
          data.push(obj)
@@ -121,11 +121,11 @@ const  listRegistryFiles = async function(  bucketName, pathtopublished,  s3Cred
          //     useSSL: s3Credentials.useSsl
          //
          // });
-        let prefix = `${pathtopublished}/`
-        let recursive = true
+        const prefix = `${pathtopublished}/`
+        const recursive = true
 
-        var data = []
-        var stream =  minioClient.extensions.listObjectsV2WithMetadata(bucketName, prefix, recursive)
+        const data = []
+        const stream =  minioClient.extensions.listObjectsV2WithMetadata(bucketName, prefix, recursive)
         stream.on('data', function(obj) {
             console.log(obj)
             data.push(obj)

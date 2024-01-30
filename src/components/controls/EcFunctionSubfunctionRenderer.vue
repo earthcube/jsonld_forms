@@ -1,16 +1,25 @@
 <template>
-  <v-card v-if="control.visible" :class="styles.arrayList.root" elevation="0">
+  <v-card
+    v-if="control.visible"
+    :class="styles.arrayList.root"
+    elevation="0"
+  >
     <v-card-title>
-      <v-toolbar flat :class="styles.arrayList.toolbar">
-        <v-toolbar-title :class="styles.arrayList.label">{{
+      <v-toolbar
+        flat
+        :class="styles.arrayList.toolbar"
+      >
+        <v-toolbar-title :class="styles.arrayList.label">
+          {{
             computedLabel
-          }}</v-toolbar-title>
+          }}
+        </v-toolbar-title>
         <!--        <validation-icon-->
         <!--          v-if="control.childErrors.length > 0"-->
         <!--          :errors="control.childErrors"-->
         <!--        />-->
-        <v-spacer></v-spacer>
-<!--
+        <v-spacer />
+        <!--
         <v-tooltip bottom>
           <template v-slot:activator="{ on: onTooltip }">
             <v-btn
@@ -39,9 +48,12 @@
       </v-toolbar>
     </v-card-title>
     <v-card-text>
-      <v-container justify-space-around align-content-center>
-<!-- if we are planning to have both on screen at the same time, it feels better above the data -->
-<!--
+      <v-container
+        justify-space-around
+        align-content-center
+      >
+        <!-- if we are planning to have both on screen at the same time, it feels better above the data -->
+        <!--
           <v-combobox
               v-model="control.data"
               :items="control.uischema.options.suggestion"
@@ -51,22 +63,25 @@
           >
           </v-combobox>
 -->
-          <v-container v-if="noData" :class="styles.arrayList.noData">
-            No data
-          </v-container>
+        <v-container
+          v-if="noData"
+          :class="styles.arrayList.noData"
+        >
+          No data
+        </v-container>
 
         <v-row justify="center">
           <v-table class="array-container flex">
             <thead v-if="control.schema.type === 'object'">
-            <tr>
-              <th
+              <tr>
+                <th
                   v-for="(prop, index) in getValidColumnProps(control.schema)"
                   :key="`${control.path}-header-${index}`"
                   scope="col"
-              >
-                {{ title(prop) }}
-              </th>
-              <th
+                >
+                  {{ title(prop) }}
+                </th>
+                <th
                   v-if="control.enabled"
                   :class="
                     appliedOptions.showSortButtons
@@ -74,27 +89,26 @@
                       : 'fixed-cell-small'
                   "
                   scope="col"
-              ></th>
-            </tr>
+                />
+              </tr>
             </thead>
             <tbody>
-            <tr
+              <tr
                 v-for="(element, index) in control.data"
                 :key="`${control.path}-${index}`"
                 :class="styles.arrayList.item"
-            >
-              <td
+              >
+                <td
                   v-if="control.enabled"
                   :class="
                     appliedOptions.showSortButtons
                       ? 'fixed-cell'
                       : 'fixed-cell-small'
                   "
-              >
-                <v-tooltip bottom>
-                  <template v-slot:activator="{ on: onTooltip }">
-                    <v-btn
-                        v-on="onTooltip"
+                >
+                  <v-tooltip bottom>
+                    <template #activator="{ on: onTooltip }">
+                      <v-btn
                         v-if="appliedOptions.showSortButtons"
                         fab
                         text
@@ -103,17 +117,19 @@
                         aria-label="Move up"
                         :disabled="index <= 0 || !control.enabled"
                         :class="styles.arrayList.itemMoveUp"
-                        @click="moveUpClick($event, index)"
-                    >
-                      <v-icon class="notranslate">mdi-arrow-up</v-icon>
-                    </v-btn>
-                  </template>
-                  Move Up
-                </v-tooltip>
-                <v-tooltip bottom>
-                  <template v-slot:activator="{ on: onTooltip }">
-                    <v-btn
                         v-on="onTooltip"
+                        @click="moveUpClick($event, index)"
+                      >
+                        <v-icon class="notranslate">
+                          mdi-arrow-up
+                        </v-icon>
+                      </v-btn>
+                    </template>
+                    Move Up
+                  </v-tooltip>
+                  <v-tooltip bottom>
+                    <template #activator="{ on: onTooltip }">
+                      <v-btn
                         v-if="appliedOptions.showSortButtons"
                         fab
                         text
@@ -124,43 +140,48 @@
                           index >= control.data.length - 1 || !control.enabled
                         "
                         :class="styles.arrayList.itemMoveDown"
+                        v-on="onTooltip"
                         @click="moveDownClick($event, index)"
-                    >
-                      <v-icon class="notranslate">mdi-arrow-down</v-icon>
-                    </v-btn>
-                  </template>
-                  Move Down
-                </v-tooltip>
+                      >
+                        <v-icon class="notranslate">
+                          mdi-arrow-down
+                        </v-icon>
+                      </v-btn>
+                    </template>
+                    Move Down
+                  </v-tooltip>
 
-                <div class="remove_button">
+                  <div class="remove_button">
                     <v-tooltip bottom>
-                      <template v-slot:activator="{ on: onTooltip }">
+                      <template #activator="{ on: onTooltip }">
                         <v-btn
-                            v-on="onTooltip"
-                            fab
-                            text
-                            elevation="0"
-                            small
-                            color="#E2E2E2"
-                            aria-label="Delete"
-                            :class="styles.arrayList.itemDelete"
-                            :disabled="
-                              !control.enabled ||
+                          fab
+                          text
+                          elevation="0"
+                          small
+                          color="#E2E2E2"
+                          aria-label="Delete"
+                          :class="styles.arrayList.itemDelete"
+                          :disabled="
+                            !control.enabled ||
                               (appliedOptions.restrict &&
                                 arraySchema !== undefined &&
                                 arraySchema.minItems !== undefined &&
                                 control.data.length <= arraySchema.minItems)
-                            "
-                            @click="removeItemsClick($event, [index])"
+                          "
+                          v-on="onTooltip"
+                          @click="removeItemsClick($event, [index])"
                         >
-                          <v-icon class="notranslate">mdi-minus-circle</v-icon>
+                          <v-icon class="notranslate">
+                            mdi-minus-circle
+                          </v-icon>
                         </v-btn>
                       </template>
                       Delete
                     </v-tooltip>
-                </div>
-              </td>
-              <td
+                  </div>
+                </td>
+                <td
                   v-for="propName in getValidColumnProps(control.schema)"
                   :key="
                     composePaths(
@@ -168,49 +189,48 @@
                       propName
                     )
                   "
-              >
-                <dispatch-renderer
+                >
+                  <dispatch-renderer
                     :schema="control.schema"
                     :uischema="resolveUiSchema(propName)"
                     :path="composePaths(control.path, `${index}`)"
                     :enabled="control.enabled"
                     :renderers="control.renderers"
                     :cells="control.cells"
-                />
-              </td>
-            </tr>
+                  />
+                </td>
+              </tr>
             </tbody>
           </v-table>
         </v-row>
 
         <div class="add_button">
-            <v-tooltip bottom>
-              <template v-slot:activator="{ on: onTooltip }">
-                <v-btn
-                    fab
-                    text
-                    elevation="0"
-                    small
-                    color="#70A5C9"
-                    :aria-label="`Add to ${control.label}`"
-                    v-on="onTooltip"
-                    :class="styles.arrayList.addButton"
-                    :disabled="
-                    !control.enabled ||
+          <v-tooltip bottom>
+            <template #activator="{ on: onTooltip }">
+              <v-btn
+                fab
+                text
+                elevation="0"
+                small
+                color="#70A5C9"
+                :aria-label="`Add to ${control.label}`"
+                :class="styles.arrayList.addButton"
+                :disabled="
+                  !control.enabled ||
                     (appliedOptions.restrict &&
                       arraySchema !== undefined &&
                       arraySchema.maxItems !== undefined &&
                       control.data.length >= arraySchema.maxItems)
-                  "
-                    @click="addButtonClick"
-                >
-                  <v-icon>mdi-plus-circle</v-icon>
-                </v-btn>
-              </template>
-              {{ `Add to ${control.label}` }}
-            </v-tooltip>
+                "
+                v-on="onTooltip"
+                @click="addButtonClick"
+              >
+                <v-icon>mdi-plus-circle</v-icon>
+              </v-btn>
+            </template>
+            {{ `Add to ${control.label}` }}
+          </v-tooltip>
         </div>
-
       </v-container>
     </v-card-text>
   </v-card>
@@ -260,7 +280,7 @@ import {
 //import { ValidationIcon, ValidationBadge } from '../controls/components/index';
 
 const controlRenderer = defineComponent({
-  name: 'ecfunction-control-renderer',
+  name: 'EcfunctionControlRenderer',
   components: {
     DispatchCell,
     DispatchRenderer,

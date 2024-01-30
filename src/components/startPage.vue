@@ -1,21 +1,29 @@
 <template>
   <v-main>
     <div class="padded">
-        <h2>Forms</h2>
-        <v-list>
-          <v-list-item>
-            <v-btn large color="primary" background-color="#18598B" class="create_resource_button" to="/ecrr">Create Resource Description</v-btn>
-<!--            <router-link to="/ecrr" >Create Resource Description</router-link>-->
-          </v-list-item>
-        </v-list>
+      <h2>Forms</h2>
+      <v-list>
+        <v-list-item>
+          <v-btn
+            large
+            color="primary"
+            background-color="#18598B"
+            class="create_resource_button"
+            to="/ecrr"
+          >
+            Create Resource Description
+          </v-btn>
+          <!--            <router-link to="/ecrr" >Create Resource Description</router-link>-->
+        </v-list-item>
+      </v-list>
     </div>
 
-    <v-divider></v-divider>
+    <v-divider />
 
     <div class="padded">
-        <examples></examples>
-        <list-user-files></list-user-files>
-        <list-registry-files></list-registry-files>
+      <examples />
+      <list-user-files />
+      <list-registry-files />
     </div>
   </v-main>
 </template>
@@ -26,7 +34,7 @@ import listUserFiles from "@/components/listUserFiles.vue";
 import listRegistryFiles from "@/components/listRegistryFiles.vue";
 import {defineComponent} from "vue";
 export default defineComponent( {
-  name: "startPage",
+  name: "StartPage",
   components: {
     examples,
     listUserFiles,

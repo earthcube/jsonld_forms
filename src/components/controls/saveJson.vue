@@ -1,18 +1,17 @@
 <template>
   <v-row justify="center">
-
     <v-dialog
-        v-model="dialog"
-        persistent
-        max-width="600px"
+      v-model="dialog"
+      persistent
+      max-width="600px"
     >
-      <template v-slot:activator="{ on, attrs }">
+      <template #activator="{ on, attrs }">
         <v-btn
-            v-bind="attrs"
-            color="primary"
-            dark
+          v-bind="attrs"
+          color="primary"
+          dark
 
-            v-on="on"
+          @click="on"
         >
           Save File
         </v-btn>
@@ -25,41 +24,39 @@
           <v-container>
             <v-row>
               <v-col
-                  cols="12"
-                  sm="6"
-                  md="4"
+                cols="12"
+                sm="6"
+                md="4"
               >
                 <v-text-field
-                    label="Filename"
-                    required
-                    v-model="filename"
-                ></v-text-field>
+                  v-model="filename"
+                  label="Filename"
+                  required
+                />
               </v-col>
-
             </v-row>
           </v-container>
-
         </v-card-text>
         <v-card-actions>
-          <v-spacer></v-spacer>
+          <v-spacer />
           <v-btn
-              color="blue darken-1"
-              text
-              @click="dialog = false"
+            color="blue darken-1"
+            text
+            @click="dialog = false"
           >
             Close
           </v-btn>
           <v-btn
-              color="blue darken-1"
-              text
-              @click="saveItemS3(json)"
+            color="blue darken-1"
+            text
+            @click="saveItemS3(json)"
           >
             Save to S3
           </v-btn>
           <v-btn
-              color="blue darken-1"
-              text
-              @click="downloadJsonLD(json)"
+            color="blue darken-1"
+            text
+            @click="downloadJsonLD(json)"
           >
             Download File
           </v-btn>
@@ -76,7 +73,7 @@ import {saveToUser} from "../../js/s3store";
 import {saveAs} from "file-saver";
 
 export default {
-  name: "saveDialog",
+  name: "SaveDialog",
   props: {
     json: {type: Object },
     originalName: {type: String },
@@ -106,8 +103,8 @@ export default {
       return unflatten(json,flattenList)
     },
     saveItemS3 (json){
-      let jsonstring = JSON.stringify(json)
-      let itemMetadata = {
+      const jsonstring = JSON.stringify(json)
+      const itemMetadata = {
         status: 'draft',
         playground: true
       }
@@ -124,10 +121,10 @@ export default {
     },
     async downloadJsonLD(json){
       //var blob = new Blob([...JSON.stringify(json)], {type: "text/plain;charset=utf-8"});
-      let  jsonstring = JSON.stringify(json)
+      const  jsonstring = JSON.stringify(json)
 
 
-        var file = new File([jsonstring], this.filename, {type: "text/plain;charset=utf-8"});
+        const file = new File([jsonstring], this.filename, {type: "text/plain;charset=utf-8"});
         saveAs(file);
 
 

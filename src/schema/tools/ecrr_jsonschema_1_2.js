@@ -1085,7 +1085,7 @@ resourceTypeList,
     licenseList
  */
 const withEnum = function () {
-    let rtypes = resourceTypeList().anyOf;
+    const rtypes = resourceTypeList().anyOf;
     // let spectype = specificationOneOf().oneOf;
     // let semrestype = semanticResourceOneOf().oneOf;
 //   rtypes = rtypes.concat(spectype).concat(semrestype)
@@ -1093,29 +1093,29 @@ const withEnum = function () {
     jsonschema.properties.mainEntity.items.anyOf = rtypes;
     //need to concatenate specificationType list and semanticResource type list to resource type list
 
-    let functions = functionList();
+    const functions = functionList();
     jsonschema.properties.applicationCategory.items = functions;
     //doesn't handle function subcategories    TBD  :  subcategories !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    let runtimePlatforms = runtimeEnumList();
+    const runtimePlatforms = runtimeEnumList();
     jsonschema.properties.runtimePlatform.items = runtimePlatforms;
 
-    let audience = audienceList();
+    const audience = audienceList();
     jsonschema.properties.audience.items = audience;
 
-    let commprotocols = communicationList();
+    const commprotocols = communicationList();
     jsonschema.properties.communicationProtocol.items = commprotocols;
 
-    let scienceDomains = scienceDomainList();
+    const scienceDomains = scienceDomainList();
     jsonschema.properties.about.items = scienceDomains;
 
-    let maturity = maturityOneOf();
+    const maturity = maturityOneOf();
     jsonschema.properties.resourceMaturity.items = maturity;
 
-    let lifetime = lifetimeOneOf();
+    const lifetime = lifetimeOneOf();
     jsonschema.properties.expectedLifetime.items = lifetime;
 
-    let licenses = licenseList();
+    const licenses = licenseList();
     jsonschema.properties.license.items = licenses;
 
     return jsonschema;

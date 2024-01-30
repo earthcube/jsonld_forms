@@ -1,38 +1,46 @@
 <template>
   <div>
-    <v-spacer></v-spacer>
+    <v-spacer />
     <h2>User Files</h2>
 
 
-    <v-container fluid ma-0 pa-0>
+    <v-container
+      fluid
+      ma-0
+      pa-0
+    >
       <v-data-iterator
-          :items="userItems"
-          item-key="etag"
-          :items-per-page="itemsPerPage"
-          :page="page"
-          hide-default-footer
+        :items="userItems"
+        item-key="etag"
+        :items-per-page="itemsPerPage"
+        :page="page"
+        hide-default-footer
       >
-        <template v-slot:header>
+        <template #header>
           <v-toolbar
-              class="mb-2"
-              color="#aaa"
-              dark
-              flat
+            class="mb-2"
+            color="#aaa"
+            dark
+            flat
           >
             <v-toolbar-title>User Files</v-toolbar-title>
           </v-toolbar>
         </template>
 
-        <template v-slot:default="{items}">
+        <template #default="{items}">
           <div class="json_list">
             <v-card
-                v-for="(item, i) in items"
-                    :key="item.raw.name"
-                    :to="{ name: 'ECRR', query: { jsonldfile:item.raw.file }}"
+              v-for="(item, i) in items"
+              :key="item.raw.name"
+              :to="{ name: 'ECRR', query: { jsonldfile:item.raw.file }}"
             >
               <v-card-title>
-                <div class="json_name">{{ item.raw.name }}</div>
-                <div class="button_label">Load File</div>
+                <div class="json_name">
+                  {{ item.raw.name }}
+                </div>
+                <div class="button_label">
+                  Load File
+                </div>
                 <!--
                 no longer needed as the entire card is clickable
                                   <v-btn
@@ -78,23 +86,23 @@
                     </v-row>
           -->
         </template>
-        <template v-slot:footer>
+        <template #footer>
           <v-row
-              class="mt-4"
-              align="center"
-              justify="center"
+            class="mt-4"
+            align="center"
+            justify="center"
           >
             <span class="grey--text">Items per page</span>
             <v-menu offset-y>
-              <template v-slot:activator="{ on, attrs }">
+              <template #activator="{ on, attrs }">
                 <v-btn
-                    v-bind="attrs"
-                    dark
-                    text
-                    color="#18598B"
-                    class="ml-2"
+                  v-bind="attrs"
+                  dark
+                  text
+                  color="#18598B"
+                  class="ml-2"
 
-                    v-on:click="on"
+                  @click="on"
                 >
                   {{ itemsPerPage }}
                   <v-icon>mdi-chevron-down</v-icon>
@@ -102,38 +110,38 @@
               </template>
               <v-list>
                 <v-list-item
-                    v-for="(number, index) in itemsPerPageArray"
-                    :key="index"
-                    @click="updateItemsPerPage(number)"
+                  v-for="(number, index) in itemsPerPageArray"
+                  :key="index"
+                  @click="updateItemsPerPage(number)"
                 >
                   <v-list-item-title>{{ number }}</v-list-item-title>
                 </v-list-item>
               </v-list>
             </v-menu>
 
-            <v-spacer></v-spacer>
+            <v-spacer />
 
             <span
-                class="mr-4
+              class="mr-4
             grey--text"
             >
-            Page {{ page }} of {{ numberOfPages }}
-          </span>
+              Page {{ page }} of {{ numberOfPages }}
+            </span>
             <v-btn
-                fab
-                dark
-                color="#18598B"
-                class="mr-1"
-                @click="formerPage"
+              fab
+              dark
+              color="#18598B"
+              class="mr-1"
+              @click="formerPage"
             >
               <v-icon>mdi-chevron-left</v-icon>
             </v-btn>
             <v-btn
-                fab
-                dark
-                color="#18598B"
-                class="ml-1"
-                @click="nextPage"
+              fab
+              dark
+              color="#18598B"
+              class="ml-1"
+              @click="nextPage"
             >
               <v-icon>mdi-chevron-right</v-icon>
             </v-btn>
@@ -148,7 +156,7 @@
 import {listUserFiles, getFroms3} from '../js/s3store'
 
 export default {
-  name: "listUserFiles",
+  name: "ListUserFiles",
   emits:['loadfile'],
   data() {
     return {
@@ -168,13 +176,6 @@ export default {
       itemsPerPageArray: [4, 8, 12],
     }
   },
-   async mounted(){
-    listUserFiles(this.BUCKET,'resourceregistry', this.s3Credentials).then(
-        (data) => this.userItems = data
-    )
-
-
-   },
   computed: {
     numberOfPages () {
       return Math.ceil(this.userItems.length / this.itemsPerPage)
@@ -183,10 +184,17 @@ export default {
       return this.keys.filter(key => key !== 'Name')
     },
   },
+   async mounted(){
+    listUserFiles(this.BUCKET,'resourceregistry', this.s3Credentials).then(
+        (data) => this.userItems = data
+    )
+
+
+   },
   methods:{
     async loadFile (name){
-      var filepath = name
-      let file = await getFroms3( filepath, this.BUCKET, this.s3Credentials)
+      const filepath = name
+      const file = await getFroms3( filepath, this.BUCKET, this.s3Credentials)
       console.log(file)
       this.$emit('loadfile', name)
     },

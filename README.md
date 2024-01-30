@@ -2,7 +2,7 @@
 
 [Development website](https://ecjsonforms.netlify.app/#/)
 
-[Notes](./NOTES.txt)
+[Notes](./NOTES)
 
 Using :
 * https://jsonforms-vuetify-renderers.netlify.app/#/

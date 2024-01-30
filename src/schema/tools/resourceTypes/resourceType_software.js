@@ -284,14 +284,14 @@ const resourceTypeBase = {
   ]
 };
 const resourceType = function() {
-  let functionsuggestionList = functionsuggestion();
-  let applicationCategory = _.find(resourceTypeBase.elements, o => {
+  const functionsuggestionList = functionsuggestion();
+  const applicationCategory = _.find(resourceTypeBase.elements, o => {
     return o.scope === '#/properties/applicationCategory';
   });
   applicationCategory.options.suggestion = functionsuggestionList;
 
-  let runtime = runtimeSuggestionList();
-  let runtimeElement = _.find(resourceTypeBase.elements, o => {
+  const runtime = runtimeSuggestionList();
+  const runtimeElement = _.find(resourceTypeBase.elements, o => {
     return o.scope === '#/properties/runtimePlatform';
   });
   runtimeElement.options.suggestion = runtime;

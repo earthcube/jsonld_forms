@@ -1,6 +1,9 @@
 <template>
-  <v-container fluid v-if="control.visible">
-<!--
+  <v-container
+    v-if="control.visible"
+    fluid
+  >
+    <!--
     <v-row>
       <div class="text-center">
         <v-chip v-for="l in this.control.data " :key="l.name"
@@ -29,30 +32,33 @@
     </v-row>
 -->
     <div class="chip_list">
-        <v-chip v-for="l in this.control.data " :key="l.name"
-                class="ma-2"
-                close
-                @click:close="toggle(l)"
-        >
-          {{ l.name }}
-        </v-chip>
+      <v-chip
+        v-for="l in control.data "
+        :key="l.name"
+        class="ma-2"
+        close
+        @click:close="toggle(l, true)"
+      >
+        {{ l.name }}
+      </v-chip>
     </div>
 
     <div class="multiple_columns">
-        <v-checkbox
-            v-bind="vuetifyProps(`v-checkbox[${o.value}]`)"
-            v-for="(o, index) in control.options" :key="o.value.name"
+      <v-checkbox
+        v-for="(o, index) in control.options"
+        v-bind="vuetifyProps(`v-checkbox[${o.value}]`)"
+        :id="control.id + `-input-${index}`"
 
-                    :label="o.label"
-          :input-value="dataHasEnum(o.value)"
-          :id="control.id + `-input-${index}`"
-          :path="composePaths(control.path, `${index}`)"
-          :error-messages="control.errors"
-          :disabled="!control.enabled"
-          :indeterminate="control.data === undefined"
+        :key="o.value.name"
+        :label="o.label"
+        :input-value="dataHasEnum(o.value)"
+        :path="composePaths(control.path, `${index}`)"
+        :error-messages="control.errors"
+        :disabled="!control.enabled"
+        :indeterminate="control.data === undefined"
 
-          @change="(value) => toggle(o.value, value)"
-        ></v-checkbox>
+        @change="(value) => toggle(o.value, value)"
+      />
     </div>
   </v-container>
 </template>
@@ -99,7 +105,7 @@ const useJsonFormsMultiEnumControl = (props: ControlProps) => {
 };
 
 const controlRenderer = defineComponent({
-  name: 'enum-array-renderer',
+  name: 'EnumArrayRenderer',
   components: {
     DispatchRenderer,
     VCheckbox,
@@ -111,6 +117,9 @@ const controlRenderer = defineComponent({
   props: {
     ...rendererProps<ControlElement>(),
   },
+  setup(props: RendererProps<ControlElement>) {
+    return useVuetifyBasicControl(useJsonFormsMultiEnumControl(props));
+  },
   data: ()=> {
     return {
       model: [],
@@ -118,19 +127,18 @@ const controlRenderer = defineComponent({
     }
 
   },
-  setup(props: RendererProps<ControlElement>) {
-    return useVuetifyBasicControl(useJsonFormsMultiEnumControl(props));
-  },
   computed: {
     getLabel(): string| undefined{
       if (this.control.label){
         return this.control.label
       }
+      return undefined
     },
     getDescription(): string| undefined{
       if (this.control.description){
         return this.control.description
       }
+      return undefined
     }
   },
   methods: {
