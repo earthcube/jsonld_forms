@@ -4,7 +4,7 @@
   <json-forms
       :data="jsonldObj"
       :schema="schema"
-      :uischema="uischema"
+      :uischema="uischemaNoProxy"
       :renderers="renderers"
       @change="onChange"
       :validationMode="currentValidationMode"
@@ -30,10 +30,10 @@
 <script>
 import { JsonForms } from '@jsonforms/vue';
 import { vuetifyRenderers } from '@jsonforms/vue-vuetify';
-import {defineComponent} from "vue";
+import {defineComponent, toRaw} from "vue";
 //import VueJsonPretty from 'vue-json-pretty';
 import 'vue-json-pretty/lib/styles.css';
-
+import {merge } from 'lodash'
 
 import {default as saveFiles} from '@/components/controls/saveJson.vue'
 import { default as schema, schemaWithEnum , flattenList} from '@/schema/tools/ecrr_jsonschema_1_1' ;
@@ -121,17 +121,18 @@ export default defineComponent({
     this.jsonldObj = JSON.parse(baseJsonLdObj)
 
   },
-     created() {
+  created() {
     if (this.jsonldfile){
 
       //let exampleData = require('@/assets/examples/' +  this.jsonldfile);
       const exampleDataUrl = `/examples/${this.jsonldfile}`
      // const exampleDataUrl = new URL(`./${this.jsonldfile}`, import.meta.url).href
-      fetch(exampleDataUrl ).then( response => {
-        this.filename = this.jsonldfile.substring(this.jsonldfile.lastIndexOf('/')+1)
-        let exampleData =response.json()
-        exampleData =    flatten(exampleData, flattenList)
-        this.jsonldObj = Object.assign({}, this.jsonldObj, exampleData)
+      fetch(exampleDataUrl ).then(  async response => {
+        this.filename = this.jsonldfile.substring(this.jsonldfile.lastIndexOf('/') + 1)
+        let exampleData = await response.json()
+        exampleData = flatten(exampleData, flattenList)
+        this.jsonldObj = merge({}, this.jsonldObj, exampleData)
+        console.info(`assigned value to jsonldboj ${JSON.stringify(this.jsonldObj)}`)
       }).catch((err) => {console.error(`issue accessing ${exampleDataUrl} ${err}`)})
       // fails
       //import exampleData  from `@/assets/tools/argovis-Notebook.jsonld.json?raw`
@@ -148,18 +149,24 @@ export default defineComponent({
     // })
   },
   computed:{
+    uischemaNoProxy(){
+      if (this.uischema){
+        return toRaw((this.uischema))
+      }
+
+    }
 
   },
   methods: {
     async getUsers3(){
       let exampleData = await getFroms3(this.s3file, this.BUCKET, this.s3Credentials)
       exampleData = flatten(exampleData, flattenList)
-      this.jsonldObj = Object.assign({}, this.jsonldObj, exampleData)
+      this.jsonldObj = merge({}, this.jsonldObj, exampleData)
     },
     async getJsonLDFromPublic3(){
       let exampleData = await getFroms3(this.s3file, this.BUCKET, this.s3Credentials)
       exampleData = flatten(exampleData, flattenList)
-      this.jsonldObj = Object.assign({}, this.jsonldObj, exampleData)
+      this.jsonldObj = merge({}, this.jsonldObj, exampleData)
     },
     onChange(event) {
       this.jsonldObj = event.data;
@@ -214,10 +221,10 @@ export default defineComponent({
 
 </script>
 
-<style scoped>
+<style >
 @import '@jsonforms/vue-vuetify/lib/jsonforms-vue-vuetify.esm.css';
 </style>
-<style>
+<style scoped>
 
 .json_footer {
     display: flex;

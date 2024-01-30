@@ -8,7 +8,7 @@
             color="blue"
             dark
 
-            v-on="on"
+            v-on:click="on"
 
             class="float-right"
         >

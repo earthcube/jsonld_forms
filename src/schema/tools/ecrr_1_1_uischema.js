@@ -5,8 +5,8 @@ const schema = {
 
   elements: [],
   options: {
-    variant: 'stepper',
-    showNavButtons: true,
+    "variant": 'stepper',
+    "showNavButtons": true,
     "vertical": false
   }
 };

@@ -55,7 +55,7 @@
                     color="#18598B"
                     class="ml-2"
 
-                    v-on="on"
+                    v-on:click="on"
                 >
                   {{ itemsPerPage }}
                   <v-icon>mdi-chevron-down</v-icon>

@@ -94,7 +94,7 @@
                     color="#18598B"
                     class="ml-2"
 
-                    v-on="on"
+                    v-on:click="on"
                 >
                   {{ itemsPerPage }}
                   <v-icon>mdi-chevron-down</v-icon>
@@ -149,6 +149,7 @@ import {listUserFiles, getFroms3} from '../js/s3store'
 
 export default {
   name: "listUserFiles",
+  emits:['loadfile'],
   data() {
     return {
       singleExpand: false,
