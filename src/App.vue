@@ -5,7 +5,6 @@
       color="primary"
       dark
     >
-
       <div class="d-flex align-items-center">
         <v-img
           alt="EC Logo"
@@ -26,63 +25,71 @@
         />
       </div>
 
-      <h2 class="toolbar_title">{{$route.name}}</h2>
-<!--      <v-toolbar-items><h2 style="color:white;">{{$route.name}}</h2></v-toolbar-items>-->
-<!--      <v-spacer></v-spacer> -->
+      <h2 class="toolbar_title">
+        {{ $route.name }}
+      </h2>
+      <!--      <v-toolbar-items><h2 style="color:white;">{{$route.name}}</h2></v-toolbar-items>-->
+      <!--      <v-spacer></v-spacer> -->
     </v-app-bar>
 
     <v-main>
-      <router-view></router-view>
+      <router-view />
     </v-main>
 
-    <v-footer padless class="text-center">
-        <div class="footer_links">
-      <v-btn
+    <v-footer
+      padless
+      class="text-center"
+    >
+      <div class="footer_links">
+        <v-btn
           href="https://github.com/earthcube/jsonld_forms"
           target="_blank"
           text
-      >
-         <span class="mr-2">Github</span>
-        <v-icon>mdi-github-circle</v-icon>
-      </v-btn>
-      <v-btn
+        >
+          <span class="mr-2">Github</span>
+          <v-icon>mdi-github-circle</v-icon>
+        </v-btn>
+        <v-btn
           href="https://jsonforms-vuetify-renderers.netlify.app/"
           target="_blank"
           text
-      >
-        <span class="mr-2">JSON-LD Vuetify Forms Examples</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-      <v-btn
+        >
+          <span class="mr-2">JSON-LD Vuetify Forms Examples</span>
+          <v-icon>mdi-open-in-new</v-icon>
+        </v-btn>
+        <v-btn
           href="https://github.com/eclipsesource/jsonforms-vuetify-renderers/"
           target="_blank"
           text
-      >
-        <span class="mr-2">JSON-LD Vuetify Forms Github</span>
-        <v-icon>mdi-github-circle</v-icon>
-      </v-btn>
-      <v-btn
+        >
+          <span class="mr-2">JSON-LD Vuetify Forms Github</span>
+          <v-icon>mdi-github-circle</v-icon>
+        </v-btn>
+        <v-btn
           href="https://vuetifyjs.com/en/introduction/why-vuetify/"
           target="_blank"
           text
-      >
-        <span class="mr-2">Using Vuetify</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-      <v-btn
+        >
+          <span class="mr-2">Using Vuetify</span>
+          <v-icon>mdi-open-in-new</v-icon>
+        </v-btn>
+        <v-btn
           href="https://github.com/vuetifyjs/vuetify/"
           target="_blank"
           text
-      >
-        <span class="mr-2"> Vuetify github</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-      <a href="https://www.netlify.com"> <img src="https://www.netlify.com/v3/img/components/netlify-color-bg.svg" alt="Deploys by Netlify" /> </a>
-        </div>
+        >
+          <span class="mr-2"> Vuetify github</span>
+          <v-icon>mdi-open-in-new</v-icon>
+        </v-btn>
+        <a href="https://www.netlify.com"> <img
+          src="https://www.netlify.com/v3/img/components/netlify-color-bg.svg"
+          alt="Deploys by Netlify"
+        > </a>
+      </div>
 
-        <div class="footer_links">
-            <div>{{ new Date().getFullYear() }}&mdash;<strong>Geocodes Schema.org JSONLD Creator Application</strong></div>
-        </div>
+      <div class="footer_links">
+        <div>{{ new Date().getFullYear() }}&mdash;<strong>Geocodes Schema.org JSONLD Creator Application</strong></div>
+      </div>
     </v-footer>
   </v-app>
 </template>

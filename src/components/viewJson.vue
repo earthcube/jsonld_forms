@@ -4,16 +4,16 @@
       scrollable
       inset
     >
-      <template #activator="{ on, attrs }">
+      <template #activator="{ props }">
         <v-fab-transition>
           <v-btn
-            v-bind="attrs"
+            v-bind="props"
             color="blue"
             dark
 
             class="float-right"
 
-            @click="on"
+
           >
             {{ name }}
           </v-btn>
