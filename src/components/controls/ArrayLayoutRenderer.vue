@@ -2,7 +2,6 @@
   <v-card
     v-if="control.visible"
     :class="styles.arrayList.root"
-    elevation="0"
   >
     <v-card-title>
       <v-toolbar
@@ -14,44 +13,67 @@
             computedLabel
           }}
         </v-toolbar-title>
-        <!--        <validation-icon-->
-        <!--          v-if="control.childErrors.length > 0"-->
-        <!--          :errors="control.childErrors"-->
-        <!--        />-->
-        <v-messages :value="[control.description]" />
+        <validation-icon
+          v-if="
+            control.childErrors.length > 0 &&
+              !appliedOptions.hideArraySummaryValidation
+          "
+          :errors="control.childErrors"
+          :class="styles.arrayList.validationIcon"
+        />
         <v-spacer />
+        <slot
+          name="toolbar-elements"
+          :labels="translatedLabels"
+          :add-class="styles.arrayList.addButton"
+          :add-disabled="addDisabled"
+          :add-click="addButtonClick"
+          :control="control"
+          :applied-options="appliedOptions"
+          :styles="styles"
+        >
+          <v-tooltip bottom>
+            <template #activator="{ props }">
+              <v-btn
+                  v-bind="props"
+                  fab
+                text
+                elevation="0"
+                small
+                :aria-label="translatedLabels.add"
+                :class="styles.arrayList.addButton"
+                :disabled="addDisabled"
+                @click="addButtonClick"
+              >
+                <v-icon>mdi-plus</v-icon>
+              </v-btn>
+            </template>
+            {{ translatedLabels.add }}
+          </v-tooltip>
+        </slot>
       </v-toolbar>
     </v-card-title>
     <v-card-text>
       <v-container
-        v-if="noData"
-        :class="styles.arrayList.noData"
-      >
-        No data
-      </v-container>
-
-      <v-container
         justify-space-around
         align-content-center
+        :class="styles.arrayList.container"
       >
         <v-row justify="center">
           <v-expansion-panels
+            v-bind="expansionPanelsProps"
             v-model="currentlyExpanded"
             accordion
-            focusable
           >
             <v-expansion-panel
-              v-for="(element, index) in control.data"
+              v-for="(_element, index) in control.data"
               :key="`${control.path}-${index}`"
               :class="styles.arrayList.item"
             >
-              <v-expansion-panel-text
-                :class="styles.arrayList.itemHeader"
-                class="pl-5 pt-0 pb-2"
-              >
+              <v-expansion-panel-title :class="styles.arrayList.itemHeader">
                 <v-container
                   py-0
-                  pa-0
+                  :class="styles.arrayList.itemContainer"
                 >
                   <v-row
                     :style="`display: grid; grid-template-columns: ${
@@ -63,59 +85,30 @@
                     }`"
                   >
                     <v-col
+                      v-if="!hideAvatar"
                       align-self="center"
                       class="pl-0"
                     >
-                      <div class="remove_button">
-                        <v-tooltip bottom>
-                          <template #activator="{ props }">
-                            <v-btn
-                              v-bind="props"
-                              fab
-                              text
-                              elevation="0"
-                              small
-                              color="#E2E2E2"
-                              class="v-expansion-panel-header__icon"
-                              aria-label="Delete"
-                              :class="styles.arrayList.itemDelete"
-                              :disabled="
-                                !control.enabled ||
-                                  (appliedOptions.restrict &&
-                                    arraySchema !== undefined &&
-                                    arraySchema.minItems !== undefined &&
-                                    control.data.length <= arraySchema.minItems)
-                              "
-                              @click.stop="suggestToDelete = index"
-                            >
-                              <v-icon class="notranslate">
-                                mdi-minus-circle
-                              </v-icon>
-                            </v-btn>
-                          </template>
-                          Delete
-                        </v-tooltip>
-                      </div>
-                    </v-col>
-                    <!--
-                    <v-col v-if="!hideAvatar" align-self="center" px-0>
                       <validation-badge
                         overlap
                         bordered
                         :errors="childErrors(index)"
                       >
-                        <v-avatar size="40" aria-label="Index" color="primary"
-                          ><span class="primary&#45;&#45;text text&#45;&#45;lighten-5">{{
-                            index + 1
-                          }}</span></v-avatar
+                        <v-avatar
+                          size="40"
+                          aria-label="Index"
+                          color="primary"
                         >
+                          <span class="primary--text text--lighten-5">{{
+                            index + 1
+                          }}</span>
+                        </v-avatar>
                       </validation-badge>
                     </v-col>
--->
 
                     <v-col
                       align-self="center"
-                      :class="`text-truncate ${styles.arrayList.itemLabel}`"
+                      :class="`pl-0 text-truncate ${styles.arrayList.itemLabel}`"
                     >
                       {{ childLabelForIndex(index) }}
                     </v-col>
@@ -131,8 +124,8 @@
                             text
                             elevation="0"
                             small
-                            class="v-expansion-panel-header__icon"
-                            aria-label="Move up"
+                            class="v-expansion-panel-title__icon"
+                            :aria-label="translatedLabels.moveUp"
                             :disabled="index <= 0 || !control.enabled"
                             :class="styles.arrayList.itemMoveUp"
                             @click="moveUpClick($event, index)"
@@ -142,7 +135,7 @@
                             </v-icon>
                           </v-btn>
                         </template>
-                        Move Up
+                        {{ translatedLabels.moveUp }}
                       </v-tooltip>
                     </v-col>
                     <v-col
@@ -157,11 +150,10 @@
                             text
                             elevation="0"
                             small
-                            class="v-expansion-panel-header__icon"
-                            aria-label="Move down"
+                            class="v-expansion-panel-title__icon"
+                            :aria-label="translatedLabels.moveDown"
                             :disabled="
-                              index >= control.data.length - 1 ||
-                                !control.enabled
+                              index >= dataLength - 1 || !control.enabled
                             "
                             :class="styles.arrayList.itemMoveDown"
                             @click="moveDownClick($event, index)"
@@ -171,12 +163,41 @@
                             </v-icon>
                           </v-btn>
                         </template>
-                        Move Down
+                        {{ translatedLabels.moveDown }}
+                      </v-tooltip>
+                    </v-col>
+                    <v-col align-self="center">
+                      <v-tooltip bottom>
+                        <template #activator="{ props }">
+                          <v-btn
+                            v-bind="props"
+                            fab
+                            text
+                            elevation="0"
+                            small
+                            class="v-expansion-panel-title__icon"
+                            :aria-label="translatedLabels.delete"
+                            :class="styles.arrayList.itemDelete"
+                            :disabled="
+                              !control.enabled ||
+                                (appliedOptions.restrict &&
+                                  arraySchema !== undefined &&
+                                  arraySchema.minItems !== undefined &&
+                                  dataLength <= arraySchema.minItems)
+                            "
+                            @click.stop="suggestToDelete = index"
+                          >
+                            <v-icon class="notranslate">
+                              mdi-delete
+                            </v-icon>
+                          </v-btn>
+                        </template>
+                        {{ translatedLabels.delete }}
                       </v-tooltip>
                     </v-col>
                   </v-row>
                 </v-container>
-              </v-expansion-panel-text>
+              </v-expansion-panel-title>
               <v-expansion-panel-text :class="styles.arrayList.itemContent">
                 <dispatch-renderer
                   :schema="control.schema"
@@ -190,50 +211,41 @@
             </v-expansion-panel>
           </v-expansion-panels>
         </v-row>
-        <v-row>
-          <div class="add_button">
-            <v-tooltip bottom>
-              <template #activator="{ props }">
-                <v-btn
-                  v-bind="props"
-                  fab
-                  text
-                  elevation="0"
-                  small
-                  color="#70A5C9"
-                  :aria-label="`Add to ${control.label}`"
-
-                  :class="styles.arrayList.addButton"
-                  :disabled="
-                    !control.enabled ||
-                      (appliedOptions.restrict &&
-                        arraySchema !== undefined &&
-                        arraySchema.maxItems !== undefined &&
-                        control.data.length >= arraySchema.maxItems)
-                  "
-                  @click="addButtonClick"
-                >
-                  <v-icon>mdi-plus-circle</v-icon>
-                </v-btn>
-              </template>
-              {{ `Add to ${control.label}` }}
-            </v-tooltip>
-          </div>
-        </v-row>
+      </v-container>
+      <v-container
+        v-if="dataLength === 0"
+        :class="styles.arrayList.noData"
+      >
+        No data
       </v-container>
     </v-card-text>
+    <v-card-actions
+      v-if="$slots.actions"
+      class="pb-8"
+    >
+      <slot
+        name="actions"
+        :labels="translatedLabels"
+        :add-class="styles.arrayList.addButton"
+        :add-disabled="addDisabled"
+        :add-click="addButtonClick"
+        :control="control"
+        :applied-options="appliedOptions"
+        :styles="styles"
+      />
+    </v-card-actions>
     <v-dialog
-      :value="suggestToDelete !== null"
+      :model-value="suggestToDelete !== null"
       max-width="600"
       @keydown.esc="suggestToDelete = null"
       @click:outside="suggestToDelete = null"
     >
       <v-card>
         <v-card-title class="text-h5">
-          Delete {{ childLabelForIndex(suggestToDelete) || 'element' }}?
+          {{ translatedLabels.dialogTitle }}
         </v-card-title>
 
-        <v-card-text> The element will be deleted. </v-card-text>
+        <v-card-text> {{ translatedLabels.dialogText }} </v-card-text>
 
         <v-card-actions>
           <v-spacer />
@@ -242,17 +254,19 @@
             text
             @click="suggestToDelete = null"
           >
-            Cancel
+            {{ translatedLabels.dialogCancel }}
           </v-btn>
           <v-btn
             ref="confirm"
             text
             @click="
-              removeItemsClick([suggestToDelete]);
+              removeItemsClick(
+                suggestToDelete === null ? null : [suggestToDelete]
+              );
               suggestToDelete = null;
             "
           >
-            Delete
+            {{ translatedLabels.dialogConfirm }}
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -274,14 +288,14 @@ import {
   JsonSchema,
   getControlPath,
 } from '@jsonforms/core';
-import { defineComponent } from 'vue';
+import { defineComponent,computed, ref } from 'vue';
 import {
   DispatchRenderer,
   rendererProps,
   useJsonFormsArrayControl,
   RendererProps,
 } from '@jsonforms/vue';
-import { useNested, useVuetifyArrayControl } from '@jsonforms/vue-vuetify';
+import { useNested, useVuetifyArrayControl , useTranslator, i18nDefaultMessages} from '@jsonforms/vue-vuetify';
 import {
   VCard,
   VCardActions,
@@ -305,9 +319,10 @@ import {
   VMessages,
 } from 'vuetify/components';
 //import { ValidationIcon, ValidationBadge } from '../controls/components/index';
-//import { ValidationIcon, ValidationBadge } from '@jsonforms/vue2-vuetify';
+import { ValidationIcon, ValidationBadge } from '@jsonforms/vue-vuetify';
 import { ErrorObject } from 'ajv';
-import { ref } from 'vue';
+
+import _ from 'lodash';
 
 const controlRenderer = defineComponent({
   name: 'ArrayLayoutRendererEc',
@@ -332,8 +347,8 @@ const controlRenderer = defineComponent({
     VExpansionPanelText,
     VExpansionPanelTitle,
     VContainer,
-//    ValidationIcon,
-//    ValidationBadge,
+    ValidationIcon,
+    ValidationBadge,
     VMessages,
   },
   props: {
@@ -341,13 +356,40 @@ const controlRenderer = defineComponent({
   },
   setup(props: RendererProps<ControlElement>) {
     const control = useVuetifyArrayControl(useJsonFormsArrayControl(props));
-    const currentlyExpanded = ref<null | number>(null);
+    const currentlyExpanded = ref<null | number>(
+        control.appliedOptions.value.initCollapsed ? null : 0
+    );
+    const expansionPanelsProps = computed(() =>
+        _.merge(
+            { flat: false, focusable: true },
+            control.vuetifyProps('v-expansion-panels')
+        )
+    );
     const suggestToDelete = ref<null | number>(null);
     // indicate to our child renderers that we are increasing the "nested" level
     useNested('array');
-    return { ...control, currentlyExpanded, suggestToDelete };
+    const t = useTranslator();
+    return {
+      ...control,
+      currentlyExpanded,
+      expansionPanelsProps,
+      suggestToDelete,
+      t,
+    };
   },
   computed: {
+    addDisabled(): boolean {
+      return (
+          !this.control.enabled ||
+          (this.appliedOptions.restrict &&
+              this.arraySchema !== undefined &&
+              this.arraySchema.maxItems !== undefined &&
+              this.dataLength >= this.arraySchema.maxItems)
+      );
+    },
+    dataLength(): number {
+      return this.control.data ? this.control.data.length : 0;
+    },
     noData(): boolean {
       return !this.control.data || this.control.data.length === 0;
     },
@@ -372,6 +414,29 @@ const controlRenderer = defineComponent({
     hideAvatar(): boolean {
       return !!this.appliedOptions.hideAvatar;
     },
+    translatedLabels(): { [key in I18nArrayLayoutKey]: string } {
+      const elementToDeleteText = this.childLabelForIndex(this.suggestToDelete);
+      return {
+        add: this.translateLabel('add'),
+        delete: this.translateLabel('delete'),
+        moveUp: this.translateLabel('moveUp'),
+        moveDown: this.translateLabel('moveDown'),
+        dialogTitle: this.translateLabel(
+            'dialogTitle',
+            {
+              element: elementToDeleteText,
+            },
+            (message) =>
+                message.replace(
+                    /\{\{\s?element\s?\}\}/,
+                    elementToDeleteText || 'element'
+                )
+        ),
+        dialogText: this.translateLabel('dialogText'),
+        dialogCancel: this.translateLabel('dialogCancel'),
+        dialogConfirm: this.translateLabel('dialogConfirm'),
+      };
+    },
   },
   methods: {
     composePaths,
@@ -382,7 +447,7 @@ const controlRenderer = defineComponent({
         createDefaultValue(this.control.schema, this.control.rootSchema)
       )();
       if (!this.appliedOptions.collapseNewItems && this.control.data?.length) {
-        this.currentlyExpanded = this.control.data.length - 1;
+        this.currentlyExpanded = this.dataLength  - 1;
       }
     },
     moveUpClick(event: Event, toMove: number): void {
@@ -393,8 +458,10 @@ const controlRenderer = defineComponent({
       event.stopPropagation();
       this.moveDown?.(this.control.path, toMove)();
     },
-    removeItemsClick(toDelete: number[]): void {
-      this.removeItems?.(this.control.path, toDelete)();
+    removeItemsClick(toDelete: number[] | null): void {
+      if (toDelete !== null) {
+        this.removeItems?.(this.control.path, toDelete)();
+      }
     },
     childErrors(index: number): ErrorObject[] {
       return this.control.childErrors.filter((e) => {
@@ -403,6 +470,34 @@ const controlRenderer = defineComponent({
           this.composePaths(this.control.path, `${index}`)
         );
       });
+    },
+    translateLabel(
+        labelType: I18nArrayLayoutKey,
+        additionalContext: Record<string, unknown> | undefined = undefined,
+        transformMessage: (message: string) => string = (text) => text
+    ): string {
+      const i18nKey = getI18nKey(
+          this.arraySchema,
+          this.control.uischema,
+          this.control.path,
+          labelType
+      );
+      const context = {
+        schema: this.control.schema,
+        uischema: this.control.uischema,
+        path: this.control.path,
+        data: this.control.data,
+        ...additionalContext,
+      };
+      const translation = this.t(i18nKey, undefined, context);
+      if (translation !== undefined) {
+        return translation;
+      }
+      return this.t(
+          `arraylayout.${labelType}`,
+          transformMessage(i18nDefaultMessages.arraylayout[labelType]),
+          context
+      );
     },
   },
 });
@@ -419,7 +514,9 @@ export const entry: JsonFormsRendererRegistryEntry = {
 .notranslate {
   transform: none !important;
 }
-
+:deep(.v-toolbar__content ){
+  padding-left: 0;
+}
 .add_button {
     margin-top: 1rem;
     margin-left: .5rem;

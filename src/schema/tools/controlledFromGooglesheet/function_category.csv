@@ -1,4 +1,4 @@
-﻿Category,Scope Notes,Examples,URI,"#NAME?"
+Category,Scope Notes,Examples,URI,"#NAME?"
 Research Planning,Functions used in generating a scientific and logistic plan for executing a research project.,Data management planning tools; concept mapping tools; project management tools,http://cor.esipfed.org/ont/earthcube/SFO_0000002,
 User Interaction,Functions that involve human-machine communication necessary for the operation of some component of a research project.,list-serve software; wiki software; OAuth specification,http://cor.esipfed.org/ont/earthcube/SFO_0000003,
 Data Acquisition,Functions enabling incorporation of new data into an information system. Data might originate from instruments or from other information systems,satellite downlink software; streaming data handlers (stream gauge); strike and dip app for mobile device; strabo,http://cor.esipfed.org/ont/earthcube/SFO_0000004,

@@ -20,9 +20,14 @@ const functionList =   function()  {
 const functionsuggestion =   function()  {
      const nameCol = "Category"
      const sheet = suggestionSheet
-     return  sheet.filter(o => o[nameCol]).map(o => {
-         return o[nameCol]
+    // was having issues. it was causeed by a UTF-8 BOM being at the start of the line
+     return sheet.filter(o => o[nameCol]).map(o2 => {
+         return o2[nameCol]
      })
+    // const filtered = sheet.map(o2 => {
+    //     return o2[nameCol]
+    // })
+    // return [ ...filtered]
  }
 
 export { functionList as functionList, functionsuggestion as functionsuggestion}

@@ -80,7 +80,7 @@
                       align-self="center"
                     >
                       <v-tooltip bottom>
-                        <template #activator="{ on: onTooltip }">
+                        <template #activator="{ props }">
                           <v-btn
                             fab
                             text
@@ -90,7 +90,7 @@
                             aria-label="Move up"
                             :disabled="index <= 0 || !control.enabled"
                             :class="styles.arrayList.itemMoveUp"
-                            v-on="onTooltip"
+                            v-on="props"
                             @click="moveUpClick($event, index)"
                           >
                             <v-icon class="notranslate">
@@ -106,7 +106,7 @@
                       align-self="center"
                     >
                       <v-tooltip bottom>
-                        <template #activator="{ on: onTooltip }">
+                        <template #activator="{ props }">
                           <v-btn
                             fab
                             text
@@ -119,7 +119,7 @@
                                 !control.enabled
                             "
                             :class="styles.arrayList.itemMoveDown"
-                            v-on="onTooltip"
+                            v-on="props"
                             @click="moveDownClick($event, index)"
                           >
                             <v-icon class="notranslate">
@@ -132,7 +132,7 @@
                     </v-col>
                     <v-col align-self="center">
                       <v-tooltip bottom>
-                        <template #activator="{ on: onTooltip }">
+                        <template #activator="{ props }">
                           <v-btn
                             fab
                             text
@@ -148,7 +148,7 @@
                                   arraySchema.minItems !== undefined &&
                                   control.data.length <= arraySchema.minItems)
                             "
-                            v-on="onTooltip"
+                            v-on="props"
                             @click.stop="suggestToDelete = index"
                           >
                             <v-icon class="notranslate">
@@ -163,7 +163,7 @@
 
                   <div class="add_button">
                     <v-tooltip bottom>
-                      <template #activator="{ on: onTooltip }">
+                      <template #activator="{ props }">
                         <v-btn
                           fab
                           text
@@ -178,7 +178,7 @@
                                 arraySchema.maxItems !== undefined &&
                                 control.data.length >= arraySchema.maxItems)
                           "
-                          v-on="onTooltip"
+                          v-on="props"
                           @click="addButtonClick"
                         >
                           <v-icon>mdi-plus</v-icon>

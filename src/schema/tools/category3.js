@@ -35,6 +35,7 @@ const cat3 = {
           //   "label": "Maturity",
           scope: '#/properties/ecrro:ECRRO_0000138',
           options: {
+            "hideAvatar": true,
             showUnfocusedDescription: true,
             detail: {
               type: 'HorizontalLayout',
@@ -74,6 +75,7 @@ const cat3 = {
           //       "label": "2.2 Lifecycle",
           scope: '#/properties/ecrro:ECRRO_0000219',
           options: {
+            "hideAvatar": true,
             showUnfocusedDescription: true,
             detail: {
               type: 'HorizontalLayout',
@@ -115,6 +117,7 @@ const cat3 = {
           label: 'Grants',
           scope: '#/properties/funding',
           options: {
+            "hideAvatar": true,
             showUnfocusedDescription: true,
             childLabelProp: 'name',
             "detail" : {
@@ -149,6 +152,7 @@ const cat3 = {
           label: 'Stewardship',
           scope: '#/properties/ecrro:ECRRO_0000218',
           options: {
+            "hideAvatar": true,
             showUnfocusedDescription: true,
             detail: {
               type: 'HorizontalLayout',

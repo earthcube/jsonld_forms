@@ -22,7 +22,7 @@
 
         <div class="add_button">
           <v-tooltip bottom>
-            <template #activator="{ on: onTooltip }">
+            <template #activator="{ props }">
               <v-btn
                 fab
                 text
@@ -37,7 +37,7 @@
                       arraySchema.maxItems !== undefined &&
                       control.data.length >= arraySchema.maxItems)
                 "
-                v-on="onTooltip"
+                v-on="props"
                 @click="addButtonClick"
               >
                 <v-icon>mdi-plus</v-icon>
@@ -114,7 +114,7 @@
                   "
                 >
                   <v-tooltip bottom>
-                    <template #activator="{ on: onTooltip }">
+                    <template #activator="{ props }">
                       <v-btn
                         v-if="appliedOptions.showSortButtons"
                         fab
@@ -124,7 +124,7 @@
                         aria-label="Move up"
                         :disabled="index <= 0 || !control.enabled"
                         :class="styles.arrayList.itemMoveUp"
-                        v-on="onTooltip"
+                        v-on="props"
                         @click="moveUpClick($event, index)"
                       >
                         <v-icon class="notranslate">
@@ -135,7 +135,7 @@
                     Move Up
                   </v-tooltip>
                   <v-tooltip bottom>
-                    <template #activator="{ on: onTooltip }">
+                    <template #activator="{ props }">
                       <v-btn
                         v-if="appliedOptions.showSortButtons"
                         fab
@@ -147,7 +147,7 @@
                           index >= control.data.length - 1 || !control.enabled
                         "
                         :class="styles.arrayList.itemMoveDown"
-                        v-on="onTooltip"
+                        v-on="props"
                         @click="moveDownClick($event, index)"
                       >
                         <v-icon class="notranslate">
@@ -160,7 +160,7 @@
 
                   <div class="remove_button">
                     <v-tooltip bottom>
-                      <template #activator="{ on: onTooltip }">
+                      <template #activator="{ props }">
                         <v-btn
                           fab
                           text
@@ -175,7 +175,7 @@
                                 arraySchema.minItems !== undefined &&
                                 control.data.length <= arraySchema.minItems)
                           "
-                          v-on="onTooltip"
+                          v-on="props"
                           @click="removeItemsClick($event, [index])"
                         >
                           <v-icon class="notranslate">

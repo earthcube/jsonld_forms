@@ -23,6 +23,7 @@ const cat2 = {
       options: {
         "elementLabelProp": "name" ,
         "showUnfocusedDescription": true,
+        "hideAvatar": true,
         "detail": {
           "type": "VerticalLayout",
           "elements": [

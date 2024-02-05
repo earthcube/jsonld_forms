@@ -12,8 +12,6 @@
             dark
 
             class="float-right"
-
-
           >
             {{ name }}
           </v-btn>

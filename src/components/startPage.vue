@@ -22,8 +22,8 @@
 
     <div class="padded">
       <examples />
-      <list-user-files />
-      <list-registry-files />
+<!--      <list-user-files />-->
+<!--      <list-registry-files />-->
     </div>
   </v-main>
 </template>

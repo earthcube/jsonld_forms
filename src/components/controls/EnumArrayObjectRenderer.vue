@@ -19,7 +19,7 @@
       <v-col v-for="(o, index) in control.options" :key="o.value.name">
         <v-checkbox
           :label="o.label"
-          :input-value="dataHasEnum(o.value)"
+          :model-value="dataHasEnum(o.value)"
           :id="control.id + `-input-${index}`"
           :path="composePaths(control.path, `${index}`)"
           :error-messages="control.errors"
@@ -51,7 +51,7 @@
 
         :key="o.value.name"
         :label="o.label"
-        :input-value="dataHasEnum(o.value)"
+        :model-value="dataHasEnum(o.value)"
         :path="composePaths(control.path, `${index}`)"
         :error-messages="control.errors"
         :disabled="!control.enabled"
@@ -80,7 +80,8 @@ import {
   Dispatch,
   CoreActions,
   DispatchPropsOfMultiEnumControl,
-    update
+    update,
+  createDefaultValue
 } from '@jsonforms/core';
 import { VCheckbox, VContainer, VRow, VCol, VCombobox } from 'vuetify/components';
 import {
@@ -90,7 +91,7 @@ import {
   useControl,
   ControlProps,
 } from '@jsonforms/vue';
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { useVuetifyBasicControl } from '@jsonforms/vue-vuetify';
 import _ from 'lodash'
 
@@ -151,6 +152,7 @@ const controlRenderer = defineComponent({
 
     },
     composePaths,
+    createDefaultValue,
     toggle(value: any, add: boolean) {
       if (add) {
        this.addItem(this.control.path, value);

@@ -19,7 +19,7 @@ import {
 const jsonschema = {
     type: 'object',
     //  Simplified for use in forms application. Additional properties are included inLine as opposed to array of additionalProperty/PropertyValue elements. Edits to schema should be made in the ECRR jsonforms application (https://github.com/earthcube/jsonld_forms/blob/master/src/schema/tools/ecrr_jsonschema_1_2.js) to show up in the forms UI.
-    title: 'EarthCube Resource Registry (ECRR) Resource Description v1.1',
+    title: 'EarthCube Resource Registry (ECRR) Resource Description v1.2',
     description:
         'JSON schema for EarthCube Resource Registry (ECRR) resource descriptions. The base object is common to all resource types, and definition section adds resource-specific properties. Resource types are Specification, UseCase, InterchangeFormat, Software, Interface. This schema Updated by S. Richard to align with existing ECRR metadata.',
     properties: {
