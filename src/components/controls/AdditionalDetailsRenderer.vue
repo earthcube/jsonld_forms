@@ -13,7 +13,7 @@
           <v-icon
             class="icon"
             color="#18598B"
-            small
+            size="small"
           >
             mdi-plus
           </v-icon>

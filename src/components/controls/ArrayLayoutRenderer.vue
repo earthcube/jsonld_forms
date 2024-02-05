@@ -32,14 +32,14 @@
           :applied-options="appliedOptions"
           :styles="styles"
         >
-          <v-tooltip bottom>
+          <v-tooltip location="bottom">
             <template #activator="{ props }">
               <v-btn
-                  v-bind="props"
-                  fab
-                text
+                v-bind="props"
+                fab
+                variant="text"
                 elevation="0"
-                small
+                size="small"
                 :aria-label="translatedLabels.add"
                 :class="styles.arrayList.addButton"
                 :disabled="addDisabled"
@@ -63,7 +63,7 @@
           <v-expansion-panels
             v-bind="expansionPanelsProps"
             v-model="currentlyExpanded"
-            accordion
+            variant="accordion"
           >
             <v-expansion-panel
               v-for="(_element, index) in control.data"
@@ -99,7 +99,7 @@
                           aria-label="Index"
                           color="primary"
                         >
-                          <span class="primary--text text--lighten-5">{{
+                          <span class="text-primary-lighten-5">{{
                             index + 1
                           }}</span>
                         </v-avatar>
@@ -116,14 +116,14 @@
                       v-if="appliedOptions.showSortButtons"
                       align-self="center"
                     >
-                      <v-tooltip bottom>
+                      <v-tooltip location="bottom">
                         <template #activator="{ props }">
                           <v-btn
                             v-bind="props"
                             fab
-                            text
+                            variant="text"
                             elevation="0"
-                            small
+                            size="small"
                             class="v-expansion-panel-title__icon"
                             :aria-label="translatedLabels.moveUp"
                             :disabled="index <= 0 || !control.enabled"
@@ -142,14 +142,14 @@
                       v-if="appliedOptions.showSortButtons"
                       align-self="center"
                     >
-                      <v-tooltip bottom>
+                      <v-tooltip location="bottom">
                         <template #activator="{ props }">
                           <v-btn
                             v-bind="props"
                             fab
-                            text
+                            variant="text"
                             elevation="0"
-                            small
+                            size="small"
                             class="v-expansion-panel-title__icon"
                             :aria-label="translatedLabels.moveDown"
                             :disabled="
@@ -167,14 +167,14 @@
                       </v-tooltip>
                     </v-col>
                     <v-col align-self="center">
-                      <v-tooltip bottom>
+                      <v-tooltip location="bottom">
                         <template #activator="{ props }">
                           <v-btn
                             v-bind="props"
                             fab
-                            text
+                            variant="text"
                             elevation="0"
-                            small
+                            size="small"
                             class="v-expansion-panel-title__icon"
                             :aria-label="translatedLabels.delete"
                             :class="styles.arrayList.itemDelete"
@@ -251,14 +251,14 @@
           <v-spacer />
 
           <v-btn
-            text
+            variant="text"
             @click="suggestToDelete = null"
           >
             {{ translatedLabels.dialogCancel }}
           </v-btn>
           <v-btn
             ref="confirm"
-            text
+            variant="text"
             @click="
               removeItemsClick(
                 suggestToDelete === null ? null : [suggestToDelete]

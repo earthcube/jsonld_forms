@@ -44,7 +44,7 @@
         <v-btn
           href="https://github.com/earthcube/jsonld_forms"
           target="_blank"
-          text
+          variant="text"
         >
           <span class="mr-2">Github</span>
           <v-icon>mdi-github-circle</v-icon>
@@ -52,7 +52,7 @@
         <v-btn
           href="https://jsonforms-vuetify-renderers.netlify.app/"
           target="_blank"
-          text
+          variant="text"
         >
           <span class="mr-2">JSON-LD Vuetify Forms Examples</span>
           <v-icon>mdi-open-in-new</v-icon>
@@ -60,7 +60,7 @@
         <v-btn
           href="https://github.com/eclipsesource/jsonforms-vuetify-renderers/"
           target="_blank"
-          text
+          variant="text"
         >
           <span class="mr-2">JSON-LD Vuetify Forms Github</span>
           <v-icon>mdi-github-circle</v-icon>
@@ -68,7 +68,7 @@
         <v-btn
           href="https://vuetifyjs.com/en/introduction/why-vuetify/"
           target="_blank"
-          text
+          variant="text"
         >
           <span class="mr-2">Using Vuetify</span>
           <v-icon>mdi-open-in-new</v-icon>
@@ -76,7 +76,7 @@
         <v-btn
           href="https://github.com/vuetifyjs/vuetify/"
           target="_blank"
-          text
+          variant="text"
         >
           <span class="mr-2"> Vuetify github</span>
           <v-icon>mdi-open-in-new</v-icon>

@@ -5,13 +5,13 @@
       persistent
       max-width="600px"
     >
-      <template #activator="{ on, attrs }">
+      <template #activator="{ props }">
         <v-btn
-          v-bind="attrs"
+         
           color="primary"
           dark
 
-          @click="on"
+          v-bind="props"
         >
           Save File
         </v-btn>
@@ -40,22 +40,22 @@
         <v-card-actions>
           <v-spacer />
           <v-btn
-            color="blue darken-1"
-            text
+            color="blue-darken-1"
+            variant="text"
             @click="dialog = false"
           >
             Close
           </v-btn>
           <v-btn
-            color="blue darken-1"
-            text
+            color="blue-darken-1"
+            variant="text"
             @click="saveItemS3(json)"
           >
             Save to S3
           </v-btn>
           <v-btn
-            color="blue darken-1"
-            text
+            color="blue-darken-1"
+            variant="text"
             @click="downloadJsonLD(json)"
           >
             Download File

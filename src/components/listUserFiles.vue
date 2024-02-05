@@ -92,17 +92,15 @@
             align="center"
             justify="center"
           >
-            <span class="grey--text">Items per page</span>
+            <span class="text-grey">Items per page</span>
             <v-menu offset-y>
-              <template #activator="{ on, attrs }">
+              <template #activator="{ props }">
                 <v-btn
-                  v-bind="attrs"
+                  v-bind="props"
                   dark
-                  text
+                  variant="text"
                   color="#18598B"
                   class="ml-2"
-
-                  @click="on"
                 >
                   {{ itemsPerPage }}
                   <v-icon>mdi-chevron-down</v-icon>
@@ -122,8 +120,7 @@
             <v-spacer />
 
             <span
-              class="mr-4
-            grey--text"
+              class="mr-4 text-grey"
             >
               Page {{ page }} of {{ numberOfPages }}
             </span>

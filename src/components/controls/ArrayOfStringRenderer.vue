@@ -36,7 +36,7 @@
         <v-row justify="center">
           <v-expansion-panels
             v-model="currentlyExpanded"
-            accordion
+            variant="accordion"
             focusable
           >
             <v-expansion-panel
@@ -79,13 +79,13 @@
                       v-if="appliedOptions.showSortButtons"
                       align-self="center"
                     >
-                      <v-tooltip bottom>
+                      <v-tooltip location="bottom">
                         <template #activator="{ props }">
                           <v-btn
                             fab
-                            text
+                            variant="text"
                             elevation="0"
-                            small
+                            size="small"
                             class="v-expansion-panel-header__icon"
                             aria-label="Move up"
                             :disabled="index <= 0 || !control.enabled"
@@ -105,13 +105,13 @@
                       v-if="appliedOptions.showSortButtons"
                       align-self="center"
                     >
-                      <v-tooltip bottom>
+                      <v-tooltip location="bottom">
                         <template #activator="{ props }">
                           <v-btn
                             fab
-                            text
+                            variant="text"
                             elevation="0"
-                            small
+                            size="small"
                             class="v-expansion-panel-header__icon"
                             aria-label="Move down"
                             :disabled="
@@ -131,13 +131,13 @@
                       </v-tooltip>
                     </v-col>
                     <v-col align-self="center">
-                      <v-tooltip bottom>
+                      <v-tooltip location="bottom">
                         <template #activator="{ props }">
                           <v-btn
                             fab
-                            text
+                            variant="text"
                             elevation="0"
-                            small
+                            size="small"
                             class="v-expansion-panel-header__icon"
                             aria-label="Delete"
                             :class="styles.arrayList.itemDelete"
@@ -162,13 +162,13 @@
                   </v-row>
 
                   <div class="add_button">
-                    <v-tooltip bottom>
+                    <v-tooltip location="bottom">
                       <template #activator="{ props }">
                         <v-btn
                           fab
-                          text
+                          variant="text"
                           elevation="0"
-                          small
+                          size="small"
                           :aria-label="`Add to ${control.label}`"
                           :class="styles.arrayList.addButton"
                           :disabled="
@@ -215,7 +215,7 @@
       </v-container>
     </v-card-text>
     <v-dialog
-      :value="suggestToDelete !== null"
+      :model-value="suggestToDelete !== null"
       max-width="600"
       @keydown.esc="suggestToDelete = null"
       @click:outside="suggestToDelete = null"
@@ -231,14 +231,14 @@
           <v-spacer />
 
           <v-btn
-            text
+            variant="text"
             @click="suggestToDelete = null"
           >
             Cancel
           </v-btn>
           <v-btn
             ref="confirm"
-            text
+            variant="text"
             @click="
               removeItemsClick([suggestToDelete]);
               suggestToDelete = null;

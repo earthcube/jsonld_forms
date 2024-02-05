@@ -5,7 +5,7 @@
       <v-list>
         <v-list-item>
           <v-btn
-            large
+            size="large"
             color="primary"
             background-color="#18598B"
             class="create_resource_button"
@@ -22,8 +22,8 @@
 
     <div class="padded">
       <examples />
-<!--      <list-user-files />-->
-<!--      <list-registry-files />-->
+      <!--      <list-user-files />-->
+      <!--      <list-registry-files />-->
     </div>
   </v-main>
 </template>

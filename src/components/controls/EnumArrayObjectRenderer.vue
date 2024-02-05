@@ -36,7 +36,7 @@
         v-for="l in control.data "
         :key="l.name"
         class="ma-2"
-        close
+        closable
         @click:close="toggle(l, true)"
       >
         {{ l.name }}
@@ -57,7 +57,7 @@
         :disabled="!control.enabled"
         :indeterminate="control.data === undefined"
 
-        @change="(value) => toggle(o.value, value)"
+        @update:model-value="(value) => toggle(o.value, value)"
       />
     </div>
   </v-container>

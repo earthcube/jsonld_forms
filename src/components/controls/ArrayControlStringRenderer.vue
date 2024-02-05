@@ -21,13 +21,13 @@
         <v-spacer />
 
         <div class="add_button">
-          <v-tooltip bottom>
+          <v-tooltip location="bottom">
             <template #activator="{ props }">
               <v-btn
                 fab
-                text
+                variant="text"
                 elevation="0"
-                small
+                size="small"
                 :aria-label="`Add to ${control.label}`"
                 :class="styles.arrayList.addButton"
                 :disabled="
@@ -113,14 +113,14 @@
                       : 'fixed-cell-small'
                   "
                 >
-                  <v-tooltip bottom>
+                  <v-tooltip location="bottom">
                     <template #activator="{ props }">
                       <v-btn
                         v-if="appliedOptions.showSortButtons"
                         fab
-                        text
+                        variant="text"
                         elevation="0"
-                        small
+                        size="small"
                         aria-label="Move up"
                         :disabled="index <= 0 || !control.enabled"
                         :class="styles.arrayList.itemMoveUp"
@@ -134,14 +134,14 @@
                     </template>
                     Move Up
                   </v-tooltip>
-                  <v-tooltip bottom>
+                  <v-tooltip location="bottom">
                     <template #activator="{ props }">
                       <v-btn
                         v-if="appliedOptions.showSortButtons"
                         fab
-                        text
+                        variant="text"
                         elevation="0"
-                        small
+                        size="small"
                         aria-label="Move down"
                         :disabled="
                           index >= control.data.length - 1 || !control.enabled
@@ -159,13 +159,13 @@
                   </v-tooltip>
 
                   <div class="remove_button">
-                    <v-tooltip bottom>
+                    <v-tooltip location="bottom">
                       <template #activator="{ props }">
                         <v-btn
                           fab
-                          text
+                          variant="text"
                           elevation="0"
-                          small
+                          size="small"
                           aria-label="Delete"
                           :class="styles.arrayList.itemDelete"
                           :disabled="
