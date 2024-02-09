@@ -1,15 +1,13 @@
 <template>
   <v-app>
     <v-app-bar
-      app
       color="primary"
-      dark
     >
       <div class="d-flex align-items-center">
         <v-img
           alt="EC Logo"
           class="shrink mr-3"
-          contain
+
           src="@/assets/EarthCube-White-Long-Tagline.png"
           transition="scale-transition"
           width="100"
@@ -18,7 +16,7 @@
         <v-img
           alt="Geocodes"
           class="shrink mr-3 hidden-sm-and-down"
-          contain
+
           min-width="100"
           src="@/assets/GeoCODES.png"
           width="100"
@@ -37,7 +35,7 @@
     </v-main>
 
     <v-footer
-      padless
+
       class="text-center"
     >
       <div class="footer_links">

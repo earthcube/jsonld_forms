@@ -12,7 +12,7 @@ module.exports = {
     ],
     resolve: {
         alias: {
-            vue: '@vue/compat'
+           // vue: '@vue/compat'
         },
         fallback: {
             http:  false ,

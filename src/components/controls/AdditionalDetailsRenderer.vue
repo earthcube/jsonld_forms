@@ -6,7 +6,7 @@
       elevation="2"
     >
       <v-expansion-panel-title
-        v-if="layout.uischema.label"
+        v-if="layout.label"
         :class="styles.group.label"
       >
         <template #actions>

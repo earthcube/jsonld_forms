@@ -21,13 +21,12 @@
         <v-spacer />
 
         <div class="add_button">
-          <v-tooltip bottom>
-            <template #activator="{ on: onTooltip }">
+          <v-tooltip location="bottom">
+            <template #activator="{ props }">
               <v-btn
-                fab
-                text
+                variant="text"
                 elevation="0"
-                small
+                size="small"
                 :aria-label="`Add to ${control.label}`"
                 :class="styles.arrayList.addButton"
                 :disabled="
@@ -37,7 +36,7 @@
                       arraySchema.maxItems !== undefined &&
                       control.data.length >= arraySchema.maxItems)
                 "
-                v-on="onTooltip"
+                v-on="props"
                 @click="addButtonClick"
               >
                 <v-icon>mdi-plus</v-icon>
@@ -113,18 +112,17 @@
                       : 'fixed-cell-small'
                   "
                 >
-                  <v-tooltip bottom>
-                    <template #activator="{ on: onTooltip }">
+                  <v-tooltip location="bottom">
+                    <template #activator="{ props }">
                       <v-btn
                         v-if="appliedOptions.showSortButtons"
-                        fab
-                        text
+                        variant="text"
                         elevation="0"
-                        small
+                        size="small"
                         aria-label="Move up"
                         :disabled="index <= 0 || !control.enabled"
                         :class="styles.arrayList.itemMoveUp"
-                        v-on="onTooltip"
+                        v-on="props"
                         @click="moveUpClick($event, index)"
                       >
                         <v-icon class="notranslate">
@@ -134,20 +132,19 @@
                     </template>
                     Move Up
                   </v-tooltip>
-                  <v-tooltip bottom>
-                    <template #activator="{ on: onTooltip }">
+                  <v-tooltip location="bottom">
+                    <template #activator="{ props }">
                       <v-btn
                         v-if="appliedOptions.showSortButtons"
-                        fab
-                        text
+                        variant="text"
                         elevation="0"
-                        small
+                        size="small"
                         aria-label="Move down"
                         :disabled="
                           index >= control.data.length - 1 || !control.enabled
                         "
                         :class="styles.arrayList.itemMoveDown"
-                        v-on="onTooltip"
+                        v-on="props"
                         @click="moveDownClick($event, index)"
                       >
                         <v-icon class="notranslate">
@@ -159,13 +156,12 @@
                   </v-tooltip>
 
                   <div class="remove_button">
-                    <v-tooltip bottom>
-                      <template #activator="{ on: onTooltip }">
+                    <v-tooltip location="bottom">
+                      <template #activator="{ props }">
                         <v-btn
-                          fab
-                          text
+                          variant="text"
                           elevation="0"
-                          small
+                          size="small"
                           aria-label="Delete"
                           :class="styles.arrayList.itemDelete"
                           :disabled="
@@ -175,7 +171,7 @@
                                 arraySchema.minItems !== undefined &&
                                 control.data.length <= arraySchema.minItems)
                           "
-                          v-on="onTooltip"
+                          v-on="props"
                           @click="removeItemsClick($event, [index])"
                         >
                           <v-icon class="notranslate">

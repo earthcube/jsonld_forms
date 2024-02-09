@@ -1,3 +1,6 @@
+# Make sure eslint does not check the output files of our renderer set
+../*
+!/*
 /src/assets/examples/datasets/dataset_values.xlsx
 src/assets/examples/datasets/*.yml
 src/assets/examples/tools/ECRRTemplateSDO-Service-v2_flipped.yml

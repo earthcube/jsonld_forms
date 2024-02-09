@@ -1,5 +1,6 @@
 const Dotenv = require('dotenv-webpack');
-//const { VuetifyPlugin } = require('webpack-plugin-vuetify')
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+const { VuetifyPlugin } = require('webpack-plugin-vuetify')
 const path = require("path");
 
 module.exports = {
@@ -7,11 +8,12 @@ module.exports = {
     configureWebpack: {
       plugins: [
         new Dotenv({systemvars: true}),
-//          new VuetifyPlugin({ autoImport: true })
+          new VuetifyPlugin({ autoImport: true })
       ],
         resolve: {
             alias: {
-                vue: '@vue/compat'
+                // 'vue': '@vue/runtime-dom',
+                // 'Vue': 'vue/dist/vue.esm-bundler.js',
             },
             fallback: {
                 http:  false ,
@@ -57,22 +59,38 @@ module.exports = {
       },
   },
   //transpileDependencies: ['vuetify', '@jsonforms/core', '@jsonforms/vue2'],
-    transpileDependencies: ['@jsonforms/core', '@jsonforms/vue', '@jsonforms/vue-vuetify'],
-  chainWebpack: (config) => {
-    config.resolve.alias.set('vue', '@vue/compat')
+  //  transpileDependencies: ['@jsonforms/core', '@jsonforms/vue', '@jsonforms/vue-vuetify'],
+    transpileDependencies: ['vuetify','@jsonforms/core', '@jsonforms/vue', '@jsonforms/vue-vuetify'],
+    chainWebpack: (config) => {
+    // config.resolve.alias.set('vue', '@vue/compat')
+    //
+    // config.module
+    //     .rule('vue')
+    //     .use('vue-loader')
+    //     .tap((options) => {
+    //       return {
+    //         ...options,
+    //         compilerOptions: {
+    //           compatConfig: {
+    //             MODE: 3
+    //           }
+    //         }
+    //       }
+    //     })
+      // remove typecheck
+      config.plugins.delete('fork-ts-checker');
 
-    config.module
-        .rule('vue')
-        .use('vue-loader')
-        .tap((options) => {
-          return {
-            ...options,
-            compilerOptions: {
-              compatConfig: {
-                MODE: 2
-              }
-            }
-          }
-        })
-  }
+      config.plugin('monaco-editor').use(MonacoWebpackPlugin, [
+          {
+              // Languages are loaded on demand at runtime
+              languages: ['json'],
+          },
+      ]);
+      return config;
+  },
+    pluginOptions: {
+        vuetify: {
+            // https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vuetify-loader
+        },
+    },
 }

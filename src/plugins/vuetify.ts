@@ -28,5 +28,6 @@ const opts = {
     },
 }
 // @ts-ignore
-export default createVuetify(opts)
+//export default createVuetify(opts)
+export default createVuetify()
 //export default new Vuetify(opts)

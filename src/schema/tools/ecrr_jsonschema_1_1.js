@@ -1197,10 +1197,10 @@ const withEnum = function () {
     const scienceDomains = scienceDomainList();
     jsonschema.properties.about.items = scienceDomains;
     //
-    // let maturity = maturityOneOf();
+    // const maturity = maturityOneOf();
     // jsonschema.properties['ecrro:ECRRO_0000138'].properties.value = maturity;
-    //
-    // let lifetime = lifetimeOneOf();
+    // //
+    // const lifetime = lifetimeOneOf();
     // jsonschema.properties['ecrro:ECRRO_0000219'].properties.value = lifetime;
 
     //let audience = audienceOneOf();

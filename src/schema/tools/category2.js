@@ -44,14 +44,25 @@ const cat2 = {
             },
           ]}
       }
-    }
+    },
+    servicedesc(),
+    software() ,
+    interchange,
+    specification,
+    catalog,
+    semantic,
+    interfaceapi,
+    repository,
+    platform,
+    usecase,
+    bundledobject
   ]
 };
 
-cat2.elements.push(servicedesc());
-cat2.elements.push(software());
-cat2.elements.push(interchange);
-cat2.elements.push(specification);
+// cat2.elements.push(servicedesc());
+// cat2.elements.push(software());
+// cat2.elements.push(interchange);
+// cat2.elements.push(specification);
 // cat2.elements.push(catalog);
 // cat2.elements.push(semantic);
 // cat2.elements.push(interfaceapi);

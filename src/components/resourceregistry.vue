@@ -2,7 +2,7 @@
   <div>
     <json-forms
       :data="jsonldObj"
-      :schema="schema"
+      :schema="jsonSchemaNoProxy"
       :uischema="uischemaNoProxy"
       :renderers="renderers"
 
@@ -44,8 +44,8 @@ import 'vue-json-pretty/lib/styles.css';
 import {merge } from 'lodash'
 
 import {default as saveFiles} from '@/components/controls/saveJson.vue'
-import { default as schema, schemaWithEnum , flattenList} from '@/schema/tools/ecrr_jsonschema_1_1' ;
-//import { default as schema, schemaWithEnum , flattenList} from '@/schema/tools/ecrr_jsonschema_1_2' ;
+//import { default as schema, schemaWithEnum , flattenList} from '@/schema/tools/ecrr_jsonschema_1_1' ;
+import { default as schema, schemaWithEnum , flattenList} from '@/schema/tools/ecrr_jsonschema_1_2' ;
 import uischema from '@/schema/tools/ecrr_1_1_uischema';
 // @ts-ignore
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -126,6 +126,12 @@ export default defineComponent({
         return toRaw((this.uischema))
       } else { return {} }
 
+    },
+    jsonSchemaNoProxy(){
+      if (this.schema){
+        return toRaw((this.schema))
+      } else { return {} }
+
     }
 
   },
@@ -150,7 +156,10 @@ export default defineComponent({
         exampleData = flatten(exampleData, flattenList)
         this.jsonldObj = merge({}, this.jsonldObj, exampleData)
         console.info(`assigned value to jsonldboj ${JSON.stringify(this.jsonldObj)}`)
-      }).catch((err) => {console.error(`issue accessing ${exampleDataUrl} ${err}`)})
+      }).catch(
+          (err) =>
+          {console.error(`issue accessing ${exampleDataUrl} ${err}`)}
+      )
       // fails
       //import exampleData  from `@/assets/tools/argovis-Notebook.jsonld.json?raw`
 

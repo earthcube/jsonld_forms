@@ -36,8 +36,8 @@
         <v-row justify="center">
           <v-expansion-panels
             v-model="currentlyExpanded"
-            accordion
-            focusable
+            variant="accordion"
+
           >
             <v-expansion-panel
               v-for="(element, index) in control.data"
@@ -79,18 +79,17 @@
                       v-if="appliedOptions.showSortButtons"
                       align-self="center"
                     >
-                      <v-tooltip bottom>
-                        <template #activator="{ on: onTooltip }">
+                      <v-tooltip location="bottom">
+                        <template #activator="{ props }">
                           <v-btn
-                            fab
-                            text
+                            variant="text"
                             elevation="0"
-                            small
+                            size="small"
                             class="v-expansion-panel-header__icon"
                             aria-label="Move up"
                             :disabled="index <= 0 || !control.enabled"
                             :class="styles.arrayList.itemMoveUp"
-                            v-on="onTooltip"
+                            v-on="props"
                             @click="moveUpClick($event, index)"
                           >
                             <v-icon class="notranslate">
@@ -105,13 +104,12 @@
                       v-if="appliedOptions.showSortButtons"
                       align-self="center"
                     >
-                      <v-tooltip bottom>
-                        <template #activator="{ on: onTooltip }">
+                      <v-tooltip location="bottom">
+                        <template #activator="{ props }">
                           <v-btn
-                            fab
-                            text
+                            variant="text"
                             elevation="0"
-                            small
+                            size="small"
                             class="v-expansion-panel-header__icon"
                             aria-label="Move down"
                             :disabled="
@@ -119,7 +117,7 @@
                                 !control.enabled
                             "
                             :class="styles.arrayList.itemMoveDown"
-                            v-on="onTooltip"
+                            v-on="props"
                             @click="moveDownClick($event, index)"
                           >
                             <v-icon class="notranslate">
@@ -131,13 +129,13 @@
                       </v-tooltip>
                     </v-col>
                     <v-col align-self="center">
-                      <v-tooltip bottom>
-                        <template #activator="{ on: onTooltip }">
+                      <v-tooltip location="bottom">
+                        <template #activator="{ props }">
                           <v-btn
-                            fab
-                            text
+
+                            variant="text"
                             elevation="0"
-                            small
+                            size="small"
                             class="v-expansion-panel-header__icon"
                             aria-label="Delete"
                             :class="styles.arrayList.itemDelete"
@@ -148,7 +146,7 @@
                                   arraySchema.minItems !== undefined &&
                                   control.data.length <= arraySchema.minItems)
                             "
-                            v-on="onTooltip"
+                            v-on="props"
                             @click.stop="suggestToDelete = index"
                           >
                             <v-icon class="notranslate">
@@ -162,13 +160,12 @@
                   </v-row>
 
                   <div class="add_button">
-                    <v-tooltip bottom>
-                      <template #activator="{ on: onTooltip }">
+                    <v-tooltip location="bottom">
+                      <template #activator="{ props }">
                         <v-btn
-                          fab
-                          text
+                          variant="text"
                           elevation="0"
-                          small
+                          size="small"
                           :aria-label="`Add to ${control.label}`"
                           :class="styles.arrayList.addButton"
                           :disabled="
@@ -178,7 +175,7 @@
                                 arraySchema.maxItems !== undefined &&
                                 control.data.length >= arraySchema.maxItems)
                           "
-                          v-on="onTooltip"
+                          v-on="props"
                           @click="addButtonClick"
                         >
                           <v-icon>mdi-plus</v-icon>
@@ -215,7 +212,7 @@
       </v-container>
     </v-card-text>
     <v-dialog
-      :value="suggestToDelete !== null"
+      :model-value="suggestToDelete !== null"
       max-width="600"
       @keydown.esc="suggestToDelete = null"
       @click:outside="suggestToDelete = null"
@@ -231,14 +228,14 @@
           <v-spacer />
 
           <v-btn
-            text
+            variant="text"
             @click="suggestToDelete = null"
           >
             Cancel
           </v-btn>
           <v-btn
             ref="confirm"
-            text
+            variant="text"
             @click="
               removeItemsClick([suggestToDelete]);
               suggestToDelete = null;

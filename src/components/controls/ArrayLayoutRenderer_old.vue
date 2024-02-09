@@ -1,41 +1,48 @@
 <template>
-  <v-card v-if="control.visible" :class="styles.arrayList.root">
+  <v-card
+    v-if="control.visible"
+    :class="styles.arrayList.root"
+  >
     <v-card-title>
-      <v-toolbar flat :class="styles.arrayList.toolbar">
-        <v-toolbar-title :class="styles.arrayList.label">{{
+      <v-toolbar
+        flat
+        :class="styles.arrayList.toolbar"
+      >
+        <v-toolbar-title :class="styles.arrayList.label">
+          {{
             computedLabel
-          }}</v-toolbar-title>
+          }}
+        </v-toolbar-title>
         <validation-icon
-            v-if="
+          v-if="
             control.childErrors.length > 0 &&
-            !appliedOptions.hideArraySummaryValidation
+              !appliedOptions.hideArraySummaryValidation
           "
-            :errors="control.childErrors"
-            :class="styles.arrayList.validationIcon"
+          :errors="control.childErrors"
+          :class="styles.arrayList.validationIcon"
         />
-        <v-spacer></v-spacer>
+        <v-spacer />
         <slot
-            name="toolbar-elements"
-            :labels="translatedLabels"
-            :addClass="styles.arrayList.addButton"
-            :addDisabled="addDisabled"
-            :addClick="addButtonClick"
-            :control="control"
-            :appliedOptions="appliedOptions"
-            :styles="styles"
+          name="toolbar-elements"
+          :labels="translatedLabels"
+          :add-class="styles.arrayList.addButton"
+          :add-disabled="addDisabled"
+          :add-click="addButtonClick"
+          :control="control"
+          :applied-options="appliedOptions"
+          :styles="styles"
         >
-          <v-tooltip bottom>
-            <template v-slot:activator="{ props }">
+          <v-tooltip location="bottom">
+            <template #activator="{ props }">
               <v-btn
-                  fab
-                  text
-                  elevation="0"
-                  small
-                  :aria-label="translatedLabels.add"
-                  v-bind="props"
-                  :class="styles.arrayList.addButton"
-                  :disabled="addDisabled"
-                  @click="addButtonClick"
+                v-bind="props"
+                variant="text"
+                elevation="0"
+                size="small"
+                :aria-label="translatedLabels.add"
+                :class="styles.arrayList.addButton"
+                :disabled="addDisabled"
+                @click="addButtonClick"
               >
                 <v-icon>mdi-plus</v-icon>
               </v-btn>
@@ -47,25 +54,28 @@
     </v-card-title>
     <v-card-text>
       <v-container
-          justify-space-around
-          align-content-center
-          :class="styles.arrayList.container"
+        justify-space-around
+        align-content-center
+        :class="styles.arrayList.container"
       >
         <v-row justify="center">
           <v-expansion-panels
-              accordion
-              v-bind="expansionPanelsProps"
-              v-model="currentlyExpanded"
+            v-bind="expansionPanelsProps"
+            v-model="currentlyExpanded"
+            variant="accordion"
           >
             <v-expansion-panel
-                v-for="(_element, index) in control.data"
-                :key="`${control.path}-${index}`"
-                :class="styles.arrayList.item"
+              v-for="(_element, index) in control.data"
+              :key="`${control.path}-${index}`"
+              :class="styles.arrayList.item"
             >
               <v-expansion-panel-title :class="styles.arrayList.itemHeader">
-                <v-container py-0 :class="styles.arrayList.itemContainer">
+                <v-container
+                  py-0
+                  :class="styles.arrayList.itemContainer"
+                >
                   <v-row
-                      :style="`display: grid; grid-template-columns: ${
+                    :style="`display: grid; grid-template-columns: ${
                       !hideAvatar ? 'min-content' : ''
                     } auto min-content ${
                       appliedOptions.showSortButtons
@@ -73,97 +83,109 @@
                         : ''
                     }`"
                   >
-                    <v-col v-if="!hideAvatar" align-self="center" class="pl-0">
+                    <v-col
+                      v-if="!hideAvatar"
+                      align-self="center"
+                      class="pl-0"
+                    >
                       <validation-badge
-                          overlap
-                          bordered
-                          :errors="childErrors(index)"
+                        overlap
+                        bordered
+                        :errors="childErrors(index)"
                       >
-                        <v-avatar size="40" aria-label="Index" color="primary">
-                          <span class="primary--text text--lighten-5">{{
-                              index + 1
-                            }}</span></v-avatar
+                        <v-avatar
+                          size="40"
+                          aria-label="Index"
+                          color="primary"
                         >
+                          <span class="text-primary-lighten-5">{{
+                            index + 1
+                          }}</span>
+                        </v-avatar>
                       </validation-badge>
                     </v-col>
 
                     <v-col
-                        align-self="center"
-                        :class="`pl-0 text-truncate ${styles.arrayList.itemLabel}`"
-                    >{{ childLabelForIndex(index) }}</v-col
+                      align-self="center"
+                      :class="`pl-0 text-truncate ${styles.arrayList.itemLabel}`"
                     >
+                      {{ childLabelForIndex(index) }}
+                    </v-col>
                     <v-col
-                        align-self="center"
-                        v-if="appliedOptions.showSortButtons"
+                      v-if="appliedOptions.showSortButtons"
+                      align-self="center"
                     >
-                      <v-tooltip bottom>
-                        <template v-slot:activator="{ props }">
+                      <v-tooltip location="bottom">
+                        <template #activator="{ props }">
                           <v-btn
-                              v-bind="props"
-                              fab
-                              text
-                              elevation="0"
-                              small
-                              class="v-expansion-panel-title__icon"
-                              :aria-label="translatedLabels.moveUp"
-                              :disabled="index <= 0 || !control.enabled"
-                              :class="styles.arrayList.itemMoveUp"
-                              @click.native="moveUpClick($event, index)"
+                            v-bind="props"
+                            variant="text"
+                            elevation="0"
+                            size="small"
+                            class="v-expansion-panel-title__icon"
+                            :aria-label="translatedLabels.moveUp"
+                            :disabled="index <= 0 || !control.enabled"
+                            :class="styles.arrayList.itemMoveUp"
+                            @click="moveUpClick($event, index)"
                           >
-                            <v-icon class="notranslate">mdi-arrow-up</v-icon>
+                            <v-icon class="notranslate">
+                              mdi-arrow-up
+                            </v-icon>
                           </v-btn>
                         </template>
                         {{ translatedLabels.moveUp }}
                       </v-tooltip>
                     </v-col>
                     <v-col
-                        align-self="center"
-                        v-if="appliedOptions.showSortButtons"
+                      v-if="appliedOptions.showSortButtons"
+                      align-self="center"
                     >
-                      <v-tooltip bottom>
-                        <template v-slot:activator="{ props }">
+                      <v-tooltip location="bottom">
+                        <template #activator="{ props }">
                           <v-btn
-                              v-bind="props"
-                              fab
-                              text
-                              elevation="0"
-                              small
-                              class="v-expansion-panel-title__icon"
-                              :aria-label="translatedLabels.moveDown"
-                              :disabled="
+                            v-bind="props"
+                            variant="text"
+                            elevation="0"
+                            size="small"
+                            class="v-expansion-panel-title__icon"
+                            :aria-label="translatedLabels.moveDown"
+                            :disabled="
                               index >= dataLength - 1 || !control.enabled
                             "
-                              :class="styles.arrayList.itemMoveDown"
-                              @click.native="moveDownClick($event, index)"
+                            :class="styles.arrayList.itemMoveDown"
+                            @click="moveDownClick($event, index)"
                           >
-                            <v-icon class="notranslate">mdi-arrow-down</v-icon>
+                            <v-icon class="notranslate">
+                              mdi-arrow-down
+                            </v-icon>
                           </v-btn>
                         </template>
                         {{ translatedLabels.moveDown }}
                       </v-tooltip>
                     </v-col>
                     <v-col align-self="center">
-                      <v-tooltip bottom>
-                        <template v-slot:activator="{ props }">
+                      <v-tooltip location="bottom">
+                        <template #activator="{ props }">
                           <v-btn
-                              v-bind="props"
-                              fab
-                              text
-                              elevation="0"
-                              small
-                              class="v-expansion-panel-title__icon"
-                              :aria-label="translatedLabels.delete"
-                              :class="styles.arrayList.itemDelete"
-                              :disabled="
+                            v-bind="props"
+                            variant="text"
+                            elevation="0"
+                            size="small"
+                            class="v-expansion-panel-title__icon"
+                            :aria-label="translatedLabels.delete"
+                            :class="styles.arrayList.itemDelete"
+                            :disabled="
                               !control.enabled ||
-                              (appliedOptions.restrict &&
-                                arraySchema !== undefined &&
-                                arraySchema.minItems !== undefined &&
-                                dataLength <= arraySchema.minItems)
+                                (appliedOptions.restrict &&
+                                  arraySchema !== undefined &&
+                                  arraySchema.minItems !== undefined &&
+                                  dataLength <= arraySchema.minItems)
                             "
-                              @click.stop.native="suggestToDelete = index"
+                            @click.stop="suggestToDelete = index"
                           >
-                            <v-icon class="notranslate">mdi-delete</v-icon>
+                            <v-icon class="notranslate">
+                              mdi-delete
+                            </v-icon>
                           </v-btn>
                         </template>
                         {{ translatedLabels.delete }}
@@ -174,40 +196,45 @@
               </v-expansion-panel-title>
               <v-expansion-panel-text :class="styles.arrayList.itemContent">
                 <dispatch-renderer
-                    :schema="control.schema"
-                    :uischema="foundUISchema"
-                    :path="composePaths(control.path, `${index}`)"
-                    :enabled="control.enabled"
-                    :renderers="control.renderers"
-                    :cells="control.cells"
+                  :schema="control.schema"
+                  :uischema="foundUISchema"
+                  :path="composePaths(control.path, `${index}`)"
+                  :enabled="control.enabled"
+                  :renderers="control.renderers"
+                  :cells="control.cells"
                 />
               </v-expansion-panel-text>
             </v-expansion-panel>
           </v-expansion-panels>
         </v-row>
       </v-container>
-      <v-container v-if="dataLength === 0" :class="styles.arrayList.noData">
+      <v-container
+        v-if="dataLength === 0"
+        :class="styles.arrayList.noData"
+      >
         No data
       </v-container>
     </v-card-text>
-    <v-card-actions v-if="$slots.actions" class="pb-8">
+    <v-card-actions
+      v-if="$slots.actions"
+      class="pb-8"
+    >
       <slot
-          name="actions"
-          :labels="translatedLabels"
-          :addClass="styles.arrayList.addButton"
-          :addDisabled="addDisabled"
-          :addClick="addButtonClick"
-          :control="control"
-          :appliedOptions="appliedOptions"
-          :styles="styles"
-      >
-      </slot>
+        name="actions"
+        :labels="translatedLabels"
+        :add-class="styles.arrayList.addButton"
+        :add-disabled="addDisabled"
+        :add-click="addButtonClick"
+        :control="control"
+        :applied-options="appliedOptions"
+        :styles="styles"
+      />
     </v-card-actions>
     <v-dialog
-        :model-value="suggestToDelete !== null"
-        max-width="600"
-        @keydown.esc="suggestToDelete = null"
-        @click:outside="suggestToDelete = null"
+      :model-value="suggestToDelete !== null"
+      max-width="600"
+      @keydown.esc="suggestToDelete = null"
+      @click:outside="suggestToDelete = null"
     >
       <v-card>
         <v-card-title class="text-h5">
@@ -217,15 +244,18 @@
         <v-card-text> {{ translatedLabels.dialogText }} </v-card-text>
 
         <v-card-actions>
-          <v-spacer></v-spacer>
+          <v-spacer />
 
-          <v-btn text @click="suggestToDelete = null">
-            {{ translatedLabels.dialogCancel }}</v-btn
-          >
           <v-btn
-              text
-              ref="confirm"
-              @click="
+            variant="text"
+            @click="suggestToDelete = null"
+          >
+            {{ translatedLabels.dialogCancel }}
+          </v-btn>
+          <v-btn
+            ref="confirm"
+            variant="text"
+            @click="
               removeItemsClick(
                 suggestToDelete === null ? null : [suggestToDelete]
               );
@@ -255,19 +285,14 @@ import {
   getControlPath,
   getI18nKey,
 } from '@jsonforms/core';
-import { defineComponent, computed, ref } from 'vue';
+import { defineComponent,computed, ref } from 'vue';
 import {
   DispatchRenderer,
   rendererProps,
   useJsonFormsArrayControl,
   RendererProps,
 } from '@jsonforms/vue';
-import {
-  useNested,
-  useVuetifyArrayControl,
-  useTranslator,
-  i18nDefaultMessages,
-} from '@jsonforms/vue-vuetify';
+import { useNested, useVuetifyArrayControl , useTranslator, i18nDefaultMessages} from '@jsonforms/vue-vuetify';
 import {
   VCard,
   VCardActions,
@@ -286,17 +311,18 @@ import {
   VSpacer,
   VExpansionPanels,
   VExpansionPanel,
-  VExpansionPanelTitle,
   VExpansionPanelText,
+  VExpansionPanelTitle,
+  VMessages,
 } from 'vuetify/components';
+//import { ValidationIcon, ValidationBadge } from '../controls/components/index';
 import { ValidationIcon, ValidationBadge } from '@jsonforms/vue-vuetify';
 import { ErrorObject } from 'ajv';
-import {merge} from 'lodash';
 
-type I18nArrayLayoutKey = keyof typeof i18nDefaultMessages.arraylayout;
+import _ from 'lodash';
 
 const controlRenderer = defineComponent({
-  name: 'array-layout-renderer-ec',
+  name: 'ArrayLayoutRendererEc',
   components: {
     DispatchRenderer,
     VCard,
@@ -315,11 +341,12 @@ const controlRenderer = defineComponent({
     VSpacer,
     VExpansionPanels,
     VExpansionPanel,
-    VExpansionPanelTitle,
     VExpansionPanelText,
+    VExpansionPanelTitle,
     VContainer,
     ValidationIcon,
     ValidationBadge,
+    VMessages,
   },
   props: {
     ...rendererProps<ControlElement>(),
@@ -330,7 +357,7 @@ const controlRenderer = defineComponent({
         control.appliedOptions.value.initCollapsed ? null : 0
     );
     const expansionPanelsProps = computed(() =>
-        merge(
+        _.merge(
             { flat: false, focusable: true },
             control.vuetifyProps('v-expansion-panels')
         )
@@ -360,22 +387,25 @@ const controlRenderer = defineComponent({
     dataLength(): number {
       return this.control.data ? this.control.data.length : 0;
     },
+    noData(): boolean {
+      return !this.control.data || this.control.data.length === 0;
+    },
     foundUISchema(): UISchemaElement {
       return findUISchema(
-          this.control.uischemas,
-          this.control.schema,
-          this.control.uischema.scope,
-          this.control.path,
-          undefined,
-          this.control.uischema,
-          this.control.rootSchema
+        this.control.uischemas,
+        this.control.schema,
+        this.control.uischema.scope,
+        this.control.path,
+        undefined,
+        this.control.uischema,
+        this.control.rootSchema
       );
     },
     arraySchema(): JsonSchema | undefined {
       return Resolve.schema(
-          this.control.rootSchema,
-          this.control.uischema.scope,
-          this.control.rootSchema
+        this.control.schema,
+        this.control.uischema.scope,
+        this.control.rootSchema
       );
     },
     hideAvatar(): boolean {
@@ -410,11 +440,11 @@ const controlRenderer = defineComponent({
     createDefaultValue,
     addButtonClick() {
       this.addItem(
-          this.control.path,
-          createDefaultValue(this.control.schema)
+        this.control.path,
+        createDefaultValue(this.control.schema, this.control.rootSchema)
       )();
       if (!this.appliedOptions.collapseNewItems && this.control.data?.length) {
-        this.currentlyExpanded = this.dataLength - 1;
+        this.currentlyExpanded = this.dataLength  - 1;
       }
     },
     moveUpClick(event: Event, toMove: number): void {
@@ -434,7 +464,7 @@ const controlRenderer = defineComponent({
       return this.control.childErrors.filter((e) => {
         const errorDataPath = getControlPath(e);
         return errorDataPath.startsWith(
-            this.composePaths(this.control.path, `${index}`)
+          this.composePaths(this.control.path, `${index}`)
         );
       });
     },
@@ -473,7 +503,7 @@ export default controlRenderer;
 
 export const entry: JsonFormsRendererRegistryEntry = {
   renderer: controlRenderer,
-  tester: rankWith(4, isObjectArrayWithNesting),
+  tester: rankWith(5, isObjectArrayWithNesting),
 };
 </script>
 
@@ -481,7 +511,17 @@ export const entry: JsonFormsRendererRegistryEntry = {
 .notranslate {
   transform: none !important;
 }
-/deep/ .v-toolbar__content {
+:deep(.v-toolbar__content ){
   padding-left: 0;
 }
+.add_button {
+    margin-top: 1rem;
+    margin-left: .5rem;
+}
+
+.remove_button button .v-icon {
+    /* made a bit darker to compensate for row background grey */
+    color: #d2d2d2 !important;
+}
+
 </style>

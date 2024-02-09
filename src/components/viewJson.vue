@@ -9,7 +9,7 @@
           <v-btn
             v-bind="props"
             color="blue"
-            dark
+            theme="dark"
 
             class="float-right"
 
