@@ -35,8 +35,9 @@
   </div>
 </template>
 
-<script>
+<script >
 import { JsonForms } from '@jsonforms/vue';
+
 import { vuetifyRenderers } from '@jsonforms/vue-vuetify';
 import {defineComponent, toRaw} from "vue";
 //import VueJsonPretty from 'vue-json-pretty';
@@ -51,36 +52,82 @@ import uischema from '@/schema/tools/ecrr_1_1_uischema';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 import baseJsonLdObj  from '@/assets/basefiles/tools/ecrrempty.json?raw'
 
-import {entry as AltGroupRenderer} from '@/components/controls/AdditionalDetailsRenderer.vue'
-import {entry as HtmlLabelRender } from '@/components/controls/htmlLabelRenderer.vue'
-import {entry as ArrayOfStringRenderer} from '@/components/controls/ArrayOfStringRenderer.vue'
-import {entry as ArrayControlStringRenderer} from '@/components/controls/ArrayControlStringRenderer.vue'
-import {entry as ArrayLayoutRenderer} from '@/components/controls/ArrayLayoutRenderer.vue'
-import {entry as EnumArrayObjectRenderer } from '@/components/controls/EnumArrayObjectRenderer.vue'
-import {entry as EcFunctionsRenderer} from '@/components/controls/EcFunctionSubfunctionRenderer.vue'
+// import {entry as AltGroupRenderer} from '@/components/controls/AdditionalDetailsRenderer.vue'
+// import {entry as HtmlLabelRender } from '@/components/controls/htmlLabelRenderer.vue'
+// import {entry as ArrayOfStringRenderer} from '@/components/controls/ArrayOfStringRenderer.vue'
+// import {entry as ArrayControlStringRenderer} from '@/components/controls/ArrayControlStringRenderer.vue'
+// import {entry as ArrayLayoutRenderer} from '@/components/controls/ArrayLayoutRenderer.vue'
+// import {entry as EnumArrayObjectRenderer } from '@/components/controls/EnumArrayObjectRenderer.vue'
+// import {entry as EcFunctionsRenderer} from '@/components/controls/EcFunctionSubfunctionRenderer.vue'
+import AltGroupRenderer from '@/components/controls/AdditionalDetailsRenderer.vue'
+import HtmlLabelRender  from '@/components/controls/htmlLabelRenderer.vue'
+import ArrayOfStringRenderer from '@/components/controls/ArrayOfStringRenderer.vue'
+import ArrayControlStringRenderer from '@/components/controls/ArrayControlStringRenderer.vue'
+import ArrayLayoutRenderer from '@/components/controls/ArrayLayoutRenderer.vue'
+import EnumArrayObjectRenderer from '@/components/controls/EnumArrayObjectRenderer.vue'
+import EcFunctionsRenderer from '@/components/controls/EcFunctionSubfunctionRenderer.vue'
+
 import {default as JsonViewer} from '@/components/viewJson.vue'
 
-import {createAjv} from "@jsonforms/core";
+import {
+  and,
+  createAjv, hasType,
+  isLayout,
+  isObjectArrayControl,
+  isObjectArrayWithNesting,
+  isPrimitiveArrayControl,
+  or, schemaMatches, schemaSubPathMatches,
+  uiTypeIs,
+  rankWith,
+} from "@jsonforms/core";
 import {flatten, unflatten} from "@/js/jsonldutils"
 import {
   getFroms3,
   saveToUser} from '@/js/s3store'
 import { saveAs } from 'file-saver';
 
+function buildRendererRegistryEntry(testRenderer, controlType, rankPriority=3) {
+  const entry= {
+    renderer: testRenderer,
+    tester: rankWith(rankPriority, controlType )
+  };
+  return entry
+}
+const AltGroupRendererEntry = buildRendererRegistryEntry(AltGroupRenderer, and(isLayout, uiTypeIs('ShowGroup')))
+const HtmlLabelRenderEntry = buildRendererRegistryEntry(HtmlLabelRender, uiTypeIs('Label'), 4)
 
+const ArrayOfStringRendererEntry = buildRendererRegistryEntry(ArrayOfStringRenderer ,uiTypeIs('ArrayString'), 5)
+const ArrayControlStringRendererEntry = buildRendererRegistryEntry(ArrayControlStringRenderer, or(isObjectArrayControl, isPrimitiveArrayControl),5)
+const ArrayLayoutRendererEntry = buildRendererRegistryEntry(ArrayLayoutRenderer, isObjectArrayWithNesting, 5)
+const enumRank =and(
+    uiTypeIs('Control'),
+    and(
+        schemaMatches(
+            (schema) =>
+                hasType(schema, 'array') &&
+                !Array.isArray(schema.items) &&
+                schema.uniqueItems === true
+        ),
+        schemaSubPathMatches('items', (schema) => {
+          return hasOneOfItems(schema) || hasEnumItems(schema);
+        })
+    )
+)
+const EnumArrayObjectRendererEntry = buildRendererRegistryEntry(EnumArrayObjectRenderer, enumRank, 6)
+const EcFunctionsRendererEntry = buildRendererRegistryEntry(EcFunctionsRenderer, or(uiTypeIs('EcFunction'), isObjectArrayControl, isPrimitiveArrayControl), 5)
 
 
 const renderers = [
   ...vuetifyRenderers,
 
   // here you can add custom renderers
-  AltGroupRenderer,
-  HtmlLabelRender,
-  ArrayOfStringRenderer,
-  ArrayControlStringRenderer,
-  ArrayLayoutRenderer,
- EnumArrayObjectRenderer,
-  EcFunctionsRenderer
+  AltGroupRendererEntry,
+  HtmlLabelRenderEntry,
+  ArrayOfStringRendererEntry,
+  ArrayControlStringRendererEntry,
+  ArrayLayoutRendererEntry,
+ EnumArrayObjectRendererEntry,
+  EcFunctionsRendererEntry
 
 ];
 
