@@ -197,7 +197,9 @@ export default defineComponent({
         exampleData = flatten(exampleData, flattenList)
         this.jsonldObj = merge({}, this.jsonldObj, exampleData)
         console.info(`assigned value to jsonldboj ${JSON.stringify(this.jsonldObj)}`)
-      }).catch((err) => {console.error(`issue accessing ${exampleDataUrl} ${err}`)})
+      }).catch(
+          (err) => {console.error(`issue accessing ${exampleDataUrl} ${err}`)}
+      )
       // fails
       //import exampleData  from `@/assets/tools/argovis-Notebook.jsonld.json?raw`
 

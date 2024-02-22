@@ -135,7 +135,7 @@
                             aria-label="Move up"
                             :disabled="index <= 0 || !control.enabled"
                             :class="styles.arrayList.itemMoveUp"
-                            @click="moveUpClick($event, index)"
+                            @click.stop="moveUpClick($event, index)"
                           >
                             <v-icon class="notranslate">
                               mdi-arrow-up
@@ -164,7 +164,7 @@
                                 !control.enabled
                             "
                             :class="styles.arrayList.itemMoveDown"
-                            @click="moveDownClick($event, index)"
+                            @click.stop="moveDownClick($event, index)"
                           >
                             <v-icon class="notranslate">
                               mdi-arrow-down
@@ -211,7 +211,7 @@
                         arraySchema.maxItems !== undefined &&
                         control.data.length >= arraySchema.maxItems)
                   "
-                  @click="addButtonClick"
+                  @click.stop="addButtonClick()"
                 >
                   <v-icon>mdi-plus-circle</v-icon>
                 </v-btn>
