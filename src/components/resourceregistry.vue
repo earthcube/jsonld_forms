@@ -226,6 +226,7 @@ export default defineComponent({
       this.jsonldObj = merge({}, this.jsonldObj, exampleData)
     },
     onChange(event) {
+      console.log(event.errors);
       this.jsonldObj = event.data;
     },
     unflattenLocal(json) {

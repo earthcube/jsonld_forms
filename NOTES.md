@@ -5,6 +5,11 @@ vue3 notes
 * need to figure out why main entiity on category 2 is nto rendering.
 * controls need to be updated
   * EnumArrayObjectRenderer.vue needs work. disabled
+  
+possible issues
+https://github.com/yaffol/json-forms-vuetify-vite-seed/blob/main/src/App.vue
+https://github.com/eclipsesource/jsonforms-vuetify-renderers/pull/102
+
 ---
 ui notes 20220415
 add min width to license list.

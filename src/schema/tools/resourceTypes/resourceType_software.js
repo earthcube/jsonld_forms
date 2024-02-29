@@ -10,14 +10,14 @@ const resourceTypeBase = {
     rule: {
         effect: 'SHOW',
         condition: {
-            scope: '#/properties/mainEntity/',
+            scope: '#/properties/mainEntity',
             schema: {
                 // const: 'Software'
                 "const":
                     [
                         {
                             "name": "Software",
-                            "@type": "DefinedTerm",
+                            "@type": "CreativeWork",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000206"
                         }
                     ]

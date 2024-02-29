@@ -19,8 +19,9 @@ const cat2 = {
     },
     {
       type: 'Control',
-      scope: '#/properties/mainEntity',
+      scope: '#/properties/mainEntity/',
       options: {
+        showSortButtons: false,
         "elementLabelProp": "name" ,
         "showUnfocusedDescription": true,
         "detail": {

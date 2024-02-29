@@ -78,8 +78,8 @@ const htmlLabelRenderer = defineComponent({
 
 export default htmlLabelRenderer;
 
-export let entry: JsonFormsRendererRegistryEntry;
-entry = {
+
+export const entry: JsonFormsRendererRegistryEntry = {
   "tester": rankWith(4, uiTypeIs('Label')),
   renderer: htmlLabelRenderer,
 };

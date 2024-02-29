@@ -1,9 +1,11 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import content from '@originjs/vite-plugin-content'
+//import content from '@originjs/vite-plugin-content'
 // https://vitejs.dev/guide/troubleshooting#module-externalized-for-browser-compatibilityg
 import { nodePolyfills } from 'vite-plugin-node-polyfills' // needed for minio-javascript
-import * as path from 'path';
+import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+//import * as path from 'path';
+import { fileURLToPath, URL } from 'node:url'
 import dsv from '@rollup/plugin-dsv'
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -11,21 +13,37 @@ export default defineConfig({
     build: {
         outDir: 'dist',
     },
+    define: { 'process.env': {} },
     resolve: {
         alias: {
             // vue: '@vue/compat',
-            "@": path.resolve(__dirname, "./src"),
-        }
+          //  "@": path.resolve(__dirname, "./src"),
+            '@': fileURLToPath(new URL('./src', import.meta.url))
+        },
+        extensions: [
+            '.js',
+            '.json',
+            '.jsx',
+            '.mjs',
+            '.ts',
+            '.tsx',
+            '.vue',
+        ],
     },
-    plugins: [vue({
-        template: {
-            compilerOptions: {
-                compatConfig: {
-                    MODE: 2
-                }
+    plugins: [
+        vue({
+            template: {
+                transformAssetUrls
+                // compilerOptions: {
+                //     compatConfig: {
+                //         MODE: 2
+                //     }
+                // }
             }
-        }
-    }),
+        }),
+        vuetify({
+            autoImport: true,
+        }),
         dsv(),
 
         // content(

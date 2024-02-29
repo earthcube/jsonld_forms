@@ -326,7 +326,7 @@ const controlRenderer = defineComponent({
     addButtonClick() {
       this.addItem(
           this.control.path,
-          createDefaultValue(this.control.schema)
+          createDefaultValue(this.control.schema, this.control.rootSchema)
       )();
     },
     moveUpClick(event: Event, toMove: number): void {
