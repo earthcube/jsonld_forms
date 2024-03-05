@@ -176,7 +176,7 @@ export default defineComponent({
     }
 
   },
-  beforeCreate() {
+  beforeMount() {
     // schemaWithEnum().then(s =>{
     //       console.log(s)
     //       this.schema = s

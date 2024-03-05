@@ -15,6 +15,6 @@ export const resourceTypes =   function()  {
             }
         }
     })
-    return {"anyOf":   propList }
+    return {"oneOf":   propList }
 }
 export { resourceTypes as resourceTypeList}
