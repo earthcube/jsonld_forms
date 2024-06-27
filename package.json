@@ -11,10 +11,10 @@
     "clean": "rimraf dist"
   },
   "dependencies": {
-    "@jsonforms/core": "^3.2.0-alpha.3",
-    "@jsonforms/vue": "^3.2.0-alpha.3",
-    "@jsonforms/vue-vuetify": "^3.2.0-preview-alpha.3",
-    "@jsonforms/vue-vanilla": "^3.2.0-alpha.3",
+    "@jsonforms/core": "^3.3.0",
+    "@jsonforms/vue": "^3.3.0",
+    "@jsonforms/vue-vuetify": "^3.3.0-preview.0",
+    "@jsonforms/vue-vanilla": "^3.3.0",
     "@types/lodash": "^4.14.179",
 
 
@@ -35,7 +35,7 @@
     "ajv": "^8.12.0"
   },
   "devDependencies": {
-    "@achrinza/node-ipc": "10.1.10",
+    "@achrinza/node-ipc": "10.1.11",
     "@babel/core":"^7.0.0",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.16.7",
     "@babel/plugin-proposal-optional-chaining": "^7.16.7",
