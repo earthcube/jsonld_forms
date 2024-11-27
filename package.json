@@ -11,10 +11,10 @@
     "clean": "rimraf dist"
   },
   "dependencies": {
-    "@jsonforms/core": "^3.4.0",
-    "@jsonforms/vue": "^3.4.0",
-    "@jsonforms/vue-vuetify": "^3.4.0",
-    "@jsonforms/vue-vanilla": "^3.4.0",
+    "@jsonforms/core": "^3.4.1",
+    "@jsonforms/vue": "^3.4.1",
+    "@jsonforms/vue-vuetify": "^3.4.1",
+    "@jsonforms/vue-vanilla": "^3.4.1",
     "@types/lodash": "^4.14.179",
 
 
