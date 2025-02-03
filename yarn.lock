@@ -1525,32 +1525,32 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@jsonforms/core@^3.4.0":
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@jsonforms/core/-/core-3.4.0.tgz#00e280b6280c868fe00cb71a9bcd7daa86188b90"
-  integrity sha512-jeU98XLru6G2WVGmJqG19W2rmSLX4im/gOWbptTzQJYj8tS38cqDoYcIRuBmAQYASj2ogJDHQnDgIXARSL8vJA==
+"@jsonforms/core@^3.5.1":
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/@jsonforms/core/-/core-3.5.1.tgz#1c8aa9323bb80677bbd538022f4d8e039516fef0"
+  integrity sha512-Jrq/UcfvKsAprLJ+9TMFa8pKsfdyv3dAw85XstSNRcjDT19LreBlhVqIvTvtgZidg8Iet3yqy5xlNnB+XyrvrQ==
   dependencies:
     "@types/json-schema" "^7.0.3"
     ajv "^8.6.1"
     ajv-formats "^2.1.0"
     lodash "^4.17.21"
 
-"@jsonforms/vue-vanilla@^3.4.0":
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@jsonforms/vue-vanilla/-/vue-vanilla-3.4.0.tgz#37c826acc7c88197cd6949eb497799b9e36c7747"
-  integrity sha512-dP/LFOmFWZ7WS0X9N5rT7MsVfIT7BaqEIPaM2+vvD9jBvxdCHvEgdV7V7XruhpZ8pxQ6IsxzQILD2JyYhpgGTA==
+"@jsonforms/vue-vanilla@^3.5.1":
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/@jsonforms/vue-vanilla/-/vue-vanilla-3.5.1.tgz#98bd156a3d689dc37f671ce1a54534402ec11679"
+  integrity sha512-XkaescuGVFX+p80PXeIgDm9oLoWlBHebyC1o8JEjIZoPIuFmG8MGWlclmKLAXQapfotCUMhcUXLHV1Mi6A7ZQg==
   dependencies:
     lodash "^4.17.21"
 
-"@jsonforms/vue-vuetify@^3.4.0":
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@jsonforms/vue-vuetify/-/vue-vuetify-3.4.0.tgz#73a44b530b1fc4f6646b0b7e4ad0e162efd33f37"
-  integrity sha512-bbhbBoIY6ff8aES0EErtUKIEI4zvTz9UGOp+VczjHRfU05/jnm/O5K0xbVPfSv0YKOj0PAlV/yl3zNn95NKUyg==
+"@jsonforms/vue-vuetify@^3.5.1":
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/@jsonforms/vue-vuetify/-/vue-vuetify-3.5.1.tgz#186e64f3cd9801c7db482add25b1b4a59acfc41b"
+  integrity sha512-jOzLkyDYHMPM72Yvos3M6qYrYnPtA/MXRozWNoaAAL4XY0UkNUgH8EWpcoonraJeRNi7ZtTH7Dw+Ob8j0yr+7Q==
 
-"@jsonforms/vue@^3.4.0":
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@jsonforms/vue/-/vue-3.4.0.tgz#63b7bff3791ebeef4f8fe866c0f0f5a780770161"
-  integrity sha512-pSfxvlXLSZafkbVbHRTlBdh9/9L/bAJx5pj8TiJkPREWAOOE0dc8Cp+xPTKYNGv87F0apzUEJmY1fHtsG42Uig==
+"@jsonforms/vue@^3.5.1":
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/@jsonforms/vue/-/vue-3.5.1.tgz#cf9dd0a0a718236be94c30a5c1924d4c90b14ef1"
+  integrity sha512-mxxZ/RrvxpIyqxRXH1K4f+Zha/JJCeycx/oKC7h2w6ZsQFqLSFJuntQ1nIwNOCIR21lYQZXIt/VkmvAemnis5g==
   dependencies:
     lodash "^4.17.21"
 
