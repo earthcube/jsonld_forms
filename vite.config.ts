@@ -1,10 +1,13 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import content from '@originjs/vite-plugin-content'
+
 // https://vitejs.dev/guide/troubleshooting#module-externalized-for-browser-compatibilityg
 import { nodePolyfills } from 'vite-plugin-node-polyfills' // needed for minio-javascript
-import * as path from 'path';
+
 import dsv from '@rollup/plugin-dsv'
+import { fileURLToPath } from 'url'
+import * as path from "path";
+
 // https://vitejs.dev/config/
 export default defineConfig({
     publicDir: 'public',
@@ -14,7 +17,18 @@ export default defineConfig({
     resolve: {
         alias: {
             // vue: '@vue/compat',
-            "@": path.resolve(__dirname, "./src"),
+            "@": fileURLToPath(new URL('./src', import.meta.url))
+            ,"vuetify/labs/VNumberInput":
+                path.resolve(
+                __dirname,
+                "node_modules/vuetify/lib/components/VNumberInput/index.js",
+            ),
+        "vuetify/labs/VTimePicker": path.resolve(
+            __dirname,
+            "node_modules/vuetify/lib/components/VTimePicker/index.js",
+        ),
+        crypto: 'crypto-js'
+
         }
     },
     plugins: [vue({
@@ -42,7 +56,24 @@ export default defineConfig({
         nodePolyfills({
             // To add only specific polyfills, add them here. If no option is passed, adds all polyfills
             include: ['path','fs', 'util', 'stream', 'timers',
-                'timers/promises','readable','https'],
+                'timers/promises'
+             //   ,'readable'
+                ,'https',
+                'crypto'
+            ],
+            globals: {
+                Buffer: true,
+                global: true,
+                process: true
+            }
+
         })
-    ],
+    ],    optimizeDeps: {
+        esbuildOptions: {
+            define: {
+                global: 'globalThis'
+            }
+        }
+    }
+
 })
